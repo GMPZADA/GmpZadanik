@@ -14,7 +14,7 @@
     "8919178002": {
       "balance": 0,
       "done_tasks": [],
-      "waiting_task": "39",
+      "waiting_task": null,
       "withdraw_pending": false
     }
   },
