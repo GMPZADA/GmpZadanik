@@ -7,8 +7,14 @@
       "withdraw_pending": false
     }
   },
-  "tasks": {},
-  "last_task_id": 37,
+  "tasks": {
+    "38": {
+      "text": "Зайти в бота, подписаться на спонсоров и прислать скриншот выполнения",
+      "link": "https://t.me/starfalll_tg_bot?start=MxdXVTrQ7SCVVk",
+      "reward": 1
+    }
+  },
+  "last_task_id": 38,
   "withdraws": {},
   "last_withdraw_id": 0
 }
