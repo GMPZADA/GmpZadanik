@@ -3,7 +3,7 @@
     "8850791713": {
       "balance": 0,
       "done_tasks": [],
-      "waiting_task": "38",
+      "waiting_task": null,
       "withdraw_pending": false
     }
   },
