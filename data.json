@@ -17,7 +17,7 @@
         "39"
       ],
       "waiting_task": "38",
-      "withdraw_pending": true,
+      "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null
     }
@@ -35,14 +35,6 @@
     }
   },
   "last_task_id": 39,
-  "withdraws": {
-    "3": {
-      "user_id": 8919178002,
-      "username": "Werhhhg",
-      "to": "@Werhhhg",
-      "amount": 1,
-      "status": "wait"
-    }
-  },
+  "withdraws": {},
   "last_withdraw_id": 3
 }
