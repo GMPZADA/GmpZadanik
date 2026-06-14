@@ -17,7 +17,9 @@
         "39"
       ],
       "waiting_task": "38",
-      "withdraw_pending": false
+      "withdraw_pending": false,
+      "withdraw_step": "username",
+      "withdraw_to": null
     }
   },
   "tasks": {
