@@ -1,5 +1,12 @@
 {
-  "users": {},
+  "users": {
+    "8850791713": {
+      "balance": 0,
+      "done_tasks": [],
+      "waiting_task": null,
+      "withdraw_pending": false
+    }
+  },
   "tasks": {},
   "last_task_id": 37,
   "withdraws": {},
