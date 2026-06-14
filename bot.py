@@ -195,7 +195,7 @@ def start(message):
 
     bot.send_message(
         message.chat.id,
-        "👋 <b>Добро пожаловать в GMP Zadanik!</b>\n\n"
+        "👋 <b>Добро пожаловать в Заработок GMP!</b>\n\n"
         "📋 Выполняй задания\n"
         "📸 Отправляй скрин\n"
         "💰 Получай GMP\n\n"
