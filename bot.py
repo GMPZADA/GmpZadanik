@@ -6,7 +6,7 @@ from aiogram.types import Message, CallbackQuery
 from aiogram.filters import CommandStart, Command
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 
-TOKEN = "ВСТАВЬ_ТОКЕН"
+TOKEN = "8568389419:AAFy31UwpLF4CCaAFtoMNzQQZG1-TD5Zo8g"
 ADMIN_ID = 7837011810  # свой Telegram ID
 
 DATA_FILE = "data.json"
