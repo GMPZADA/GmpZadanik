@@ -48,9 +48,7 @@
     "8380620424": {
       "balance": 0,
       "done_tasks": [],
-      "pending_tasks": [
-        "38"
-      ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
@@ -72,15 +70,6 @@
   "last_task_id": 39,
   "withdraws": {},
   "last_withdraw_id": 6,
-  "submits": {
-    "4": {
-      "user_id": 8380620424,
-      "username": "offormit",
-      "task_id": "38",
-      "reward": 1,
-      "status": "wait",
-      "time": 1781444918
-    }
-  },
+  "submits": {},
   "last_submit_id": 4
 }
