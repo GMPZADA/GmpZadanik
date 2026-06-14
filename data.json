@@ -12,9 +12,14 @@
       "text": "Зайти в бота, подписаться на спонсоров и прислать скриншот выполнения",
       "link": "https://t.me/starfalll_tg_bot?start=MxdXVTrQ7SCVVk",
       "reward": 1
+    },
+    "39": {
+      "text": "Зайти в бота, подписаться на спонсоров и прислать скриншот выполнения",
+      "link": "https://t.me/FrogsStarsBot?start=ref_7837011810",
+      "reward": 1
     }
   },
-  "last_task_id": 38,
+  "last_task_id": 39,
   "withdraws": {},
   "last_withdraw_id": 0
 }
