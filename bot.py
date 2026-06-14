@@ -126,7 +126,9 @@ def get_user(data, user_id):
             "balance": 0,
             "done_tasks": [],
             "waiting_task": None,
-            "withdraw_pending": False
+            "withdraw_pending": False,
+            "withdraw_step": None,
+            "withdraw_to": None
         }
     return data["users"][uid]
 
@@ -325,34 +327,15 @@ def withdraw(message):
     if user.get("withdraw_pending"):
         return bot.send_message(message.chat.id, "⏳ У тебя уже есть заявка на вывод. Ожидай.")
 
-    data["last_withdraw_id"] += 1
-    wid = str(data["last_withdraw_id"])
-    amount = user["balance"]
-
-    user["withdraw_pending"] = True
-    data["withdraws"][wid] = {
-        "user_id": message.from_user.id,
-        "amount": amount,
-        "status": "wait"
-    }
-
+    user["withdraw_step"] = "username"
+    user["withdraw_to"] = None
     save_data(data)
 
-    kb = types.InlineKeyboardMarkup()
-    kb.add(
-        types.InlineKeyboardButton("✅ Выплачено", callback_data=f"payyes_{wid}"),
-        types.InlineKeyboardButton("❌ Отказать", callback_data=f"payno_{wid}")
-    )
-
-    bot.send_message(message.chat.id, f"✅ Заявка на вывод создана.\n\n💰 Сумма: <b>{amount} GMP</b>\n⏳ Ожидай выплату.")
-
     bot.send_message(
-        ADMIN_ID,
-        f"💸 <b>Новая заявка на вывод #{wid}</b>\n\n"
-        f"👤 @{message.from_user.username or 'нет username'}\n"
-        f"🆔 <code>{message.from_user.id}</code>\n"
-        f"💰 {amount} GMP",
-        reply_markup=kb
+        message.chat.id,
+        "💸 <b>Вывод GMP</b>\n\n"
+        "👤 Напиши username/ID, куда вывести GMP.\n\n"
+        "Пример: <code>@username</code>"
     )
 
 
@@ -372,29 +355,29 @@ def pay_check(call):
     amount = int(w["amount"])
 
     if action == "payyes":
-        user["balance"] = max(0, user["balance"] - amount)
         user["withdraw_pending"] = False
 
-        # удаляем заявку из файла, чтобы data.json не засорялся
+        # заявка удаляется из data.json, чтобы файл не засорялся
         if wid in data["withdraws"]:
             del data["withdraws"][wid]
 
         save_data(data)
 
-        bot.send_message(w["user_id"], f"✅ Выплата #{wid} подтверждена.\n💰 Списано: <b>{amount} GMP</b>")
+        bot.send_message(w["user_id"], f"✅ Выплата #{wid} подтверждена.\n💰 Выплачено: <b>{amount} GMP</b>")
         bot.edit_message_text("✅ Выплата подтверждена.", call.message.chat.id, call.message.message_id)
 
     else:
+        # если отказал — возвращаем GMP обратно на баланс
+        user["balance"] += amount
         user["withdraw_pending"] = False
 
-        # удаляем отклонённую заявку из файла, чтобы data.json не засорялся
         if wid in data["withdraws"]:
             del data["withdraws"][wid]
 
         save_data(data)
 
-        bot.send_message(w["user_id"], f"❌ Заявка на вывод #{wid} отклонена.\nБаланс не списан.")
-        bot.edit_message_text("❌ Выплата отклонена.", call.message.chat.id, call.message.message_id)
+        bot.send_message(w["user_id"], f"❌ Заявка на вывод #{wid} отклонена.\n💰 <b>{amount} GMP</b> возвращены на баланс.")
+        bot.edit_message_text("❌ Выплата отклонена. GMP возвращены.", call.message.chat.id, call.message.message_id)
 
 
 @bot.message_handler(func=lambda m: m.text == "ℹ️ Помощь")
@@ -485,8 +468,97 @@ def menu(message):
 
 
 @bot.message_handler(func=lambda m: True)
-def unknown(message):
-    bot.send_message(message.chat.id, "👇 Выбери кнопку в меню.", reply_markup=main_menu())
+def withdraw_steps(message):
+    data = load_data()
+    user = get_user(data, message.from_user.id)
+
+    step = user.get("withdraw_step")
+
+    if step == "username":
+        withdraw_to = message.text.strip()
+
+        if len(withdraw_to) < 3:
+            return bot.send_message(message.chat.id, "❌ Напиши нормальный username/ID для вывода.")
+
+        user["withdraw_to"] = withdraw_to
+        user["withdraw_step"] = "amount"
+        save_data(data)
+
+        return bot.send_message(
+            message.chat.id,
+            f"💰 Твой баланс: <b>{user['balance']} GMP</b>\n\n"
+            "Напиши сколько GMP вывести.\n"
+            "Можно написать число или <code>все</code>."
+        )
+
+    if step == "amount":
+        text = message.text.strip().lower()
+
+        if text in ["все", "all", "всё"]:
+            amount = int(user["balance"])
+        else:
+            try:
+                amount = int(text)
+            except:
+                return bot.send_message(message.chat.id, "❌ Напиши число. Например: <code>10</code>")
+
+        if amount <= 0:
+            return bot.send_message(message.chat.id, "❌ Сумма должна быть больше 0.")
+
+        if amount > int(user["balance"]):
+            return bot.send_message(
+                message.chat.id,
+                f"❌ Недостаточно GMP.\nТвой баланс: <b>{user['balance']} GMP</b>"
+            )
+
+        data["last_withdraw_id"] += 1
+        wid = str(data["last_withdraw_id"])
+
+        withdraw_to = user.get("withdraw_to") or "не указано"
+
+        # GMP списываются сразу, чтобы нельзя было спамить выводами на одну сумму
+        user["balance"] -= amount
+        user["withdraw_pending"] = True
+        user["withdraw_step"] = None
+        user["withdraw_to"] = None
+
+        data["withdraws"][wid] = {
+            "user_id": message.from_user.id,
+            "username": message.from_user.username or "",
+            "to": withdraw_to,
+            "amount": amount,
+            "status": "wait"
+        }
+
+        save_data(data)
+
+        kb = types.InlineKeyboardMarkup()
+        kb.add(
+            types.InlineKeyboardButton("✅ Выплачено", callback_data=f"payyes_{wid}"),
+            types.InlineKeyboardButton("❌ Отказать", callback_data=f"payno_{wid}")
+        )
+
+        bot.send_message(
+            message.chat.id,
+            f"✅ Заявка на вывод #{wid} создана.\n\n"
+            f"👤 Куда: <b>{withdraw_to}</b>\n"
+            f"💰 Сумма: <b>{amount} GMP</b>\n\n"
+            "GMP уже списаны с баланса и ожидают проверки."
+        )
+
+        return bot.send_message(
+            ADMIN_ID,
+            f"💸 <b>Новая заявка на вывод #{wid}</b>\n\n"
+            f"👤 Пользователь: @{message.from_user.username or 'нет username'}\n"
+            f"🆔 ID: <code>{message.from_user.id}</code>\n"
+            f"📤 Куда вывести: <b>{withdraw_to}</b>\n"
+            f"💰 Сумма: <b>{amount} GMP</b>",
+            reply_markup=kb
+        )
+
+    return unknown(message)
+
+
 
 
 if __name__ == "__main__":
