@@ -7,7 +7,9 @@
         "39"
       ],
       "waiting_task": null,
-      "withdraw_pending": false
+      "withdraw_pending": false,
+      "withdraw_step": "username",
+      "withdraw_to": null
     },
     "8919178002": {
       "balance": 0,
