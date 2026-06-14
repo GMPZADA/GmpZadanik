@@ -71,9 +71,15 @@
       "link": "https://t.me/Referalmaxrobot?start=7837011810",
       "reward": 2,
       "active": true
+    },
+    "41": {
+      "text": "Зайти в бота, подписаться на спонсоров и прислать скриншот выполнения",
+      "link": "https://t.me/Starpluss_bot?start=407510",
+      "reward": 2,
+      "active": true
     }
   },
-  "last_task_id": 40,
+  "last_task_id": 41,
   "withdraws": {},
   "last_withdraw_id": 6,
   "submits": {},
