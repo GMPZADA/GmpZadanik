@@ -65,9 +65,15 @@
       "text": "Зайти в бота, подписаться на спонсоров и прислать скриншот выполнения",
       "link": "https://t.me/FrogsStarsBot?start=ref_7837011810",
       "reward": 1
+    },
+    "40": {
+      "text": "Зайти в бота, подписаться на спонсоров и прислать скриншот выполнения",
+      "link": "https://t.me/Referalmaxrobot?start=7837011810",
+      "reward": 2,
+      "active": true
     }
   },
-  "last_task_id": 39,
+  "last_task_id": 40,
   "withdraws": {},
   "last_withdraw_id": 6,
   "submits": {},
