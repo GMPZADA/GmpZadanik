@@ -1,15 +1,22 @@
 import os
 import json
+import base64
 import threading
+import requests
 from flask import Flask
 from telebot import TeleBot, types
 
 TOKEN = os.getenv("BOT_TOKEN")
 ADMIN_ID = int(os.getenv("ADMIN_ID", "0"))
 
-DATA_FILE = "data.json"
-bot = TeleBot(TOKEN, parse_mode="HTML")
+GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
+GITHUB_REPO = os.getenv("GITHUB_REPO")  # пример: GMPZADA/GmpZadanik
+GITHUB_BRANCH = os.getenv("GITHUB_BRANCH", "main")
+GITHUB_FILE = "data.json"
 
+LOCAL_DATA_FILE = "data.json"
+
+bot = TeleBot(TOKEN, parse_mode="HTML")
 app = Flask(__name__)
 
 
@@ -23,35 +30,105 @@ def run_site():
     app.run(host="0.0.0.0", port=port)
 
 
-def load_data():
-    if not os.path.exists(DATA_FILE):
-        return {
-            "users": {},
-            "tasks": {},
-            "last_task_id": 37,
-            "last_request_id": 0
-        }
+def empty_data():
+    return {
+        "users": {},
+        "tasks": {},
+        "last_task_id": 37,
+        "withdraws": {},
+        "last_withdraw_id": 0
+    }
 
-    with open(DATA_FILE, "r", encoding="utf-8") as file:
-        return json.load(file)
+
+def github_headers():
+    return {
+        "Authorization": f"Bearer {GITHUB_TOKEN}",
+        "Accept": "application/vnd.github+json"
+    }
+
+
+def github_url():
+    return f"https://api.github.com/repos/{GITHUB_REPO}/contents/{GITHUB_FILE}"
+
+
+def load_data():
+    if GITHUB_TOKEN and GITHUB_REPO:
+        try:
+            r = requests.get(
+                github_url(),
+                headers=github_headers(),
+                params={"ref": GITHUB_BRANCH},
+                timeout=10
+            )
+
+            if r.status_code == 200:
+                content = r.json()["content"]
+                text = base64.b64decode(content).decode("utf-8")
+                return json.loads(text)
+
+            if r.status_code == 404:
+                data = empty_data()
+                save_data(data)
+                return data
+
+            print("GitHub load error:", r.text)
+        except Exception as e:
+            print("GitHub load exception:", e)
+
+    if os.path.exists(LOCAL_DATA_FILE):
+        with open(LOCAL_DATA_FILE, "r", encoding="utf-8") as f:
+            return json.load(f)
+
+    return empty_data()
 
 
 def save_data(data):
-    with open(DATA_FILE, "w", encoding="utf-8") as file:
-        json.dump(data, file, ensure_ascii=False, indent=2)
+    if GITHUB_TOKEN and GITHUB_REPO:
+        try:
+            sha = None
+
+            r = requests.get(
+                github_url(),
+                headers=github_headers(),
+                params={"ref": GITHUB_BRANCH},
+                timeout=10
+            )
+
+            if r.status_code == 200:
+                sha = r.json().get("sha")
+
+            content = json.dumps(data, ensure_ascii=False, indent=2)
+            payload = {
+                "message": "update bot data",
+                "content": base64.b64encode(content.encode("utf-8")).decode("utf-8"),
+                "branch": GITHUB_BRANCH
+            }
+
+            if sha:
+                payload["sha"] = sha
+
+            pr = requests.put(github_url(), headers=github_headers(), json=payload, timeout=10)
+
+            if pr.status_code not in (200, 201):
+                print("GitHub save error:", pr.text)
+
+        except Exception as e:
+            print("GitHub save exception:", e)
+
+    with open(LOCAL_DATA_FILE, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
 
 
 def get_user(data, user_id):
-    user_id = str(user_id)
-
-    if user_id not in data["users"]:
-        data["users"][user_id] = {
+    uid = str(user_id)
+    if uid not in data["users"]:
+        data["users"][uid] = {
             "balance": 0,
             "done_tasks": [],
-            "waiting_task": None
+            "waiting_task": None,
+            "withdraw_pending": False
         }
-
-    return data["users"][user_id]
+    return data["users"][uid]
 
 
 def main_menu():
@@ -86,7 +163,6 @@ def start(message):
 def admin(message):
     if message.from_user.id != ADMIN_ID:
         return bot.send_message(message.chat.id, "❌ Нет доступа.")
-
     bot.send_message(message.chat.id, "🔐 <b>Админ-панель</b>", reply_markup=admin_menu())
 
 
@@ -117,9 +193,13 @@ def tasks(message):
 @bot.callback_query_handler(func=lambda c: c.data.startswith("task_"))
 def open_task(call):
     data = load_data()
+    user = get_user(data, call.from_user.id)
     task_id = call.data.split("_")[1]
-    task = data["tasks"].get(task_id)
 
+    if task_id in user["done_tasks"]:
+        return bot.answer_callback_query(call.id, "Ты уже сделал это задание.")
+
+    task = data["tasks"].get(task_id)
     if not task:
         return bot.answer_callback_query(call.id, "Задание не найдено.")
 
@@ -143,6 +223,9 @@ def done_task(call):
     user = get_user(data, call.from_user.id)
     task_id = call.data.split("_")[1]
 
+    if task_id in user["done_tasks"]:
+        return bot.answer_callback_query(call.id, "Ты уже сделал это задание.")
+
     user["waiting_task"] = task_id
     save_data(data)
 
@@ -158,20 +241,24 @@ def photo(message):
     if not task_id:
         return bot.send_message(message.chat.id, "❌ Сначала выбери задание.")
 
+    if task_id in user["done_tasks"]:
+        user["waiting_task"] = None
+        save_data(data)
+        return bot.send_message(message.chat.id, "✅ Ты уже выполнил это задание.")
+
     task = data["tasks"].get(task_id)
     if not task:
+        user["waiting_task"] = None
+        save_data(data)
         return bot.send_message(message.chat.id, "❌ Задание не найдено.")
-
-    data["last_request_id"] += 1
-    request_id = data["last_request_id"]
 
     user["waiting_task"] = None
     save_data(data)
 
     kb = types.InlineKeyboardMarkup()
     kb.add(
-        types.InlineKeyboardButton("✅ Одобрить", callback_data=f"yes_{message.from_user.id}_{task_id}_{request_id}"),
-        types.InlineKeyboardButton("❌ Отказать", callback_data=f"no_{message.from_user.id}_{task_id}_{request_id}")
+        types.InlineKeyboardButton("✅ Одобрить", callback_data=f"yes_{message.from_user.id}_{task_id}"),
+        types.InlineKeyboardButton("❌ Отказать", callback_data=f"no_{message.from_user.id}_{task_id}")
     )
 
     bot.send_message(message.chat.id, "✅ Скрин отправлен админу на проверку.")
@@ -180,7 +267,7 @@ def photo(message):
         ADMIN_ID,
         message.photo[-1].file_id,
         caption=
-        f"📨 <b>Новая заявка #{request_id}</b>\n\n"
+        f"📨 <b>Новая заявка</b>\n\n"
         f"✅ Задание: #{task_id}\n"
         f"💰 Награда: {task['reward']} GMP\n"
         f"👤 Пользователь: @{message.from_user.username or 'нет username'}\n"
@@ -195,7 +282,7 @@ def check_request(call):
         return bot.answer_callback_query(call.id, "Нет доступа.")
 
     data = load_data()
-    action, user_id, task_id, request_id = call.data.split("_")
+    action, user_id, task_id = call.data.split("_")
 
     user = get_user(data, user_id)
     task = data["tasks"].get(task_id)
@@ -210,27 +297,13 @@ def check_request(call):
 
         save_data(data)
 
-        bot.send_message(
-            user_id,
-            f"🎉 Задание #{task_id} одобрено!\n"
-            f"💰 Начислено: <b>{task['reward']} GMP</b>"
-        )
-
-        bot.edit_message_caption(
-            chat_id=call.message.chat.id,
-            message_id=call.message.message_id,
-            caption=f"✅ Заявка #{request_id} одобрена."
-        )
+        bot.send_message(user_id, f"🎉 Задание #{task_id} одобрено!\n💰 Начислено: <b>{task['reward']} GMP</b>")
+        bot.edit_message_caption(chat_id=call.message.chat.id, message_id=call.message.message_id, caption="✅ Заявка одобрена.")
 
     else:
         save_data(data)
-
         bot.send_message(user_id, f"❌ Задание #{task_id} отклонено.")
-        bot.edit_message_caption(
-            chat_id=call.message.chat.id,
-            message_id=call.message.message_id,
-            caption=f"❌ Заявка #{request_id} отклонена."
-        )
+        bot.edit_message_caption(chat_id=call.message.chat.id, message_id=call.message.message_id, caption="❌ Заявка отклонена.")
 
 
 @bot.message_handler(func=lambda m: m.text == "💰 Баланс")
@@ -238,7 +311,6 @@ def balance(message):
     data = load_data()
     user = get_user(data, message.from_user.id)
     save_data(data)
-
     bot.send_message(message.chat.id, f"💰 <b>Твой баланс:</b> {user['balance']} GMP")
 
 
@@ -246,37 +318,88 @@ def balance(message):
 def withdraw(message):
     data = load_data()
     user = get_user(data, message.from_user.id)
-    save_data(data)
 
     if user["balance"] <= 0:
         return bot.send_message(message.chat.id, "❌ У тебя нет GMP для вывода.")
 
-    bot.send_message(
-        message.chat.id,
-        f"✅ Заявка на вывод создана.\n\n"
-        f"💰 Сумма: <b>{user['balance']} GMP</b>\n"
-        f"⏳ Ожидай выплату в течение 24 часов."
+    if user.get("withdraw_pending"):
+        return bot.send_message(message.chat.id, "⏳ У тебя уже есть заявка на вывод. Ожидай.")
+
+    data["last_withdraw_id"] += 1
+    wid = str(data["last_withdraw_id"])
+    amount = user["balance"]
+
+    user["withdraw_pending"] = True
+    data["withdraws"][wid] = {
+        "user_id": message.from_user.id,
+        "amount": amount,
+        "status": "wait"
+    }
+
+    save_data(data)
+
+    kb = types.InlineKeyboardMarkup()
+    kb.add(
+        types.InlineKeyboardButton("✅ Выплачено", callback_data=f"payyes_{wid}"),
+        types.InlineKeyboardButton("❌ Отказать", callback_data=f"payno_{wid}")
     )
+
+    bot.send_message(message.chat.id, f"✅ Заявка на вывод создана.\n\n💰 Сумма: <b>{amount} GMP</b>\n⏳ Ожидай выплату.")
 
     bot.send_message(
         ADMIN_ID,
-        f"💸 <b>Новая заявка на вывод</b>\n\n"
+        f"💸 <b>Новая заявка на вывод #{wid}</b>\n\n"
         f"👤 @{message.from_user.username or 'нет username'}\n"
         f"🆔 <code>{message.from_user.id}</code>\n"
-        f"💰 {user['balance']} GMP"
+        f"💰 {amount} GMP",
+        reply_markup=kb
     )
+
+
+@bot.callback_query_handler(func=lambda c: c.data.startswith("payyes_") or c.data.startswith("payno_"))
+def pay_check(call):
+    if call.from_user.id != ADMIN_ID:
+        return bot.answer_callback_query(call.id, "Нет доступа.")
+
+    data = load_data()
+    action, wid = call.data.split("_")
+    w = data["withdraws"].get(wid)
+
+    if not w or w["status"] != "wait":
+        return bot.answer_callback_query(call.id, "Заявка уже обработана.")
+
+    user = get_user(data, w["user_id"])
+    amount = int(w["amount"])
+
+    if action == "payyes":
+        user["balance"] = max(0, user["balance"] - amount)
+        user["withdraw_pending"] = False
+
+        # удаляем заявку из файла, чтобы data.json не засорялся
+        if wid in data["withdraws"]:
+            del data["withdraws"][wid]
+
+        save_data(data)
+
+        bot.send_message(w["user_id"], f"✅ Выплата #{wid} подтверждена.\n💰 Списано: <b>{amount} GMP</b>")
+        bot.edit_message_text("✅ Выплата подтверждена.", call.message.chat.id, call.message.message_id)
+
+    else:
+        user["withdraw_pending"] = False
+
+        # удаляем отклонённую заявку из файла, чтобы data.json не засорялся
+        if wid in data["withdraws"]:
+            del data["withdraws"][wid]
+
+        save_data(data)
+
+        bot.send_message(w["user_id"], f"❌ Заявка на вывод #{wid} отклонена.\nБаланс не списан.")
+        bot.edit_message_text("❌ Выплата отклонена.", call.message.chat.id, call.message.message_id)
 
 
 @bot.message_handler(func=lambda m: m.text == "ℹ️ Помощь")
 def help_message(message):
-    bot.send_message(
-        message.chat.id,
-        "ℹ️ <b>Как пользоваться:</b>\n\n"
-        "1. Нажми 📋 Задания\n"
-        "2. Выполни задание\n"
-        "3. Отправь скрин\n"
-        "4. Жди проверку админа"
-    )
+    bot.send_message(message.chat.id, "ℹ️ Выбери 📋 Задания, выполни задание, отправь скрин и жди проверку.")
 
 
 @bot.message_handler(func=lambda m: m.text == "➕ Добавить задание")
@@ -287,10 +410,9 @@ def add_task_info(message):
     bot.send_message(
         message.chat.id,
         "➕ <b>Добавление задания:</b>\n\n"
-        "Пиши так:\n\n"
         "<code>/addtask Текст задания | ссылка | награда</code>\n\n"
         "Пример:\n"
-        "<code>/addtask Зайти в бота и подписаться на каналы | https://t.me/example | 1</code>"
+        "<code>/addtask Зайти в бота и подписаться | https://t.me/example | 1</code>"
     )
 
 
@@ -303,7 +425,7 @@ def add_task(message):
     parts = [p.strip() for p in text.split("|")]
 
     if len(parts) != 3:
-        return bot.send_message(message.chat.id, "❌ Неверный формат.")
+        return bot.send_message(message.chat.id, "❌ Формат:\n/addtask Текст | ссылка | награда")
 
     task_text, link, reward = parts
 
@@ -344,7 +466,6 @@ def all_tasks(message):
         return bot.send_message(message.chat.id, "Заданий пока нет.")
 
     text = "📋 <b>Все задания:</b>\n\n"
-
     for task_id, task in data["tasks"].items():
         text += f"#{task_id} — {task['reward']} GMP\n{task['text']}\n\n"
 
@@ -352,10 +473,9 @@ def all_tasks(message):
 
 
 @bot.message_handler(func=lambda m: m.text == "📨 Заявки")
-def requests(message):
+def requests_msg(message):
     if message.from_user.id != ADMIN_ID:
         return
-
     bot.send_message(message.chat.id, "📨 Новые заявки приходят сюда автоматически.")
 
 
@@ -374,7 +494,6 @@ if __name__ == "__main__":
         print("❌ BOT_TOKEN не найден.")
         exit()
 
-    threading.Thread(target=run_site).start()
-
+    threading.Thread(target=run_site, daemon=True).start()
     print("✅ Bot started")
     bot.infinity_polling(skip_pending=True)
