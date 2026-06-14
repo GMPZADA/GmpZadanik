@@ -13,17 +13,16 @@
       "pending_tasks": []
     },
     "8919178002": {
-      "balance": 0,
+      "balance": 1,
       "done_tasks": [
-        "39"
+        "39",
+        "38"
       ],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
-      "pending_tasks": [
-        "38"
-      ]
+      "pending_tasks": []
     }
   },
   "tasks": {
@@ -41,15 +40,6 @@
   "last_task_id": 39,
   "withdraws": {},
   "last_withdraw_id": 3,
-  "submits": {
-    "1": {
-      "user_id": 8919178002,
-      "username": "Werhhhg",
-      "task_id": "38",
-      "reward": 1,
-      "status": "wait",
-      "time": 1781443708
-    }
-  },
+  "submits": {},
   "last_submit_id": 1
 }
