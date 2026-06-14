@@ -7,7 +7,7 @@ from aiogram.filters import CommandStart, Command
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 
 TOKEN = "ВСТАВЬ_ТОКЕН"
-ADMIN_ID = 123456789  # свой Telegram ID
+ADMIN_ID = 7837011810  # свой Telegram ID
 
 DATA_FILE = "data.json"
 REWARD = 1
