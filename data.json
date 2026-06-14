@@ -6,7 +6,7 @@
         "38"
       ],
       "waiting_task": null,
-      "withdraw_pending": false
+      "withdraw_pending": true
     }
   },
   "tasks": {
@@ -22,6 +22,12 @@
     }
   },
   "last_task_id": 39,
-  "withdraws": {},
-  "last_withdraw_id": 0
+  "withdraws": {
+    "1": {
+      "user_id": 8850791713,
+      "amount": 1,
+      "status": "wait"
+    }
+  },
+  "last_withdraw_id": 1
 }
