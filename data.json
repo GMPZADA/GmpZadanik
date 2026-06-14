@@ -1,9 +1,10 @@
 {
   "users": {
     "8850791713": {
-      "balance": 0,
+      "balance": 1,
       "done_tasks": [
-        "38"
+        "38",
+        "39"
       ],
       "waiting_task": null,
       "withdraw_pending": false
