@@ -242,9 +242,10 @@
       "balance": 0,
       "done_tasks": [],
       "pending_tasks": [
-        "42"
+        "42",
+        "44"
       ],
-      "waiting_task": "44",
+      "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
@@ -355,8 +356,16 @@
       "reward": 6.0,
       "status": "wait",
       "time": 1781559778
+    },
+    "43": {
+      "user_id": 1401650206,
+      "username": "kiril6789",
+      "task_id": "44",
+      "reward": 4.0,
+      "status": "wait",
+      "time": 1781559819
     }
   },
-  "last_submit_id": 42,
+  "last_submit_id": 43,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:"
 }
