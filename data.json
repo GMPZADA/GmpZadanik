@@ -229,9 +229,15 @@
       "link": "https://t.me/StarsovEarnBot?start=WZD1bGkN5",
       "reward": 2.0,
       "active": true
+    },
+    "47": {
+      "text": "Зайти в бота, подписаться на спонсоров и выполнить 10 заданий, прислать скриншот выполнения",
+      "link": "https://t.me/BudaTasks_bot?start=ref_7837011810",
+      "reward": 5.0,
+      "active": true
     }
   },
-  "last_task_id": 46,
+  "last_task_id": 47,
   "withdraws": {},
   "last_withdraw_id": 12,
   "submits": {
