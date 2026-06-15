@@ -70,11 +70,11 @@
       "withdraw_to": null
     },
     "5609899938": {
-      "balance": 0,
-      "done_tasks": [],
-      "pending_tasks": [
+      "balance": 2,
+      "done_tasks": [
         "41"
       ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
@@ -122,14 +122,6 @@
       "reward": 6,
       "status": "wait",
       "time": 1781521375
-    },
-    "9": {
-      "user_id": 5609899938,
-      "username": "KPACOTKAA",
-      "task_id": "41",
-      "reward": 2,
-      "status": "wait",
-      "time": 1781521900
     }
   },
   "last_submit_id": 9
