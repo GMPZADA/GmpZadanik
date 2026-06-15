@@ -226,9 +226,7 @@
         "41",
         "43"
       ],
-      "pending_tasks": [
-        "42"
-      ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
@@ -316,14 +314,6 @@
       "reward": 2,
       "status": "wait",
       "time": 1781523233
-    },
-    "37": {
-      "user_id": 8507291495,
-      "username": "bobik101",
-      "task_id": "42",
-      "reward": 6.0,
-      "status": "wait",
-      "time": 1781553108
     }
   },
   "last_submit_id": 37,
