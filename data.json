@@ -166,9 +166,15 @@
       "link": "https://t.me/StarsovGamesBot?start=309tXK1B9",
       "reward": 2.0,
       "active": true
+    },
+    "46": {
+      "text": "Зайти в бота, выполнить 4 задания",
+      "link": "https://t.me/StarsovEarnBot?start=WZD1bGkN5",
+      "reward": 2.0,
+      "active": true
     }
   },
-  "last_task_id": 45,
+  "last_task_id": 46,
   "withdraws": {},
   "last_withdraw_id": 10,
   "submits": {
