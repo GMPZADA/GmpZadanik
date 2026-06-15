@@ -160,9 +160,15 @@
       "link": "https://t.me/FrogsStarsBot?start=ref_7837011810",
       "reward": 4.0,
       "active": true
+    },
+    "45": {
+      "text": "Зайти в бота, выполнить 4 задания",
+      "link": "https://t.me/StarsovGamesBot?start=309tXK1B9",
+      "reward": 2.0,
+      "active": true
     }
   },
-  "last_task_id": 44,
+  "last_task_id": 45,
   "withdraws": {},
   "last_withdraw_id": 10,
   "submits": {
