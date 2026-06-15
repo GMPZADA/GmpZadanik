@@ -194,7 +194,7 @@
         "42",
         "46"
       ],
-      "waiting_task": null,
+      "waiting_task": "43",
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
