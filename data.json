@@ -221,13 +221,12 @@
       "last_bonus": 1781552621
     },
     "8507291495": {
-      "balance": 2.0,
+      "balance": 4.0,
       "done_tasks": [
-        "41"
-      ],
-      "pending_tasks": [
+        "41",
         "43"
       ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
@@ -315,14 +314,6 @@
       "reward": 2,
       "status": "wait",
       "time": 1781523233
-    },
-    "36": {
-      "user_id": 8507291495,
-      "username": "bobik101",
-      "task_id": "43",
-      "reward": 2.0,
-      "status": "wait",
-      "time": 1781553008
     }
   },
   "last_submit_id": 36,
