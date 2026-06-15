@@ -164,9 +164,7 @@
     "1631337389": {
       "balance": 0.2,
       "done_tasks": [],
-      "pending_tasks": [
-        "41"
-      ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
@@ -237,14 +235,6 @@
       "reward": 2,
       "status": "wait",
       "time": 1781523233
-    },
-    "22": {
-      "user_id": 1631337389,
-      "username": "sugaringnn",
-      "task_id": "41",
-      "reward": 2.0,
-      "status": "wait",
-      "time": 1781550427
     }
   },
   "last_submit_id": 22,
