@@ -85,10 +85,10 @@
       "done_tasks": [
         "38",
         "39",
-        "40"
+        "41"
       ],
       "pending_tasks": [
-        "41",
+        "40",
         "42",
         "43"
       ],
@@ -146,13 +146,13 @@
       "status": "wait",
       "time": 1781521375
     },
-    "13": {
+    "12": {
       "user_id": 8823804307,
       "username": "loridjedje",
-      "task_id": "41",
+      "task_id": "40",
       "reward": 2,
       "status": "wait",
-      "time": 1781523233
+      "time": 1781523181
     },
     "14": {
       "user_id": 8823804307,
