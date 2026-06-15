@@ -512,12 +512,10 @@ def withdraw(message):
 
     bot.send_message(
         message.chat.id,
-        "💎 <b>Куда вывести GMP?</b>
-
-""Напишите @username куда вывести GMP.
-
-""Пример:
-<code>@username</code>"
+        "💎 <b>Куда вывести GMP?</b>\n\n"
+        "Напишите @username куда вывести GMP.\n\n"
+        "Пример:\n"
+        "<code>@username</code>"
     )
 
 
@@ -541,11 +539,12 @@ def pay_check(call):
         del data["withdraws"][wid]
         save_data(data)
 
-        bot.send_message(w["user_id"], f"✅ <b>Заказ #{wid} выполнен!</b>
-
-💎 GMP успешно выданы 💜
-
-Спасибо за использование «Заработок GMP» ✨")
+        bot.send_message(
+            w["user_id"],
+            f"✅ <b>Заказ #{wid} выполнен!</b>\n\n"
+            "💎 GMP успешно выданы 💜\n\n"
+            "Спасибо за использование «Заработок GMP» ✨"
+        )
         bot.edit_message_text("✅ Выплата подтверждена.", call.message.chat.id, call.message.message_id)
 
     else:
@@ -819,9 +818,8 @@ def text_router(message):
 
         return bot.send_message(
             message.chat.id,
-            "💰 <b>Сколько GMP вывести?</b>
-
-""Напишите сумму GMP для вывода."
+            "💰 <b>Сколько GMP вывести?</b>\n\n"
+            "Напишите сумму GMP для вывода."
         )
 
     if user.get("withdraw_step") == "amount":
@@ -837,6 +835,9 @@ def text_router(message):
 
         if amount <= 0:
             return bot.send_message(message.chat.id, "❌ Сумма должна быть больше 0.")
+
+        if amount < 1:
+            return bot.send_message(message.chat.id, "❌ Минимальная сумма для вывода: 1 GMP.")
 
         if amount > float(user["balance"]):
             return bot.send_message(
@@ -872,13 +873,11 @@ def text_router(message):
 
         bot.send_message(
             message.chat.id,
-            f"✅ <b>Заявка на вывод #{wid} создана</b>
-
-"f"👤 Куда: <b>{withdraw_to}</b>
-"f"💰 Сумма: <b>{format_gmp(amount)} GMP</b>
-
-""⏳ Заявка отправлена на проверку.
-""Ожидайте выплату до 24 часов."
+            f"✅ <b>Заявка на вывод #{wid} создана</b>\n\n"
+            f"👤 Куда: <b>{withdraw_to}</b>\n"
+            f"💰 Сумма: <b>{format_gmp(amount)} GMP</b>\n\n"
+            "⏳ Заявка отправлена на проверку.\n"
+            "Ожидайте выплату до 24 часов."
         )
 
         return bot.send_message(
