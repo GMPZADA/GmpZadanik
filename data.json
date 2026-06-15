@@ -66,7 +66,7 @@
       ],
       "waiting_task": null,
       "withdraw_pending": false,
-      "withdraw_step": null,
+      "withdraw_step": "username",
       "withdraw_to": null
     }
   },
