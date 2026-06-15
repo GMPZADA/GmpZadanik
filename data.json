@@ -154,9 +154,7 @@
       "done_tasks": [
         "44"
       ],
-      "pending_tasks": [
-        "42"
-      ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
@@ -237,14 +235,6 @@
       "reward": 2,
       "status": "wait",
       "time": 1781523233
-    },
-    "21": {
-      "user_id": 5224773359,
-      "username": "xux_xuxx",
-      "task_id": "42",
-      "reward": 6.0,
-      "status": "wait",
-      "time": 1781550397
     }
   },
   "last_submit_id": 21,
