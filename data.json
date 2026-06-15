@@ -109,9 +109,15 @@
       "link": "https://t.me/AmYumEarnBot?start=ref_7837011810",
       "reward": 6,
       "active": true
+    },
+    "43": {
+      "text": "Зайти в бота, подписаться на спонсоров и прислать скриншот выполнения",
+      "link": "https://t.me/starsagift_bot?start=rQ8OqvZs7Dxwhz",
+      "reward": 2,
+      "active": true
     }
   },
-  "last_task_id": 42,
+  "last_task_id": 43,
   "withdraws": {},
   "last_withdraw_id": 7,
   "submits": {
