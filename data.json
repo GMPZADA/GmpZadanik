@@ -76,13 +76,12 @@
       "last_bonus": 0
     },
     "5609899938": {
-      "balance": 2,
+      "balance": 4.0,
       "done_tasks": [
-        "41"
-      ],
-      "pending_tasks": [
+        "41",
         "43"
       ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
@@ -185,14 +184,6 @@
       "reward": 2,
       "status": "wait",
       "time": 1781523233
-    },
-    "16": {
-      "user_id": 5609899938,
-      "username": "KPACOTKAA",
-      "task_id": "43",
-      "reward": 2.0,
-      "status": "wait",
-      "time": 1781545400
     }
   },
   "last_submit_id": 16,
