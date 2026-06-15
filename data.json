@@ -87,9 +87,10 @@
         "38",
         "39",
         "40",
-        "41"
+        "41",
+        "42"
       ],
-      "waiting_task": "42",
+      "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null
@@ -174,7 +175,15 @@
       "reward": 2,
       "status": "wait",
       "time": 1781523233
+    },
+    "14": {
+      "user_id": 8823804307,
+      "username": "loridjedje",
+      "task_id": "42",
+      "reward": 6,
+      "status": "wait",
+      "time": 1781523241
     }
   },
-  "last_submit_id": 13
+  "last_submit_id": 14
 }
