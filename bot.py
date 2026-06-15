@@ -512,10 +512,12 @@ def withdraw(message):
 
     bot.send_message(
         message.chat.id,
-        "💸 <b>Вывод GMP</b>\n\n"
-        "👤 Напиши username/ID, куда вывести GMP.\n\n"
-        "Пример: <code>@username</code>\n\n"
-        "Чтобы отменить, напиши: <code>отмена</code>"
+        "💎 <b>Куда вывести GMP?</b>
+
+""Напишите @username куда вывести GMP.
+
+""Пример:
+<code>@username</code>"
     )
 
 
@@ -539,7 +541,11 @@ def pay_check(call):
         del data["withdraws"][wid]
         save_data(data)
 
-        bot.send_message(w["user_id"], f"✅ Выплата #{wid} подтверждена.\n💰 Выплачено: <b>{format_gmp(amount)} GMP</b>")
+        bot.send_message(w["user_id"], f"✅ <b>Заказ #{wid} выполнен!</b>
+
+💎 GMP успешно выданы 💜
+
+Спасибо за использование «Заработок GMP» ✨")
         bot.edit_message_text("✅ Выплата подтверждена.", call.message.chat.id, call.message.message_id)
 
     else:
@@ -813,9 +819,9 @@ def text_router(message):
 
         return bot.send_message(
             message.chat.id,
-            f"💰 Твой баланс: <b>{format_gmp(user['balance'])} GMP</b>\n\n"
-            "Напиши сколько GMP вывести.\n"
-            "Можно написать число или <code>все</code>."
+            "💰 <b>Сколько GMP вывести?</b>
+
+""Напишите сумму GMP для вывода."
         )
 
     if user.get("withdraw_step") == "amount":
@@ -866,10 +872,13 @@ def text_router(message):
 
         bot.send_message(
             message.chat.id,
-            f"✅ Заявка на вывод #{wid} создана.\n\n"
-            f"👤 Куда: <b>{withdraw_to}</b>\n"
-            f"💰 Сумма: <b>{format_gmp(amount)} GMP</b>\n\n"
-            "GMP списаны с баланса и ожидают проверки."
+            f"✅ <b>Заявка на вывод #{wid} создана</b>
+
+"f"👤 Куда: <b>{withdraw_to}</b>
+"f"💰 Сумма: <b>{format_gmp(amount)} GMP</b>
+
+""⏳ Заявка отправлена на проверку.
+""Ожидайте выплату до 24 часов."
         )
 
         return bot.send_message(
