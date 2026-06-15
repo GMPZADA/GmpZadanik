@@ -81,7 +81,7 @@
       "withdraw_to": null
     },
     "8823804307": {
-      "balance": 0,
+      "balance": 12,
       "done_tasks": [
         "38",
         "39",
@@ -93,7 +93,7 @@
         "41"
       ],
       "waiting_task": null,
-      "withdraw_pending": true,
+      "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null
     }
@@ -135,16 +135,7 @@
     }
   },
   "last_task_id": 43,
-  "withdraws": {
-    "8": {
-      "user_id": 8823804307,
-      "username": "loridjedje",
-      "to": "@username",
-      "amount": 12,
-      "status": "wait",
-      "time": 1781523430
-    }
-  },
+  "withdraws": {},
   "last_withdraw_id": 8,
   "submits": {
     "7": {
