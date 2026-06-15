@@ -208,7 +208,7 @@
       "last_bonus": 1781552516
     },
     "8516313611": {
-      "balance": 6.2,
+      "balance": 0.2,
       "done_tasks": [
         "46",
         "38",
@@ -216,9 +216,9 @@
       ],
       "pending_tasks": [],
       "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": "amount",
-      "withdraw_to": "@kiril6789",
+      "withdraw_pending": true,
+      "withdraw_step": null,
+      "withdraw_to": null,
       "last_bonus": 1781552621
     },
     "8507291495": {
@@ -296,9 +296,17 @@
       "amount": 2.0,
       "status": "wait",
       "time": 1781552703
+    },
+    "18": {
+      "user_id": 8516313611,
+      "username": "kirill4289",
+      "to": "@kiril6789",
+      "amount": 6.0,
+      "status": "wait",
+      "time": 1781554534
     }
   },
-  "last_withdraw_id": 17,
+  "last_withdraw_id": 18,
   "submits": {
     "7": {
       "user_id": 8317326202,
