@@ -19,6 +19,10 @@ LOCAL_DATA_FILE = "data.json"
 BONUS_AMOUNT = 0.2
 BONUS_COOLDOWN = 24 * 60 * 60
 
+# Keep Alive: пингует сайт каждые 5 минут
+KEEPALIVE_URL = os.getenv("KEEPALIVE_URL", "https://gmpzadanik.onrender.com/")
+KEEPALIVE_INTERVAL = 5 * 60
+
 bot = TeleBot(TOKEN, parse_mode="HTML")
 app = Flask(__name__)
 
@@ -31,6 +35,20 @@ def home():
 def run_site():
     port = int(os.getenv("PORT", 10000))
     app.run(host="0.0.0.0", port=port)
+
+
+def auto_ping():
+    # Пинг сайта, чтобы Render меньше засыпал
+    time.sleep(30)
+
+    while True:
+        try:
+            r = requests.get(KEEPALIVE_URL, timeout=15)
+            print(f"KeepAlive ping: {r.status_code}")
+        except Exception as e:
+            print("KeepAlive error:", e)
+
+        time.sleep(KEEPALIVE_INTERVAL)
 
 
 def empty_data():
@@ -873,5 +891,7 @@ if __name__ == "__main__":
         exit()
 
     threading.Thread(target=run_site, daemon=True).start()
+    threading.Thread(target=auto_ping, daemon=True).start()
+
     print("✅ Bot started")
     bot.infinity_polling(skip_pending=True)
