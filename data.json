@@ -65,7 +65,7 @@
         "42"
       ],
       "waiting_task": null,
-      "withdraw_pending": true,
+      "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null
     }
@@ -101,16 +101,7 @@
     }
   },
   "last_task_id": 42,
-  "withdraws": {
-    "7": {
-      "user_id": 8317326202,
-      "username": "KPOCOTKO",
-      "to": "@KPOCOTKO",
-      "amount": 2,
-      "status": "wait",
-      "time": 1781521653
-    }
-  },
+  "withdraws": {},
   "last_withdraw_id": 7,
   "submits": {
     "7": {
