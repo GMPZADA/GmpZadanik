@@ -215,7 +215,7 @@
       ],
       "pending_tasks": [],
       "waiting_task": null,
-      "withdraw_pending": true,
+      "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781552621
@@ -295,14 +295,6 @@
       "amount": 2.0,
       "status": "wait",
       "time": 1781552703
-    },
-    "16": {
-      "user_id": 8516313611,
-      "username": "kirill4289",
-      "to": "@kiril6789",
-      "amount": 3.0,
-      "status": "wait",
-      "time": 1781553055
     }
   },
   "last_withdraw_id": 16,
