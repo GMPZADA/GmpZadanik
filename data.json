@@ -57,7 +57,7 @@
       "withdraw_to": null
     },
     "8317326202": {
-      "balance": 2,
+      "balance": 0,
       "done_tasks": [
         "41"
       ],
@@ -65,9 +65,9 @@
         "42"
       ],
       "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": "amount",
-      "withdraw_to": "@KPOCOTKO"
+      "withdraw_pending": true,
+      "withdraw_step": null,
+      "withdraw_to": null
     }
   },
   "tasks": {
@@ -101,8 +101,17 @@
     }
   },
   "last_task_id": 42,
-  "withdraws": {},
-  "last_withdraw_id": 6,
+  "withdraws": {
+    "7": {
+      "user_id": 8317326202,
+      "username": "KPOCOTKO",
+      "to": "@KPOCOTKO",
+      "amount": 2,
+      "status": "wait",
+      "time": 1781521653
+    }
+  },
+  "last_withdraw_id": 7,
   "submits": {
     "7": {
       "user_id": 8317326202,
