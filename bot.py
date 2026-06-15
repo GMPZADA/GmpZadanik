@@ -57,6 +57,7 @@ def fix_data(data):
         user.setdefault("withdraw_pending", False)
         user.setdefault("withdraw_step", None)
         user.setdefault("withdraw_to", None)
+        user.setdefault("last_bonus", 0)
 
     return data
 
@@ -152,7 +153,8 @@ def get_user(data, user_id):
             "waiting_task": None,
             "withdraw_pending": False,
             "withdraw_step": None,
-            "withdraw_to": None
+            "withdraw_to": None,
+            "last_bonus": 0
         }
 
     user = data["users"][uid]
@@ -163,6 +165,7 @@ def get_user(data, user_id):
     user.setdefault("withdraw_pending", False)
     user.setdefault("withdraw_step", None)
     user.setdefault("withdraw_to", None)
+        user.setdefault("last_bonus", 0)
     return user
 
 
@@ -175,7 +178,8 @@ def cancel_user_states(user):
 def main_menu():
     kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
     kb.row("📋 Задания", "💰 Баланс")
-    kb.row("💸 Вывод", "ℹ️ Помощь")
+    kb.row("💸 Вывод", "🎉 Бонус")
+    kb.row("ℹ️ Помощь")
     return kb
 
 
@@ -199,7 +203,7 @@ def start(message):
         "📋 Выполняй задания\n"
         "📸 Отправляй скрин\n"
         "💰 Получай GMP\n\n"
-        "👇 Выбери действие:",
+        "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n🎉 Ежедневный бонус: +0.2 GMP\n\n👇 Выбери действие:",
         reply_markup=main_menu()
     )
 
@@ -233,6 +237,34 @@ def help_message(message):
         "💸 Для вывода нажми «Вывод», укажи куда вывести и сумму."
     )
 
+
+
+@bot.message_handler(func=lambda m: m.text == "🎉 Бонус")
+def daily_bonus(message):
+    data = load_data()
+    user = get_user(data, message.from_user.id)
+
+    now = int(time.time())
+    cooldown = 86400
+    last = int(user.get("last_bonus", 0))
+
+    if now - last < cooldown:
+        left = cooldown - (now - last)
+        h = left // 3600
+        m = (left % 3600) // 60
+        return bot.send_message(
+            message.chat.id,
+            f"⏳ Бонус уже получен.\nПриходи через: {h}ч {m}м"
+        )
+
+    user["balance"] += 0.2
+    user["last_bonus"] = now
+    save_data(data)
+
+    bot.send_message(
+        message.chat.id,
+        "🎉 Ежедневный бонус получен!\n💰 +0.2 GMP начислено на баланс."
+    )
 
 @bot.message_handler(func=lambda m: m.text == "💰 Баланс")
 def balance(message):
@@ -675,6 +707,68 @@ def text_router(message):
 
     bot.send_message(message.chat.id, "👇 Выбери кнопку в меню.", reply_markup=main_menu())
 
+
+
+@bot.message_handler(commands=["edittext"])
+def edit_text(message):
+    if message.from_user.id != ADMIN_ID:
+        return
+    try:
+        parts = message.text.split(maxsplit=2)
+        task_id = parts[1]
+        new_text = parts[2]
+        data = load_data()
+        if task_id not in data["tasks"]:
+            return bot.send_message(message.chat.id, "❌ Задание не найдено.")
+        data["tasks"][task_id]["text"] = new_text
+        save_data(data)
+        bot.send_message(message.chat.id, f"✅ Текст задания #{task_id} изменён.")
+    except:
+        bot.send_message(message.chat.id, "Формат: /edittext ID новый текст")
+
+@bot.message_handler(commands=["editreward"])
+def edit_reward(message):
+    if message.from_user.id != ADMIN_ID:
+        return
+    try:
+        parts = message.text.split()
+        task_id = parts[1]
+        reward = float(parts[2])
+        data = load_data()
+        data["tasks"][task_id]["reward"] = reward
+        save_data(data)
+        bot.send_message(message.chat.id, f"✅ Награда #{task_id} изменена.")
+    except:
+        bot.send_message(message.chat.id, "Формат: /editreward ID число")
+
+@bot.message_handler(commands=["editlink"])
+def edit_link(message):
+    if message.from_user.id != ADMIN_ID:
+        return
+    try:
+        parts = message.text.split(maxsplit=2)
+        task_id = parts[1]
+        link = parts[2]
+        data = load_data()
+        data["tasks"][task_id]["link"] = link
+        save_data(data)
+        bot.send_message(message.chat.id, f"✅ Ссылка #{task_id} изменена.")
+    except:
+        bot.send_message(message.chat.id, "Формат: /editlink ID ссылка")
+
+@bot.message_handler(commands=["deletetask"])
+def delete_task(message):
+    if message.from_user.id != ADMIN_ID:
+        return
+    try:
+        task_id = message.text.split()[1]
+        data = load_data()
+        if task_id in data["tasks"]:
+            del data["tasks"][task_id]
+            save_data(data)
+            bot.send_message(message.chat.id, f"🗑 Задание #{task_id} удалено.")
+    except:
+        bot.send_message(message.chat.id, "Формат: /deletetask ID")
 
 if __name__ == "__main__":
     if not TOKEN:
