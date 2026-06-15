@@ -198,9 +198,7 @@
     "7979994199": {
       "balance": 0.2,
       "done_tasks": [],
-      "pending_tasks": [
-        "41"
-      ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
@@ -280,14 +278,6 @@
       "reward": 2,
       "status": "wait",
       "time": 1781523233
-    },
-    "31": {
-      "user_id": 7979994199,
-      "username": "bubuzan11",
-      "task_id": "41",
-      "reward": 2.0,
-      "status": "wait",
-      "time": 1781552588
     }
   },
   "last_submit_id": 31,
