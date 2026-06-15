@@ -190,8 +190,10 @@
     "7441149510": {
       "balance": 0,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": "42",
+      "pending_tasks": [
+        "42"
+      ],
+      "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
@@ -364,8 +366,16 @@
       "reward": 4.0,
       "status": "wait",
       "time": 1781559819
+    },
+    "44": {
+      "user_id": 7441149510,
+      "username": "Rognogor",
+      "task_id": "42",
+      "reward": 6.0,
+      "status": "wait",
+      "time": 1781565777
     }
   },
-  "last_submit_id": 43,
+  "last_submit_id": 44,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:"
 }
