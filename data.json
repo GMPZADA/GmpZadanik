@@ -208,11 +208,11 @@
       "last_bonus": 1781552516
     },
     "8516313611": {
-      "balance": 0.2,
-      "done_tasks": [],
-      "pending_tasks": [
+      "balance": 2.2,
+      "done_tasks": [
         "46"
       ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
@@ -300,14 +300,6 @@
       "reward": 2,
       "status": "wait",
       "time": 1781523233
-    },
-    "33": {
-      "user_id": 8516313611,
-      "username": "kirill4289",
-      "task_id": "46",
-      "reward": 2.0,
-      "status": "wait",
-      "time": 1781552826
     }
   },
   "last_submit_id": 33,
