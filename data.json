@@ -338,11 +338,11 @@
       "last_bonus": 1781615308
     },
     "6676859873": {
-      "balance": 0,
-      "done_tasks": [],
-      "pending_tasks": [
+      "balance": 1.0,
+      "done_tasks": [
         "38"
       ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
@@ -430,14 +430,6 @@
       "reward": 2,
       "status": "wait",
       "time": 1781523233
-    },
-    "60": {
-      "user_id": 6676859873,
-      "username": "Flyrsik",
-      "task_id": "38",
-      "reward": 1.0,
-      "status": "wait",
-      "time": 1781616582
     }
   },
   "last_submit_id": 60,
