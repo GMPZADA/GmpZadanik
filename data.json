@@ -376,16 +376,16 @@
       "last_bonus": 1781629494
     },
     "6276600731": {
-      "balance": 3.2,
+      "balance": 0.2,
       "done_tasks": [
         "38",
         "41"
       ],
       "pending_tasks": [],
       "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": "amount",
-      "withdraw_to": "@trqLemon4ik",
+      "withdraw_pending": true,
+      "withdraw_step": null,
+      "withdraw_to": null,
       "last_bonus": 1781630507
     }
   },
@@ -486,9 +486,17 @@
       "amount": 2.0,
       "status": "wait",
       "time": 1781552703
+    },
+    "26": {
+      "user_id": 6276600731,
+      "username": "BOG_PIGR",
+      "to": "@trqLemon4ik",
+      "amount": 3.0,
+      "status": "wait",
+      "time": 1781631526
     }
   },
-  "last_withdraw_id": 25,
+  "last_withdraw_id": 26,
   "submits": {
     "7": {
       "user_id": 8317326202,
