@@ -294,14 +294,13 @@
       "last_bonus": 0
     },
     "7130773702": {
-      "balance": 6.2,
+      "balance": 8.2,
       "done_tasks": [
         "41",
-        "44"
-      ],
-      "pending_tasks": [
+        "44",
         "43"
       ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": "username",
@@ -399,14 +398,6 @@
       "reward": 2,
       "status": "wait",
       "time": 1781523233
-    },
-    "59": {
-      "user_id": 7130773702,
-      "username": "kurokcek",
-      "task_id": "43",
-      "reward": 2.0,
-      "status": "wait",
-      "time": 1781615013
     }
   },
   "last_submit_id": 59,
