@@ -517,9 +517,9 @@ def withdraw(message):
 
     bot.send_message(
         message.chat.id,
-        "💎 <b>Куда вывести GMP?</b>\n\n"
-        "Напишите @username куда вывести GMP.\n\n"
-        "Пример:\n"
+        "💎 <b>Куда вывести GMP?</b>\\n\\n"
+        "Напишите @username куда вывести GMP.\\n\\n"
+        "Пример:\\n"
         "<code>@username</code>"
     )
 
@@ -823,7 +823,7 @@ def text_router(message):
 
         return bot.send_message(
             message.chat.id,
-            "💰 <b>Сколько GMP вывести?</b>\n\n"
+            "💰 <b>Сколько GMP вывести?</b>\\n\\n"
             "Напишите сумму GMP для вывода."
         )
 
