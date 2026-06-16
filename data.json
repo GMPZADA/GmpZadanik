@@ -402,8 +402,10 @@
     "5728227541": {
       "balance": 0.2,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": "42",
+      "pending_tasks": [
+        "42"
+      ],
+      "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
@@ -526,8 +528,16 @@
       "reward": 2,
       "status": "wait",
       "time": 1781523233
+    },
+    "74": {
+      "user_id": 5728227541,
+      "username": "xe11tooo",
+      "task_id": "42",
+      "reward": 6.0,
+      "status": "wait",
+      "time": 1781634758
     }
   },
-  "last_submit_id": 73,
+  "last_submit_id": 74,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:"
 }
