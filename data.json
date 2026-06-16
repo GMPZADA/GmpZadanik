@@ -275,8 +275,10 @@
         "41",
         "45"
       ],
-      "pending_tasks": [],
-      "waiting_task": "42",
+      "pending_tasks": [
+        "42"
+      ],
+      "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
@@ -393,8 +395,16 @@
       "reward": 2,
       "status": "wait",
       "time": 1781523233
+    },
+    "55": {
+      "user_id": 6891313511,
+      "username": "kronixxd",
+      "task_id": "42",
+      "reward": 6.0,
+      "status": "wait",
+      "time": 1781612121
     }
   },
-  "last_submit_id": 54,
+  "last_submit_id": 55,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:"
 }
