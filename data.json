@@ -458,9 +458,15 @@
       "link": "https://t.me/slots_giftsbot?start=U5tgQ7EtvpLLyK",
       "reward": 1.0,
       "active": true
+    },
+    "53": {
+      "text": "Зайти в бота, выполнить 3 задания и отправить скриншот выполнения",
+      "link": "https://t.me/SnakeeEarn_Bot?start=suxt81gy",
+      "reward": 1.0,
+      "active": true
     }
   },
-  "last_task_id": 52,
+  "last_task_id": 53,
   "withdraws": {
     "14": {
       "user_id": 8431020779,
