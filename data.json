@@ -428,9 +428,15 @@
       "link": "https://t.me/KtoTutRobot?start=ref_7837011810",
       "reward": 3.0,
       "active": true
+    },
+    "52": {
+      "text": "Зайти в бота, подписаться на спонсоров и отправить скриншот выполнения",
+      "link": "https://t.me/slots_giftsbot?start=U5tgQ7EtvpLLyK",
+      "reward": 3.0,
+      "active": true
     }
   },
-  "last_task_id": 51,
+  "last_task_id": 52,
   "withdraws": {
     "14": {
       "user_id": 8431020779,
