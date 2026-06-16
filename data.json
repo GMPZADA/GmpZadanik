@@ -378,8 +378,10 @@
     "6276600731": {
       "balance": 0.2,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": "38",
+      "pending_tasks": [
+        "38"
+      ],
+      "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
@@ -502,8 +504,16 @@
       "reward": 2,
       "status": "wait",
       "time": 1781523233
+    },
+    "68": {
+      "user_id": 6276600731,
+      "username": "BOG_PIGR",
+      "task_id": "38",
+      "reward": 1.0,
+      "status": "wait",
+      "time": 1781631253
     }
   },
-  "last_submit_id": 67,
+  "last_submit_id": 68,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:"
 }
