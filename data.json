@@ -268,16 +268,15 @@
       "last_bonus": 0
     },
     "6891313511": {
-      "balance": 2.2,
+      "balance": 8.2,
       "done_tasks": [
         "38",
         "43",
         "41",
-        "45"
-      ],
-      "pending_tasks": [
+        "45",
         "42"
       ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
@@ -397,14 +396,6 @@
       "reward": 2,
       "status": "wait",
       "time": 1781523233
-    },
-    "55": {
-      "user_id": 6891313511,
-      "username": "kronixxd",
-      "task_id": "42",
-      "reward": 6.0,
-      "status": "wait",
-      "time": 1781612121
     },
     "56": {
       "user_id": 7130773702,
