@@ -367,8 +367,10 @@
         "52",
         "42"
       ],
-      "pending_tasks": [],
-      "waiting_task": "49",
+      "pending_tasks": [
+        "49"
+      ],
+      "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
@@ -485,8 +487,16 @@
       "reward": 2,
       "status": "wait",
       "time": 1781523233
+    },
+    "67": {
+      "user_id": 8258106768,
+      "username": "trqLemon4ik",
+      "task_id": "49",
+      "reward": 3.0,
+      "status": "wait",
+      "time": 1781630302
     }
   },
-  "last_submit_id": 66,
+  "last_submit_id": 67,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:"
 }
