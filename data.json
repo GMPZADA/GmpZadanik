@@ -368,7 +368,7 @@
       ],
       "pending_tasks": [],
       "waiting_task": null,
-      "withdraw_pending": true,
+      "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781629494
@@ -465,14 +465,6 @@
       "amount": 2.0,
       "status": "wait",
       "time": 1781552703
-    },
-    "23": {
-      "user_id": 8258106768,
-      "username": "trqLemon4ik",
-      "to": "@trqLemon4ik",
-      "amount": 1.0,
-      "status": "wait",
-      "time": 1781629625
     }
   },
   "last_withdraw_id": 23,
