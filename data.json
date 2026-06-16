@@ -113,7 +113,7 @@
         "41"
       ],
       "pending_tasks": [],
-      "waiting_task": null,
+      "waiting_task": "43",
       "withdraw_pending": true,
       "withdraw_step": null,
       "withdraw_to": null,
