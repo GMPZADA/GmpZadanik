@@ -240,9 +240,7 @@
     "1401650206": {
       "balance": 0,
       "done_tasks": [],
-      "pending_tasks": [
-        "42"
-      ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
@@ -507,14 +505,6 @@
       "reward": 2,
       "status": "wait",
       "time": 1781523233
-    },
-    "70": {
-      "user_id": 1401650206,
-      "username": "kiril6789",
-      "task_id": "42",
-      "reward": 6.0,
-      "status": "wait",
-      "time": 1781631681
     }
   },
   "last_submit_id": 70,
