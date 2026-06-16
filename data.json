@@ -392,9 +392,15 @@
       "link": "https://t.me/StarsovEarnBot?start=WZD1bGkN5",
       "reward": 2.0,
       "active": true
+    },
+    "48": {
+      "text": "Зайти в бота и выполнить 8 заданий",
+      "link": "https://t.me/FunStarsikEarnBot?start=c0mP7nt0F",
+      "reward": 3.0,
+      "active": true
     }
   },
-  "last_task_id": 47,
+  "last_task_id": 48,
   "withdraws": {
     "14": {
       "user_id": 8431020779,
