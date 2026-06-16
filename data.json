@@ -362,7 +362,7 @@
       "last_bonus": 0
     },
     "8258106768": {
-      "balance": 9.2,
+      "balance": 0.2,
       "done_tasks": [
         "52",
         "42",
@@ -370,9 +370,9 @@
       ],
       "pending_tasks": [],
       "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": "amount",
-      "withdraw_to": "@trqLemon4ik",
+      "withdraw_pending": true,
+      "withdraw_step": null,
+      "withdraw_to": null,
       "last_bonus": 1781629494
     }
   },
@@ -467,9 +467,17 @@
       "amount": 2.0,
       "status": "wait",
       "time": 1781552703
+    },
+    "25": {
+      "user_id": 8258106768,
+      "username": "trqLemon4ik",
+      "to": "@trqLemon4ik",
+      "amount": 9.0,
+      "status": "wait",
+      "time": 1781630347
     }
   },
-  "last_withdraw_id": 24,
+  "last_withdraw_id": 25,
   "submits": {
     "7": {
       "user_id": 8317326202,
