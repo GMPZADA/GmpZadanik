@@ -490,7 +490,12 @@ def check_request(call):
         del data["submits"][sid]
         save_data(data)
 
-        bot.send_message(user_id, f"❌ Задание #{task_id} отклонено.\nМожно попробовать выполнить ещё раз.")
+        bot.send_message(
+            user_id,
+            f"❌ <b>Задание #{task_id} отклонено</b>\n\n"
+            "Проверьте, что вы выполнили задание до конца и отправили правильный скриншот.\n\n"
+            "После проверки можете попробовать снова ✅"
+        )
         bot.edit_message_caption(chat_id=call.message.chat.id, message_id=call.message.message_id, caption=f"❌ Заявка #{sid} отклонена.")
 
 
