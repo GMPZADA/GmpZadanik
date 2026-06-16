@@ -220,9 +220,7 @@
         "38",
         "42"
       ],
-      "pending_tasks": [
-        "44"
-      ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
@@ -336,14 +334,6 @@
       "reward": 2,
       "status": "wait",
       "time": 1781523233
-    },
-    "40": {
-      "user_id": 8516313611,
-      "username": "kirill4289",
-      "task_id": "44",
-      "reward": 4.0,
-      "status": "wait",
-      "time": 1781554698
     },
     "41": {
       "user_id": 5224773359,
