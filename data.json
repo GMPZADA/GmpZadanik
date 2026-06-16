@@ -410,7 +410,7 @@
       "last_bonus": 1781634090
     },
     "8919895425": {
-      "balance": 33.2,
+      "balance": 0.0,
       "done_tasks": [
         "41",
         "42",
@@ -428,9 +428,9 @@
       ],
       "pending_tasks": [],
       "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": "amount",
-      "withdraw_to": "Все",
+      "withdraw_pending": true,
+      "withdraw_step": null,
+      "withdraw_to": null,
       "last_bonus": 1781636015
     }
   },
@@ -531,9 +531,17 @@
       "amount": 2.0,
       "status": "wait",
       "time": 1781552703
+    },
+    "28": {
+      "user_id": 8919895425,
+      "username": "",
+      "to": "Все",
+      "amount": 33.2,
+      "status": "wait",
+      "time": 1781636879
     }
   },
-  "last_withdraw_id": 27,
+  "last_withdraw_id": 28,
   "submits": {
     "7": {
       "user_id": 8317326202,
