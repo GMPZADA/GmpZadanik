@@ -186,10 +186,11 @@
       "last_bonus": 0
     },
     "7441149510": {
-      "balance": 0.2,
-      "done_tasks": [],
+      "balance": 2.2,
+      "done_tasks": [
+        "46"
+      ],
       "pending_tasks": [
-        "46",
         "43"
       ],
       "waiting_task": null,
@@ -328,14 +329,6 @@
       "reward": 2,
       "status": "wait",
       "time": 1781523233
-    },
-    "45": {
-      "user_id": 7441149510,
-      "username": "Rognogor",
-      "task_id": "46",
-      "reward": 2.0,
-      "status": "wait",
-      "time": 1781566020
     },
     "46": {
       "user_id": 7441149510,
