@@ -410,7 +410,7 @@
       "last_bonus": 1781634090
     },
     "8919895425": {
-      "balance": 30.2,
+      "balance": 33.2,
       "done_tasks": [
         "41",
         "42",
@@ -423,11 +423,10 @@
         "52",
         "51",
         "38",
-        "48"
-      ],
-      "pending_tasks": [
+        "48",
         "50"
       ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
@@ -551,14 +550,6 @@
       "reward": 2,
       "status": "wait",
       "time": 1781523233
-    },
-    "89": {
-      "user_id": 8919895425,
-      "username": "",
-      "task_id": "50",
-      "reward": 3.0,
-      "status": "wait",
-      "time": 1781636556
     }
   },
   "last_submit_id": 89,
