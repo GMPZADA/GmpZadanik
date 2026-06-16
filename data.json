@@ -90,7 +90,7 @@
       "last_bonus": 0
     },
     "8823804307": {
-      "balance": 12,
+      "balance": 12.2,
       "done_tasks": [
         "38",
         "39",
@@ -105,7 +105,7 @@
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
-      "last_bonus": 0
+      "last_bonus": 1781609477
     },
     "8431020779": {
       "balance": 0.0,
