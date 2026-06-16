@@ -384,7 +384,7 @@
       ],
       "pending_tasks": [],
       "waiting_task": null,
-      "withdraw_pending": true,
+      "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781630507
@@ -487,14 +487,6 @@
       "amount": 2.0,
       "status": "wait",
       "time": 1781552703
-    },
-    "27": {
-      "user_id": 6276600731,
-      "username": "BOG_PIGR",
-      "to": "@trqLemonik",
-      "amount": 6.0,
-      "status": "wait",
-      "time": 1781633401
     }
   },
   "last_withdraw_id": 27,
