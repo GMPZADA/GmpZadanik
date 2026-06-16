@@ -242,7 +242,6 @@
       "balance": 0,
       "done_tasks": [],
       "pending_tasks": [
-        "42",
         "44"
       ],
       "waiting_task": null,
@@ -332,14 +331,6 @@
       "reward": 2,
       "status": "wait",
       "time": 1781523233
-    },
-    "42": {
-      "user_id": 1401650206,
-      "username": "kiril6789",
-      "task_id": "42",
-      "reward": 6.0,
-      "status": "wait",
-      "time": 1781559778
     },
     "43": {
       "user_id": 1401650206,
