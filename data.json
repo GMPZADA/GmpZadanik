@@ -298,8 +298,10 @@
       "done_tasks": [
         "41"
       ],
-      "pending_tasks": [],
-      "waiting_task": "44",
+      "pending_tasks": [
+        "44"
+      ],
+      "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
@@ -396,8 +398,16 @@
       "reward": 2,
       "status": "wait",
       "time": 1781523233
+    },
+    "57": {
+      "user_id": 7130773702,
+      "username": "kurokcek",
+      "task_id": "44",
+      "reward": 4.0,
+      "status": "wait",
+      "time": 1781612275
     }
   },
-  "last_submit_id": 56,
+  "last_submit_id": 57,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:"
 }
