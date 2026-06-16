@@ -250,9 +250,7 @@
     "8534240629": {
       "balance": 0.2,
       "done_tasks": [],
-      "pending_tasks": [
-        "43"
-      ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
@@ -399,14 +397,6 @@
       "reward": 2,
       "status": "wait",
       "time": 1781523233
-    },
-    "58": {
-      "user_id": 8534240629,
-      "username": "smdkdkdjd",
-      "task_id": "43",
-      "reward": 2.0,
-      "status": "wait",
-      "time": 1781612882
     }
   },
   "last_submit_id": 58,
