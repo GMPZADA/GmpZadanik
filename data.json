@@ -362,14 +362,13 @@
       "last_bonus": 0
     },
     "8258106768": {
-      "balance": 6.2,
+      "balance": 9.2,
       "done_tasks": [
         "52",
-        "42"
-      ],
-      "pending_tasks": [
+        "42",
         "49"
       ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
@@ -487,14 +486,6 @@
       "reward": 2,
       "status": "wait",
       "time": 1781523233
-    },
-    "67": {
-      "user_id": 8258106768,
-      "username": "trqLemon4ik",
-      "task_id": "49",
-      "reward": 3.0,
-      "status": "wait",
-      "time": 1781630302
     }
   },
   "last_submit_id": 67,
