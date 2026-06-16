@@ -412,9 +412,7 @@
     "8919895425": {
       "balance": 0,
       "done_tasks": [],
-      "pending_tasks": [
-        "41"
-      ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
@@ -538,14 +536,6 @@
       "reward": 2,
       "status": "wait",
       "time": 1781523233
-    },
-    "76": {
-      "user_id": 8919895425,
-      "username": "",
-      "task_id": "41",
-      "reward": 2.0,
-      "status": "wait",
-      "time": 1781635567
     }
   },
   "last_submit_id": 76,
