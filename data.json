@@ -429,24 +429,23 @@
       "fines_total": 0
     },
     "7130773702": {
-      "balance": 0.2,
+      "balance": 2.2,
       "done_tasks": [
         "41",
         "44",
         "43",
         "50",
-        "49"
-      ],
-      "pending_tasks": [
+        "49",
         "57"
       ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781611040,
-      "completed_tasks": 5,
-      "total_earned": 0.2,
+      "completed_tasks": 6,
+      "total_earned": 2.2,
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0
@@ -959,15 +958,6 @@
       "status": "wait",
       "photo_file_id": "AgACAgIAAxkBAAIL1GoypHnHuGFkyJk0YDDMm7J4sPyuAALSIWsbKK6YSVcYDTL67E0HAQADAgADdwADPAQ",
       "time": 1781709991
-    },
-    "144": {
-      "user_id": 7130773702,
-      "username": "kurokcek",
-      "task_id": "57",
-      "reward": 2.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIOJWoy2tGdZLOgN_MtlSsZwwWg2JM5AALtIWsbxqyYSaTyZOAl2csEAQADAgADeQADPAQ",
-      "time": 1781717714
     }
   },
   "last_submit_id": 144,
