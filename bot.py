@@ -234,7 +234,7 @@ def main_menu():
     kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
     kb.row("📋 Задания", "💰 Баланс")
     kb.row("🎉 Бонус", "💸 Вывод")
-    kb.row("ℹ️ Помощь")
+    kb.row("💬 Общение", "ℹ️ Помощь")
     return kb
 
 
@@ -269,6 +269,11 @@ def menu(message):
     cancel_user_states(user)
     save_data(data)
     bot.send_message(message.chat.id, "🏠 Главное меню", reply_markup=main_menu())
+
+
+@bot.message_handler(func=lambda m: m.text == "💬 Общение")
+def chat_message(message):
+    chat_button(message)
 
 
 @bot.message_handler(func=lambda m: m.text == "ℹ️ Помощь")
