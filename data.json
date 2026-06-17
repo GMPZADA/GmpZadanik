@@ -619,16 +619,7 @@
     }
   },
   "last_task_id": 53,
-  "withdraws": {
-    "41": {
-      "user_id": 6744639669,
-      "username": "Defak97",
-      "to": "@Defak97",
-      "amount": 3.0,
-      "status": "wait",
-      "time": 1781694968
-    }
-  },
+  "withdraws": {},
   "last_withdraw_id": 41,
   "submits": {},
   "last_submit_id": 114,
