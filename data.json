@@ -540,14 +540,6 @@
       "amount": 1.0,
       "status": "wait",
       "time": 1781675304
-    },
-    "31": {
-      "user_id": 7837011810,
-      "username": "Artemwesh",
-      "to": "@Artemwesh",
-      "amount": 1.0,
-      "status": "wait",
-      "time": 1781675332
     }
   },
   "last_withdraw_id": 31,
