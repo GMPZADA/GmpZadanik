@@ -297,7 +297,8 @@ def balance(message):
     user = get_user(data, message.from_user.id)
     save_data(data)
 
-    pending = "\n⏳ Есть заявка на вывод" if user.get("withdraw_pending") else ""
+    my_withdraws = [w for w in data.get("withdraws", {}).values() if str(w.get("user_id")) == str(message.from_user.id) and w.get("status") == "wait"]
+    pending = f"\n⏳ Заявок на вывод: {len(my_withdraws)}" if my_withdraws else ""
     bot.send_message(message.chat.id, f"💰 <b>Твой баланс:</b> {format_gmp(user['balance'])} GMP{pending}")
 
 
@@ -451,6 +452,7 @@ def photo(message):
         "task_id": task_id,
         "reward": float(task["reward"]),
         "status": "wait",
+        "photo_file_id": message.photo[-1].file_id,
         "time": int(time.time())
     }
 
@@ -528,8 +530,6 @@ def withdraw(message):
     if float(user["balance"]) <= 0:
         return bot.send_message(message.chat.id, "❌ У тебя нет GMP для вывода.")
 
-    if user.get("withdraw_pending"):
-        return bot.send_message(message.chat.id, "⏳ У тебя уже есть заявка на вывод. Ожидай решения админа.")
 
     user["withdraw_step"] = "username"
     user["withdraw_to"] = None
@@ -538,10 +538,8 @@ def withdraw(message):
 
     bot.send_message(
         message.chat.id,
-        "💎 <b>Куда вывести GMP?</b>\\n\\n"
-        "Напишите @username куда вывести GMP.\\n\\n"
-        "Пример:\\n"
-        "<code>@username</code>"
+        "💎 <b>Куда вывести GMP</b>\n\n"
+        "Пример <code>@username</code>"
     )
 
 
@@ -802,22 +800,71 @@ def all_tasks(message):
     bot.send_message(message.chat.id, text)
 
 
+def send_withdraw_request(chat_id, wid, w):
+    kb = types.InlineKeyboardMarkup()
+    kb.add(
+        types.InlineKeyboardButton("✅ Выплачено", callback_data=f"payyes_{wid}"),
+        types.InlineKeyboardButton("❌ Отказать", callback_data=f"payno_{wid}")
+    )
+    bot.send_message(
+        chat_id,
+        f"💸 <b>Заявка на вывод #{wid}</b>\n\n"
+        f"👤 Пользователь: @{w.get('username') or 'нет username'}\n"
+        f"🆔 ID: <code>{w.get('user_id')}</code>\n"
+        f"📤 Куда вывести: <b>{w.get('to', 'не указано')}</b>\n"
+        f"💰 Сумма: <b>{format_gmp(float(w.get('amount', 0)))} GMP</b>",
+        reply_markup=kb
+    )
+
+
+def send_submit_request(chat_id, sid, submit):
+    kb = types.InlineKeyboardMarkup()
+    kb.add(
+        types.InlineKeyboardButton("✅ Одобрить", callback_data=f"yes_{sid}"),
+        types.InlineKeyboardButton("❌ Отклонить", callback_data=f"no_{sid}")
+    )
+    caption = (
+        f"📸 <b>Заявка на задание #{sid}</b>\n\n"
+        f"✅ Задание: #{submit.get('task_id')}\n"
+        f"💰 Награда: {format_gmp(float(submit.get('reward', 0)))} GMP\n"
+        f"👤 Пользователь: @{submit.get('username') or 'нет username'}\n"
+        f"🆔 ID: <code>{submit.get('user_id')}</code>"
+    )
+    photo_id = submit.get("photo_file_id")
+    if photo_id:
+        bot.send_photo(chat_id, photo_id, caption=caption, reply_markup=kb)
+    else:
+        bot.send_message(chat_id, caption + "\n\n⚠️ Фото не сохранено в старой заявке.", reply_markup=kb)
+
+
 @bot.message_handler(func=lambda m: m.text == "📨 Заявки")
+@bot.message_handler(commands=["requests", "zayavki"])
 def requests_msg(message):
     if message.from_user.id != ADMIN_ID:
         return
 
     data = load_data()
-    submits_count = len(data.get("submits", {}))
-    withdraws_count = len(data.get("withdraws", {}))
+    submits = data.get("submits", {})
+    withdraws = data.get("withdraws", {})
+
+    if not submits and not withdraws:
+        return bot.send_message(message.chat.id, "✅ Активных заявок нет.")
 
     bot.send_message(
         message.chat.id,
-        f"📨 <b>Заявки:</b>\n\n"
-        f"📸 Проверка заданий: {submits_count}\n"
-        f"💸 Выводы: {withdraws_count}\n\n"
-        "Новые заявки приходят сюда автоматически."
+        f"📨 <b>Активные заявки:</b>\n\n"
+        f"📸 Задания: {len(submits)}\n"
+        f"💸 Выводы: {len(withdraws)}\n\n"
+        "Ниже отправляю заявки с кнопками 👇"
     )
+
+    for sid, submit in list(submits.items()):
+        if submit.get("status") == "wait":
+            send_submit_request(message.chat.id, sid, submit)
+
+    for wid, w in list(withdraws.items()):
+        if w.get("status") == "wait":
+            send_withdraw_request(message.chat.id, wid, w)
 
 
 @bot.message_handler(func=lambda m: True)
@@ -844,7 +891,7 @@ def text_router(message):
 
         return bot.send_message(
             message.chat.id,
-            "💰 <b>Сколько GMP вывести?</b>\\n\\n"
+            "💰 <b>Сколько GMP вывести?</b>\n\n"
             "Напишите сумму GMP для вывода."
         )
 
@@ -876,7 +923,6 @@ def text_router(message):
         withdraw_to = user.get("withdraw_to") or "не указано"
 
         user["balance"] = round(float(user["balance"]) - amount, 2)
-        user["withdraw_pending"] = True
         user["withdraw_step"] = None
         user["withdraw_to"] = None
 
