@@ -877,8 +877,8 @@
       "last_bonus": 1781725687,
       "completed_tasks": 4,
       "total_earned": 7.2,
-      "withdraw_count": 1,
-      "withdrawn_total": 2.0,
+      "withdraw_count": 2,
+      "withdrawn_total": 7.0,
       "fines_total": 0,
       "username": "Forka134"
     }
@@ -988,16 +988,7 @@
     }
   },
   "last_task_id": 59,
-  "withdraws": {
-    "57": {
-      "user_id": 7119382634,
-      "username": "Forka134",
-      "to": "@Forka134",
-      "amount": 5.0,
-      "status": "wait",
-      "time": 1781727376
-    }
-  },
+  "withdraws": {},
   "last_withdraw_id": 57,
   "submits": {},
   "last_submit_id": 159,
