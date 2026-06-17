@@ -429,7 +429,7 @@
       "username": "zhenya_uukr"
     },
     "7130773702": {
-      "balance": 0.4,
+      "balance": 2.4,
       "done_tasks": [
         "41",
         "44",
@@ -437,18 +437,17 @@
         "50",
         "49",
         "57",
-        "52"
-      ],
-      "pending_tasks": [
+        "52",
         "55"
       ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781717822,
-      "completed_tasks": 7,
-      "total_earned": 3.4,
+      "completed_tasks": 8,
+      "total_earned": 5.4,
       "withdraw_count": 1,
       "withdrawn_total": 3.0,
       "fines_total": 0,
@@ -953,17 +952,7 @@
   "last_task_id": 57,
   "withdraws": {},
   "last_withdraw_id": 50,
-  "submits": {
-    "146": {
-      "user_id": 7130773702,
-      "username": "kurokcek",
-      "task_id": "55",
-      "reward": 2.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIOZ2oy4ICLQtNFmDOdtPkYxFixIKEnAAIZImsbxqyYSenEq2QWios0AQADAgADeQADPAQ",
-      "time": 1781719168
-    }
-  },
+  "submits": {},
   "last_submit_id": 146,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:"
 }
