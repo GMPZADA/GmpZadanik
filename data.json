@@ -715,8 +715,8 @@
       "last_bonus": 1781721198,
       "completed_tasks": 2,
       "total_earned": 5.2,
-      "withdraw_count": 0,
-      "withdrawn_total": 0,
+      "withdraw_count": 1,
+      "withdrawn_total": 5.0,
       "fines_total": 0,
       "username": "Sjdjkdo"
     },
@@ -954,16 +954,7 @@
     }
   },
   "last_task_id": 57,
-  "withdraws": {
-    "53": {
-      "user_id": 8591913757,
-      "username": "Sjdjkdo",
-      "to": "@Sjdjkdo",
-      "amount": 5.0,
-      "status": "wait",
-      "time": 1781721224
-    }
-  },
+  "withdraws": {},
   "last_withdraw_id": 53,
   "submits": {},
   "last_submit_id": 150,
