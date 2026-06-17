@@ -956,9 +956,15 @@
       "link": "https://t.me/patrickstarsrobot?start=7837011810",
       "reward": 2.0,
       "active": true
+    },
+    "59": {
+      "text": "Зайти в бота, выполнить 4 задания и отправить скриншот выполнения",
+      "link": "https://t.me/StarsMakeBot?start=1wWqkbBz7",
+      "reward": 2.0,
+      "active": true
     }
   },
-  "last_task_id": 58,
+  "last_task_id": 59,
   "withdraws": {},
   "last_withdraw_id": 54,
   "submits": {},
