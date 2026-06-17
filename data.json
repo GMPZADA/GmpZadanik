@@ -558,16 +558,7 @@
     }
   },
   "last_task_id": 53,
-  "withdraws": {
-    "34": {
-      "user_id": 7837011810,
-      "username": "Artemwesh",
-      "to": "@username",
-      "amount": 6.4,
-      "status": "wait",
-      "time": 1781676584
-    }
-  },
+  "withdraws": {},
   "last_withdraw_id": 34,
   "submits": {},
   "last_submit_id": 96,
