@@ -867,6 +867,35 @@ def requests_msg(message):
             send_withdraw_request(message.chat.id, wid, w)
 
 
+@bot.message_handler(commands=["send"])
+def admin_broadcast(message):
+    if message.from_user.id != ADMIN_ID:
+        return
+
+    parts = message.text.split(" ", 1)
+    if len(parts) < 2 or not parts[1].strip():
+        return bot.reply_to(message, "Использование: /send текст")
+
+    broadcast_text = parts[1].strip()
+    data = load_data()
+
+    sent = 0
+    errors = 0
+
+    for uid in list(data.get("users", {}).keys()):
+        try:
+            bot.send_message(int(uid), broadcast_text)
+            sent += 1
+            time.sleep(0.05)
+        except Exception:
+            errors += 1
+
+    bot.reply_to(
+        message,
+        f"✅ Рассылка завершена\n\n📨 Отправлено: {sent}\n❌ Ошибок: {errors}"
+    )
+
+
 @bot.message_handler(func=lambda m: True)
 def text_router(message):
     data = load_data()
@@ -963,35 +992,6 @@ def text_router(message):
         )
 
     bot.send_message(message.chat.id, "👇 Выбери кнопку в меню.", reply_markup=main_menu())
-
-
-
-@bot.message_handler(commands=["send"])
-def admin_broadcast(message):
-    if message.from_user.id != ADMIN_ID:
-        return
-
-    parts = message.text.split(" ", 1)
-    if len(parts) < 2:
-        return bot.reply_to(message, "Использование: /send текст")
-
-    broadcast_text = parts[1]
-    data = load_data()
-
-    sent = 0
-    errors = 0
-
-    for uid in data.get("users", {}).keys():
-        try:
-            bot.send_message(int(uid), broadcast_text)
-            sent += 1
-        except Exception:
-            errors += 1
-
-    bot.reply_to(
-        message,
-        f"✅ Рассылка завершена\n\n📨 Отправлено: {sent}\n❌ Ошибок: {errors}"
-    )
 
 
 
