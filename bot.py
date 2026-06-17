@@ -41,7 +41,27 @@ def auto_ping():
     # Пинг сайта, чтобы Render меньше засыпал
     time.sleep(30)
 
-    while True:
+    
+
+@bot.message_handler(func=lambda m: m.text == "💬 Общение")
+def chat_button(message):
+    kb = types.InlineKeyboardMarkup()
+    kb.add(
+        types.InlineKeyboardButton(
+            "💬 Перейти в чат",
+            url="https://t.me/+4aLpL-ixZnZiYjMy"
+        )
+    )
+
+    bot.send_message(
+        message.chat.id,
+        "💬 <b>Это наш чат для общения ✨</b>\n\n"
+        "Общайся, знакомься и задавай вопросы 💖\n\n"
+        "Заходи, не стесняйся! 😌",
+        reply_markup=kb
+    )
+
+while True:
         try:
             r = requests.get(KEEPALIVE_URL, timeout=15)
             print(f"KeepAlive ping: {r.status_code}")
