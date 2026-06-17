@@ -566,14 +566,6 @@
       "amount": 6.4,
       "status": "wait",
       "time": 1781675209
-    },
-    "32": {
-      "user_id": 8322172966,
-      "username": "Als1win",
-      "to": "@Als1win",
-      "amount": 6.0,
-      "status": "wait",
-      "time": 1781675914
     }
   },
   "last_withdraw_id": 32,
