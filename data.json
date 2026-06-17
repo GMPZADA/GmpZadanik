@@ -394,24 +394,23 @@
       "fines_total": 0
     },
     "6891313511": {
-      "balance": 0.2,
+      "balance": 4.2,
       "done_tasks": [
         "38",
         "43",
         "41",
         "45",
-        "42"
-      ],
-      "pending_tasks": [
+        "42",
         "44"
       ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781609673,
-      "completed_tasks": 5,
-      "total_earned": 0.2,
+      "completed_tasks": 6,
+      "total_earned": 4.2,
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
@@ -961,17 +960,7 @@
   "last_task_id": 58,
   "withdraws": {},
   "last_withdraw_id": 54,
-  "submits": {
-    "152": {
-      "user_id": 6891313511,
-      "username": "kronixxd",
-      "task_id": "44",
-      "reward": 4.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIPIGoy9aKXymPSVB6edse5LwOlW3iFAALnIGsbtc2YSYLlZ79nWqAdAQADAgADdwADPAQ",
-      "time": 1781724578
-    }
-  },
+  "submits": {},
   "last_submit_id": 152,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:"
 }
