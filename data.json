@@ -622,9 +622,15 @@
       "link": "https://t.me/StarsovComBot?start=gObD49DBY",
       "reward": 1.0,
       "active": true
+    },
+    "55": {
+      "text": "Зайти в бота и выполнить 6 заданий, после выполнения отправить скриншот",
+      "link": "https://t.me/magicstar_tg_bot?start=7837011810",
+      "reward": 2.0,
+      "active": true
     }
   },
-  "last_task_id": 54,
+  "last_task_id": 55,
   "withdraws": {},
   "last_withdraw_id": 41,
   "submits": {},
