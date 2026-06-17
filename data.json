@@ -241,7 +241,7 @@
       "fines_total": 1.0
     },
     "1631337389": {
-      "balance": 1.4,
+      "balance": 0.0,
       "done_tasks": [
         "41",
         "52"
@@ -249,8 +249,8 @@
       "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
-      "withdraw_step": "amount",
-      "withdraw_to": "@sugaringnn",
+      "withdraw_step": null,
+      "withdraw_to": null,
       "last_bonus": 1781723623,
       "completed_tasks": 2,
       "total_earned": 1.4,
@@ -956,8 +956,17 @@
     }
   },
   "last_task_id": 58,
-  "withdraws": {},
-  "last_withdraw_id": 53,
+  "withdraws": {
+    "54": {
+      "user_id": 1631337389,
+      "username": "sugaringnn",
+      "to": "@sugaringnn",
+      "amount": 1.4,
+      "status": "wait",
+      "time": 1781723794
+    }
+  },
+  "last_withdraw_id": 54,
   "submits": {},
   "last_submit_id": 151,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:"
