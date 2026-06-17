@@ -212,7 +212,7 @@
       "fines_total": 0
     },
     "5224773359": {
-      "balance": 0.0,
+      "balance": 4.0,
       "done_tasks": [
         "44",
         "46",
@@ -225,18 +225,17 @@
         "50",
         "38",
         "51",
-        "45"
-      ],
-      "pending_tasks": [
+        "45",
         "42"
       ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781641964,
-      "completed_tasks": 12,
-      "total_earned": 9.2,
+      "completed_tasks": 13,
+      "total_earned": 13.2,
       "withdraw_count": 4,
       "withdrawn_total": 8.2,
       "fines_total": 1.0
@@ -951,17 +950,7 @@
   "last_task_id": 57,
   "withdraws": {},
   "last_withdraw_id": 50,
-  "submits": {
-    "133": {
-      "user_id": 5224773359,
-      "username": "xux_xuxx",
-      "task_id": "42",
-      "reward": 4.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIL1GoypHnHuGFkyJk0YDDMm7J4sPyuAALSIWsbKK6YSVcYDTL67E0HAQADAgADdwADPAQ",
-      "time": 1781709991
-    }
-  },
+  "submits": {},
   "last_submit_id": 145,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:"
 }
