@@ -466,7 +466,7 @@
       "last_bonus": 0
     },
     "6744639669": {
-      "balance": 0.0,
+      "balance": 3.0,
       "done_tasks": [
         "38",
         "46",
@@ -475,11 +475,11 @@
         "44",
         "48",
         "50",
-        "41"
+        "41",
+        "51"
       ],
       "pending_tasks": [
-        "45",
-        "51"
+        "45"
       ],
       "waiting_task": null,
       "withdraw_pending": false,
@@ -612,15 +612,6 @@
       "status": "wait",
       "photo_file_id": "AgACAgIAAxkBAAIKnmoyXcsunDm1H567ga1jym6fGSCZAAKTGmsbStaRSYOu66z0q8fPAQADAgADeQADPAQ",
       "time": 1781685708
-    },
-    "113": {
-      "user_id": 6744639669,
-      "username": "Defak97",
-      "task_id": "51",
-      "reward": 3.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIKq2oyXlb-M4OhZtPokkbe6Feqnd2SAAKZGmsbStaRSTr4TYyi-62EAQADAgADeQADPAQ",
-      "time": 1781685846
     }
   },
   "last_submit_id": 113,
