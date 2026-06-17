@@ -807,7 +807,7 @@
       "fines_total": 0
     },
     "1253151803": {
-      "balance": 0,
+      "balance": -1.0,
       "done_tasks": [],
       "pending_tasks": [],
       "waiting_task": null,
@@ -819,7 +819,7 @@
       "total_earned": 0,
       "withdraw_count": 0,
       "withdrawn_total": 0,
-      "fines_total": 0,
+      "fines_total": 1.0,
       "username": "SHORA_1"
     },
     "8590322435": {
