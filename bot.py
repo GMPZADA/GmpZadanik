@@ -38,12 +38,16 @@ def run_site():
 
 
 def auto_ping():
-    # Пинг сайта, чтобы Render меньше засыпал
+    # Пинг сайта каждые 5 минут, чтобы Web Service был живой
     time.sleep(30)
+    while True:
+        try:
+            r = requests.get(KEEPALIVE_URL, timeout=15)
+            print(f"KeepAlive ping: {r.status_code}")
+        except Exception as e:
+            print("KeepAlive error:", e)
+        time.sleep(KEEPALIVE_INTERVAL)
 
-    
-
-@bot.message_handler(func=lambda m: m.text == "💬 Общение")
 def chat_button(message):
     kb = types.InlineKeyboardMarkup()
     kb.add(
@@ -925,6 +929,13 @@ if __name__ == "__main__":
 
     threading.Thread(target=run_site, daemon=True).start()
     threading.Thread(target=auto_ping, daemon=True).start()
-
     print("✅ Bot started")
-    bot.infinity_polling(skip_pending=True)
+
+    while True:
+        try:
+            bot.remove_webhook()
+            bot.infinity_polling(skip_pending=True, timeout=30, long_polling_timeout=30)
+        except Exception as e:
+            print("Polling error:", e)
+            time.sleep(10)
+
