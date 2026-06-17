@@ -664,16 +664,7 @@
     }
   },
   "last_task_id": 57,
-  "withdraws": {
-    "43": {
-      "user_id": 5224773359,
-      "username": "xux_xuxx",
-      "to": "@xux_xuxx",
-      "amount": 10.0,
-      "status": "wait",
-      "time": 1781704373
-    }
-  },
+  "withdraws": {},
   "last_withdraw_id": 43,
   "submits": {},
   "last_submit_id": 122,
