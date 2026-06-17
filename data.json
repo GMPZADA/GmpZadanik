@@ -134,8 +134,10 @@
         "42",
         "43"
       ],
-      "pending_tasks": [],
-      "waiting_task": "46",
+      "pending_tasks": [
+        "46"
+      ],
+      "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
@@ -900,7 +902,17 @@
   "last_task_id": 57,
   "withdraws": {},
   "last_withdraw_id": 43,
-  "submits": {},
-  "last_submit_id": 123,
+  "submits": {
+    "124": {
+      "user_id": 8823804307,
+      "username": "loridjedje",
+      "task_id": "46",
+      "reward": 2.0,
+      "status": "wait",
+      "photo_file_id": "AgACAgIAAxkBAAIMZWoyrOoJaZ4Bi2rFvC1824boC7RLAAKNGWsbTb2QSR4Ntf09MyaAAQADAgADeQADPAQ",
+      "time": 1781705962
+    }
+  },
+  "last_submit_id": 124,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:"
 }
