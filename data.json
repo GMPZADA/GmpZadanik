@@ -823,23 +823,22 @@
       "username": "SHORA_1"
     },
     "8590322435": {
-      "balance": 10.0,
+      "balance": 14.0,
       "done_tasks": [
         "51",
         "49",
         "41",
-        "57"
-      ],
-      "pending_tasks": [
+        "57",
         "44"
       ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 0,
-      "completed_tasks": 4,
-      "total_earned": 10.0,
+      "completed_tasks": 5,
+      "total_earned": 14.0,
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
@@ -956,15 +955,6 @@
       "status": "wait",
       "photo_file_id": "AgACAgIAAxkBAAIL1GoypHnHuGFkyJk0YDDMm7J4sPyuAALSIWsbKK6YSVcYDTL67E0HAQADAgADdwADPAQ",
       "time": 1781709991
-    },
-    "141": {
-      "user_id": 8590322435,
-      "username": "xx_xxts",
-      "task_id": "44",
-      "reward": 4.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgQAAxkBAAINxmoywxJPuSMjfhxxVAO8hUrWcIKVAAI5D2sbKpiYUcFWIp9rDpgkAQADAgADeQADPAQ",
-      "time": 1781711634
     }
   },
   "last_submit_id": 141,
