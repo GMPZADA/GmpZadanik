@@ -862,15 +862,15 @@
       "username": "xx_xxts"
     },
     "7119382634": {
-      "balance": 2.2,
+      "balance": 0.2,
       "done_tasks": [
         "41"
       ],
       "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
-      "withdraw_step": "amount",
-      "withdraw_to": "@Forka134",
+      "withdraw_step": null,
+      "withdraw_to": null,
       "last_bonus": 1781725687,
       "completed_tasks": 1,
       "total_earned": 2.2,
@@ -985,8 +985,17 @@
     }
   },
   "last_task_id": 59,
-  "withdraws": {},
-  "last_withdraw_id": 55,
+  "withdraws": {
+    "56": {
+      "user_id": 7119382634,
+      "username": "Forka134",
+      "to": "@Forka134",
+      "amount": 2.0,
+      "status": "wait",
+      "time": 1781725904
+    }
+  },
+  "last_withdraw_id": 56,
   "submits": {},
   "last_submit_id": 156,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:"
