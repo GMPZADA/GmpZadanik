@@ -443,15 +443,15 @@
       "last_bonus": 1781669957
     },
     "8322172966": {
-      "balance": 6.2,
+      "balance": 0.2,
       "done_tasks": [
         "42"
       ],
       "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
-      "withdraw_step": "amount",
-      "withdraw_to": "@Als1win",
+      "withdraw_step": null,
+      "withdraw_to": null,
       "last_bonus": 1781675541
     },
     "5040999888": {
@@ -564,9 +564,17 @@
       "amount": 6.4,
       "status": "wait",
       "time": 1781675209
+    },
+    "32": {
+      "user_id": 8322172966,
+      "username": "Als1win",
+      "to": "@Als1win",
+      "amount": 6.0,
+      "status": "wait",
+      "time": 1781675914
     }
   },
-  "last_withdraw_id": 31,
+  "last_withdraw_id": 32,
   "submits": {},
   "last_submit_id": 94,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:"
