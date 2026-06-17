@@ -414,8 +414,8 @@
       "last_bonus": 1781725099,
       "completed_tasks": 9,
       "total_earned": 11.4,
-      "withdraw_count": 0,
-      "withdrawn_total": 0,
+      "withdraw_count": 1,
+      "withdrawn_total": 11.0,
       "fines_total": 0,
       "username": "kronixxd"
     },
@@ -967,16 +967,7 @@
     }
   },
   "last_task_id": 59,
-  "withdraws": {
-    "55": {
-      "user_id": 6891313511,
-      "username": "kronixxd",
-      "to": "@kronixxd",
-      "amount": 11.0,
-      "status": "wait",
-      "time": 1781725231
-    }
-  },
+  "withdraws": {},
   "last_withdraw_id": 55,
   "submits": {},
   "last_submit_id": 155,
