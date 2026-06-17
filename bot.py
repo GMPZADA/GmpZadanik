@@ -104,6 +104,11 @@ def fix_data(data):
         user.setdefault("withdraw_step", None)
         user.setdefault("withdraw_to", None)
         user.setdefault("last_bonus", 0)
+        user.setdefault("completed_tasks", len(user.get("done_tasks", [])))
+        user.setdefault("total_earned", float(user.get("balance", 0)) if float(user.get("balance", 0)) > 0 else 0)
+        user.setdefault("withdraw_count", 0)
+        user.setdefault("withdrawn_total", 0)
+        user.setdefault("fines_total", 0)
 
     for task_id, task in data.get("tasks", {}).items():
         task.setdefault("active", True)
@@ -203,7 +208,12 @@ def get_user(data, user_id):
             "withdraw_pending": False,
             "withdraw_step": None,
             "withdraw_to": None,
-            "last_bonus": 0
+            "last_bonus": 0,
+            "completed_tasks": 0,
+            "total_earned": 0,
+            "withdraw_count": 0,
+            "withdrawn_total": 0,
+            "fines_total": 0
         }
 
     user = data["users"][uid]
@@ -215,6 +225,11 @@ def get_user(data, user_id):
     user.setdefault("withdraw_step", None)
     user.setdefault("withdraw_to", None)
     user.setdefault("last_bonus", 0)
+    user.setdefault("completed_tasks", len(user.get("done_tasks", [])))
+    user.setdefault("total_earned", float(user.get("balance", 0)) if float(user.get("balance", 0)) > 0 else 0)
+    user.setdefault("withdraw_count", 0)
+    user.setdefault("withdrawn_total", 0)
+    user.setdefault("fines_total", 0)
     return user
 
 
@@ -230,11 +245,56 @@ def format_gmp(amount):
     return str(round(amount, 2)).replace(".0", "")
 
 
+
+def build_profile_text(user_id, user, username=None, admin_view=False):
+    balance = float(user.get("balance", 0))
+    completed = int(user.get("completed_tasks", len(user.get("done_tasks", []))))
+    withdrawn_total = float(user.get("withdrawn_total", 0))
+    withdraw_count = int(user.get("withdraw_count", 0))
+    pending_count = len(user.get("pending_tasks", []))
+    fines_total = float(user.get("fines_total", 0))
+
+    uname = username or user.get("username") or "нет username"
+
+    debt_text = ""
+    if balance < 0:
+        debt_text = (
+            f"\n\n⚠️ <b>Долг:</b> {format_gmp(abs(balance))} GMP\n"
+            "Сначала погасите долг заданиями, потом будет доступен вывод."
+        )
+
+    title = "🖥 <b>Профиль игрока</b>" if admin_view else "🖥 <b>Мой Профиль</b>"
+
+    return (
+        f"{title}\n\n"
+        f"💰 <b>Баланс</b>\n"
+        f"{format_gmp(balance)} GMP\n\n"
+        f"├ 🆔 Айди: <code>{user_id}</code>\n"
+        f"├ 👤 Username: <b>{uname}</b>\n"
+        f"├ ✅ Заданий сделал: <b>{completed}</b>\n"
+        f"├ ⏳ На проверке: <b>{pending_count}</b>\n"
+        f"├ 📤 Выведено: <b>{format_gmp(withdrawn_total)} GMP</b>\n"
+        f"├ 📦 Выплат: <b>{withdraw_count}</b>\n"
+        f"└ ⚠️ Штрафов: <b>{format_gmp(fines_total)} GMP</b>"
+        f"{debt_text}"
+    )
+
+
+def safe_send(user_id, text):
+    try:
+        bot.send_message(user_id, text)
+        return True
+    except Exception:
+        return False
+
+
+
 def main_menu():
     kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
     kb.row("📋 Задания", "💰 Баланс")
-    kb.row("🎉 Бонус", "💸 Вывод")
-    kb.row("💬 Общение", "ℹ️ Помощь")
+    kb.row("🖥 Профиль", "🎉 Бонус")
+    kb.row("💸 Вывод", "💬 Общение")
+    kb.row("ℹ️ Помощь")
     return kb
 
 
@@ -249,6 +309,7 @@ def admin_menu():
 def start(message):
     data = load_data()
     user = get_user(data, message.from_user.id)
+    user["username"] = message.from_user.username or ""
     cancel_user_states(user)
     save_data(data)
 
@@ -302,6 +363,48 @@ def balance(message):
     bot.send_message(message.chat.id, f"💰 <b>Твой баланс:</b> {format_gmp(user['balance'])} GMP{pending}")
 
 
+
+@bot.message_handler(func=lambda m: m.text in ["🖥 Профиль", "👤 Профиль"])
+def my_profile(message):
+    data = load_data()
+    user = get_user(data, message.from_user.id)
+    user["username"] = message.from_user.username or ""
+    save_data(data)
+
+    username = f"@{message.from_user.username}" if message.from_user.username else "нет username"
+    bot.send_message(
+        message.chat.id,
+        build_profile_text(message.from_user.id, user, username=username)
+    )
+
+
+@bot.message_handler(commands=["profile", "user"])
+def admin_profile(message):
+    if message.from_user.id != ADMIN_ID:
+        return bot.send_message(message.chat.id, "❌ Нет доступа.")
+
+    parts = message.text.split(maxsplit=1)
+    if len(parts) < 2:
+        return bot.send_message(
+            message.chat.id,
+            "❌ Формат:\n<code>/profile user_id</code>\n\nПример:\n<code>/profile 7837011810</code>"
+        )
+
+    user_id = parts[1].strip().replace("@", "")
+    data = load_data()
+
+    if user_id not in data.get("users", {}):
+        return bot.send_message(message.chat.id, "❌ Пользователь не найден в data.json.")
+
+    user = get_user(data, user_id)
+    username = user.get("username") or "нет username"
+    if username and username != "нет username" and not username.startswith("@"):
+        username = "@" + username
+
+    save_data(data)
+    bot.send_message(message.chat.id, build_profile_text(user_id, user, username=username, admin_view=True))
+
+
 @bot.message_handler(func=lambda m: m.text == "🎉 Бонус")
 def daily_bonus(message):
     data = load_data()
@@ -321,6 +424,7 @@ def daily_bonus(message):
         )
 
     user["balance"] = round(float(user["balance"]) + BONUS_AMOUNT, 2)
+    user["total_earned"] = round(float(user.get("total_earned", 0)) + BONUS_AMOUNT, 2)
     user["last_bonus"] = now
     save_data(data)
 
@@ -502,6 +606,8 @@ def check_request(call):
     if action == "yes":
         if task_id not in user["done_tasks"]:
             user["balance"] = round(float(user["balance"]) + reward, 2)
+            user["total_earned"] = round(float(user.get("total_earned", 0)) + reward, 2)
+            user["completed_tasks"] = int(user.get("completed_tasks", len(user.get("done_tasks", [])))) + 1
             user["done_tasks"].append(task_id)
 
         del data["submits"][sid]
@@ -526,6 +632,12 @@ def check_request(call):
 def withdraw(message):
     data = load_data()
     user = get_user(data, message.from_user.id)
+
+    if float(user["balance"]) < 0:
+        return bot.send_message(
+            message.chat.id,
+            f"❌ Вывод недоступен.\n\nУ тебя долг: <b>{format_gmp(abs(float(user['balance'])))} GMP</b>\nСначала погаси долг заданиями."
+        )
 
     if float(user["balance"]) <= 0:
         return bot.send_message(message.chat.id, "❌ У тебя нет GMP для вывода.")
@@ -560,6 +672,8 @@ def pay_check(call):
 
     if action == "payyes":
         user["withdraw_pending"] = False
+        user["withdraw_count"] = int(user.get("withdraw_count", 0)) + 1
+        user["withdrawn_total"] = round(float(user.get("withdrawn_total", 0)) + amount, 2)
         del data["withdraws"][wid]
         save_data(data)
 
@@ -753,6 +867,7 @@ def give_gmp(message):
     data = load_data()
     user = get_user(data, user_id)
     user["balance"] = round(float(user["balance"]) + amount, 2)
+    user["total_earned"] = round(float(user.get("total_earned", 0)) + amount, 2)
     save_data(data)
 
     bot.send_message(message.chat.id, f"✅ Пользователю {user_id} начислено {format_gmp(amount)} GMP.")
@@ -760,6 +875,59 @@ def give_gmp(message):
         bot.send_message(user_id, f"🎁 Админ начислил тебе <b>{format_gmp(amount)} GMP</b>.")
     except Exception:
         pass
+
+
+
+@bot.message_handler(commands=["fine"])
+def fine_user(message):
+    if message.from_user.id != ADMIN_ID:
+        return bot.send_message(message.chat.id, "❌ Нет доступа.")
+
+    parts = message.text.split(maxsplit=3)
+    if len(parts) < 3:
+        return bot.send_message(
+            message.chat.id,
+            "❌ Формат:\n<code>/fine user_id сумма причина</code>\n\n"
+            "Пример:\n<code>/fine 7837011810 3 Спам заявками</code>"
+        )
+
+    user_id = parts[1].strip()
+    try:
+        amount = float(parts[2].replace(",", "."))
+    except Exception:
+        return bot.send_message(message.chat.id, "❌ Сумма должна быть числом.")
+
+    if amount <= 0:
+        return bot.send_message(message.chat.id, "❌ Сумма штрафа должна быть больше 0.")
+
+    reason = parts[3].strip() if len(parts) >= 4 else "Нарушение правил"
+
+    data = load_data()
+    user = get_user(data, user_id)
+
+    old_balance = float(user.get("balance", 0))
+    user["balance"] = round(old_balance - amount, 2)
+    user["fines_total"] = round(float(user.get("fines_total", 0)) + amount, 2)
+
+    save_data(data)
+
+    bot.send_message(
+        message.chat.id,
+        f"✅ Штраф выдан\n\n"
+        f"🆔 ID: <code>{user_id}</code>\n"
+        f"💸 Штраф: <b>{format_gmp(amount)} GMP</b>\n"
+        f"💰 Баланс: <b>{format_gmp(old_balance)} → {format_gmp(user['balance'])} GMP</b>\n"
+        f"📌 Причина: {reason}"
+    )
+
+    safe_send(
+        user_id,
+        f"⚠️ <b>Вам выдан штраф</b>\n\n"
+        f"💸 Списано: <b>{format_gmp(amount)} GMP</b>\n"
+        f"📌 Причина: {reason}\n\n"
+        f"💰 Баланс: <b>{format_gmp(user['balance'])} GMP</b>\n\n"
+        "Если баланс стал минусовым, выполните задания, чтобы погасить долг."
+    )
 
 
 @bot.message_handler(func=lambda m: m.text == "➕ Добавить задание")
@@ -778,7 +946,9 @@ def add_task_info(message):
         "<code>/editlink 39 https://t.me/example</code>\n"
         "<code>/editreward 39 2</code>\n"
         "<code>/deletetask 39</code>\n"
-        "<code>/setstart Новый текст старта</code>"
+        "<code>/setstart Новый текст старта</code>\n"
+        "<code>/profile user_id</code> — профиль игрока\n"
+        "<code>/fine user_id сумма причина</code> — штраф"
     )
 
 
