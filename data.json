@@ -654,16 +654,7 @@
     }
   },
   "last_task_id": 56,
-  "withdraws": {
-    "42": {
-      "user_id": 8507291495,
-      "username": "bobik101",
-      "to": "@bobik101",
-      "amount": 2.0,
-      "status": "wait",
-      "time": 1781702711
-    }
-  },
+  "withdraws": {},
   "last_withdraw_id": 42,
   "submits": {},
   "last_submit_id": 116,
