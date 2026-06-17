@@ -224,15 +224,14 @@
       "last_bonus": 1781552621
     },
     "8507291495": {
-      "balance": 0.4,
+      "balance": 2.4,
       "done_tasks": [
         "41",
         "43",
-        "53"
-      ],
-      "pending_tasks": [
+        "53",
         "55"
       ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
@@ -657,17 +656,7 @@
   "last_task_id": 56,
   "withdraws": {},
   "last_withdraw_id": 41,
-  "submits": {
-    "116": {
-      "user_id": 8507291495,
-      "username": "bobik101",
-      "task_id": "55",
-      "reward": 2.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAILX2oynxqnaTzTBjafpZOFsbxRAYimAAKdHGsbIH-YSdtr99aNOiAhAQADAgADeQADPAQ",
-      "time": 1781702426
-    }
-  },
+  "submits": {},
   "last_submit_id": 116,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:"
 }
