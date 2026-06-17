@@ -40,7 +40,7 @@
       "last_bonus": 0
     },
     "7837011810": {
-      "balance": 0.0,
+      "balance": 6.4,
       "done_tasks": [
         "39",
         "44",
@@ -558,16 +558,7 @@
     }
   },
   "last_task_id": 53,
-  "withdraws": {
-    "29": {
-      "user_id": 7837011810,
-      "username": "Artemwesh",
-      "to": "@Artemwesh",
-      "amount": 6.4,
-      "status": "wait",
-      "time": 1781675209
-    }
-  },
+  "withdraws": {},
   "last_withdraw_id": 33,
   "submits": {},
   "last_submit_id": 96,
