@@ -828,9 +828,7 @@
         "51",
         "49"
       ],
-      "pending_tasks": [
-        "48"
-      ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
@@ -954,15 +952,6 @@
       "status": "wait",
       "photo_file_id": "AgACAgIAAxkBAAIL1GoypHnHuGFkyJk0YDDMm7J4sPyuAALSIWsbKK6YSVcYDTL67E0HAQADAgADdwADPAQ",
       "time": 1781709991
-    },
-    "138": {
-      "user_id": 8590322435,
-      "username": "xx_xxts",
-      "task_id": "48",
-      "reward": 3.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgQAAxkBAAINpmoywFX3glkU-4l-N0xbLuRTnlhGAAIwD2sbKpiYUd21tsAxgGUZAQADAgADeQADPAQ",
-      "time": 1781710934
     }
   },
   "last_submit_id": 138,
