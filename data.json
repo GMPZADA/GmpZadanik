@@ -481,8 +481,8 @@
       "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
-      "withdraw_step": "username",
-      "withdraw_to": null,
+      "withdraw_step": "amount",
+      "withdraw_to": "@Defak97",
       "last_bonus": 1781675806
     },
     "8591913757": {
