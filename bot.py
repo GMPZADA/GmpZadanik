@@ -965,6 +965,36 @@ def text_router(message):
     bot.send_message(message.chat.id, "👇 Выбери кнопку в меню.", reply_markup=main_menu())
 
 
+
+@bot.message_handler(commands=["send"])
+def admin_broadcast(message):
+    if message.from_user.id != ADMIN_ID:
+        return
+
+    parts = message.text.split(" ", 1)
+    if len(parts) < 2:
+        return bot.reply_to(message, "Использование: /send текст")
+
+    broadcast_text = parts[1]
+    data = load_data()
+
+    sent = 0
+    errors = 0
+
+    for uid in data.get("users", {}).keys():
+        try:
+            bot.send_message(int(uid), broadcast_text)
+            sent += 1
+        except Exception:
+            errors += 1
+
+    bot.reply_to(
+        message,
+        f"✅ Рассылка завершена\n\n📨 Отправлено: {sent}\n❌ Ошибок: {errors}"
+    )
+
+
+
 if __name__ == "__main__":
     if not TOKEN:
         print("❌ BOT_TOKEN не найден.")
