@@ -438,8 +438,10 @@
         "49",
         "57"
       ],
-      "pending_tasks": [],
-      "waiting_task": "52",
+      "pending_tasks": [
+        "52"
+      ],
+      "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
@@ -958,8 +960,17 @@
       "status": "wait",
       "photo_file_id": "AgACAgIAAxkBAAIL1GoypHnHuGFkyJk0YDDMm7J4sPyuAALSIWsbKK6YSVcYDTL67E0HAQADAgADdwADPAQ",
       "time": 1781709991
+    },
+    "145": {
+      "user_id": 7130773702,
+      "username": "kurokcek",
+      "task_id": "52",
+      "reward": 1.0,
+      "status": "wait",
+      "photo_file_id": "AgACAgIAAxkBAAIOOWoy3Un9vE-dFgjqEsJmLqEpco5JAAIIImsbxqyYSUvZbPRAYUJsAQADAgADeQADPAQ",
+      "time": 1781718346
     }
   },
-  "last_submit_id": 144,
+  "last_submit_id": 145,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:"
 }
