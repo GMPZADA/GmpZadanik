@@ -566,14 +566,6 @@
       "amount": 6.4,
       "status": "wait",
       "time": 1781675209
-    },
-    "33": {
-      "user_id": 6744639669,
-      "username": "Defak97",
-      "to": "@Defak97",
-      "amount": 1.0,
-      "status": "wait",
-      "time": 1781676030
     }
   },
   "last_withdraw_id": 33,
