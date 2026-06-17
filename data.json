@@ -230,9 +230,7 @@
         "43",
         "53"
       ],
-      "pending_tasks": [
-        "45"
-      ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
@@ -590,17 +588,7 @@
   "last_task_id": 53,
   "withdraws": {},
   "last_withdraw_id": 37,
-  "submits": {
-    "108": {
-      "user_id": 8507291495,
-      "username": "bobik101",
-      "task_id": "45",
-      "reward": 2.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIKSGoyW2Zj73ETpt9zb4xYYykRIUdOAALaGmsbIH-YSdljlj4-mSyzAQADAgADeQADPAQ",
-      "time": 1781685094
-    }
-  },
+  "submits": {},
   "last_submit_id": 108,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:"
 }
