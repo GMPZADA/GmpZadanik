@@ -237,8 +237,8 @@
       "last_bonus": 1781641964,
       "completed_tasks": 12,
       "total_earned": 9.2,
-      "withdraw_count": 3,
-      "withdrawn_total": 6.2,
+      "withdraw_count": 4,
+      "withdrawn_total": 8.2,
       "fines_total": 1.0
     },
     "1631337389": {
@@ -938,16 +938,7 @@
     }
   },
   "last_task_id": 57,
-  "withdraws": {
-    "48": {
-      "user_id": 5224773359,
-      "username": "xux_xuxx",
-      "to": "@xux_xuxx",
-      "amount": 2.0,
-      "status": "wait",
-      "time": 1781710373
-    }
-  },
+  "withdraws": {},
   "last_withdraw_id": 48,
   "submits": {
     "133": {
