@@ -651,9 +651,15 @@
       "link": "https://t.me/magicstar_tg_bot?start=7837011810",
       "reward": 2.0,
       "active": true
+    },
+    "57": {
+      "text": "Зайти в бота, подписаться на спонсоров и отправить скриншот выполнения",
+      "link": "https://t.me/patrickstarsrobot?start=7837011810",
+      "reward": 2.0,
+      "active": true
     }
   },
-  "last_task_id": 56,
+  "last_task_id": 57,
   "withdraws": {},
   "last_withdraw_id": 42,
   "submits": {},
