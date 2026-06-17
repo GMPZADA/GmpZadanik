@@ -868,8 +868,10 @@
         "52",
         "48"
       ],
-      "pending_tasks": [],
-      "waiting_task": "53",
+      "pending_tasks": [
+        "53"
+      ],
+      "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
@@ -989,7 +991,17 @@
   "last_task_id": 59,
   "withdraws": {},
   "last_withdraw_id": 56,
-  "submits": {},
-  "last_submit_id": 158,
+  "submits": {
+    "159": {
+      "user_id": 7119382634,
+      "username": "Forka134",
+      "task_id": "53",
+      "reward": 1.0,
+      "status": "wait",
+      "photo_file_id": "AgACAgIAAxkBAAIPz2ozAAEO3ori8WIh5mT2rZMeuRUNHgACLiFrG7MOmUmRCGWWSHwgXgEAAwIAA3kAAzwE",
+      "time": 1781727246
+    }
+  },
+  "last_submit_id": 159,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:"
 }
