@@ -98,9 +98,7 @@
         "42",
         "43"
       ],
-      "pending_tasks": [
-        "41"
-      ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": "username",
@@ -536,14 +534,6 @@
       "reward": 6,
       "status": "wait",
       "time": 1781521375
-    },
-    "13": {
-      "user_id": 8823804307,
-      "username": "loridjedje",
-      "task_id": "41",
-      "reward": 2,
-      "status": "wait",
-      "time": 1781523233
     }
   },
   "last_submit_id": 91,
