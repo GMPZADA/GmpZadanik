@@ -548,11 +548,11 @@
       "last_bonus": 1781697175
     },
     "8509640926": {
-      "balance": 0,
-      "done_tasks": [],
-      "pending_tasks": [
+      "balance": 1.0,
+      "done_tasks": [
         "38"
       ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
@@ -655,17 +655,7 @@
   "last_task_id": 56,
   "withdraws": {},
   "last_withdraw_id": 41,
-  "submits": {
-    "115": {
-      "user_id": 8509640926,
-      "username": "america_1492",
-      "task_id": "38",
-      "reward": 1.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgEAAxkBAAILT2oylV0MARaLnsuKEGcgT3zPH_jzAAKpDGsb5leQRWVNS-iwshA1AQADAgADdwADPAQ",
-      "time": 1781699933
-    }
-  },
+  "submits": {},
   "last_submit_id": 115,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:"
 }
