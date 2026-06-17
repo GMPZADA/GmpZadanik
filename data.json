@@ -40,15 +40,14 @@
       "last_bonus": 0
     },
     "7837011810": {
-      "balance": 0.0,
+      "balance": 2.0,
       "done_tasks": [
         "39",
         "44",
-        "38"
-      ],
-      "pending_tasks": [
+        "38",
         "41"
       ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
@@ -536,17 +535,7 @@
     }
   },
   "last_withdraw_id": 29,
-  "submits": {
-    "93": {
-      "user_id": 7837011810,
-      "username": "Artemwesh",
-      "task_id": "41",
-      "reward": 2.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIIyWoyNKHXCxpw3bgECgKHNcAafQABUgACSRlrGwAB-JhJdrwKa0ncLDwBAAMCAAN4AAM8BA",
-      "time": 1781675264
-    }
-  },
+  "submits": {},
   "last_submit_id": 93,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:"
 }
