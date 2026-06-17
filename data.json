@@ -212,7 +212,7 @@
       "fines_total": 0
     },
     "5224773359": {
-      "balance": 2.2,
+      "balance": 0.2,
       "done_tasks": [
         "44",
         "46",
@@ -227,8 +227,8 @@
       "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
-      "withdraw_step": "amount",
-      "withdraw_to": "@xux_xuxx",
+      "withdraw_step": null,
+      "withdraw_to": null,
       "last_bonus": 1781641964,
       "completed_tasks": 9,
       "total_earned": 3.2,
@@ -917,8 +917,17 @@
     }
   },
   "last_task_id": 57,
-  "withdraws": {},
-  "last_withdraw_id": 44,
+  "withdraws": {
+    "45": {
+      "user_id": 5224773359,
+      "username": "xux_xuxx",
+      "to": "@xux_xuxx",
+      "amount": 2.0,
+      "status": "wait",
+      "time": 1781707882
+    }
+  },
+  "last_withdraw_id": 45,
   "submits": {},
   "last_submit_id": 130,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:"
