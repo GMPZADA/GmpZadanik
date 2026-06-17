@@ -65,14 +65,6 @@ def chat_button(message):
         reply_markup=kb
     )
 
-while True:
-        try:
-            r = requests.get(KEEPALIVE_URL, timeout=15)
-            print(f"KeepAlive ping: {r.status_code}")
-        except Exception as e:
-            print("KeepAlive error:", e)
-
-        time.sleep(KEEPALIVE_INTERVAL)
 
 
 def empty_data():
