@@ -108,13 +108,13 @@
       "last_bonus": 1781609477
     },
     "8431020779": {
-      "balance": 0.2,
+      "balance": 2.4,
       "done_tasks": [
         "41"
       ],
       "pending_tasks": [],
       "waiting_task": null,
-      "withdraw_pending": true,
+      "withdraw_pending": false,
       "withdraw_step": "username",
       "withdraw_to": null,
       "last_bonus": 1781672960
@@ -527,14 +527,6 @@
   },
   "last_task_id": 53,
   "withdraws": {
-    "14": {
-      "user_id": 8431020779,
-      "username": "",
-      "to": "@username",
-      "amount": 2.2,
-      "status": "wait",
-      "time": 1781552539
-    },
     "15": {
       "user_id": 7979994199,
       "username": "bubuzan11",
