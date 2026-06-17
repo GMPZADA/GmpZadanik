@@ -465,7 +465,7 @@
       "last_bonus": 0
     },
     "6744639669": {
-      "balance": 11.2,
+      "balance": 0.2,
       "done_tasks": [
         "38",
         "46",
@@ -475,8 +475,8 @@
       "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
-      "withdraw_step": "amount",
-      "withdraw_to": "@Defak97",
+      "withdraw_step": null,
+      "withdraw_to": null,
       "last_bonus": 1781675806
     }
   },
@@ -561,8 +561,17 @@
     }
   },
   "last_task_id": 53,
-  "withdraws": {},
-  "last_withdraw_id": 34,
+  "withdraws": {
+    "35": {
+      "user_id": 6744639669,
+      "username": "Defak97",
+      "to": "@Defak97",
+      "amount": 11.0,
+      "status": "wait",
+      "time": 1781677396
+    }
+  },
+  "last_withdraw_id": 35,
   "submits": {},
   "last_submit_id": 99,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:"
