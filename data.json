@@ -148,7 +148,7 @@
       "last_bonus": 1781549381
     },
     "5224773359": {
-      "balance": 7.2,
+      "balance": 10.2,
       "done_tasks": [
         "44",
         "46",
@@ -156,11 +156,10 @@
         "53",
         "57",
         "55",
-        "41"
-      ],
-      "pending_tasks": [
+        "41",
         "48"
       ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
@@ -667,17 +666,7 @@
   "last_task_id": 57,
   "withdraws": {},
   "last_withdraw_id": 42,
-  "submits": {
-    "122": {
-      "user_id": 5224773359,
-      "username": "xux_xuxx",
-      "task_id": "48",
-      "reward": 3.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIL-moypmS8s3KPg70WaI3hCjDaIR45AALlIWsbKK6YSfpSmAxdZ_YoAQADAgADdwADPAQ",
-      "time": 1781704293
-    }
-  },
+  "submits": {},
   "last_submit_id": 122,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:"
 }
