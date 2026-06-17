@@ -839,8 +839,8 @@
       "last_bonus": 0,
       "completed_tasks": 5,
       "total_earned": 14.0,
-      "withdraw_count": 0,
-      "withdrawn_total": 0,
+      "withdraw_count": 1,
+      "withdrawn_total": 14.0,
       "fines_total": 0,
       "username": "xx_xxts"
     }
@@ -944,16 +944,7 @@
     }
   },
   "last_task_id": 57,
-  "withdraws": {
-    "49": {
-      "user_id": 8590322435,
-      "username": "xx_xxts",
-      "to": "@xux_xuxx",
-      "amount": 14.0,
-      "status": "wait",
-      "time": 1781711897
-    }
-  },
+  "withdraws": {},
   "last_withdraw_id": 49,
   "submits": {
     "133": {
