@@ -1077,7 +1077,6 @@
         "49"
       ],
       "pending_tasks": [
-        "44",
         "42"
       ],
       "waiting_task": null,
@@ -1219,15 +1218,6 @@
   "withdraws": {},
   "last_withdraw_id": 77,
   "submits": {
-    "189": {
-      "user_id": 7811863751,
-      "username": "grimReapersing",
-      "task_id": "44",
-      "reward": 4.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIUzmo0Xk7PoZ5BRkHD1XjR9h3zmDUIAAKcG2sbHfSgScEuAAGqKQTycwEAAwIAA3kAAzwE",
-      "time": 1781816942
-    },
     "191": {
       "user_id": 7811863751,
       "username": "grimReapersing",
@@ -1258,6 +1248,13 @@
         "user_id": "7811863751",
         "note": "task #48",
         "time": 1781817508
+      },
+      "189": {
+        "status": "rejected",
+        "admin_id": 7837011810,
+        "user_id": "7811863751",
+        "note": "task #44",
+        "time": 1781817512
       }
     },
     "withdraws": {}
