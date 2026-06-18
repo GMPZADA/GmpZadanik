@@ -1146,9 +1146,7 @@
     "8031414696": {
       "balance": 0,
       "done_tasks": [],
-      "pending_tasks": [
-        "44"
-      ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
@@ -1278,17 +1276,7 @@
     }
   },
   "last_withdraw_id": 80,
-  "submits": {
-    "197": {
-      "user_id": 8031414696,
-      "username": "",
-      "task_id": "44",
-      "reward": 4.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgEAAxkBAAIV_Go0bAABI3cHRpMHBixlTeZhrrWvbgACuA1rG-sXoEXjQgreuNcw7QEAAwIAA3kAAzwE",
-      "time": 1781820433
-    }
-  },
+  "submits": {},
   "last_submit_id": 201,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "promocodes": {},
@@ -1377,6 +1365,13 @@
         "user_id": "7970947663",
         "note": "task #45",
         "time": 1781821619
+      },
+      "197": {
+        "status": "rejected",
+        "admin_id": 7837011810,
+        "user_id": "8031414696",
+        "note": "task #44",
+        "time": 1781821632
       }
     },
     "withdraws": {
