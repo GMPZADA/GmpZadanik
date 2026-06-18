@@ -1093,8 +1093,10 @@
       "done_tasks": [
         "38"
       ],
-      "pending_tasks": [],
-      "waiting_task": "54",
+      "pending_tasks": [
+        "54"
+      ],
+      "waiting_task": null,
       "withdraw_pending": true,
       "withdraw_step": null,
       "withdraw_to": null,
@@ -1241,9 +1243,18 @@
       "status": "wait",
       "photo_file_id": "AgACAgIAAxkBAAIUc2o0W8NDy7VyJMVz1k9bnBXANWZ2AAKLG2sbHfSgSVyXnAjKAAGplQEAAwIAA3kAAzwE",
       "time": 1781816259
+    },
+    "187": {
+      "user_id": 6071965562,
+      "username": "MINIPEKKA993",
+      "task_id": "54",
+      "reward": 1.0,
+      "status": "wait",
+      "photo_file_id": "AgACAgIAAxkBAAIUsWo0XRLOMXLnNlAQaLxiuDe5lmoaAAIqFmsbx9GpSditmWv0a5BDAQADAgADeQADPAQ",
+      "time": 1781816594
     }
   },
-  "last_submit_id": 186,
+  "last_submit_id": 187,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "promocodes": {}
 }
