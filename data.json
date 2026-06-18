@@ -372,7 +372,7 @@
       "fines_total": 0
     },
     "8534240629": {
-      "balance": 0.2,
+      "balance": 1.2,
       "done_tasks": [],
       "pending_tasks": [],
       "waiting_task": null,
@@ -381,10 +381,11 @@
       "withdraw_to": null,
       "last_bonus": 1781609419,
       "completed_tasks": 0,
-      "total_earned": 0.2,
+      "total_earned": 1.2,
       "withdraw_count": 0,
       "withdrawn_total": 0,
-      "fines_total": 0
+      "fines_total": 0,
+      "username": "smdkdkdjd"
     },
     "8136040149": {
       "balance": 0,
@@ -1095,18 +1096,5 @@
   "submits": {},
   "last_submit_id": 176,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
-  "promocodes": {
-    "GPM": {
-      "amount": 1.0,
-      "left": 1,
-      "created_by": 7837011810,
-      "used_by": [
-        "8823804307",
-        "7130773702",
-        "8304580675",
-        "5224773359"
-      ],
-      "time": 1781807085
-    }
-  }
+  "promocodes": {}
 }
