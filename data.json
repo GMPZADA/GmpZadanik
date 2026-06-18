@@ -149,7 +149,7 @@
       "username": "loridjedje"
     },
     "8431020779": {
-      "balance": 0.0,
+      "balance": 2.4,
       "done_tasks": [
         "41"
       ],
@@ -995,16 +995,7 @@
     }
   },
   "last_task_id": 60,
-  "withdraws": {
-    "59": {
-      "user_id": 8431020779,
-      "username": "sksksskskmsdm",
-      "to": "@username",
-      "amount": 2.4,
-      "status": "wait",
-      "time": 1781758131
-    }
-  },
+  "withdraws": {},
   "last_withdraw_id": 59,
   "submits": {},
   "last_submit_id": 160,
