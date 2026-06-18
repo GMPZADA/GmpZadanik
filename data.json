@@ -357,15 +357,15 @@
       "fines_total": 0
     },
     "1401650206": {
-      "balance": 4.0,
+      "balance": 0.0,
       "done_tasks": [
         "42"
       ],
       "pending_tasks": [],
       "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": "amount",
-      "withdraw_to": "@kiril6789",
+      "withdraw_pending": true,
+      "withdraw_step": null,
+      "withdraw_to": null,
       "last_bonus": 0,
       "completed_tasks": 1,
       "total_earned": 4.0,
@@ -1095,8 +1095,17 @@
     }
   },
   "last_task_id": 60,
-  "withdraws": {},
-  "last_withdraw_id": 75,
+  "withdraws": {
+    "76": {
+      "user_id": 1401650206,
+      "username": "kiril6789",
+      "to": "@kiril6789",
+      "amount": 4.0,
+      "status": "wait",
+      "time": 1781815210
+    }
+  },
+  "last_withdraw_id": 76,
   "submits": {},
   "last_submit_id": 179,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
