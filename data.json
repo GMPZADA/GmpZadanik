@@ -362,7 +362,7 @@
         "42"
       ],
       "pending_tasks": [],
-      "waiting_task": "44",
+      "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
@@ -989,7 +989,7 @@
       "fines_total": 0,
       "username": "l1near"
     },
-    "6058498905": {
+    "8609456758": {
       "balance": 0,
       "done_tasks": [],
       "pending_tasks": [],
@@ -1003,9 +1003,25 @@
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
-      "username": "MiIana8"
+      "username": "NIKE67BROS"
     },
-    "8609456758": {
+    "1773886389": {
+      "balance": 0,
+      "done_tasks": [],
+      "pending_tasks": [],
+      "waiting_task": null,
+      "withdraw_pending": false,
+      "withdraw_step": null,
+      "withdraw_to": null,
+      "last_bonus": 0,
+      "completed_tasks": 0,
+      "total_earned": 0,
+      "withdraw_count": 0,
+      "withdrawn_total": 0,
+      "fines_total": 0,
+      "username": "rentabl3"
+    },
+    "5442222049": {
       "balance": 0.2,
       "done_tasks": [],
       "pending_tasks": [],
@@ -1013,13 +1029,28 @@
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
-      "last_bonus": 1781815569,
+      "last_bonus": 1781815601,
       "completed_tasks": 0,
       "total_earned": 0.2,
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
-      "username": "NIKE67BROS"
+      "username": "KoshakkoW"
+    },
+    "6058498905": {
+      "balance": 0,
+      "done_tasks": [],
+      "pending_tasks": [],
+      "waiting_task": null,
+      "withdraw_pending": false,
+      "withdraw_step": null,
+      "withdraw_to": null,
+      "last_bonus": 0,
+      "completed_tasks": 0,
+      "total_earned": 0,
+      "withdraw_count": 0,
+      "withdrawn_total": 0,
+      "fines_total": 0
     }
   },
   "tasks": {
