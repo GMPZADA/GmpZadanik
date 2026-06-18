@@ -889,10 +889,9 @@ def photo(message):
     save_data(data)
 
     kb = types.InlineKeyboardMarkup()
-    kb.add(
-        types.InlineKeyboardButton("✅ Одобрить", callback_data=f"yes_{sid}"),
-        types.InlineKeyboardButton("❌ Отказать", callback_data=f"no_{sid}")
-    )
+    kb.add(types.InlineKeyboardButton("✅ Одобрить", callback_data=f"yes_{sid}"))
+    kb.add(types.InlineKeyboardButton("❌ Отказать", callback_data=f"no_{sid}"))
+    kb.add(types.InlineKeyboardButton("🗑 Удалить", callback_data=f"del_{sid}"))
 
     bot.send_message(message.chat.id, "✅ Скрин отправлен админу на проверку.\n⏳ Задание временно скрыто из списка.")
 
@@ -946,6 +945,59 @@ def safe_edit_admin_message(call, text):
             bot.send_message(call.message.chat.id, text)
         except Exception as e3:
             print("send admin status error:", e3)
+
+
+@bot.callback_query_handler(func=lambda c: c.data.startswith("del_"))
+def delete_submit_request(call):
+    if call.from_user.id != ADMIN_ID:
+        return safe_answer_callback(call, "❌ Нет доступа.", show_alert=True)
+
+    safe_answer_callback(call, "⏳ Удаляю заявку...")
+
+    try:
+        data = load_data()
+        sid = call.data.split("_", 1)[1]
+        submit = data.get("submits", {}).get(sid)
+
+        if request_already_processed(data, "submits", sid):
+            return safe_answer_callback(call, f"⚠️ Заявка #{sid} уже была обработана ранее.", show_alert=True)
+
+        if not submit or submit.get("status") != "wait":
+            return safe_answer_callback(call, f"⚠️ Заявка #{sid} уже обработана или не найдена.", show_alert=True)
+
+        user_id = str(submit.get("user_id"))
+        task_id = str(submit.get("task_id"))
+        user = get_user(data, user_id)
+
+        if task_id in user.get("pending_tasks", []):
+            user["pending_tasks"].remove(task_id)
+
+        if str(user.get("waiting_task")) == task_id:
+            user["waiting_task"] = None
+
+        data.get("submits", {}).pop(sid, None)
+        mark_request_processed(data, "submits", sid, "deleted", call.from_user.id, user_id, f"task #{task_id}")
+        save_data(data)
+
+        try:
+            bot.send_message(
+                user_id,
+                f"🗑 <b>Ваша заявка по заданию #{task_id} удалена администратором.</b>\n\n"
+                "Вы можете отправить новый скриншот, если задание выполнено правильно."
+            )
+        except Exception as e:
+            print("send delete submit message error:", e)
+
+        safe_edit_admin_message(
+            call,
+            f"🗑 <b>Заявка #{sid} удалена администратором.</b>\n\n"
+            f"✅ Задание: #{task_id}\n"
+            f"🆔 ID: <code>{user_id}</code>"
+        )
+
+    except Exception as e:
+        print("delete submit callback error:", e)
+        safe_edit_admin_message(call, "❌ Ошибка удаления заявки. Проверь логи Render.")
 
 
 @bot.callback_query_handler(func=lambda c: c.data.startswith("yes_") or c.data.startswith("no_"))
@@ -1747,10 +1799,9 @@ def send_withdraw_request(chat_id, wid, w):
 
 def send_submit_request(chat_id, sid, submit):
     kb = types.InlineKeyboardMarkup()
-    kb.add(
-        types.InlineKeyboardButton("✅ Одобрить", callback_data=f"yes_{sid}"),
-        types.InlineKeyboardButton("❌ Отклонить", callback_data=f"no_{sid}")
-    )
+    kb.add(types.InlineKeyboardButton("✅ Одобрить", callback_data=f"yes_{sid}"))
+    kb.add(types.InlineKeyboardButton("❌ Отклонить", callback_data=f"no_{sid}"))
+    kb.add(types.InlineKeyboardButton("🗑 Удалить", callback_data=f"del_{sid}"))
     caption = (
         f"📸 <b>Заявка на задание #{sid}</b>\n\n"
         f"✅ Задание: #{submit.get('task_id')}\n"
