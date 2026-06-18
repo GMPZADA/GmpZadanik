@@ -149,21 +149,20 @@
       "username": "loridjedje"
     },
     "8431020779": {
-      "balance": 0.0,
+      "balance": 1.0,
       "done_tasks": [
         "41",
-        "54"
-      ],
-      "pending_tasks": [
+        "54",
         "52"
       ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781672960,
-      "completed_tasks": 2,
-      "total_earned": 3.4,
+      "completed_tasks": 3,
+      "total_earned": 4.4,
       "withdraw_count": 2,
       "withdrawn_total": 3.4,
       "fines_total": 0,
@@ -1079,15 +1078,6 @@
       "status": "wait",
       "photo_file_id": "AgACAgIAAxkBAAIRa2oz8G2KjUl0ijQoGSkUmf74gNLmAAJZHmsbfoOgST3zvtn8zxtDAQADAgADeQADPAQ",
       "time": 1781788938
-    },
-    "175": {
-      "user_id": 8431020779,
-      "username": "sksksskskmsdm",
-      "task_id": "52",
-      "reward": 1.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAISCWoz-PXF2H1k80FM3flOkehBVBn_AAKmI2sbOXyhSabSMArj-DQGAQADAgADeQADPAQ",
-      "time": 1781790965
     }
   },
   "last_submit_id": 175,
