@@ -76,6 +76,7 @@ def empty_data():
         "submits": {},
         "withdraws": {},
         "promocodes": {},
+        "processed_requests": {"submits": {}, "withdraws": {}},
         "last_task_id": 37,
         "last_submit_id": 0,
         "last_withdraw_id": 0,
@@ -115,6 +116,13 @@ def fix_data(data):
 
     for task_id, task in data.get("tasks", {}).items():
         task.setdefault("active", True)
+
+    # Защита от повторной обработки заявок/выводов
+    data.setdefault("processed_requests", {})
+    if not isinstance(data.get("processed_requests"), dict):
+        data["processed_requests"] = {}
+    data["processed_requests"].setdefault("submits", {})
+    data["processed_requests"].setdefault("withdraws", {})
 
     # Промокоды
     data.setdefault("promocodes", {})
@@ -264,6 +272,49 @@ def find_request_by_id(requests_dict, request_id):
 
     return None, None
 
+
+
+
+def request_already_processed(data, kind, request_id):
+    rid = str(request_id).strip().replace("#", "")
+    processed = data.setdefault("processed_requests", {}).setdefault(kind, {})
+    return rid in processed
+
+
+def mark_request_processed(data, kind, request_id, status, admin_id=0, user_id=0, note=""):
+    rid = str(request_id).strip().replace("#", "")
+    processed = data.setdefault("processed_requests", {}).setdefault(kind, {})
+    processed[rid] = {
+        "status": status,
+        "admin_id": int(admin_id or 0),
+        "user_id": str(user_id or ""),
+        "note": note,
+        "time": int(time.time())
+    }
+
+    # Чтобы data.json не раздувался: храним только последние 300 обработанных ID.
+    if len(processed) > 300:
+        old_keys = sorted(processed.keys(), key=lambda k: processed[k].get("time", 0))[:-300]
+        for k in old_keys:
+            processed.pop(k, None)
+
+
+def has_active_submit(data, user_id, task_id):
+    for sid, submit in data.get("submits", {}).items():
+        if (
+            str(submit.get("user_id")) == str(user_id)
+            and str(submit.get("task_id")) == str(task_id)
+            and submit.get("status") == "wait"
+        ):
+            return str(sid)
+    return None
+
+
+def has_active_withdraw(data, user_id):
+    for wid, withdraw in data.get("withdraws", {}).items():
+        if str(withdraw.get("user_id")) == str(user_id) and withdraw.get("status") == "wait":
+            return str(wid)
+    return None
 
 def save_data(data):
     data = fix_data(data)
@@ -765,7 +816,11 @@ def done_task(call):
     if task_id in user["done_tasks"]:
         return bot.answer_callback_query(call.id, "Ты уже сделал это задание.")
 
-    if task_id in user["pending_tasks"]:
+    old_sid = has_active_submit(data, call.from_user.id, task_id)
+    if task_id in user["pending_tasks"] or old_sid:
+        if old_sid and task_id not in user.get("pending_tasks", []):
+            user.setdefault("pending_tasks", []).append(task_id)
+            save_data(data)
         return bot.answer_callback_query(call.id, "Задание уже на проверке.")
 
     if task_id not in data["tasks"]:
@@ -803,6 +858,17 @@ def photo(message):
         user["waiting_task"] = None
         save_data(data)
         return bot.send_message(message.chat.id, "❌ Задание не найдено.")
+
+    old_sid = has_active_submit(data, message.from_user.id, task_id)
+    if old_sid:
+        user["waiting_task"] = None
+        if task_id not in user.get("pending_tasks", []):
+            user.setdefault("pending_tasks", []).append(task_id)
+        save_data(data)
+        return bot.send_message(
+            message.chat.id,
+            f"⚠️ Это задание уже отправлено на проверку.\nНомер заявки: <b>#{old_sid}</b>"
+        )
 
     data["last_submit_id"] += 1
     sid = str(data["last_submit_id"])
@@ -895,11 +961,11 @@ def check_request(call):
         action, sid = call.data.split("_", 1)
         submit = data.get("submits", {}).get(sid)
 
+        if request_already_processed(data, "submits", sid):
+            return safe_answer_callback(call, f"⚠️ Заявка #{sid} уже была обработана ранее.", show_alert=True)
+
         if not submit or submit.get("status") != "wait":
-            # Не меняем сообщение админа повторно.
-            # Иногда Telegram/Render может прислать callback второй раз после успешного одобрения,
-            # из-за этого раньше появлялось "заявка уже обработана", хотя админ нажал кнопку один раз.
-            return safe_answer_callback(call, f"⚠️ Заявка #{sid} уже обработана или не найдена.", show_alert=False)
+            return safe_answer_callback(call, f"⚠️ Заявка #{sid} уже обработана или не найдена.", show_alert=True)
 
         user_id = str(submit["user_id"])
         task_id = str(submit["task_id"])
@@ -916,6 +982,7 @@ def check_request(call):
                 user["done_tasks"].append(task_id)
 
             data["submits"].pop(sid, None)
+            mark_request_processed(data, "submits", sid, "approved", call.from_user.id, user_id, f"task #{task_id}")
             save_data(data)
 
             try:
@@ -938,6 +1005,7 @@ def check_request(call):
 
         else:
             data["submits"].pop(sid, None)
+            mark_request_processed(data, "submits", sid, "rejected", call.from_user.id, user_id, f"task #{task_id}")
             save_data(data)
 
             try:
@@ -967,8 +1035,8 @@ def withdraw(message):
     data = load_data()
     user = get_user(data, message.from_user.id)
 
-    active_withdraws = [w for w in data.get("withdraws", {}).values() if str(w.get("user_id")) == str(message.from_user.id) and w.get("status") == "wait"]
-    if user.get("withdraw_pending") or active_withdraws:
+    active_wid = has_active_withdraw(data, message.from_user.id)
+    if user.get("withdraw_pending") or active_wid:
         user["withdraw_pending"] = True
         save_data(data)
         return bot.send_message(
@@ -1012,12 +1080,20 @@ def pay_check(call):
         wid = str(wid).strip().replace("#", "")
 
         data = load_data()
+
+        if request_already_processed(data, "withdraws", wid):
+            safe_edit_admin_message(call, f"⚠️ <b>Заявка на вывод #{wid} уже была обработана ранее.</b>\n\nПовторная выплата заблокирована защитой.")
+            return
+
         real_wid, w = find_request_by_id(data.get("withdraws", {}), wid)
 
         # Если локальный файл старый/пустой — пробуем взять свежую базу с GitHub.
         if (not w or w.get("status") != "wait") and GITHUB_TOKEN and GITHUB_REPO:
             fresh_data = load_data_from_github_only()
             if fresh_data:
+                if request_already_processed(fresh_data, "withdraws", wid):
+                    safe_edit_admin_message(call, f"⚠️ <b>Заявка на вывод #{wid} уже была обработана ранее.</b>\n\nПовторная выплата заблокирована защитой.")
+                    return
                 fresh_real_wid, fresh_w = find_request_by_id(fresh_data.get("withdraws", {}), wid)
                 if fresh_w and fresh_w.get("status") == "wait":
                     data = fresh_data
@@ -1057,6 +1133,7 @@ def pay_check(call):
                 str(x.get("user_id")) == user_id and x.get("status") == "wait"
                 for x in data.get("withdraws", {}).values()
             )
+            mark_request_processed(data, "withdraws", wid, "paid", call.from_user.id, user_id, f"amount {amount}")
             save_data(data)
 
             safe_send(
@@ -1084,6 +1161,7 @@ def pay_check(call):
             str(x.get("user_id")) == user_id and x.get("status") == "wait"
             for x in data.get("withdraws", {}).values()
         )
+        mark_request_processed(data, "withdraws", wid, "rejected", call.from_user.id, user_id, f"amount {amount}")
         save_data(data)
 
         safe_send(
@@ -1798,6 +1876,17 @@ def text_router(message):
                 message.chat.id,
                 f"❌ Недостаточно GMP.\nТвой баланс: <b>{format_gmp(user['balance'])} GMP</b>\n\n"
                 "Можно вывести только сумму, которая сейчас есть на балансе."
+            )
+
+        old_wid = has_active_withdraw(data, message.from_user.id)
+        if old_wid:
+            user["withdraw_pending"] = True
+            user["withdraw_step"] = None
+            user["withdraw_to"] = None
+            save_data(data)
+            return bot.send_message(
+                message.chat.id,
+                f"⚠️ У тебя уже есть заявка на вывод на проверке.\nНомер заявки: <b>#{old_wid}</b>"
             )
 
         data["last_withdraw_id"] += 1
