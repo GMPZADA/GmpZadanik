@@ -1060,9 +1060,7 @@
         "44",
         "57"
       ],
-      "pending_tasks": [
-        "48"
-      ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": true,
       "withdraw_step": null,
@@ -1289,15 +1287,6 @@
       "status": "wait",
       "photo_file_id": "AgACAgEAAxkBAAIV_Go0bAABI3cHRpMHBixlTeZhrrWvbgACuA1rG-sXoEXjQgreuNcw7QEAAwIAA3kAAzwE",
       "time": 1781820433
-    },
-    "199": {
-      "user_id": 7970947663,
-      "username": "neevspominay",
-      "task_id": "48",
-      "reward": 3.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIWX2o0bhIHvOsuHhAV9IiI5eJMqmZGAAL-GmsbauOpSfcKAopzJFIlAQADAgADeQADPAQ",
-      "time": 1781820946
     }
   },
   "last_submit_id": 200,
@@ -1374,6 +1363,13 @@
         "user_id": "7970947663",
         "note": "task #57",
         "time": 1781821062
+      },
+      "199": {
+        "status": "rejected",
+        "admin_id": 7837011810,
+        "user_id": "7970947663",
+        "note": "task #48",
+        "time": 1781821069
       }
     },
     "withdraws": {
