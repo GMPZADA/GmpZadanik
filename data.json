@@ -1093,9 +1093,7 @@
       "done_tasks": [
         "38"
       ],
-      "pending_tasks": [
-        "59"
-      ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": true,
       "withdraw_step": null,
@@ -1243,15 +1241,6 @@
       "status": "wait",
       "photo_file_id": "AgACAgIAAxkBAAIUc2o0W8NDy7VyJMVz1k9bnBXANWZ2AAKLG2sbHfSgSVyXnAjKAAGplQEAAwIAA3kAAzwE",
       "time": 1781816259
-    },
-    "186": {
-      "user_id": 6071965562,
-      "username": "MINIPEKKA993",
-      "task_id": "59",
-      "reward": 2.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIUnmo0XIDAApFk8nbvIWCkZoRod1eGAAImFmsbx9GpSfzi0MaVf_2NAQADAgADeQADPAQ",
-      "time": 1781816456
     }
   },
   "last_submit_id": 186,
