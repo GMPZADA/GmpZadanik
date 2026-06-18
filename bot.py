@@ -275,9 +275,61 @@ def cancel_user_states(user):
 
 
 def format_gmp(amount):
-    if isinstance(amount, float) and amount.is_integer():
+    try:
+        amount = float(amount)
+    except Exception:
+        amount = 0
+    if amount.is_integer():
         return str(int(amount))
     return str(round(amount, 2)).replace(".0", "")
+
+
+def parse_gmp_amount(raw):
+    try:
+        amount = float(str(raw).replace(",", ".").strip())
+    except Exception:
+        return None
+    if amount <= 0:
+        return None
+    return round(amount, 2)
+
+
+def resolve_user_id(data, user_query):
+    """
+    Ищет пользователя по ID или @username.
+    Важно: по username можно найти только того, кто уже нажимал /start в боте.
+    """
+    q = str(user_query).strip()
+    if not q:
+        return None, "Пользователь не указан."
+
+    if q.startswith("@"):
+        clean = q[1:].lower()
+        matches = []
+        for uid, u in data.get("users", {}).items():
+            username = str(u.get("username", "")).replace("@", "").lower()
+            if username == clean:
+                matches.append(str(uid))
+
+        if len(matches) == 1:
+            return matches[0], None
+        if len(matches) > 1:
+            return None, "Найдено несколько пользователей с таким username. Используй ID."
+        return None, "Username не найден. Пусть человек нажмёт /start в боте или дай его ID."
+
+    # ID должен быть числом, чтобы случайно не создать мусорного пользователя.
+    if not q.isdigit():
+        return None, "Неверный ID. Используй ID цифрами или @username."
+
+    return q, None
+
+
+def add_balance_to_user(data, user_id, amount):
+    user = get_user(data, user_id)
+    old_balance = round(float(user.get("balance", 0)), 2)
+    user["balance"] = round(old_balance + amount, 2)
+    user["total_earned"] = round(float(user.get("total_earned", 0)) + amount, 2)
+    return user, old_balance, user["balance"]
 
 
 
@@ -345,7 +397,8 @@ def main_menu():
 def admin_menu():
     kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
     kb.row("➕ Добавить задание", "📋 Все задания")
-    kb.row("📨 Заявки", "🏠 Меню")
+    kb.row("💎 Начислить баланс", "📨 Заявки")
+    kb.row("🏠 Меню")
     return kb
 
 
@@ -996,44 +1049,54 @@ def set_start_text(message):
     bot.send_message(message.chat.id, "✅ Стартовый текст изменён.")
 
 
-@bot.message_handler(commands=["give"])
+@bot.message_handler(commands=["give", "addbalance", "addbal"])
 def give_gmp(message):
     if message.from_user.id != ADMIN_ID:
         return bot.send_message(message.chat.id, "❌ Нет доступа.")
 
-    parts = message.text.split()
+    parts = message.text.split(maxsplit=2)
     if len(parts) != 3:
-        return bot.send_message(message.chat.id, "❌ Формат:\n/give user_id сумма")
+        return bot.send_message(
+            message.chat.id,
+            "❌ Формат:\n"
+            "<code>/give user_id сумма</code>\n"
+            "<code>/give @username сумма</code>\n\n"
+            "Пример:\n"
+            "<code>/give 7837011810 2</code>\n"
+            "<code>/give @Artemwesh 2</code>"
+        )
 
     user_query = parts[1].strip()
-    try:
-        amount = float(parts[2].replace(",", "."))
-    except Exception:
-        return bot.send_message(message.chat.id, "❌ Сумма должна быть числом.")
+    amount = parse_gmp_amount(parts[2])
+    if amount is None:
+        return bot.send_message(message.chat.id, "❌ Сумма должна быть числом больше 0.")
 
-    data = load_data()
-    user_id = user_query
-    if user_query.startswith("@"):
-        clean = user_query[1:].lower()
-        found = None
-        for uid, u in data.get("users", {}).items():
-            if str(u.get("username", "")).replace("@", "").lower() == clean:
-                found = uid
-                break
-        if not found:
-            return bot.send_message(message.chat.id, "❌ Username не найден. Пусть человек нажмёт /start в боте или дай его ID.")
-        user_id = found
+    with DATA_LOCK:
+        data = load_data()
+        user_id, error = resolve_user_id(data, user_query)
+        if error:
+            return bot.send_message(message.chat.id, f"❌ {error}")
 
-    user = get_user(data, user_id)
-    user["balance"] = round(float(user["balance"]) + amount, 2)
-    user["total_earned"] = round(float(user.get("total_earned", 0)) + amount, 2)
-    save_data(data)
+        user, old_balance, new_balance = add_balance_to_user(data, user_id, amount)
+        save_data(data)
 
-    bot.send_message(message.chat.id, f"✅ Пользователю {user_id} начислено {format_gmp(amount)} GMP.")
-    try:
-        bot.send_message(user_id, f"🎁 Админ начислил тебе <b>{format_gmp(amount)} GMP</b>.")
-    except Exception:
-        pass
+    username = user.get("username")
+    name_line = f"@{username}" if username else f"ID {user_id}"
+
+    bot.send_message(
+        message.chat.id,
+        f"✅ <b>Баланс начислен</b>\n\n"
+        f"👤 Пользователь: <b>{name_line}</b>\n"
+        f"🆔 ID: <code>{user_id}</code>\n"
+        f"➕ Начислено: <b>{format_gmp(amount)} GMP</b>\n"
+        f"💰 Баланс: <b>{format_gmp(old_balance)} → {format_gmp(new_balance)} GMP</b>"
+    )
+
+    safe_send(
+        user_id,
+        f"🎁 <b>Админ начислил тебе {format_gmp(amount)} GMP</b>\n\n"
+        f"💰 Твой баланс: <b>{format_gmp(new_balance)} GMP</b>"
+    )
 
 
 
@@ -1129,6 +1192,24 @@ def fine_user(message):
     )
 
 
+@bot.message_handler(func=lambda m: m.text == "💎 Начислить баланс")
+def add_balance_info(message):
+    if message.from_user.id != ADMIN_ID:
+        return
+
+    bot.send_message(
+        message.chat.id,
+        "💎 <b>Начислить GMP пользователю</b>\n\n"
+        "Команды:\n"
+        "<code>/give user_id сумма</code>\n"
+        "<code>/give @username сумма</code>\n\n"
+        "Примеры:\n"
+        "<code>/give 7837011810 2</code>\n"
+        "<code>/give @Artemwesh 2</code>\n\n"
+        "⚠️ По @username бот найдёт только тех, кто уже нажимал /start."
+    )
+
+
 @bot.message_handler(func=lambda m: m.text == "➕ Добавить задание")
 def add_task_info(message):
     if message.from_user.id != ADMIN_ID:
@@ -1147,7 +1228,10 @@ def add_task_info(message):
         "<code>/deletetask 39</code>\n"
         "<code>/setstart Новый текст старта</code>\n"
         "<code>/profile user_id</code> — профиль игрока\n"
-        "<code>/give user_id сумма</code> — выдать GMP\n<code>/take user_id сумма</code> — списать GMP\n<code>/fine user_id сумма причина</code> — штраф"
+        "<code>/give user_id сумма</code> — начислить GMP\n"
+        "<code>/give @username сумма</code> — начислить по username\n"
+        "<code>/take user_id сумма</code> — списать GMP\n"
+        "<code>/fine user_id сумма причина</code> — штраф"
     )
 
 
