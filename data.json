@@ -1053,23 +1053,22 @@
       "fines_total": 0
     },
     "7970947663": {
-      "balance": 6.0,
+      "balance": 8.0,
       "done_tasks": [
         "52",
         "42",
         "44",
-        "57"
-      ],
-      "pending_tasks": [
+        "57",
         "45"
       ],
+      "pending_tasks": [],
       "waiting_task": "46",
       "withdraw_pending": true,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781816161,
-      "completed_tasks": 4,
-      "total_earned": 11.2,
+      "completed_tasks": 5,
+      "total_earned": 13.2,
       "withdraw_count": 1,
       "withdrawn_total": 1.2,
       "fines_total": 0,
@@ -1289,15 +1288,6 @@
       "status": "wait",
       "photo_file_id": "AgACAgEAAxkBAAIV_Go0bAABI3cHRpMHBixlTeZhrrWvbgACuA1rG-sXoEXjQgreuNcw7QEAAwIAA3kAAzwE",
       "time": 1781820433
-    },
-    "201": {
-      "user_id": 7970947663,
-      "username": "neevspominay",
-      "task_id": "45",
-      "reward": 2.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIWfGo0cCa5K74W8h59w8mGtdrAYmvfAAIfG2sbauOpSW02Vp2QtCu2AQADAgADeQADPAQ",
-      "time": 1781821478
     }
   },
   "last_submit_id": 201,
@@ -1381,6 +1371,13 @@
         "user_id": "7970947663",
         "note": "task #48",
         "time": 1781821069
+      },
+      "201": {
+        "status": "approved",
+        "admin_id": 7837011810,
+        "user_id": "7970947663",
+        "note": "task #45",
+        "time": 1781821505
       }
     },
     "withdraws": {
