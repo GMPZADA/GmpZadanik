@@ -75,6 +75,7 @@ def empty_data():
         "tasks": {},
         "submits": {},
         "withdraws": {},
+        "promocodes": {},
         "last_task_id": 37,
         "last_submit_id": 0,
         "last_withdraw_id": 0,
@@ -114,6 +115,32 @@ def fix_data(data):
 
     for task_id, task in data.get("tasks", {}).items():
         task.setdefault("active", True)
+
+    # Промокоды
+    data.setdefault("promocodes", {})
+    if not isinstance(data.get("promocodes"), dict):
+        data["promocodes"] = {}
+
+    for code, promo in list(data.get("promocodes", {}).items()):
+        if not isinstance(promo, dict):
+            data["promocodes"].pop(code, None)
+            continue
+
+        promo.setdefault("amount", 0)
+        promo.setdefault("left", 0)
+        promo.setdefault("created_by", 0)
+        promo.setdefault("used_by", [])
+        promo.setdefault("time", int(time.time()))
+
+        try:
+            promo["amount"] = round(float(promo.get("amount", 0)), 2)
+            promo["left"] = int(promo.get("left", 0))
+        except Exception:
+            data["promocodes"].pop(code, None)
+            continue
+
+        if promo["amount"] <= 0 or promo["left"] <= 0:
+            data["promocodes"].pop(code, None)
 
     # Авто-починка зависших статусов: если заявка есть — pending True, если нет — False.
     active_withdraw_users = {str(w.get("user_id")) for w in data.get("withdraws", {}).values() if w.get("status") == "wait"}
@@ -448,7 +475,10 @@ def build_admin_profile_text(data, user_id, user, username=None):
         "<code>/profile user_id</code> — профиль игрока\n"
         "<code>/give user_id сумма</code> — начислить GMP\n"
         "<code>/take user_id сумма</code> — списать GMP\n"
-        "<code>/requests</code> — активные заявки"
+        "<code>/requests</code> — активные заявки\n"
+        "<code>/promo КОД сумма активации</code> — создать промокод\n"
+        "<code>/promos</code> — список промокодов\n"
+        "<code>/delpromo КОД</code> — удалить промокод"
     )
 
 
@@ -866,8 +896,10 @@ def check_request(call):
         submit = data.get("submits", {}).get(sid)
 
         if not submit or submit.get("status") != "wait":
-            safe_edit_admin_message(call, f"⚠️ Заявка #{sid} уже обработана или не найдена.")
-            return
+            # Не меняем сообщение админа повторно.
+            # Иногда Telegram/Render может прислать callback второй раз после успешного одобрения,
+            # из-за этого раньше появлялось "заявка уже обработана", хотя админ нажал кнопку один раз.
+            return safe_answer_callback(call, f"⚠️ Заявка #{sid} уже обработана или не найдена.", show_alert=False)
 
         user_id = str(submit["user_id"])
         task_id = str(submit["task_id"])
@@ -1227,6 +1259,191 @@ def set_start_text(message):
     data["start_text"] = new_text
     save_data(data)
     bot.send_message(message.chat.id, "✅ Стартовый текст изменён.")
+
+
+
+
+@bot.message_handler(commands=["promo", "promocode"])
+def promo_command(message):
+    """
+    Админ:
+    /promo CODE сумма активации
+    пример: /promo GMP 2 5
+
+    Пользователь:
+    /promo CODE
+    пример: /promo GMP
+    """
+    data = load_data()
+    user = get_user(data, message.from_user.id)
+    user["username"] = message.from_user.username or user.get("username", "")
+
+    args = message.text.split()
+
+    if len(args) < 2:
+        if message.from_user.id == ADMIN_ID:
+            return bot.send_message(
+                message.chat.id,
+                "🎁 <b>Промокоды</b>\n\n"
+                "Создать промокод:\n"
+                "<code>/promo КОД сумма активации</code>\n\n"
+                "Пример:\n"
+                "<code>/promo GMP 2 5</code>\n\n"
+                "Активировать промокод:\n"
+                "<code>/promo КОД</code>"
+            )
+
+        return bot.send_message(
+            message.chat.id,
+            "🎁 <b>Активация промокода</b>\n\n"
+            "Напиши промокод так:\n"
+            "<code>/promo КОД</code>"
+        )
+
+    code = args[1].strip().upper()
+
+    if len(code) < 2 or len(code) > 32:
+        return bot.send_message(message.chat.id, "❌ Код должен быть от 2 до 32 символов.")
+
+    # Админ создаёт промокод
+    if message.from_user.id == ADMIN_ID and len(args) >= 4:
+        try:
+            amount = round(float(args[2].replace(",", ".")), 2)
+            activations = int(args[3])
+        except Exception:
+            return bot.send_message(
+                message.chat.id,
+                "❌ Неверный формат.\n\n"
+                "Используй так:\n"
+                "<code>/promo КОД сумма активации</code>\n\n"
+                "Пример:\n"
+                "<code>/promo GMP 2 5</code>"
+            )
+
+        if amount <= 0:
+            return bot.send_message(message.chat.id, "❌ Сумма должна быть больше 0.")
+
+        if activations <= 0:
+            return bot.send_message(message.chat.id, "❌ Количество активаций должно быть больше 0.")
+
+        data.setdefault("promocodes", {})
+        data["promocodes"][code] = {
+            "amount": amount,
+            "left": activations,
+            "created_by": message.from_user.id,
+            "used_by": [],
+            "time": int(time.time())
+        }
+
+        save_data(data)
+
+        return bot.send_message(
+            message.chat.id,
+            "✅ <b>Промокод создан и активен!</b>\n\n"
+            f"🎁 Код: <code>{code}</code>\n"
+            f"💰 Награда: <b>{format_gmp(amount)} GMP</b>\n"
+            f"🔢 Активаций: <b>{activations}</b>\n\n"
+            "Пользователи могут активировать так:\n"
+            f"<code>/promo {code}</code>"
+        )
+
+    # Если не админ пытается создать промокод
+    if len(args) >= 4 and message.from_user.id != ADMIN_ID:
+        return bot.send_message(message.chat.id, "❌ Создавать промокоды может только админ.")
+
+    # Пользователь активирует промокод
+    promo = data.get("promocodes", {}).get(code)
+
+    if not promo:
+        return bot.send_message(message.chat.id, "❌ Промокод не найден или уже закончился.")
+
+    if int(promo.get("left", 0)) <= 0:
+        data["promocodes"].pop(code, None)
+        save_data(data)
+        return bot.send_message(message.chat.id, "❌ Промокод уже закончился.")
+
+    used_by = [str(x) for x in promo.get("used_by", [])]
+    uid = str(message.from_user.id)
+
+    if uid in used_by:
+        return bot.send_message(message.chat.id, "⚠️ Ты уже активировал этот промокод.")
+
+    amount = round(float(promo.get("amount", 0)), 2)
+    if amount <= 0:
+        data["promocodes"].pop(code, None)
+        save_data(data)
+        return bot.send_message(message.chat.id, "❌ Промокод повреждён и был удалён.")
+
+    add_balance_to_user(data, message.from_user.id, amount)
+
+    promo.setdefault("used_by", [])
+    promo["used_by"].append(uid)
+    promo["left"] = int(promo.get("left", 0)) - 1
+
+    left = promo["left"]
+
+    # Когда активации закончились — полностью удаляем промокод из data.json,
+    # чтобы файл не забивался историей старых промокодов.
+    if left <= 0:
+        data["promocodes"].pop(code, None)
+
+    save_data(data)
+
+    text = (
+        "🎉 <b>Промокод успешно активирован!</b>\n\n"
+        f"💰 Вам выдано: <b>{format_gmp(amount)} GMP</b>\n"
+        f"💎 Баланс: <b>{format_gmp(user['balance'])} GMP</b>"
+    )
+
+    if left > 0:
+        text += f"\n\n🔢 Осталось активаций промокода: <b>{left}</b>"
+    else:
+        text += "\n\n✅ Промокод закончился и был удалён из базы."
+
+    bot.send_message(message.chat.id, text)
+
+
+@bot.message_handler(commands=["promos"])
+def promos_command(message):
+    if message.from_user.id != ADMIN_ID:
+        return bot.send_message(message.chat.id, "❌ Нет доступа.")
+
+    data = load_data()
+    promos = data.get("promocodes", {})
+
+    if not promos:
+        return bot.send_message(message.chat.id, "🎁 Активных промокодов нет.")
+
+    text = "🎁 <b>Активные промокоды:</b>\n\n"
+    for code, promo in promos.items():
+        text += (
+            f"• <code>{code}</code> — "
+            f"{format_gmp(promo.get('amount', 0))} GMP | "
+            f"осталось: <b>{promo.get('left', 0)}</b>\n"
+        )
+
+    bot.send_message(message.chat.id, text)
+
+
+@bot.message_handler(commands=["delpromo"])
+def delpromo_command(message):
+    if message.from_user.id != ADMIN_ID:
+        return bot.send_message(message.chat.id, "❌ Нет доступа.")
+
+    args = message.text.split()
+    if len(args) < 2:
+        return bot.send_message(message.chat.id, "❌ Используй: <code>/delpromo КОД</code>")
+
+    code = args[1].strip().upper()
+    data = load_data()
+
+    if code not in data.get("promocodes", {}):
+        return bot.send_message(message.chat.id, "❌ Такого активного промокода нет.")
+
+    data["promocodes"].pop(code, None)
+    save_data(data)
+
+    bot.send_message(message.chat.id, f"✅ Промокод <code>{code}</code> удалён.")
 
 
 @bot.message_handler(commands=["give", "addbalance", "addbal"])
