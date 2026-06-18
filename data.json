@@ -707,8 +707,10 @@
         "45",
         "53"
       ],
-      "pending_tasks": [],
-      "waiting_task": "59",
+      "pending_tasks": [
+        "59"
+      ],
+      "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
@@ -1093,8 +1095,18 @@
   "last_task_id": 60,
   "withdraws": {},
   "last_withdraw_id": 74,
-  "submits": {},
-  "last_submit_id": 176,
+  "submits": {
+    "177": {
+      "user_id": 6744639669,
+      "username": "Defak97",
+      "task_id": "59",
+      "reward": 2.0,
+      "status": "wait",
+      "photo_file_id": "AgACAgIAAxkBAAITSmo0PPwcJ_hBdBiW2XSdeA3BvuU2AAJ8J2sbFUShScm6jJppUwqPAQADAgADeQADPAQ",
+      "time": 1781808380
+    }
+  },
+  "last_submit_id": 177,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "promocodes": {}
 }
