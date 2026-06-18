@@ -915,18 +915,18 @@
       "username": "virtatacka"
     },
     "6976874613": {
-      "balance": 0,
-      "done_tasks": [],
-      "pending_tasks": [
+      "balance": 2.0,
+      "done_tasks": [
         "60"
       ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 0,
-      "completed_tasks": 0,
-      "total_earned": 0,
+      "completed_tasks": 1,
+      "total_earned": 2.0,
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0
@@ -1054,15 +1054,6 @@
       "status": "wait",
       "photo_file_id": "AgACAgIAAxkBAAIRH2oz69D0uGnyrEGm8Nl9HnBfpZz6AALcGWsb6eqhSYkmm7JiAAH5GwEAAwIAA3kAAzwE",
       "time": 1781787600
-    },
-    "171": {
-      "user_id": 6976874613,
-      "username": "Gffffah",
-      "task_id": "60",
-      "reward": 2.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIRa2oz8G2KjUl0ijQoGSkUmf74gNLmAAJZHmsbfoOgST3zvtn8zxtDAQADAgADeQADPAQ",
-      "time": 1781788781
     },
     "172": {
       "user_id": 5224773359,
