@@ -444,7 +444,7 @@
       "username": "zhenya_uukr"
     },
     "7130773702": {
-      "balance": 0.4,
+      "balance": 1.4,
       "done_tasks": [
         "41",
         "44",
@@ -463,7 +463,7 @@
       "withdraw_to": null,
       "last_bonus": 1781717822,
       "completed_tasks": 9,
-      "total_earned": 9.4,
+      "total_earned": 10.4,
       "withdraw_count": 3,
       "withdrawn_total": 9.0,
       "fines_total": 0,
@@ -1072,10 +1072,11 @@
   "promocodes": {
     "GPM": {
       "amount": 1.0,
-      "left": 4,
+      "left": 3,
       "created_by": 7837011810,
       "used_by": [
-        "8823804307"
+        "8823804307",
+        "7130773702"
       ],
       "time": 1781807085
     }
