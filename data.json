@@ -1301,7 +1301,7 @@
       "time": 1781822982,
       "admin_sent": true,
       "admin_sent_time": 1781822982,
-      "admin_message_id": "sending"
+      "admin_message_id": 5842
     }
   },
   "last_submit_id": 203,
@@ -1425,7 +1425,7 @@
         "time": 1781821802
       },
       "203": {
-        "message_id": "sending",
+        "message_id": 5842,
         "time": 1781822982
       }
     },
