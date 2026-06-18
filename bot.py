@@ -128,6 +128,15 @@ def github_url():
 
 
 def load_data():
+    # ВАЖНО: сначала читаем локальный data.json.
+    # Так быстрые шаги вывода (@username -> сумма) не теряются, пока GitHub обновляется.
+    if os.path.exists(LOCAL_DATA_FILE):
+        try:
+            with open(LOCAL_DATA_FILE, "r", encoding="utf-8") as f:
+                return fix_data(json.load(f))
+        except Exception as e:
+            print("Local load exception:", e)
+
     if GITHUB_TOKEN and GITHUB_REPO:
         try:
             r = requests.get(
@@ -139,8 +148,17 @@ def load_data():
 
             if r.status_code == 200:
                 content = r.json()["content"]
-                text = base64.b64decode(content).decode("utf-8")
-                return fix_data(json.loads(text))
+                file_text = base64.b64decode(content).decode("utf-8")
+                data = fix_data(json.loads(file_text))
+
+                # сохраняем локально, чтобы следующие сообщения читали свежую базу
+                try:
+                    with open(LOCAL_DATA_FILE, "w", encoding="utf-8") as f:
+                        json.dump(data, f, ensure_ascii=False, indent=2)
+                except Exception:
+                    pass
+
+                return data
 
             if r.status_code == 404:
                 data = empty_data()
@@ -151,15 +169,18 @@ def load_data():
         except Exception as e:
             print("GitHub load exception:", e)
 
-    if os.path.exists(LOCAL_DATA_FILE):
-        with open(LOCAL_DATA_FILE, "r", encoding="utf-8") as f:
-            return fix_data(json.load(f))
-
     return empty_data()
 
 
 def save_data(data):
     data = fix_data(data)
+
+    # Сначала сохраняем локально, чтобы бот сразу видел свежие шаги пользователя.
+    try:
+        with open(LOCAL_DATA_FILE, "w", encoding="utf-8") as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+    except Exception as e:
+        print("Local save exception:", e)
 
     if GITHUB_TOKEN and GITHUB_REPO:
         try:
@@ -193,8 +214,7 @@ def save_data(data):
         except Exception as e:
             print("GitHub save exception:", e)
 
-    with open(LOCAL_DATA_FILE, "w", encoding="utf-8") as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
+    # локально уже сохранено выше
 
 
 def get_user(data, user_id):
@@ -246,7 +266,7 @@ def format_gmp(amount):
 
 
 
-def build_profile_text(user_id, user, username=None, admin_view=False):
+def build_profile_text(user_id, user, username=None, admin_view=False, data=None):
     balance = float(user.get("balance", 0))
     completed = int(user.get("completed_tasks", len(user.get("done_tasks", []))))
     withdrawn_total = float(user.get("withdrawn_total", 0))
@@ -254,14 +274,22 @@ def build_profile_text(user_id, user, username=None, admin_view=False):
     pending_count = len(user.get("pending_tasks", []))
     fines_total = float(user.get("fines_total", 0))
 
+    pending_withdraws = 0
+    if data:
+        for w in data.get("withdraws", {}).values():
+            if str(w.get("user_id")) == str(user_id) and w.get("status") == "wait":
+                pending_withdraws += 1
+
     uname = username or user.get("username") or "нет username"
 
-    debt_text = ""
+    extra_text = ""
     if balance < 0:
-        debt_text = (
+        extra_text = (
             f"\n\n⚠️ <b>Долг:</b> {format_gmp(abs(balance))} GMP\n"
             "Сначала погасите долг заданиями, потом будет доступен вывод."
         )
+    elif pending_withdraws > 0:
+        extra_text = f"\n\n⏳ <b>Заявок на вывод на проверке:</b> {pending_withdraws}"
 
     title = "🖥 <b>Профиль игрока</b>" if admin_view else "🖥 <b>Мой Профиль</b>"
 
@@ -273,10 +301,11 @@ def build_profile_text(user_id, user, username=None, admin_view=False):
         f"├ 👤 Username: <b>{uname}</b>\n"
         f"├ ✅ Заданий сделал: <b>{completed}</b>\n"
         f"├ ⏳ На проверке: <b>{pending_count}</b>\n"
+        f"├ 💸 Выводов ждёт: <b>{pending_withdraws}</b>\n"
         f"├ 📤 Выведено: <b>{format_gmp(withdrawn_total)} GMP</b>\n"
         f"├ 📦 Выплат: <b>{withdraw_count}</b>\n"
         f"└ ⚠️ Штрафов: <b>{format_gmp(fines_total)} GMP</b>"
-        f"{debt_text}"
+        f"{extra_text}"
     )
 
 
@@ -374,11 +403,11 @@ def my_profile(message):
     username = f"@{message.from_user.username}" if message.from_user.username else "нет username"
     bot.send_message(
         message.chat.id,
-        build_profile_text(message.from_user.id, user, username=username)
+        build_profile_text(message.from_user.id, user, username=username, data=data)
     )
 
 
-@bot.message_handler(commands=["profile", "user"])
+@bot.message_handler(commands=["profile", "user", "whois"])
 def admin_profile(message):
     if message.from_user.id != ADMIN_ID:
         return bot.send_message(message.chat.id, "❌ Нет доступа.")
@@ -387,22 +416,35 @@ def admin_profile(message):
     if len(parts) < 2:
         return bot.send_message(
             message.chat.id,
-            "❌ Формат:\n<code>/profile user_id</code>\n\nПример:\n<code>/profile 7837011810</code>"
+            "❌ Формат:\n<code>/profile user_id</code>\n<code>/profile @username</code>\n\n"
+            "Пример:\n<code>/profile 7837011810</code>"
         )
 
-    user_id = parts[1].strip().replace("@", "")
+    query = parts[1].strip()
     data = load_data()
 
-    if user_id not in data.get("users", {}):
+    found_id = None
+    clean_query = query.replace("@", "").lower()
+
+    if query.isdigit() and query in data.get("users", {}):
+        found_id = query
+    else:
+        for uid, u in data.get("users", {}).items():
+            uname = str(u.get("username", "")).replace("@", "").lower()
+            if uname and uname == clean_query:
+                found_id = uid
+                break
+
+    if not found_id:
         return bot.send_message(message.chat.id, "❌ Пользователь не найден в data.json.")
 
-    user = get_user(data, user_id)
+    user = get_user(data, found_id)
     username = user.get("username") or "нет username"
     if username and username != "нет username" and not username.startswith("@"):
         username = "@" + username
 
     save_data(data)
-    bot.send_message(message.chat.id, build_profile_text(user_id, user, username=username, admin_view=True))
+    bot.send_message(message.chat.id, build_profile_text(found_id, user, username=username, admin_view=True, data=data))
 
 
 @bot.message_handler(func=lambda m: m.text == "🎉 Бонус")
@@ -633,6 +675,12 @@ def withdraw(message):
     data = load_data()
     user = get_user(data, message.from_user.id)
 
+    if user.get("withdraw_pending"):
+        return bot.send_message(
+            message.chat.id,
+            "⏳ У тебя уже есть заявка на вывод на проверке.\nДождись решения администратора."
+        )
+
     if float(user["balance"]) < 0:
         return bot.send_message(
             message.chat.id,
@@ -650,8 +698,9 @@ def withdraw(message):
 
     bot.send_message(
         message.chat.id,
-        "💎 <b>Куда вывести GMP</b>\n\n"
-        "Пример <code>@username</code>"
+        "💎 <b>Куда вывести GMP?</b>\n\n"
+        "Напишите @username куда вывести GMP.\n\n"
+        "Пример:\n<code>@username</code>"
     )
 
 
@@ -1070,6 +1119,7 @@ def admin_broadcast(message):
 def text_router(message):
     data = load_data()
     user = get_user(data, message.from_user.id)
+    user["username"] = message.from_user.username or user.get("username", "")
 
     text = (message.text or "").strip()
 
@@ -1091,7 +1141,8 @@ def text_router(message):
         return bot.send_message(
             message.chat.id,
             "💰 <b>Сколько GMP вывести?</b>\n\n"
-            "Напишите сумму GMP для вывода."
+            "Напишите сумму GMP для вывода.\n"
+            "Можно написать <b>все</b>."
         )
 
     if user.get("withdraw_step") == "amount":
@@ -1114,7 +1165,8 @@ def text_router(message):
         if amount > float(user["balance"]):
             return bot.send_message(
                 message.chat.id,
-                f"❌ Недостаточно GMP.\nТвой баланс: <b>{format_gmp(user['balance'])} GMP</b>"
+                f"❌ Недостаточно GMP.\nТвой баланс: <b>{format_gmp(user['balance'])} GMP</b>\n\n"
+                "Можно вывести только сумму, которая сейчас есть на балансе."
             )
 
         data["last_withdraw_id"] += 1
@@ -1161,6 +1213,7 @@ def text_router(message):
             reply_markup=kb
         )
 
+    # Если сюда дошло обычное сообщение без активного шага — показываем меню.
     bot.send_message(message.chat.id, "👇 Выбери кнопку в меню.", reply_markup=main_menu())
 
 
