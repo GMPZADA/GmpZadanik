@@ -748,7 +748,7 @@
       "fines_total": 0
     },
     "7106223662": {
-      "balance": 4.0,
+      "balance": 0.0,
       "done_tasks": [
         "42",
         "60",
@@ -760,8 +760,8 @@
       ],
       "waiting_task": null,
       "withdraw_pending": false,
-      "withdraw_step": "amount",
-      "withdraw_to": "@EbyV0",
+      "withdraw_step": null,
+      "withdraw_to": null,
       "last_bonus": 1781787078,
       "completed_tasks": 4,
       "total_earned": 12.4,
@@ -1023,8 +1023,17 @@
     }
   },
   "last_task_id": 60,
-  "withdraws": {},
-  "last_withdraw_id": 64,
+  "withdraws": {
+    "65": {
+      "user_id": 7106223662,
+      "username": "EbyV0",
+      "to": "@EbyV0",
+      "amount": 4.0,
+      "status": "wait",
+      "time": 1781788114
+    }
+  },
+  "last_withdraw_id": 65,
   "submits": {
     "167": {
       "user_id": 7106223662,
