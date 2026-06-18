@@ -161,8 +161,8 @@
       "last_bonus": 1781672960,
       "completed_tasks": 1,
       "total_earned": 2.4,
-      "withdraw_count": 0,
-      "withdrawn_total": 0,
+      "withdraw_count": 1,
+      "withdrawn_total": 2.4,
       "fines_total": 0,
       "username": "sksksskskmsdm"
     },
@@ -995,16 +995,7 @@
     }
   },
   "last_task_id": 60,
-  "withdraws": {
-    "60": {
-      "user_id": 8431020779,
-      "username": "sksksskskmsdm",
-      "to": "@username",
-      "amount": 2.4,
-      "status": "wait",
-      "time": 1781758909
-    }
-  },
+  "withdraws": {},
   "last_withdraw_id": 60,
   "submits": {},
   "last_submit_id": 160,
