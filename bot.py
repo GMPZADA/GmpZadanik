@@ -185,6 +185,59 @@ def load_data():
     return empty_data()
 
 
+def load_data_from_github_only():
+    """
+    Читает data.json прямо с GitHub, не используя локальный файл.
+    Нужно для админ-кнопок, если Render взял старый локальный файл
+    или после перезапуска локальный data.json был пустой/старый.
+    """
+    if not (GITHUB_TOKEN and GITHUB_REPO):
+        return None
+
+    try:
+        r = requests.get(
+            github_url(),
+            headers=github_headers(),
+            params={"ref": GITHUB_BRANCH},
+            timeout=10
+        )
+
+        if r.status_code != 200:
+            print("GitHub fresh load error:", r.status_code, r.text)
+            return None
+
+        content = r.json()["content"]
+        file_text = base64.b64decode(content).decode("utf-8")
+        return fix_data(json.loads(file_text))
+    except Exception as e:
+        print("GitHub fresh load exception:", e)
+        return None
+
+
+def find_request_by_id(requests_dict, request_id):
+    """
+    Безопасно ищет заявку по ID.
+    Исправляет баги, когда ID в кнопке строкой '68',
+    а в файле мог сохраниться как 68, '068' или '#68'.
+    """
+    rid = str(request_id).strip().replace("#", "")
+
+    if not isinstance(requests_dict, dict):
+        return None, None
+
+    variants = [rid, f"#{rid}", rid.lstrip("0") or "0"]
+    for key in variants:
+        if key in requests_dict:
+            return str(key), requests_dict[key]
+
+    for key, value in requests_dict.items():
+        clean_key = str(key).strip().replace("#", "")
+        if clean_key == rid or clean_key.lstrip("0") == rid.lstrip("0"):
+            return str(key), value
+
+    return None, None
+
+
 def save_data(data):
     data = fix_data(data)
 
@@ -853,42 +906,103 @@ def pay_check(call):
     if call.from_user.id != ADMIN_ID:
         return safe_answer_callback(call, "❌ Нет доступа.", show_alert=True)
 
+    # Сразу отвечаем Telegram, чтобы кнопка не крутилась.
     safe_answer_callback(call, "⏳ Обрабатываю выплату...")
 
-    data = load_data()
-    action, wid = call.data.split("_", 1)
-    w = data["withdraws"].get(wid)
+    try:
+        action, wid = call.data.split("_", 1)
+        wid = str(wid).strip().replace("#", "")
 
-    if not w or w.get("status") != "wait":
-        safe_edit_admin_message(call, f"⚠️ Заявка на вывод #{wid} уже обработана или не найдена.")
-        return
+        data = load_data()
+        real_wid, w = find_request_by_id(data.get("withdraws", {}), wid)
 
-    user = get_user(data, w["user_id"])
-    amount = float(w["amount"])
+        # Если локальный файл старый/пустой — пробуем взять свежую базу с GitHub.
+        if (not w or w.get("status") != "wait") and GITHUB_TOKEN and GITHUB_REPO:
+            fresh_data = load_data_from_github_only()
+            if fresh_data:
+                fresh_real_wid, fresh_w = find_request_by_id(fresh_data.get("withdraws", {}), wid)
+                if fresh_w and fresh_w.get("status") == "wait":
+                    data = fresh_data
+                    real_wid = fresh_real_wid
+                    w = fresh_w
 
-    if action == "payyes":
-        user["withdraw_count"] = int(user.get("withdraw_count", 0)) + 1
-        user["withdrawn_total"] = round(float(user.get("withdrawn_total", 0)) + amount, 2)
-        del data["withdraws"][wid]
-        user["withdraw_pending"] = any(str(x.get("user_id")) == str(w["user_id"]) and x.get("status") == "wait" for x in data.get("withdraws", {}).values())
-        save_data(data)
+        if not w:
+            safe_edit_admin_message(
+                call,
+                f"ℹ️ <b>Заявка на вывод #{wid} уже закрыта или не найдена.</b>\n\n"
+                "Возможные причины:\n"
+                "• заявка уже была обработана ранее;\n"
+                "• бот был перезапущен до сохранения заявки;\n"
+                "• заявка была удалена из data.json.\n\n"
+                "Проверьте активные заявки командой /requests."
+            )
+            return
 
-        bot.send_message(
-            w["user_id"],
-            f"✅ <b>Заказ #{wid} выполнен!</b>\n\n"
-            "💎 GMP успешно выданы 💜\n\n"
-            "Спасибо за использование «Заработок GMP» ✨"
+        if w.get("status") != "wait":
+            safe_edit_admin_message(call, f"ℹ️ Заявка на вывод #{wid} уже была обработана ранее.")
+            return
+
+        real_wid = str(real_wid or wid)
+        user_id = str(w.get("user_id"))
+        amount = float(w.get("amount", 0))
+        user = get_user(data, user_id)
+
+        # Удаляем заявку только после того, как все данные уже взяли.
+        if action == "payyes":
+            user["withdraw_count"] = int(user.get("withdraw_count", 0)) + 1
+            user["withdrawn_total"] = round(float(user.get("withdrawn_total", 0)) + amount, 2)
+
+            data.get("withdraws", {}).pop(real_wid, None)
+            data.get("withdraws", {}).pop(wid, None)
+
+            user["withdraw_pending"] = any(
+                str(x.get("user_id")) == user_id and x.get("status") == "wait"
+                for x in data.get("withdraws", {}).values()
+            )
+            save_data(data)
+
+            safe_send(
+                user_id,
+                f"✅ <b>Заказ #{wid} выполнен!</b>\n\n"
+                "💎 GMP успешно выданы 💜\n\n"
+                "Спасибо за использование «Заработок GMP» ✨"
+            )
+            safe_edit_admin_message(
+                call,
+                f"✅ <b>Выплата #{wid} подтверждена.</b>\n\n"
+                f"🆔 ID: <code>{user_id}</code>\n"
+                f"💰 Сумма: <b>{format_gmp(amount)} GMP</b>"
+            )
+            return
+
+        # Отказ: возвращаем списанные GMP на баланс.
+        old_balance = float(user.get("balance", 0))
+        user["balance"] = round(old_balance + amount, 2)
+
+        data.get("withdraws", {}).pop(real_wid, None)
+        data.get("withdraws", {}).pop(wid, None)
+
+        user["withdraw_pending"] = any(
+            str(x.get("user_id")) == user_id and x.get("status") == "wait"
+            for x in data.get("withdraws", {}).values()
         )
-        safe_edit_admin_message(call, f"✅ Выплата #{wid} подтверждена.")
-
-    else:
-        user["balance"] = round(float(user["balance"]) + amount, 2)
-        del data["withdraws"][wid]
-        user["withdraw_pending"] = any(str(x.get("user_id")) == str(w["user_id"]) and x.get("status") == "wait" for x in data.get("withdraws", {}).values())
         save_data(data)
 
-        bot.send_message(w["user_id"], f"❌ Заявка на вывод #{wid} отклонена.\n💰 <b>{format_gmp(amount)} GMP</b> возвращены на баланс.")
-        safe_edit_admin_message(call, f"❌ Выплата #{wid} отклонена. GMP возвращены.")
+        safe_send(
+            user_id,
+            f"❌ <b>Заявка на вывод #{wid} отклонена.</b>\n\n"
+            f"💰 <b>{format_gmp(amount)} GMP</b> возвращены на баланс."
+        )
+        safe_edit_admin_message(
+            call,
+            f"❌ <b>Выплата #{wid} отклонена.</b>\n\n"
+            f"🆔 ID: <code>{user_id}</code>\n"
+            f"💰 Возвращено: <b>{format_gmp(amount)} GMP</b>"
+        )
+
+    except Exception as e:
+        print("withdraw callback error:", e)
+        safe_edit_admin_message(call, "❌ Ошибка обработки выплаты. Проверь логи Render.")
 
 
 @bot.message_handler(commands=["addtask"])
