@@ -748,20 +748,19 @@
       "fines_total": 0
     },
     "7106223662": {
-      "balance": 6.4,
+      "balance": 8.4,
       "done_tasks": [
-        "42"
-      ],
-      "pending_tasks": [
+        "42",
         "60"
       ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781787078,
-      "completed_tasks": 1,
-      "total_earned": 6.4,
+      "completed_tasks": 2,
+      "total_earned": 8.4,
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0
@@ -1021,17 +1020,7 @@
   "last_task_id": 60,
   "withdraws": {},
   "last_withdraw_id": 63,
-  "submits": {
-    "166": {
-      "user_id": 7106223662,
-      "username": "EbyV0",
-      "task_id": "60",
-      "reward": 2.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIQ-Goz6fBY06g3W6kBhfJ7EPjnsA2cAALQGWsb6eqhSeUB_rfJkEODAQADAgADeQADPAQ",
-      "time": 1781787120
-    }
-  },
+  "submits": {},
   "last_submit_id": 166,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:"
 }
