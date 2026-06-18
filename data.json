@@ -1055,9 +1055,7 @@
     "7970947663": {
       "balance": 0.2,
       "done_tasks": [],
-      "pending_tasks": [
-        "55"
-      ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": "amount",
@@ -1214,15 +1212,6 @@
   "withdraws": {},
   "last_withdraw_id": 76,
   "submits": {
-    "182": {
-      "user_id": 7970947663,
-      "username": "neevspominay",
-      "task_id": "55",
-      "reward": 2.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIUO2o0W1xo911f9vSiFGatTH10uIepAAIwGmsbauOpSU8RipCtxz0NAQADAgADeQADPAQ",
-      "time": 1781816156
-    },
     "183": {
       "user_id": 7811863751,
       "username": "grimReapersing",
