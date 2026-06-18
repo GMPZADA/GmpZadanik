@@ -214,7 +214,7 @@
       "fines_total": 0
     },
     "5224773359": {
-      "balance": 2.0,
+      "balance": 4.0,
       "done_tasks": [
         "44",
         "46",
@@ -229,18 +229,17 @@
         "51",
         "45",
         "42",
-        "59"
-      ],
-      "pending_tasks": [
+        "59",
         "60"
       ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": "username",
       "withdraw_to": null,
       "last_bonus": 1781641964,
-      "completed_tasks": 14,
-      "total_earned": 17.2,
+      "completed_tasks": 15,
+      "total_earned": 19.2,
       "withdraw_count": 6,
       "withdrawn_total": 14.2,
       "fines_total": 1.0,
@@ -1051,15 +1050,6 @@
   "withdraws": {},
   "last_withdraw_id": 71,
   "submits": {
-    "170": {
-      "user_id": 5224773359,
-      "username": "xux_xuxx",
-      "task_id": "60",
-      "reward": 2.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIRUmoz70nYYvM-8LsSvp6OsckKXJN_AAKkGWsbeNahSadf8BBwVOtKAQADAgADeQADPAQ",
-      "time": 1781788489
-    },
     "172": {
       "user_id": 6976874613,
       "username": "Gffffah",
