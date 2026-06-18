@@ -748,22 +748,22 @@
       "fines_total": 0
     },
     "7106223662": {
-      "balance": 0.0,
+      "balance": 2.0,
       "done_tasks": [
         "42",
-        "60"
+        "60",
+        "57"
       ],
       "pending_tasks": [
-        "59",
-        "57"
+        "59"
       ],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781787078,
-      "completed_tasks": 2,
-      "total_earned": 8.4,
+      "completed_tasks": 3,
+      "total_earned": 10.4,
       "withdraw_count": 1,
       "withdrawn_total": 8.4,
       "fines_total": 0,
@@ -1033,15 +1033,6 @@
       "status": "wait",
       "photo_file_id": "AgACAgIAAxkBAAIRH2oz69D0uGnyrEGm8Nl9HnBfpZz6AALcGWsb6eqhSYkmm7JiAAH5GwEAAwIAA3kAAzwE",
       "time": 1781787600
-    },
-    "168": {
-      "user_id": 7106223662,
-      "username": "EbyV0",
-      "task_id": "57",
-      "reward": 2.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIRKGoz7D9oGmBIB7xSchK7Vav-ok09AALeGWsb6eqhSX0W0XmyjJ03AQADAgADeQADPAQ",
-      "time": 1781787711
     }
   },
   "last_submit_id": 168,
