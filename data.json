@@ -1077,7 +1077,6 @@
         "49"
       ],
       "pending_tasks": [
-        "48",
         "44",
         "42"
       ],
@@ -1220,15 +1219,6 @@
   "withdraws": {},
   "last_withdraw_id": 77,
   "submits": {
-    "183": {
-      "user_id": 7811863751,
-      "username": "grimReapersing",
-      "task_id": "48",
-      "reward": 3.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIUQ2o0W2YewH84a3AeVzDIzpPnTnCSAAKHG2sbHfSgSXmMmfRpQ_sjAQADAgADeQADPAQ",
-      "time": 1781816173
-    },
     "189": {
       "user_id": 7811863751,
       "username": "grimReapersing",
@@ -1261,7 +1251,15 @@
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "promocodes": {},
   "processed_requests": {
-    "submits": {},
+    "submits": {
+      "183": {
+        "status": "rejected",
+        "admin_id": 7837011810,
+        "user_id": "7811863751",
+        "note": "task #48",
+        "time": 1781817508
+      }
+    },
     "withdraws": {}
   }
 }
