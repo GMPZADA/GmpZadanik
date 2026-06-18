@@ -316,8 +316,10 @@
         "38",
         "42"
       ],
-      "pending_tasks": [],
-      "waiting_task": "51",
+      "pending_tasks": [
+        "51"
+      ],
+      "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
@@ -997,7 +999,17 @@
   "last_task_id": 60,
   "withdraws": {},
   "last_withdraw_id": 60,
-  "submits": {},
-  "last_submit_id": 160,
+  "submits": {
+    "161": {
+      "user_id": 8516313611,
+      "username": "kiril2230",
+      "task_id": "51",
+      "reward": 3.0,
+      "status": "wait",
+      "photo_file_id": "AgACAgIAAxkBAAIQfmozmeA8_Tpv9ZakNwG3EwG3lz1pAAImGWsbnWChSd7PTku9UcWmAQADAgADeQADPAQ",
+      "time": 1781766624
+    }
+  },
+  "last_submit_id": 161,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:"
 }
