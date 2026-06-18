@@ -156,7 +156,6 @@
         "52"
       ],
       "pending_tasks": [
-        "53",
         "45"
       ],
       "waiting_task": null,
@@ -1292,18 +1291,6 @@
       "photo_file_id": "AgACAgIAAxkBAAIWfGo0cCa5K74W8h59w8mGtdrAYmvfAAIfG2sbauOpSW02Vp2QtCu2AQADAgADeQADPAQ",
       "time": 1781821508
     },
-    "203": {
-      "user_id": 8431020779,
-      "username": "sksksskskmsdm",
-      "task_id": "53",
-      "reward": 1.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIW0Go0dgVZhforGdMWkTdQHA8tBxtvAAISFWsbOXypSYk7NhiD8XyMAQADAgADeQADPAQ",
-      "time": 1781822982,
-      "admin_sent": true,
-      "admin_sent_time": 1781822982,
-      "admin_message_id": 5842
-    },
     "204": {
       "user_id": 8431020779,
       "username": "sksksskskmsdm",
@@ -1412,6 +1399,13 @@
         "user_id": "8031414696",
         "note": "task #44",
         "time": 1781821517
+      },
+      "203": {
+        "status": "rejected",
+        "admin_id": 7837011810,
+        "user_id": "8431020779",
+        "note": "task #53",
+        "time": 1781823004
       }
     },
     "withdraws": {
