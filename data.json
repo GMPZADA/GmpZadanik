@@ -234,14 +234,15 @@
       ],
       "waiting_task": null,
       "withdraw_pending": false,
-      "withdraw_step": "username",
-      "withdraw_to": null,
+      "withdraw_step": "amount",
+      "withdraw_to": "@xux_xuxx",
       "last_bonus": 1781641964,
       "completed_tasks": 14,
       "total_earned": 15.2,
       "withdraw_count": 5,
       "withdrawn_total": 12.2,
-      "fines_total": 1.0
+      "fines_total": 1.0,
+      "username": "xux_xuxx"
     },
     "1631337389": {
       "balance": 0.0,
