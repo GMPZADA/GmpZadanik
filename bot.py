@@ -80,6 +80,7 @@ def empty_data():
         "promocodes": {},
         "processed_requests": {"submits": {}, "withdraws": {}},
         "admin_sent": {"submits": {}, "withdraws": {}},
+        "balance_logs": [],
         "last_task_id": 37,
         "last_submit_id": 0,
         "last_withdraw_id": 0,
@@ -133,6 +134,11 @@ def fix_data(data):
         data["admin_sent"] = {}
     data["admin_sent"].setdefault("submits", {})
     data["admin_sent"].setdefault("withdraws", {})
+
+    # Логи баланса
+    data.setdefault("balance_logs", [])
+    if not isinstance(data.get("balance_logs"), list):
+        data["balance_logs"] = []
 
     # Промокоды
     data.setdefault("promocodes", {})
@@ -553,16 +559,32 @@ def resolve_user_id(data, user_query):
     return q, None
 
 
-def add_balance_to_user(data, user_id, amount):
+def log_balance_change(data, user_id, old_balance, amount, new_balance, reason="", request_id=""):
+    """Короткий лог баланса, чтобы потом понять, что и почему изменилось."""
+    data.setdefault("balance_logs", [])
+    data["balance_logs"].append({
+        "time": int(time.time()),
+        "user_id": str(user_id),
+        "old": round(float(old_balance), 2),
+        "amount": round(float(amount), 2),
+        "new": round(float(new_balance), 2),
+        "reason": str(reason),
+        "request_id": str(request_id)
+    })
+    # Чтобы data.json не раздувался
+    data["balance_logs"] = data["balance_logs"][-500:]
+
+
+def add_balance_to_user(data, user_id, amount, reason="add", request_id=""):
     """
-    Единая функция начисления GMP.
+    Единая функция изменения баланса.
 
-    Работает правильно и с минусовым балансом:
-    было -2 GMP, начислили +1 GMP -> стало -1 GMP
-    было -2 GMP, начислили +5 GMP -> стало 3 GMP
+    Примеры:
+    - было -2, начислили +1 -> стало -1
+    - было -2, начислили +5 -> стало 3
+    - списание делается amount отрицательным: -4
 
-    В data.json НЕ создаётся никаких старых записей баланса.
-    Просто перезаписывается поле balance на новое значение.
+    В data.json старые балансы не копятся — поле balance просто перезаписывается.
     """
     user = get_user(data, user_id)
     amount = round(float(amount), 2)
@@ -570,15 +592,17 @@ def add_balance_to_user(data, user_id, amount):
     new_balance = round(old_balance + amount, 2)
 
     user["balance"] = new_balance
-    user["total_earned"] = round(float(user.get("total_earned", 0)) + amount, 2)
 
-    # Статистика погашения долга: только для админа/проверки, на баланс не влияет.
-    if old_balance < 0 and amount > 0:
-        paid_debt = min(abs(old_balance), amount)
-        user["debt_paid_total"] = round(float(user.get("debt_paid_total", 0)) + paid_debt, 2)
+    if amount > 0:
+        user["total_earned"] = round(float(user.get("total_earned", 0)) + amount, 2)
 
+        # Статистика погашения долга: только для админа/проверки, на баланс не влияет.
+        if old_balance < 0:
+            paid_debt = min(abs(old_balance), amount)
+            user["debt_paid_total"] = round(float(user.get("debt_paid_total", 0)) + paid_debt, 2)
+
+    log_balance_change(data, user_id, old_balance, amount, new_balance, reason, request_id)
     return user, old_balance, new_balance
-
 
 
 def build_admin_profile_text(data, user_id, user, username=None):
@@ -1120,47 +1144,83 @@ def check_request(call):
     if call.from_user.id != ADMIN_ID:
         return safe_answer_callback(call, "❌ Нет доступа.", show_alert=True)
 
-    # Сразу отвечаем Telegram, чтобы кнопка не крутилась и казалось, что она не нажимается.
     safe_answer_callback(call, "⏳ Обрабатываю заявку...")
 
     try:
-        data = load_data()
         action, sid = call.data.split("_", 1)
-        submit = data.get("submits", {}).get(sid)
+        sid = str(sid).strip().replace("#", "")
 
-        if request_already_processed(data, "submits", sid):
-            return safe_answer_callback(call, f"⚠️ Заявка #{sid} уже была обработана ранее.", show_alert=True)
+        user_id = None
+        task_id = None
+        reward = 0
+        new_balance = None
+        result_status = None
+        already_text = None
 
-        if not submit or submit.get("status") != "wait":
-            return safe_answer_callback(call, f"⚠️ Заявка #{sid} уже обработана или не найдена.", show_alert=True)
+        # ЖЕЛЕЗНАЯ ЗОНА: всё изменение data.json делаем под одним lock.
+        # Если ты нажмёшь кнопку 2/10/50 раз, второй callback дождётся lock
+        # и увидит, что заявка уже обработана.
+        with DATA_LOCK:
+            data = load_data()
 
-        user_id = str(submit["user_id"])
-        task_id = str(submit["task_id"])
-        reward = float(submit["reward"])
-        user = get_user(data, user_id)
+            if request_already_processed(data, "submits", sid):
+                already_text = f"⚠️ <b>Заявка #{sid} уже была обработана ранее.</b>\n\nПовторное начисление заблокировано."
+            else:
+                real_sid, submit = find_request_by_id(data.get("submits", {}), sid)
 
-        if task_id in user.get("pending_tasks", []):
-            user["pending_tasks"].remove(task_id)
+                if not submit or submit.get("status") != "wait":
+                    already_text = f"⚠️ <b>Заявка #{sid} уже обработана или не найдена.</b>\n\nПовторное действие заблокировано."
+                else:
+                    real_sid = str(real_sid or sid)
+                    # Сразу ставим processing, чтобы даже при лаге кнопка не обработалась второй раз.
+                    submit["status"] = "processing"
 
-        if action == "yes":
-            if task_id not in user.get("done_tasks", []):
-                add_balance_to_user(data, user_id, reward)
-                user["completed_tasks"] = int(user.get("completed_tasks", len(user.get("done_tasks", [])))) + 1
-                user["done_tasks"].append(task_id)
+                    user_id = str(submit.get("user_id"))
+                    task_id = str(submit.get("task_id"))
+                    reward = float(submit.get("reward", 0))
+                    user = get_user(data, user_id)
 
-            data["submits"].pop(sid, None)
-            mark_request_processed(data, "submits", sid, "approved", call.from_user.id, user_id, f"task #{task_id}")
-            save_data(data)
+                    if task_id in user.get("pending_tasks", []):
+                        user["pending_tasks"].remove(task_id)
 
-            try:
-                bot.send_message(
-                    user_id,
-                    f"🎉 <b>Задание #{task_id} одобрено!</b>\n\n"
-                    f"💰 Начислено: <b>{format_gmp(reward)} GMP</b>\n"
-                    f"💎 Баланс: <b>{format_gmp(user['balance'])} GMP</b>"
-                )
-            except Exception as e:
-                print("send approve message error:", e)
+                    if str(user.get("waiting_task")) == task_id:
+                        user["waiting_task"] = None
+
+                    if action == "yes":
+                        if task_id not in user.get("done_tasks", []):
+                            add_balance_to_user(data, user_id, reward, reason="task_approved", request_id=real_sid)
+                            user["completed_tasks"] = int(user.get("completed_tasks", len(user.get("done_tasks", [])))) + 1
+                            user["done_tasks"].append(task_id)
+
+                        new_balance = float(user.get("balance", 0))
+                        result_status = "approved"
+                        data.get("submits", {}).pop(real_sid, None)
+                        data.get("submits", {}).pop(sid, None)
+                        mark_request_processed(data, "submits", real_sid, "approved", call.from_user.id, user_id, f"task #{task_id}")
+                        if real_sid != sid:
+                            mark_request_processed(data, "submits", sid, "approved", call.from_user.id, user_id, f"task #{task_id}")
+
+                    else:
+                        result_status = "rejected"
+                        data.get("submits", {}).pop(real_sid, None)
+                        data.get("submits", {}).pop(sid, None)
+                        mark_request_processed(data, "submits", real_sid, "rejected", call.from_user.id, user_id, f"task #{task_id}")
+                        if real_sid != sid:
+                            mark_request_processed(data, "submits", sid, "rejected", call.from_user.id, user_id, f"task #{task_id}")
+
+                    save_data(data)
+
+        if already_text:
+            safe_edit_admin_message(call, already_text)
+            return
+
+        if result_status == "approved":
+            safe_send(
+                user_id,
+                f"🎉 <b>Задание #{task_id} одобрено!</b>\n\n"
+                f"💰 Начислено: <b>{format_gmp(reward)} GMP</b>\n"
+                f"💎 Баланс: <b>{format_gmp(new_balance)} GMP</b>"
+            )
 
             safe_edit_admin_message(
                 call,
@@ -1169,21 +1229,15 @@ def check_request(call):
                 f"💰 Начислено: {format_gmp(reward)} GMP\n"
                 f"🆔 ID: <code>{user_id}</code>"
             )
+            return
 
-        else:
-            data["submits"].pop(sid, None)
-            mark_request_processed(data, "submits", sid, "rejected", call.from_user.id, user_id, f"task #{task_id}")
-            save_data(data)
-
-            try:
-                bot.send_message(
-                    user_id,
-                    f"❌ <b>Задание #{task_id} отклонено</b>\n\n"
-                    "Проверьте, что вы выполнили задание до конца и отправили правильный скриншот.\n\n"
-                    "После проверки можете попробовать снова ✅"
-                )
-            except Exception as e:
-                print("send reject message error:", e)
+        if result_status == "rejected":
+            safe_send(
+                user_id,
+                f"❌ <b>Задание #{task_id} отклонено</b>\n\n"
+                "Проверьте, что вы выполнили задание до конца и отправили правильный скриншот.\n\n"
+                "После проверки можете попробовать снова ✅"
+            )
 
             safe_edit_admin_message(
                 call,
@@ -1191,11 +1245,11 @@ def check_request(call):
                 f"✅ Задание: #{task_id}\n"
                 f"🆔 ID: <code>{user_id}</code>"
             )
+            return
 
     except Exception as e:
         print("task approve/reject callback error:", e)
         safe_edit_admin_message(call, "❌ Ошибка обработки заявки. Проверь логи Render.")
-
 
 @bot.message_handler(func=lambda m: m.text == "💸 Вывод")
 def withdraw(message):
@@ -1239,70 +1293,77 @@ def pay_check(call):
     if call.from_user.id != ADMIN_ID:
         return safe_answer_callback(call, "❌ Нет доступа.", show_alert=True)
 
-    # Сразу отвечаем Telegram, чтобы кнопка не крутилась.
     safe_answer_callback(call, "⏳ Обрабатываю выплату...")
 
     try:
         action, wid = call.data.split("_", 1)
         wid = str(wid).strip().replace("#", "")
 
-        data = load_data()
+        user_id = None
+        amount = 0
+        result_status = None
+        already_text = None
 
-        if request_already_processed(data, "withdraws", wid):
-            safe_edit_admin_message(call, f"⚠️ <b>Заявка на вывод #{wid} уже была обработана ранее.</b>\n\nПовторная выплата заблокирована защитой.")
+        # ЖЕЛЕЗНАЯ ЗОНА: повторное нажатие кнопки не сможет провести выплату/возврат дважды.
+        with DATA_LOCK:
+            data = load_data()
+
+            if request_already_processed(data, "withdraws", wid):
+                already_text = f"⚠️ <b>Заявка на вывод #{wid} уже была обработана ранее.</b>\n\nПовторная выплата заблокирована."
+            else:
+                real_wid, w = find_request_by_id(data.get("withdraws", {}), wid)
+
+                if not w or w.get("status") != "wait":
+                    already_text = f"⚠️ <b>Заявка на вывод #{wid} уже закрыта или не найдена.</b>\n\nПовторное действие заблокировано."
+                else:
+                    real_wid = str(real_wid or wid)
+
+                    # Сразу ставим processing, чтобы второй callback не прошёл.
+                    w["status"] = "processing"
+
+                    user_id = str(w.get("user_id"))
+                    amount = float(w.get("amount", 0))
+                    user = get_user(data, user_id)
+
+                    if action == "payyes":
+                        user["withdraw_count"] = int(user.get("withdraw_count", 0)) + 1
+                        user["withdrawn_total"] = round(float(user.get("withdrawn_total", 0)) + amount, 2)
+
+                        data.get("withdraws", {}).pop(real_wid, None)
+                        data.get("withdraws", {}).pop(wid, None)
+
+                        user["withdraw_pending"] = any(
+                            str(x.get("user_id")) == user_id and x.get("status") == "wait"
+                            for x in data.get("withdraws", {}).values()
+                        )
+                        result_status = "paid"
+                        mark_request_processed(data, "withdraws", real_wid, "paid", call.from_user.id, user_id, f"amount {amount}")
+                        if real_wid != wid:
+                            mark_request_processed(data, "withdraws", wid, "paid", call.from_user.id, user_id, f"amount {amount}")
+
+                    else:
+                        # Отказ: возвращаем списанные GMP на баланс, но только один раз.
+                        add_balance_to_user(data, user_id, amount, reason="withdraw_rejected_return", request_id=real_wid)
+
+                        data.get("withdraws", {}).pop(real_wid, None)
+                        data.get("withdraws", {}).pop(wid, None)
+
+                        user["withdraw_pending"] = any(
+                            str(x.get("user_id")) == user_id and x.get("status") == "wait"
+                            for x in data.get("withdraws", {}).values()
+                        )
+                        result_status = "rejected"
+                        mark_request_processed(data, "withdraws", real_wid, "rejected", call.from_user.id, user_id, f"amount {amount}")
+                        if real_wid != wid:
+                            mark_request_processed(data, "withdraws", wid, "rejected", call.from_user.id, user_id, f"amount {amount}")
+
+                    save_data(data)
+
+        if already_text:
+            safe_edit_admin_message(call, already_text)
             return
 
-        real_wid, w = find_request_by_id(data.get("withdraws", {}), wid)
-
-        # Если локальный файл старый/пустой — пробуем взять свежую базу с GitHub.
-        if (not w or w.get("status") != "wait") and GITHUB_TOKEN and GITHUB_REPO:
-            fresh_data = load_data_from_github_only()
-            if fresh_data:
-                if request_already_processed(fresh_data, "withdraws", wid):
-                    safe_edit_admin_message(call, f"⚠️ <b>Заявка на вывод #{wid} уже была обработана ранее.</b>\n\nПовторная выплата заблокирована защитой.")
-                    return
-                fresh_real_wid, fresh_w = find_request_by_id(fresh_data.get("withdraws", {}), wid)
-                if fresh_w and fresh_w.get("status") == "wait":
-                    data = fresh_data
-                    real_wid = fresh_real_wid
-                    w = fresh_w
-
-        if not w:
-            safe_edit_admin_message(
-                call,
-                f"ℹ️ <b>Заявка на вывод #{wid} уже закрыта или не найдена.</b>\n\n"
-                "Возможные причины:\n"
-                "• заявка уже была обработана ранее;\n"
-                "• бот был перезапущен до сохранения заявки;\n"
-                "• заявка была удалена из data.json.\n\n"
-                "Проверьте активные заявки командой /requests."
-            )
-            return
-
-        if w.get("status") != "wait":
-            safe_edit_admin_message(call, f"ℹ️ Заявка на вывод #{wid} уже была обработана ранее.")
-            return
-
-        real_wid = str(real_wid or wid)
-        user_id = str(w.get("user_id"))
-        amount = float(w.get("amount", 0))
-        user = get_user(data, user_id)
-
-        # Удаляем заявку только после того, как все данные уже взяли.
-        if action == "payyes":
-            user["withdraw_count"] = int(user.get("withdraw_count", 0)) + 1
-            user["withdrawn_total"] = round(float(user.get("withdrawn_total", 0)) + amount, 2)
-
-            data.get("withdraws", {}).pop(real_wid, None)
-            data.get("withdraws", {}).pop(wid, None)
-
-            user["withdraw_pending"] = any(
-                str(x.get("user_id")) == user_id and x.get("status") == "wait"
-                for x in data.get("withdraws", {}).values()
-            )
-            mark_request_processed(data, "withdraws", wid, "paid", call.from_user.id, user_id, f"amount {amount}")
-            save_data(data)
-
+        if result_status == "paid":
             safe_send(
                 user_id,
                 f"✅ <b>Заказ #{wid} выполнен!</b>\n\n"
@@ -1317,36 +1378,23 @@ def pay_check(call):
             )
             return
 
-        # Отказ: возвращаем списанные GMP на баланс.
-        old_balance = float(user.get("balance", 0))
-        user["balance"] = round(old_balance + amount, 2)
-
-        data.get("withdraws", {}).pop(real_wid, None)
-        data.get("withdraws", {}).pop(wid, None)
-
-        user["withdraw_pending"] = any(
-            str(x.get("user_id")) == user_id and x.get("status") == "wait"
-            for x in data.get("withdraws", {}).values()
-        )
-        mark_request_processed(data, "withdraws", wid, "rejected", call.from_user.id, user_id, f"amount {amount}")
-        save_data(data)
-
-        safe_send(
-            user_id,
-            f"❌ <b>Заявка на вывод #{wid} отклонена.</b>\n\n"
-            f"💰 <b>{format_gmp(amount)} GMP</b> возвращены на баланс."
-        )
-        safe_edit_admin_message(
-            call,
-            f"❌ <b>Выплата #{wid} отклонена.</b>\n\n"
-            f"🆔 ID: <code>{user_id}</code>\n"
-            f"💰 Возвращено: <b>{format_gmp(amount)} GMP</b>"
-        )
+        if result_status == "rejected":
+            safe_send(
+                user_id,
+                f"❌ <b>Заявка на вывод #{wid} отклонена.</b>\n\n"
+                f"💰 <b>{format_gmp(amount)} GMP</b> возвращены на баланс."
+            )
+            safe_edit_admin_message(
+                call,
+                f"❌ <b>Выплата #{wid} отклонена.</b>\n\n"
+                f"🆔 ID: <code>{user_id}</code>\n"
+                f"💰 Возвращено: <b>{format_gmp(amount)} GMP</b>"
+            )
+            return
 
     except Exception as e:
         print("withdraw callback error:", e)
         safe_edit_admin_message(call, "❌ Ошибка обработки выплаты. Проверь логи Render.")
-
 
 @bot.message_handler(commands=["addtask"])
 def add_task(message):
@@ -1719,7 +1767,7 @@ def give_gmp(message):
         if error:
             return bot.send_message(message.chat.id, f"❌ {error}")
 
-        user, old_balance, new_balance = add_balance_to_user(data, user_id, amount)
+        user, old_balance, new_balance = add_balance_to_user(data, user_id, amount, reason="admin_give", request_id="manual")
         save_data(data)
 
     username = user.get("username")
@@ -1760,23 +1808,23 @@ def take_gmp(message):
     if amount <= 0:
         return bot.send_message(message.chat.id, "❌ Сумма должна быть больше 0.")
 
-    data = load_data()
-    user_id = user_query
-    if user_query.startswith("@"):
-        clean = user_query[1:].lower()
-        found = None
-        for uid, u in data.get("users", {}).items():
-            if str(u.get("username", "")).replace("@", "").lower() == clean:
-                found = uid
-                break
-        if not found:
-            return bot.send_message(message.chat.id, "❌ Username не найден. Пусть человек нажмёт /start в боте или дай его ID.")
-        user_id = found
+    with DATA_LOCK:
+        data = load_data()
+        user_id = user_query
+        if user_query.startswith("@"):
+            clean = user_query[1:].lower()
+            found = None
+            for uid, u in data.get("users", {}).items():
+                if str(u.get("username", "")).replace("@", "").lower() == clean:
+                    found = uid
+                    break
+            if not found:
+                return bot.send_message(message.chat.id, "❌ Username не найден. Пусть человек нажмёт /start в боте или дай его ID.")
+            user_id = found
 
-    user = get_user(data, user_id)
-    user["balance"] = round(float(user.get("balance", 0)) - amount, 2)
-    user["fines_total"] = round(float(user.get("fines_total", 0)) + amount, 2)
-    save_data(data)
+        user, old_balance, new_balance = add_balance_to_user(data, user_id, -amount, reason="admin_take", request_id="manual")
+        user["fines_total"] = round(float(user.get("fines_total", 0)) + amount, 2)
+        save_data(data)
 
     bot.send_message(message.chat.id, f"✅ У пользователя {user_id} списано {format_gmp(amount)} GMP. Баланс: {format_gmp(user['balance'])} GMP")
     safe_send(user_id, f"⚠️ Админ списал <b>{format_gmp(amount)} GMP</b>.\n💰 Баланс: <b>{format_gmp(user['balance'])} GMP</b>")
@@ -1806,14 +1854,11 @@ def fine_user(message):
 
     reason = parts[3].strip() if len(parts) >= 4 else "Нарушение правил"
 
-    data = load_data()
-    user = get_user(data, user_id)
-
-    old_balance = float(user.get("balance", 0))
-    user["balance"] = round(old_balance - amount, 2)
-    user["fines_total"] = round(float(user.get("fines_total", 0)) + amount, 2)
-
-    save_data(data)
+    with DATA_LOCK:
+        data = load_data()
+        user, old_balance, new_balance = add_balance_to_user(data, user_id, -amount, reason=f"admin_fine: {reason}", request_id="manual")
+        user["fines_total"] = round(float(user.get("fines_total", 0)) + amount, 2)
+        save_data(data)
 
     bot.send_message(
         message.chat.id,
@@ -2141,7 +2186,7 @@ def text_router(message):
             data["last_withdraw_id"] += 1
             wid = str(data["last_withdraw_id"])
 
-            user["balance"] = round(float(user["balance"]) - amount, 2)
+            add_balance_to_user(data, message.from_user.id, -amount, reason="withdraw_created", request_id=wid)
             user["withdraw_pending"] = True
             user["withdraw_step"] = None
             user["withdraw_to"] = None
