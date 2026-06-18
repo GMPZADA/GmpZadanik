@@ -765,8 +765,8 @@
       "last_bonus": 1781787078,
       "completed_tasks": 4,
       "total_earned": 12.4,
-      "withdraw_count": 1,
-      "withdrawn_total": 8.4,
+      "withdraw_count": 2,
+      "withdrawn_total": 12.4,
       "fines_total": 0,
       "username": "EbyV0"
     },
@@ -1023,16 +1023,7 @@
     }
   },
   "last_task_id": 60,
-  "withdraws": {
-    "65": {
-      "user_id": 7106223662,
-      "username": "EbyV0",
-      "to": "@EbyV0",
-      "amount": 4.0,
-      "status": "wait",
-      "time": 1781788114
-    }
-  },
+  "withdraws": {},
   "last_withdraw_id": 65,
   "submits": {
     "167": {
