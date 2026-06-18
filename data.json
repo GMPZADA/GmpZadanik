@@ -693,7 +693,7 @@
       "fines_total": 0
     },
     "6744639669": {
-      "balance": 2.2,
+      "balance": 0.2,
       "done_tasks": [
         "38",
         "46",
@@ -711,9 +711,9 @@
         "59"
       ],
       "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": "amount",
-      "withdraw_to": "@Defak97",
+      "withdraw_pending": true,
+      "withdraw_step": null,
+      "withdraw_to": null,
       "last_bonus": 1781808802,
       "completed_tasks": 11,
       "total_earned": 5.2,
@@ -1094,8 +1094,17 @@
     }
   },
   "last_task_id": 60,
-  "withdraws": {},
-  "last_withdraw_id": 74,
+  "withdraws": {
+    "75": {
+      "user_id": 6744639669,
+      "username": "Defak97",
+      "to": "@Defak97",
+      "amount": 2.0,
+      "status": "wait",
+      "time": 1781808812
+    }
+  },
+  "last_withdraw_id": 75,
   "submits": {
     "177": {
       "user_id": 6744639669,
