@@ -1069,23 +1069,23 @@
       "username": "neevspominay"
     },
     "7811863751": {
-      "balance": 6.2,
+      "balance": 8.2,
       "done_tasks": [
         "51",
-        "49"
+        "49",
+        "57"
       ],
       "pending_tasks": [
         "48",
-        "44",
-        "42"
+        "44"
       ],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781816350,
-      "completed_tasks": 2,
-      "total_earned": 6.2,
+      "completed_tasks": 3,
+      "total_earned": 8.2,
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0
@@ -1235,22 +1235,21 @@
       "status": "wait",
       "photo_file_id": "AgACAgIAAxkBAAIUzmo0Xk7PoZ5BRkHD1XjR9h3zmDUIAAKcG2sbHfSgScEuAAGqKQTycwEAAwIAA3kAAzwE",
       "time": 1781816942
-    },
-    "191": {
-      "user_id": 7811863751,
-      "username": "grimReapersing",
-      "task_id": "42",
-      "reward": 4.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIVAWo0X6LVYoDGcGYj1rSn9w6JYesMAAK8G2sbHfSgSSvM22yGUQHUAQADAgADeQADPAQ",
-      "time": 1781817251
     }
   },
-  "last_submit_id": 191,
+  "last_submit_id": 192,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "promocodes": {},
   "processed_requests": {
-    "submits": {},
+    "submits": {
+      "192": {
+        "status": "approved",
+        "admin_id": 7837011810,
+        "user_id": "7811863751",
+        "note": "task #57",
+        "time": 1781817436
+      }
+    },
     "withdraws": {}
   }
 }
