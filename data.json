@@ -212,7 +212,7 @@
       "fines_total": 0
     },
     "5224773359": {
-      "balance": 0.0,
+      "balance": 2.0,
       "done_tasks": [
         "44",
         "46",
@@ -238,7 +238,7 @@
       "withdraw_to": null,
       "last_bonus": 1781641964,
       "completed_tasks": 14,
-      "total_earned": 15.2,
+      "total_earned": 17.2,
       "withdraw_count": 6,
       "withdrawn_total": 14.2,
       "fines_total": 1.0,
