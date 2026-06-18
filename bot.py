@@ -416,6 +416,19 @@ def build_admin_profile_text(data, user_id, user, username=None):
     withdraws_wait = sum(1 for w in data.get("withdraws", {}).values() if w.get("status") == "wait")
     negative_balances = sum(1 for u in data.get("users", {}).values() if float(u.get("balance", 0)) < 0)
 
+    # Дополнительная статистика только для админа
+    total_balance = round(
+        sum(float(u.get("balance", 0)) for u in data.get("users", {}).values()),
+        2
+    )
+    total_paid = round(
+        sum(float(u.get("withdrawn_total", 0)) for u in data.get("users", {}).values()),
+        2
+    )
+    total_withdraws = sum(
+        int(u.get("withdraw_count", 0)) for u in data.get("users", {}).values()
+    )
+
     return (
         "👑 <b>Профиль администратора</b>\n\n"
         f"💰 <b>Твой баланс:</b> {format_gmp(balance)} GMP\n"
@@ -427,7 +440,10 @@ def build_admin_profile_text(data, user_id, user, username=None):
         f"├ ✅ Активных заданий: <b>{active_tasks_count}</b>\n"
         f"├ 📨 Заявок пользователей: <b>{submits_wait}</b>\n"
         f"├ 💸 Заявок на вывод: <b>{withdraws_wait}</b>\n"
-        f"└ ⚠️ Минусовых балансов: <b>{negative_balances}</b>\n\n"
+        f"├ ⚠️ Минусовых балансов: <b>{negative_balances}</b>\n"
+        f"├ 💰 Общий баланс пользователей: <b>{format_gmp(total_balance)}</b> GMP\n"
+        f"├ 🧾 Всего выплачено: <b>{format_gmp(total_paid)}</b> GMP\n"
+        f"└ 🏦 Всего выводов: <b>{total_withdraws}</b>\n\n"
         "⚙️ <b>Админ-команды</b>\n"
         "<code>/profile user_id</code> — профиль игрока\n"
         "<code>/give user_id сумма</code> — начислить GMP\n"
