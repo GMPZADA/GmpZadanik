@@ -28,6 +28,7 @@ bot = TeleBot(TOKEN, parse_mode="HTML")
 app = Flask(__name__)
 DATA_LOCK = RLock()
 WITHDRAW_CREATE_LOCK = RLock()
+SUBMIT_CREATE_LOCK = RLock()
 
 
 @app.route("/")
@@ -78,6 +79,7 @@ def empty_data():
         "withdraws": {},
         "promocodes": {},
         "processed_requests": {"submits": {}, "withdraws": {}},
+        "admin_sent": {"submits": {}, "withdraws": {}},
         "last_task_id": 37,
         "last_submit_id": 0,
         "last_withdraw_id": 0,
@@ -124,6 +126,13 @@ def fix_data(data):
         data["processed_requests"] = {}
     data["processed_requests"].setdefault("submits", {})
     data["processed_requests"].setdefault("withdraws", {})
+
+    # Чтобы /requests не отправлял одни и те же заявки по 2-3 раза админу
+    data.setdefault("admin_sent", {})
+    if not isinstance(data.get("admin_sent"), dict):
+        data["admin_sent"] = {}
+    data["admin_sent"].setdefault("submits", {})
+    data["admin_sent"].setdefault("withdraws", {})
 
     # Промокоды
     data.setdefault("promocodes", {})
@@ -344,6 +353,39 @@ def find_recent_duplicate_withdraw(data, user_id, withdraw_to, amount, window_se
             created_time = 0
         if now - created_time <= window_seconds:
             return str(wid)
+    return None
+
+
+def admin_request_was_sent(data, kind, request_id):
+    rid = str(request_id).strip().replace("#", "")
+    return rid in data.setdefault("admin_sent", {}).setdefault(kind, {})
+
+
+def mark_admin_request_sent(data, kind, request_id, message_id=None):
+    rid = str(request_id).strip().replace("#", "")
+    data.setdefault("admin_sent", {}).setdefault(kind, {})[rid] = {
+        "message_id": message_id,
+        "time": int(time.time())
+    }
+
+    # Не даём data.json раздуваться
+    sent = data.setdefault("admin_sent", {}).setdefault(kind, {})
+    if len(sent) > 300:
+        old_keys = sorted(sent.keys(), key=lambda k: sent[k].get("time", 0))[:-300]
+        for k in old_keys:
+            sent.pop(k, None)
+
+
+def find_active_submit_by_photo(data, user_id, task_id, photo_file_id):
+    """Защита от дубля: тот же пользователь, то же задание, тот же скрин."""
+    for sid, submit in data.get("submits", {}).items():
+        if (
+            str(submit.get("user_id")) == str(user_id)
+            and str(submit.get("task_id")) == str(task_id)
+            and str(submit.get("photo_file_id")) == str(photo_file_id)
+            and submit.get("status") == "wait"
+        ):
+            return str(sid)
     return None
 
 def save_data(data):
@@ -866,57 +908,65 @@ def done_task(call):
 
 @bot.message_handler(content_types=["photo"])
 def photo(message):
-    data = load_data()
-    user = get_user(data, message.from_user.id)
+    """
+    Железная логика заявки на задание:
+    - один пользователь + одно задание = только одна активная заявка;
+    - если Telegram/интернет прислал фото повторно — новый номер не создаётся;
+    - /requests не будет повторно кидать админу одно и то же фото.
+    """
+    photo_file_id = message.photo[-1].file_id if message.photo else ""
 
-    task_id = user.get("waiting_task")
-    if not task_id:
-        return bot.send_message(message.chat.id, "❌ Сначала выбери задание и нажми ✅ Я выполнил.")
+    with SUBMIT_CREATE_LOCK:
+        data = load_data()
+        user = get_user(data, message.from_user.id)
 
-    if task_id in user["done_tasks"]:
+        task_id = user.get("waiting_task")
+        if not task_id:
+            return bot.send_message(message.chat.id, "❌ Сначала выбери задание и нажми ✅ Я выполнил.")
+
+        task_id = str(task_id)
+
+        if task_id in user.get("done_tasks", []):
+            user["waiting_task"] = None
+            save_data(data)
+            return bot.send_message(message.chat.id, "✅ Ты уже выполнил это задание.")
+
+        old_sid = has_active_submit(data, message.from_user.id, task_id)
+        same_photo_sid = find_active_submit_by_photo(data, message.from_user.id, task_id, photo_file_id)
+        if task_id in user.get("pending_tasks", []) or old_sid or same_photo_sid:
+            sid = old_sid or same_photo_sid
+            if task_id not in user.get("pending_tasks", []):
+                user.setdefault("pending_tasks", []).append(task_id)
+            user["waiting_task"] = None
+            save_data(data)
+            return bot.send_message(
+                message.chat.id,
+                f"⏳ Это задание уже на проверке.\nНомер заявки: <b>#{sid or 'уже создана'}</b>"
+            )
+
+        task = data.get("tasks", {}).get(task_id)
+        if not task:
+            user["waiting_task"] = None
+            save_data(data)
+            return bot.send_message(message.chat.id, "❌ Задание не найдено.")
+
+        data["last_submit_id"] = int(data.get("last_submit_id", 0)) + 1
+        sid = str(data["last_submit_id"])
+
         user["waiting_task"] = None
+        user.setdefault("pending_tasks", []).append(task_id)
+
+        data.setdefault("submits", {})[sid] = {
+            "user_id": message.from_user.id,
+            "username": message.from_user.username or "",
+            "task_id": task_id,
+            "reward": float(task.get("reward", 0)),
+            "status": "wait",
+            "photo_file_id": photo_file_id,
+            "time": int(time.time())
+        }
+
         save_data(data)
-        return bot.send_message(message.chat.id, "✅ Ты уже выполнил это задание.")
-
-    if task_id in user["pending_tasks"]:
-        user["waiting_task"] = None
-        save_data(data)
-        return bot.send_message(message.chat.id, "⏳ Это задание уже на проверке.")
-
-    task = data["tasks"].get(task_id)
-    if not task:
-        user["waiting_task"] = None
-        save_data(data)
-        return bot.send_message(message.chat.id, "❌ Задание не найдено.")
-
-    old_sid = has_active_submit(data, message.from_user.id, task_id)
-    if old_sid:
-        user["waiting_task"] = None
-        if task_id not in user.get("pending_tasks", []):
-            user.setdefault("pending_tasks", []).append(task_id)
-        save_data(data)
-        return bot.send_message(
-            message.chat.id,
-            f"⚠️ Это задание уже отправлено на проверку.\nНомер заявки: <b>#{old_sid}</b>"
-        )
-
-    data["last_submit_id"] += 1
-    sid = str(data["last_submit_id"])
-
-    user["waiting_task"] = None
-    user["pending_tasks"].append(task_id)
-
-    data["submits"][sid] = {
-        "user_id": message.from_user.id,
-        "username": message.from_user.username or "",
-        "task_id": task_id,
-        "reward": float(task["reward"]),
-        "status": "wait",
-        "photo_file_id": message.photo[-1].file_id,
-        "time": int(time.time())
-    }
-
-    save_data(data)
 
     kb = types.InlineKeyboardMarkup()
     kb.add(types.InlineKeyboardButton("✅ Одобрить", callback_data=f"yes_{sid}"))
@@ -925,20 +975,22 @@ def photo(message):
 
     bot.send_message(message.chat.id, "✅ Скрин отправлен админу на проверку.\n⏳ Задание временно скрыто из списка.")
 
-    bot.send_photo(
+    admin_msg = bot.send_photo(
         ADMIN_ID,
-        message.photo[-1].file_id,
-        caption=
-        f"📨 <b>Новая заявка #{sid}</b>\n\n"
-        f"✅ Задание: #{task_id}\n"
-        f"💰 Награда: {format_gmp(task['reward'])} GMP\n"
-        f"👤 Пользователь: @{message.from_user.username or 'нет username'}\n"
-        f"🆔 ID: <code>{message.from_user.id}</code>",
+        photo_file_id,
+        caption=(
+            f"📨 <b>Новая заявка #{sid}</b>\n\n"
+            f"✅ Задание: #{task_id}\n"
+            f"💰 Награда: {format_gmp(task.get('reward', 0))} GMP\n"
+            f"👤 Пользователь: @{message.from_user.username or 'нет username'}\n"
+            f"🆔 ID: <code>{message.from_user.id}</code>"
+        ),
         reply_markup=kb
     )
 
-
-
+    data = load_data()
+    mark_admin_request_sent(data, "submits", sid, getattr(admin_msg, "message_id", None))
+    save_data(data)
 
 def safe_answer_callback(call, text=None, show_alert=False):
     try:
@@ -1816,7 +1868,7 @@ def send_withdraw_request(chat_id, wid, w):
         types.InlineKeyboardButton("✅ Выплачено", callback_data=f"payyes_{wid}"),
         types.InlineKeyboardButton("❌ Отказать", callback_data=f"payno_{wid}")
     )
-    bot.send_message(
+    return bot.send_message(
         chat_id,
         f"💸 <b>Заявка на вывод #{wid}</b>\n\n"
         f"👤 Пользователь: @{w.get('username') or 'нет username'}\n"
@@ -1841,9 +1893,8 @@ def send_submit_request(chat_id, sid, submit):
     )
     photo_id = submit.get("photo_file_id")
     if photo_id:
-        bot.send_photo(chat_id, photo_id, caption=caption, reply_markup=kb)
-    else:
-        bot.send_message(chat_id, caption + "\n\n⚠️ Фото не сохранено в старой заявке.", reply_markup=kb)
+        return bot.send_photo(chat_id, photo_id, caption=caption, reply_markup=kb)
+    return bot.send_message(chat_id, caption + "\n\n⚠️ Фото не сохранено в старой заявке.", reply_markup=kb)
 
 
 @bot.message_handler(func=lambda m: m.text == "📨 Заявки")
@@ -1859,21 +1910,46 @@ def requests_msg(message):
     if not submits and not withdraws:
         return bot.send_message(message.chat.id, "✅ Активных заявок нет.")
 
-    bot.send_message(
-        message.chat.id,
+    wait_submits = {str(sid): s for sid, s in submits.items() if s.get("status") == "wait"}
+    wait_withdraws = {str(wid): w for wid, w in withdraws.items() if w.get("status") == "wait"}
+
+    text = (
         f"📨 <b>Активные заявки:</b>\n\n"
-        f"📸 Задания: {len(submits)}\n"
-        f"💸 Выводы: {len(withdraws)}\n\n"
-        "Ниже отправляю заявки с кнопками 👇"
+        f"📸 Задания: {len(wait_submits)}\n"
+        f"💸 Выводы: {len(wait_withdraws)}\n\n"
     )
 
-    for sid, submit in list(submits.items()):
-        if submit.get("status") == "wait":
-            send_submit_request(message.chat.id, sid, submit)
+    already = []
+    sent_now = 0
 
-    for wid, w in list(withdraws.items()):
-        if w.get("status") == "wait":
-            send_withdraw_request(message.chat.id, wid, w)
+    for sid, submit in list(wait_submits.items()):
+        if admin_request_was_sent(data, "submits", sid):
+            already.append(f"📸 #{sid}")
+            continue
+        msg = send_submit_request(message.chat.id, sid, submit)
+        mark_admin_request_sent(data, "submits", sid, getattr(msg, "message_id", None))
+        sent_now += 1
+
+    for wid, w in list(wait_withdraws.items()):
+        if admin_request_was_sent(data, "withdraws", wid):
+            already.append(f"💸 #{wid}")
+            continue
+        msg = send_withdraw_request(message.chat.id, wid, w)
+        mark_admin_request_sent(data, "withdraws", wid, getattr(msg, "message_id", None))
+        sent_now += 1
+
+    save_data(data)
+
+    if sent_now:
+        text += f"✅ Отправил новых заявок с кнопками: <b>{sent_now}</b>\n"
+    if already:
+        text += "\n⚠️ Уже были отправлены админу раньше, повторно не дублирую:\n" + ", ".join(already[:30])
+        if len(already) > 30:
+            text += f" и ещё {len(already) - 30}"
+    if not sent_now and not already:
+        text += "✅ Активных заявок нет."
+
+    bot.send_message(message.chat.id, text)
 
 
 @bot.message_handler(commands=["send"])
@@ -2037,7 +2113,7 @@ def text_router(message):
             "Ожидайте выплату до 24 часов."
         )
 
-        return bot.send_message(
+        admin_msg = bot.send_message(
             ADMIN_ID,
             f"💸 <b>Новая заявка на вывод #{wid}</b>\n\n"
             f"👤 Пользователь: @{message.from_user.username or 'нет username'}\n"
@@ -2046,6 +2122,11 @@ def text_router(message):
             f"💰 Сумма: <b>{format_gmp(amount)} GMP</b>",
             reply_markup=kb
         )
+
+        data = load_data()
+        mark_admin_request_sent(data, "withdraws", wid, getattr(admin_msg, "message_id", None))
+        save_data(data)
+        return
 
     # Если сюда дошло обычное сообщение без активного шага — показываем меню.
     bot.send_message(message.chat.id, "👇 Выбери кнопку в меню.", reply_markup=main_menu())
