@@ -212,7 +212,7 @@
       "fines_total": 0
     },
     "5224773359": {
-      "balance": 2.0,
+      "balance": 0.0,
       "done_tasks": [
         "44",
         "46",
@@ -234,14 +234,15 @@
       ],
       "waiting_task": null,
       "withdraw_pending": false,
-      "withdraw_step": "username",
+      "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781641964,
       "completed_tasks": 14,
       "total_earned": 15.2,
-      "withdraw_count": 5,
-      "withdrawn_total": 12.2,
-      "fines_total": 1.0
+      "withdraw_count": 6,
+      "withdrawn_total": 14.2,
+      "fines_total": 1.0,
+      "username": "xux_xuxx"
     },
     "1631337389": {
       "balance": 0.0,
@@ -915,19 +916,18 @@
       "username": "virtatacka"
     },
     "6976874613": {
-      "balance": 5.2,
-      "done_tasks": [
-        "60",
-        "51"
+      "balance": 0.2,
+      "done_tasks": [],
+      "pending_tasks": [
+        "60"
       ],
-      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781788751,
-      "completed_tasks": 2,
-      "total_earned": 5.2,
+      "completed_tasks": 0,
+      "total_earned": 0.2,
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
@@ -1046,7 +1046,7 @@
   },
   "last_task_id": 60,
   "withdraws": {},
-  "last_withdraw_id": 65,
+  "last_withdraw_id": 66,
   "submits": {
     "167": {
       "user_id": 7106223662,
@@ -1065,8 +1065,17 @@
       "status": "wait",
       "photo_file_id": "AgACAgIAAxkBAAIRUmoz70nYYvM-8LsSvp6OsckKXJN_AAKkGWsbeNahSadf8BBwVOtKAQADAgADeQADPAQ",
       "time": 1781788489
+    },
+    "172": {
+      "user_id": 6976874613,
+      "username": "Gffffah",
+      "task_id": "60",
+      "reward": 2.0,
+      "status": "wait",
+      "photo_file_id": "AgACAgIAAxkBAAIRa2oz8G2KjUl0ijQoGSkUmf74gNLmAAJZHmsbfoOgST3zvtn8zxtDAQADAgADeQADPAQ",
+      "time": 1781788938
     }
   },
-  "last_submit_id": 173,
+  "last_submit_id": 172,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:"
 }
