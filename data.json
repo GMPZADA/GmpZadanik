@@ -1071,12 +1071,6 @@
       "link": "https://t.me/StarsMakeBot?start=1wWqkbBz7",
       "reward": 2.0,
       "active": true
-    },
-    "60": {
-      "text": "Зайти в бота, подписаться на спонсоров и отправить скриншот выполнения",
-      "link": "https://t.me/WexGiftRobot?start=21942329",
-      "reward": 2.0,
-      "active": true
     }
   },
   "last_task_id": 60,
