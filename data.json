@@ -1096,14 +1096,14 @@
       ],
       "pending_tasks": [],
       "waiting_task": null,
-      "withdraw_pending": true,
+      "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 0,
       "completed_tasks": 2,
       "total_earned": 2.0,
-      "withdraw_count": 0,
-      "withdrawn_total": 0,
+      "withdraw_count": 1,
+      "withdrawn_total": 1.0,
       "fines_total": 0,
       "username": "MINIPEKKA993"
     }
@@ -1213,16 +1213,7 @@
     }
   },
   "last_task_id": 60,
-  "withdraws": {
-    "77": {
-      "user_id": 6071965562,
-      "username": "MINIPEKKA993",
-      "to": "@MINIPEKKA993",
-      "amount": 1.0,
-      "status": "wait",
-      "time": 1781816378
-    }
-  },
+  "withdraws": {},
   "last_withdraw_id": 77,
   "submits": {
     "183": {
