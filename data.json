@@ -1057,8 +1057,10 @@
       "done_tasks": [
         "52"
       ],
-      "pending_tasks": [],
-      "waiting_task": "44",
+      "pending_tasks": [
+        "44"
+      ],
+      "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
@@ -1232,8 +1234,18 @@
   "last_task_id": 60,
   "withdraws": {},
   "last_withdraw_id": 79,
-  "submits": {},
-  "last_submit_id": 194,
+  "submits": {
+    "195": {
+      "user_id": 7970947663,
+      "username": "neevspominay",
+      "task_id": "44",
+      "reward": 4.0,
+      "status": "wait",
+      "photo_file_id": "AgACAgIAAxkBAAIVsWo0aX_N4UvANPgYLLdawVowpazdAALGGmsbauOpSQMQP26L5aZIAQADAgADeQADPAQ",
+      "time": 1781819775
+    }
+  },
+  "last_submit_id": 195,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "promocodes": {},
   "processed_requests": {
