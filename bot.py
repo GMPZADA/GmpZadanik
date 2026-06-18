@@ -378,12 +378,62 @@ def resolve_user_id(data, user_query):
 
 
 def add_balance_to_user(data, user_id, amount):
-    user = get_user(data, user_id)
-    old_balance = round(float(user.get("balance", 0)), 2)
-    user["balance"] = round(old_balance + amount, 2)
-    user["total_earned"] = round(float(user.get("total_earned", 0)) + amount, 2)
-    return user, old_balance, user["balance"]
+    """
+    Единая функция начисления GMP.
 
+    Работает правильно и с минусовым балансом:
+    было -2 GMP, начислили +1 GMP -> стало -1 GMP
+    было -2 GMP, начислили +5 GMP -> стало 3 GMP
+
+    В data.json НЕ создаётся никаких старых записей баланса.
+    Просто перезаписывается поле balance на новое значение.
+    """
+    user = get_user(data, user_id)
+    amount = round(float(amount), 2)
+    old_balance = round(float(user.get("balance", 0)), 2)
+    new_balance = round(old_balance + amount, 2)
+
+    user["balance"] = new_balance
+    user["total_earned"] = round(float(user.get("total_earned", 0)) + amount, 2)
+
+    # Статистика погашения долга: только для админа/проверки, на баланс не влияет.
+    if old_balance < 0 and amount > 0:
+        paid_debt = min(abs(old_balance), amount)
+        user["debt_paid_total"] = round(float(user.get("debt_paid_total", 0)) + paid_debt, 2)
+
+    return user, old_balance, new_balance
+
+
+
+def build_admin_profile_text(data, user_id, user, username=None):
+    balance = float(user.get("balance", 0))
+    uname = username or user.get("username") or "нет username"
+
+    users_count = len(data.get("users", {}))
+    tasks_count = len(data.get("tasks", {}))
+    active_tasks_count = sum(1 for t in data.get("tasks", {}).values() if t.get("active", True))
+    submits_wait = sum(1 for s in data.get("submits", {}).values() if s.get("status") == "wait")
+    withdraws_wait = sum(1 for w in data.get("withdraws", {}).values() if w.get("status") == "wait")
+    negative_balances = sum(1 for u in data.get("users", {}).values() if float(u.get("balance", 0)) < 0)
+
+    return (
+        "👑 <b>Профиль администратора</b>\n\n"
+        f"💰 <b>Твой баланс:</b> {format_gmp(balance)} GMP\n"
+        f"🆔 <b>Твой ID:</b> <code>{user_id}</code>\n"
+        f"👤 <b>Username:</b> <b>{uname}</b>\n\n"
+        "📊 <b>Статистика бота</b>\n"
+        f"├ 👥 Пользователей: <b>{users_count}</b>\n"
+        f"├ 📋 Всего заданий: <b>{tasks_count}</b>\n"
+        f"├ ✅ Активных заданий: <b>{active_tasks_count}</b>\n"
+        f"├ 📨 Заявок пользователей: <b>{submits_wait}</b>\n"
+        f"├ 💸 Заявок на вывод: <b>{withdraws_wait}</b>\n"
+        f"└ ⚠️ Минусовых балансов: <b>{negative_balances}</b>\n\n"
+        "⚙️ <b>Админ-команды</b>\n"
+        "<code>/profile user_id</code> — профиль игрока\n"
+        "<code>/give user_id сумма</code> — начислить GMP\n"
+        "<code>/take user_id сумма</code> — списать GMP\n"
+        "<code>/requests</code> — активные заявки"
+    )
 
 
 def build_profile_text(user_id, user, username=None, admin_view=False, data=None):
@@ -522,10 +572,12 @@ def my_profile(message):
     save_data(data)
 
     username = f"@{message.from_user.username}" if message.from_user.username else "нет username"
-    bot.send_message(
-        message.chat.id,
-        build_profile_text(message.from_user.id, user, username=username, data=data)
-    )
+    if message.from_user.id == ADMIN_ID:
+        text = build_admin_profile_text(data, message.from_user.id, user, username=username)
+    else:
+        text = build_profile_text(message.from_user.id, user, username=username, data=data)
+
+    bot.send_message(message.chat.id, text)
 
 
 @bot.message_handler(commands=["profile", "user", "whois"])
@@ -586,8 +638,7 @@ def daily_bonus(message):
             f"⏳ Бонус уже получен.\nПриходи через: <b>{hours}ч {minutes}м</b>"
         )
 
-    user["balance"] = round(float(user["balance"]) + BONUS_AMOUNT, 2)
-    user["total_earned"] = round(float(user.get("total_earned", 0)) + BONUS_AMOUNT, 2)
+    add_balance_to_user(data, message.from_user.id, BONUS_AMOUNT)
     user["last_bonus"] = now
     save_data(data)
 
@@ -812,8 +863,7 @@ def check_request(call):
 
         if action == "yes":
             if task_id not in user.get("done_tasks", []):
-                user["balance"] = round(float(user.get("balance", 0)) + reward, 2)
-                user["total_earned"] = round(float(user.get("total_earned", 0)) + reward, 2)
+                add_balance_to_user(data, user_id, reward)
                 user["completed_tasks"] = int(user.get("completed_tasks", len(user.get("done_tasks", [])))) + 1
                 user["done_tasks"].append(task_id)
 
