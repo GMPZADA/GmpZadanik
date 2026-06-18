@@ -326,8 +326,8 @@
       "last_bonus": 1781766455,
       "completed_tasks": 5,
       "total_earned": 7.4,
-      "withdraw_count": 0,
-      "withdrawn_total": 0,
+      "withdraw_count": 1,
+      "withdrawn_total": 7.4,
       "fines_total": 0,
       "username": "kiril2230"
     },
@@ -999,16 +999,7 @@
     }
   },
   "last_task_id": 60,
-  "withdraws": {
-    "62": {
-      "user_id": 8516313611,
-      "username": "kiril2230",
-      "to": "@kiril6789",
-      "amount": 7.4,
-      "status": "wait",
-      "time": 1781777096
-    }
-  },
+  "withdraws": {},
   "last_withdraw_id": 62,
   "submits": {},
   "last_submit_id": 164,
