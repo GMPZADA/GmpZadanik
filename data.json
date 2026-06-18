@@ -1053,19 +1053,18 @@
       "fines_total": 0
     },
     "7970947663": {
-      "balance": 4.0,
+      "balance": 0.0,
       "done_tasks": [
-        "52",
-        "44"
+        "52"
       ],
       "pending_tasks": [],
-      "waiting_task": null,
+      "waiting_task": "44",
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781816161,
-      "completed_tasks": 2,
-      "total_earned": 5.2,
+      "completed_tasks": 1,
+      "total_earned": 1.2,
       "withdraw_count": 1,
       "withdrawn_total": 1.2,
       "fines_total": 0,
@@ -1124,6 +1123,22 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "username": "Sasiska1223"
+    },
+    "8510497310": {
+      "balance": 0,
+      "done_tasks": [],
+      "pending_tasks": [],
+      "waiting_task": null,
+      "withdraw_pending": false,
+      "withdraw_step": null,
+      "withdraw_to": null,
+      "last_bonus": 0,
+      "completed_tasks": 0,
+      "total_earned": 0,
+      "withdraw_count": 0,
+      "withdrawn_total": 0,
+      "fines_total": 0,
+      "username": "lm_Divine"
     }
   },
   "tasks": {
@@ -1234,7 +1249,7 @@
   "withdraws": {},
   "last_withdraw_id": 79,
   "submits": {},
-  "last_submit_id": 196,
+  "last_submit_id": 194,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "promocodes": {},
   "processed_requests": {
@@ -1280,20 +1295,6 @@
         "user_id": "7970947663",
         "note": "task #52",
         "time": 1781818154
-      },
-      "195": {
-        "status": "approved",
-        "admin_id": 7837011810,
-        "user_id": "7970947663",
-        "note": "task #44",
-        "time": 1781819790
-      },
-      "196": {
-        "status": "rejected",
-        "admin_id": 7837011810,
-        "user_id": "7970947663",
-        "note": "task #42",
-        "time": 1781819919
       }
     },
     "withdraws": {
