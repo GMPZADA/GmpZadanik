@@ -457,8 +457,8 @@
       "last_bonus": 1781717822,
       "completed_tasks": 9,
       "total_earned": 9.4,
-      "withdraw_count": 2,
-      "withdrawn_total": 5.0,
+      "withdraw_count": 3,
+      "withdrawn_total": 9.0,
       "fines_total": 0,
       "username": "kurokcek"
     },
@@ -997,16 +997,7 @@
     }
   },
   "last_task_id": 60,
-  "withdraws": {
-    "61": {
-      "user_id": 7130773702,
-      "username": "kurokcek",
-      "to": "@kurokcek",
-      "amount": 4.0,
-      "status": "wait",
-      "time": 1781774652
-    }
-  },
+  "withdraws": {},
   "last_withdraw_id": 61,
   "submits": {},
   "last_submit_id": 163,
