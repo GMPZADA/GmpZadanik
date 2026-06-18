@@ -1069,10 +1069,11 @@
       "username": "neevspominay"
     },
     "7811863751": {
-      "balance": 6.2,
+      "balance": 8.2,
       "done_tasks": [
         "51",
-        "49"
+        "49",
+        "57"
       ],
       "pending_tasks": [],
       "waiting_task": null,
@@ -1080,8 +1081,8 @@
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781816350,
-      "completed_tasks": 2,
-      "total_earned": 6.2,
+      "completed_tasks": 3,
+      "total_earned": 8.2,
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0
@@ -1219,33 +1220,26 @@
   "promocodes": {},
   "processed_requests": {
     "submits": {
-      "183": {
-        "status": "rejected",
+      "192": {
+        "status": "approved",
         "admin_id": 7837011810,
         "user_id": "7811863751",
-        "note": "task #48",
-        "time": 1781817508
+        "note": "task #57",
+        "time": 1781817436
       },
       "189": {
         "status": "rejected",
         "admin_id": 7837011810,
         "user_id": "7811863751",
         "note": "task #44",
-        "time": 1781817512
+        "time": 1781817473
       },
-      "191": {
+      "183": {
         "status": "rejected",
         "admin_id": 7837011810,
         "user_id": "7811863751",
-        "note": "task #42",
-        "time": 1781817515
-      },
-      "192": {
-        "status": "rejected",
-        "admin_id": 7837011810,
-        "user_id": "1401650206",
-        "note": "task #44",
-        "time": 1781817518
+        "note": "task #48",
+        "time": 1781817476
       }
     },
     "withdraws": {}
