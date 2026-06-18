@@ -992,9 +992,7 @@
     "6058498905": {
       "balance": 0,
       "done_tasks": [],
-      "pending_tasks": [
-        "50"
-      ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
@@ -1131,17 +1129,7 @@
   "last_task_id": 60,
   "withdraws": {},
   "last_withdraw_id": 76,
-  "submits": {
-    "180": {
-      "user_id": 6058498905,
-      "username": "MiIana8",
-      "task_id": "50",
-      "reward": 3.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIUB2o0WWa5uYa2wzgodg_6Kzcv-aReAAKMHWsbQaGhSRlOEebtL9YIAQADAgADeQADPAQ",
-      "time": 1781815654
-    }
-  },
+  "submits": {},
   "last_submit_id": 180,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "promocodes": {}
