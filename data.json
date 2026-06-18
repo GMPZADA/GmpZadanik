@@ -227,10 +227,10 @@
         "51",
         "45",
         "42",
-        "60"
+        "59"
       ],
       "pending_tasks": [
-        "52"
+        "60"
       ],
       "waiting_task": null,
       "withdraw_pending": false,
@@ -915,22 +915,20 @@
       "username": "virtatacka"
     },
     "6976874613": {
-      "balance": 4.0,
-      "done_tasks": [
-        "60",
-        "59"
-      ],
+      "balance": 0.2,
+      "done_tasks": [],
       "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
-      "last_bonus": 0,
-      "completed_tasks": 2,
-      "total_earned": 4.0,
+      "last_bonus": 1781788751,
+      "completed_tasks": 0,
+      "total_earned": 0.2,
       "withdraw_count": 0,
       "withdrawn_total": 0,
-      "fines_total": 0
+      "fines_total": 0,
+      "username": "Gffffah"
     }
   },
   "tasks": {
@@ -1056,16 +1054,16 @@
       "photo_file_id": "AgACAgIAAxkBAAIRH2oz69D0uGnyrEGm8Nl9HnBfpZz6AALcGWsb6eqhSYkmm7JiAAH5GwEAAwIAA3kAAzwE",
       "time": 1781787600
     },
-    "172": {
+    "170": {
       "user_id": 5224773359,
       "username": "xux_xuxx",
-      "task_id": "52",
-      "reward": 1.0,
+      "task_id": "60",
+      "reward": 2.0,
       "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIRcmoz8IG4Gh2FZeA0y1XT95AOabPRAAKuGWsbeNahSdaXDwZOUD8-AQADAgADeQADPAQ",
-      "time": 1781788801
+      "photo_file_id": "AgACAgIAAxkBAAIRUmoz70nYYvM-8LsSvp6OsckKXJN_AAKkGWsbeNahSadf8BBwVOtKAQADAgADeQADPAQ",
+      "time": 1781788489
     }
   },
-  "last_submit_id": 173,
+  "last_submit_id": 171,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:"
 }
