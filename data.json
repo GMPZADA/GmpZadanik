@@ -1149,9 +1149,7 @@
     "8031414696": {
       "balance": 0,
       "done_tasks": [],
-      "pending_tasks": [
-        "44"
-      ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
@@ -1282,15 +1280,6 @@
   },
   "last_withdraw_id": 80,
   "submits": {
-    "197": {
-      "user_id": 8031414696,
-      "username": "",
-      "task_id": "44",
-      "reward": 4.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgEAAxkBAAIV_Go0bAABI3cHRpMHBixlTeZhrrWvbgACuA1rG-sXoEXjQgreuNcw7QEAAwIAA3kAAzwE",
-      "time": 1781820433
-    },
     "202": {
       "user_id": 7970947663,
       "username": "neevspominay",
@@ -1389,6 +1378,13 @@
         "user_id": "7970947663",
         "note": "task #45",
         "time": 1781821505
+      },
+      "197": {
+        "status": "rejected",
+        "admin_id": 7837011810,
+        "user_id": "8031414696",
+        "note": "task #44",
+        "time": 1781821517
       }
     },
     "withdraws": {
