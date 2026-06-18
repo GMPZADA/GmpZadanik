@@ -27,6 +27,7 @@ KEEPALIVE_INTERVAL = 5 * 60
 bot = TeleBot(TOKEN, parse_mode="HTML")
 app = Flask(__name__)
 DATA_LOCK = RLock()
+WITHDRAW_CREATE_LOCK = RLock()
 
 
 @app.route("/")
@@ -313,6 +314,35 @@ def has_active_submit(data, user_id, task_id):
 def has_active_withdraw(data, user_id):
     for wid, withdraw in data.get("withdraws", {}).items():
         if str(withdraw.get("user_id")) == str(user_id) and withdraw.get("status") == "wait":
+            return str(wid)
+    return None
+
+
+def find_recent_duplicate_withdraw(data, user_id, withdraw_to, amount, window_seconds=120):
+    """
+    Ищет дубль вывода: тот же пользователь + та же сумма + тот же получатель
+    за последние window_seconds секунд. Нужен, если Telegram/интернет случайно
+    повторил один и тот же шаг, чтобы не создавать новый номер заказа.
+    """
+    now = int(time.time())
+    for wid, withdraw in data.get("withdraws", {}).items():
+        if withdraw.get("status") != "wait":
+            continue
+        if str(withdraw.get("user_id")) != str(user_id):
+            continue
+        if str(withdraw.get("to", "")).strip().lower() != str(withdraw_to).strip().lower():
+            continue
+        try:
+            same_amount = float(withdraw.get("amount", 0)) == float(amount)
+        except Exception:
+            same_amount = False
+        if not same_amount:
+            continue
+        try:
+            created_time = int(withdraw.get("time", 0))
+        except Exception:
+            created_time = 0
+        if now - created_time <= window_seconds:
             return str(wid)
     return None
 
@@ -1929,36 +1959,68 @@ def text_router(message):
                 "Можно вывести только сумму, которая сейчас есть на балансе."
             )
 
-        old_wid = has_active_withdraw(data, message.from_user.id)
-        if old_wid:
+        # Критическая зона: создание вывода.
+        # Если пользователь нажал кнопку/отправил сумму 2, 10 или 50 раз,
+        # бот всё равно создаст только 1 заявку. Если Telegram случайно повторит
+        # один и тот же запрос, повтор будет привязан к тому же номеру заказа.
+        with WITHDRAW_CREATE_LOCK:
+            data = load_data()
+            user = get_user(data, message.from_user.id)
+            withdraw_to = user.get("withdraw_to") or "не указано"
+
+            old_wid = has_active_withdraw(data, message.from_user.id)
+            if old_wid:
+                user["withdraw_pending"] = True
+                user["withdraw_step"] = None
+                user["withdraw_to"] = None
+                save_data(data)
+                return bot.send_message(
+                    message.chat.id,
+                    f"⚠️ У тебя уже есть заявка на вывод на проверке.\nНомер заявки: <b>#{old_wid}</b>"
+                )
+
+            duplicate_wid = find_recent_duplicate_withdraw(
+                data,
+                message.from_user.id,
+                withdraw_to,
+                amount,
+                window_seconds=120
+            )
+            if duplicate_wid:
+                user["withdraw_pending"] = True
+                user["withdraw_step"] = None
+                user["withdraw_to"] = None
+                save_data(data)
+                return bot.send_message(
+                    message.chat.id,
+                    f"⚠️ Повторная заявка не создана.\n"
+                    f"У тебя уже есть заявка на вывод с этим же номером: <b>#{duplicate_wid}</b>"
+                )
+
+            if amount > float(user.get("balance", 0)):
+                return bot.send_message(
+                    message.chat.id,
+                    f"❌ Недостаточно GMP.\nТвой баланс: <b>{format_gmp(user.get('balance', 0))} GMP</b>"
+                )
+
+            data["last_withdraw_id"] += 1
+            wid = str(data["last_withdraw_id"])
+
+            user["balance"] = round(float(user["balance"]) - amount, 2)
             user["withdraw_pending"] = True
             user["withdraw_step"] = None
             user["withdraw_to"] = None
+
+            data.setdefault("withdraws", {})[wid] = {
+                "user_id": message.from_user.id,
+                "username": message.from_user.username or "",
+                "to": withdraw_to,
+                "amount": amount,
+                "status": "wait",
+                "time": int(time.time())
+            }
+
             save_data(data)
-            return bot.send_message(
-                message.chat.id,
-                f"⚠️ У тебя уже есть заявка на вывод на проверке.\nНомер заявки: <b>#{old_wid}</b>"
-            )
-
-        data["last_withdraw_id"] += 1
-        wid = str(data["last_withdraw_id"])
-        withdraw_to = user.get("withdraw_to") or "не указано"
-
-        user["balance"] = round(float(user["balance"]) - amount, 2)
-        user["withdraw_pending"] = True
-        user["withdraw_step"] = None
-        user["withdraw_to"] = None
-
-        data["withdraws"][wid] = {
-            "user_id": message.from_user.id,
-            "username": message.from_user.username or "",
-            "to": withdraw_to,
-            "amount": amount,
-            "status": "wait",
-            "time": int(time.time())
-        }
-
-        save_data(data)
 
         kb = types.InlineKeyboardMarkup()
         kb.add(
