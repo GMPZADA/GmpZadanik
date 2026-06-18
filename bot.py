@@ -966,6 +966,9 @@ def photo(message):
             "time": int(time.time())
         }
 
+        # СНАЧАЛА ставим метку, что заявка уже отправляется админу.
+        # Это убирает баг: если админ сразу нажмёт /requests, бот НЕ продублирует эту же заявку.
+        mark_admin_request_sent(data, "submits", sid, "sending")
         save_data(data)
 
     kb = types.InlineKeyboardMarkup()
@@ -975,22 +978,25 @@ def photo(message):
 
     bot.send_message(message.chat.id, "✅ Скрин отправлен админу на проверку.\n⏳ Задание временно скрыто из списка.")
 
-    admin_msg = bot.send_photo(
-        ADMIN_ID,
-        photo_file_id,
-        caption=(
-            f"📨 <b>Новая заявка #{sid}</b>\n\n"
-            f"✅ Задание: #{task_id}\n"
-            f"💰 Награда: {format_gmp(task.get('reward', 0))} GMP\n"
-            f"👤 Пользователь: @{message.from_user.username or 'нет username'}\n"
-            f"🆔 ID: <code>{message.from_user.id}</code>"
-        ),
-        reply_markup=kb
-    )
+    try:
+        admin_msg = bot.send_photo(
+            ADMIN_ID,
+            photo_file_id,
+            caption=(
+                f"📨 <b>Новая заявка #{sid}</b>\n\n"
+                f"✅ Задание: #{task_id}\n"
+                f"💰 Награда: {format_gmp(task.get('reward', 0))} GMP\n"
+                f"👤 Пользователь: @{message.from_user.username or 'нет username'}\n"
+                f"🆔 ID: <code>{message.from_user.id}</code>"
+            ),
+            reply_markup=kb
+        )
 
-    data = load_data()
-    mark_admin_request_sent(data, "submits", sid, getattr(admin_msg, "message_id", None))
-    save_data(data)
+        data = load_data()
+        mark_admin_request_sent(data, "submits", sid, getattr(admin_msg, "message_id", None))
+        save_data(data)
+    except Exception as e:
+        print("send submit to admin error:", e)
 
 def safe_answer_callback(call, text=None, show_alert=False):
     try:
@@ -2096,6 +2102,9 @@ def text_router(message):
                 "time": int(time.time())
             }
 
+            # СНАЧАЛА ставим метку, что заявка уже отправляется админу.
+            # Это убирает баг: если админ сразу нажмёт /requests, бот НЕ продублирует эту же заявку.
+            mark_admin_request_sent(data, "withdraws", wid, "sending")
             save_data(data)
 
         kb = types.InlineKeyboardMarkup()
@@ -2113,19 +2122,22 @@ def text_router(message):
             "Ожидайте выплату до 24 часов."
         )
 
-        admin_msg = bot.send_message(
-            ADMIN_ID,
-            f"💸 <b>Новая заявка на вывод #{wid}</b>\n\n"
-            f"👤 Пользователь: @{message.from_user.username or 'нет username'}\n"
-            f"🆔 ID: <code>{message.from_user.id}</code>\n"
-            f"📤 Куда вывести: <b>{withdraw_to}</b>\n"
-            f"💰 Сумма: <b>{format_gmp(amount)} GMP</b>",
-            reply_markup=kb
-        )
+        try:
+            admin_msg = bot.send_message(
+                ADMIN_ID,
+                f"💸 <b>Новая заявка на вывод #{wid}</b>\n\n"
+                f"👤 Пользователь: @{message.from_user.username or 'нет username'}\n"
+                f"🆔 ID: <code>{message.from_user.id}</code>\n"
+                f"📤 Куда вывести: <b>{withdraw_to}</b>\n"
+                f"💰 Сумма: <b>{format_gmp(amount)} GMP</b>",
+                reply_markup=kb
+            )
 
-        data = load_data()
-        mark_admin_request_sent(data, "withdraws", wid, getattr(admin_msg, "message_id", None))
-        save_data(data)
+            data = load_data()
+            mark_admin_request_sent(data, "withdraws", wid, getattr(admin_msg, "message_id", None))
+            save_data(data)
+        except Exception as e:
+            print("send withdraw to admin error:", e)
         return
 
     # Если сюда дошло обычное сообщение без активного шага — показываем меню.
