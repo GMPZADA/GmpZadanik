@@ -357,16 +357,42 @@ def find_recent_duplicate_withdraw(data, user_id, withdraw_to, amount, window_se
 
 
 def admin_request_was_sent(data, kind, request_id):
+    """
+    Железная проверка: заявка уже отправлялась админу.
+    Проверяем сразу 2 места:
+    1) общий список data["admin_sent"];
+    2) поле admin_sent внутри самой заявки.
+    Поэтому /requests не сможет продублировать заявку даже при лаге/перезапуске.
+    """
     rid = str(request_id).strip().replace("#", "")
-    return rid in data.setdefault("admin_sent", {}).setdefault(kind, {})
+
+    if rid in data.setdefault("admin_sent", {}).setdefault(kind, {}):
+        return True
+
+    real_id, req = find_request_by_id(data.get(kind, {}), rid)
+    if req and req.get("admin_sent"):
+        return True
+
+    return False
 
 
 def mark_admin_request_sent(data, kind, request_id, message_id=None):
+    """
+    Ставит метку ДО отправки сообщения админу.
+    Это важно: если админ в этот момент нажмёт /requests, дубль не улетит.
+    """
     rid = str(request_id).strip().replace("#", "")
     data.setdefault("admin_sent", {}).setdefault(kind, {})[rid] = {
         "message_id": message_id,
         "time": int(time.time())
     }
+
+    real_id, req = find_request_by_id(data.get(kind, {}), rid)
+    if req is not None:
+        req["admin_sent"] = True
+        req["admin_sent_time"] = int(time.time())
+        if message_id is not None:
+            req["admin_message_id"] = message_id
 
     # Не даём data.json раздуваться
     sent = data.setdefault("admin_sent", {}).setdefault(kind, {})
@@ -992,9 +1018,10 @@ def photo(message):
             reply_markup=kb
         )
 
-        data = load_data()
-        mark_admin_request_sent(data, "submits", sid, getattr(admin_msg, "message_id", None))
-        save_data(data)
+        with DATA_LOCK:
+            data = load_data()
+            mark_admin_request_sent(data, "submits", sid, getattr(admin_msg, "message_id", None))
+            save_data(data)
     except Exception as e:
         print("send submit to admin error:", e)
 
@@ -1909,42 +1936,68 @@ def requests_msg(message):
     if message.from_user.id != ADMIN_ID:
         return
 
-    data = load_data()
-    submits = data.get("submits", {})
-    withdraws = data.get("withdraws", {})
+    # ВАЖНО: сначала внутри lock помечаем заявки как отправленные,
+    # и только потом реально шлём сообщения. Так /requests не создаст дубли.
+    with DATA_LOCK:
+        data = load_data()
+        submits = data.get("submits", {})
+        withdraws = data.get("withdraws", {})
 
-    if not submits and not withdraws:
-        return bot.send_message(message.chat.id, "✅ Активных заявок нет.")
+        wait_submits = {str(sid): s for sid, s in submits.items() if s.get("status") == "wait"}
+        wait_withdraws = {str(wid): w for wid, w in withdraws.items() if w.get("status") == "wait"}
 
-    wait_submits = {str(sid): s for sid, s in submits.items() if s.get("status") == "wait"}
-    wait_withdraws = {str(wid): w for wid, w in withdraws.items() if w.get("status") == "wait"}
+        to_send_submits = []
+        to_send_withdraws = []
+        already = []
+
+        for sid, submit in list(wait_submits.items()):
+            if admin_request_was_sent(data, "submits", sid):
+                already.append(f"📸 #{sid}")
+                continue
+            mark_admin_request_sent(data, "submits", sid, "sending")
+            to_send_submits.append((sid, dict(submit)))
+
+        for wid, w in list(wait_withdraws.items()):
+            if admin_request_was_sent(data, "withdraws", wid):
+                already.append(f"💸 #{wid}")
+                continue
+            mark_admin_request_sent(data, "withdraws", wid, "sending")
+            to_send_withdraws.append((wid, dict(w)))
+
+        save_data(data)
+
+    sent_now = 0
+
+    for sid, submit in to_send_submits:
+        try:
+            msg = send_submit_request(message.chat.id, sid, submit)
+            sent_now += 1
+            with DATA_LOCK:
+                data = load_data()
+                mark_admin_request_sent(data, "submits", sid, getattr(msg, "message_id", None))
+                save_data(data)
+        except Exception as e:
+            print("/requests send submit error:", e)
+
+    for wid, w in to_send_withdraws:
+        try:
+            msg = send_withdraw_request(message.chat.id, wid, w)
+            sent_now += 1
+            with DATA_LOCK:
+                data = load_data()
+                mark_admin_request_sent(data, "withdraws", wid, getattr(msg, "message_id", None))
+                save_data(data)
+        except Exception as e:
+            print("/requests send withdraw error:", e)
+
+    active_submit_count = len(to_send_submits) + sum(1 for x in already if x.startswith('📸'))
+    active_withdraw_count = len(to_send_withdraws) + sum(1 for x in already if x.startswith('💸'))
 
     text = (
         f"📨 <b>Активные заявки:</b>\n\n"
-        f"📸 Задания: {len(wait_submits)}\n"
-        f"💸 Выводы: {len(wait_withdraws)}\n\n"
+        f"📸 Задания: {active_submit_count}\n"
+        f"💸 Выводы: {active_withdraw_count}\n\n"
     )
-
-    already = []
-    sent_now = 0
-
-    for sid, submit in list(wait_submits.items()):
-        if admin_request_was_sent(data, "submits", sid):
-            already.append(f"📸 #{sid}")
-            continue
-        msg = send_submit_request(message.chat.id, sid, submit)
-        mark_admin_request_sent(data, "submits", sid, getattr(msg, "message_id", None))
-        sent_now += 1
-
-    for wid, w in list(wait_withdraws.items()):
-        if admin_request_was_sent(data, "withdraws", wid):
-            already.append(f"💸 #{wid}")
-            continue
-        msg = send_withdraw_request(message.chat.id, wid, w)
-        mark_admin_request_sent(data, "withdraws", wid, getattr(msg, "message_id", None))
-        sent_now += 1
-
-    save_data(data)
 
     if sent_now:
         text += f"✅ Отправил новых заявок с кнопками: <b>{sent_now}</b>\n"
@@ -2133,9 +2186,10 @@ def text_router(message):
                 reply_markup=kb
             )
 
-            data = load_data()
-            mark_admin_request_sent(data, "withdraws", wid, getattr(admin_msg, "message_id", None))
-            save_data(data)
+            with DATA_LOCK:
+                data = load_data()
+                mark_admin_request_sent(data, "withdraws", wid, getattr(admin_msg, "message_id", None))
+                save_data(data)
         except Exception as e:
             print("send withdraw to admin error:", e)
         return
