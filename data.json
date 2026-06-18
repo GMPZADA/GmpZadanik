@@ -1056,14 +1056,13 @@
       "fines_total": 0
     },
     "7970947663": {
-      "balance": 10.0,
+      "balance": 8.0,
       "done_tasks": [
         "52",
         "42",
         "44",
         "57",
-        "45",
-        "55"
+        "45"
       ],
       "pending_tasks": [
         "46"
@@ -1073,8 +1072,8 @@
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781816161,
-      "completed_tasks": 6,
-      "total_earned": 15.2,
+      "completed_tasks": 5,
+      "total_earned": 13.2,
       "withdraw_count": 1,
       "withdrawn_total": 1.2,
       "fines_total": 0,
@@ -1306,7 +1305,7 @@
       "admin_message_id": 5856
     }
   },
-  "last_submit_id": 205,
+  "last_submit_id": 204,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "promocodes": {},
   "processed_requests": {
@@ -1408,13 +1407,6 @@
         "user_id": "8431020779",
         "note": "task #38",
         "time": 1781823171
-      },
-      "205": {
-        "status": "approved",
-        "admin_id": 7837011810,
-        "user_id": "7970947663",
-        "note": "task #55",
-        "time": 1781824288
       }
     },
     "withdraws": {
@@ -1447,10 +1439,6 @@
       "204": {
         "message_id": 5863,
         "time": 1781823108
-      },
-      "205": {
-        "message_id": 5878,
-        "time": 1781824258
       }
     },
     "withdraws": {
@@ -1460,15 +1448,5 @@
       }
     }
   },
-  "balance_logs": [
-    {
-      "time": 1781824288,
-      "user_id": "7970947663",
-      "old": 8.0,
-      "amount": 2.0,
-      "new": 10.0,
-      "reason": "task_approved",
-      "request_id": "205"
-    }
-  ]
+  "balance_logs": []
 }
