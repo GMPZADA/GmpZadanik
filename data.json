@@ -900,8 +900,8 @@
       "last_bonus": 0,
       "completed_tasks": 1,
       "total_earned": 2.0,
-      "withdraw_count": 0,
-      "withdrawn_total": 0,
+      "withdraw_count": 1,
+      "withdrawn_total": 2.0,
       "fines_total": 0,
       "username": "virtatacka"
     }
@@ -1017,16 +1017,7 @@
     }
   },
   "last_task_id": 60,
-  "withdraws": {
-    "63": {
-      "user_id": 7923376014,
-      "username": "virtatacka",
-      "to": "@virtatacka",
-      "amount": 2.0,
-      "status": "wait",
-      "time": 1781784387
-    }
-  },
+  "withdraws": {},
   "last_withdraw_id": 63,
   "submits": {},
   "last_submit_id": 165,
