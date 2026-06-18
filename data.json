@@ -1078,14 +1078,14 @@
       ],
       "pending_tasks": [],
       "waiting_task": null,
-      "withdraw_pending": true,
+      "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781816350,
       "completed_tasks": 2,
       "total_earned": 6.2,
-      "withdraw_count": 0,
-      "withdrawn_total": 0,
+      "withdraw_count": 1,
+      "withdrawn_total": 6.2,
       "fines_total": 0,
       "username": "grimReapersing"
     },
@@ -1214,16 +1214,7 @@
     }
   },
   "last_task_id": 60,
-  "withdraws": {
-    "78": {
-      "user_id": 7811863751,
-      "username": "grimReapersing",
-      "to": "@grimReapersing",
-      "amount": 6.2,
-      "status": "wait",
-      "time": 1781817714
-    }
-  },
+  "withdraws": {},
   "last_withdraw_id": 78,
   "submits": {
     "194": {
@@ -1277,6 +1268,14 @@
         "time": 1781817684
       }
     },
-    "withdraws": {}
+    "withdraws": {
+      "78": {
+        "status": "paid",
+        "admin_id": 7837011810,
+        "user_id": "7811863751",
+        "note": "amount 6.2",
+        "time": 1781817735
+      }
+    }
   }
 }
