@@ -3,6 +3,7 @@ import json
 import base64
 import threading
 import time
+from threading import RLock
 import requests
 from flask import Flask
 from telebot import TeleBot, types
@@ -25,6 +26,7 @@ KEEPALIVE_INTERVAL = 5 * 60
 
 bot = TeleBot(TOKEN, parse_mode="HTML")
 app = Flask(__name__)
+DATA_LOCK = RLock()
 
 
 @app.route("/")
@@ -113,6 +115,17 @@ def fix_data(data):
     for task_id, task in data.get("tasks", {}).items():
         task.setdefault("active", True)
 
+    # Авто-починка зависших статусов: если заявка есть — pending True, если нет — False.
+    active_withdraw_users = {str(w.get("user_id")) for w in data.get("withdraws", {}).values() if w.get("status") == "wait"}
+    active_submit_pairs = {(str(s.get("user_id")), str(s.get("task_id"))) for s in data.get("submits", {}).values() if s.get("status") == "wait"}
+
+    for uid, user in data.get("users", {}).items():
+        user["withdraw_pending"] = str(uid) in active_withdraw_users
+        # Убираем зависшие pending_tasks, если заявки уже нет.
+        user["pending_tasks"] = [str(tid) for tid in user.get("pending_tasks", []) if (str(uid), str(tid)) in active_submit_pairs]
+        # Убираем дубли выполненных заданий.
+        user["done_tasks"] = list(dict.fromkeys(str(tid) for tid in user.get("done_tasks", [])))
+
     return data
 
 
@@ -175,10 +188,12 @@ def load_data():
 def save_data(data):
     data = fix_data(data)
 
-    # Сначала сохраняем локально, чтобы бот сразу видел свежие шаги пользователя.
+    # Сначала сохраняем локально атомарно, чтобы файл не ломался при перезапуске/ошибке.
     try:
-        with open(LOCAL_DATA_FILE, "w", encoding="utf-8") as f:
+        tmp_file = LOCAL_DATA_FILE + ".tmp"
+        with open(tmp_file, "w", encoding="utf-8") as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
+        os.replace(tmp_file, LOCAL_DATA_FILE)
     except Exception as e:
         print("Local save exception:", e)
 
@@ -625,49 +640,122 @@ def photo(message):
     )
 
 
+
+
+def safe_answer_callback(call, text=None, show_alert=False):
+    try:
+        bot.answer_callback_query(call.id, text or "✅ Готово", show_alert=show_alert)
+    except Exception as e:
+        print("answer_callback_query error:", e)
+
+
+def safe_edit_admin_message(call, text):
+    # Убираем кнопки и меняем сообщение админа.
+    # Если это фото — меняем caption, если обычное сообщение — text.
+    try:
+        if getattr(call.message, "content_type", None) == "photo":
+            bot.edit_message_caption(
+                chat_id=call.message.chat.id,
+                message_id=call.message.message_id,
+                caption=text,
+                reply_markup=None
+            )
+        else:
+            bot.edit_message_text(
+                text,
+                chat_id=call.message.chat.id,
+                message_id=call.message.message_id,
+                reply_markup=None
+            )
+    except Exception as e:
+        print("edit admin message error:", e)
+        try:
+            bot.edit_message_reply_markup(call.message.chat.id, call.message.message_id, reply_markup=None)
+        except Exception as e2:
+            print("remove reply markup error:", e2)
+        try:
+            bot.send_message(call.message.chat.id, text)
+        except Exception as e3:
+            print("send admin status error:", e3)
+
+
 @bot.callback_query_handler(func=lambda c: c.data.startswith("yes_") or c.data.startswith("no_"))
 def check_request(call):
     if call.from_user.id != ADMIN_ID:
-        return bot.answer_callback_query(call.id, "Нет доступа.")
+        return safe_answer_callback(call, "❌ Нет доступа.", show_alert=True)
 
-    data = load_data()
-    action, sid = call.data.split("_", 1)
-    submit = data["submits"].get(sid)
+    # Сразу отвечаем Telegram, чтобы кнопка не крутилась и казалось, что она не нажимается.
+    safe_answer_callback(call, "⏳ Обрабатываю заявку...")
 
-    if not submit or submit.get("status") != "wait":
-        return bot.answer_callback_query(call.id, "Заявка уже обработана.")
+    try:
+        data = load_data()
+        action, sid = call.data.split("_", 1)
+        submit = data.get("submits", {}).get(sid)
 
-    user_id = str(submit["user_id"])
-    task_id = str(submit["task_id"])
-    reward = float(submit["reward"])
-    user = get_user(data, user_id)
+        if not submit or submit.get("status") != "wait":
+            safe_edit_admin_message(call, f"⚠️ Заявка #{sid} уже обработана или не найдена.")
+            return
 
-    if task_id in user["pending_tasks"]:
-        user["pending_tasks"].remove(task_id)
+        user_id = str(submit["user_id"])
+        task_id = str(submit["task_id"])
+        reward = float(submit["reward"])
+        user = get_user(data, user_id)
 
-    if action == "yes":
-        if task_id not in user["done_tasks"]:
-            user["balance"] = round(float(user["balance"]) + reward, 2)
-            user["total_earned"] = round(float(user.get("total_earned", 0)) + reward, 2)
-            user["completed_tasks"] = int(user.get("completed_tasks", len(user.get("done_tasks", [])))) + 1
-            user["done_tasks"].append(task_id)
+        if task_id in user.get("pending_tasks", []):
+            user["pending_tasks"].remove(task_id)
 
-        del data["submits"][sid]
-        save_data(data)
+        if action == "yes":
+            if task_id not in user.get("done_tasks", []):
+                user["balance"] = round(float(user.get("balance", 0)) + reward, 2)
+                user["total_earned"] = round(float(user.get("total_earned", 0)) + reward, 2)
+                user["completed_tasks"] = int(user.get("completed_tasks", len(user.get("done_tasks", [])))) + 1
+                user["done_tasks"].append(task_id)
 
-        bot.send_message(user_id, f"🎉 Задание #{task_id} одобрено!\n💰 Начислено: <b>{format_gmp(reward)} GMP</b>")
-        bot.edit_message_caption(chat_id=call.message.chat.id, message_id=call.message.message_id, caption=f"✅ Заявка #{sid} одобрена.")
-    else:
-        del data["submits"][sid]
-        save_data(data)
+            data["submits"].pop(sid, None)
+            save_data(data)
 
-        bot.send_message(
-            user_id,
-            f"❌ <b>Задание #{task_id} отклонено</b>\n\n"
-            "Проверьте, что вы выполнили задание до конца и отправили правильный скриншот.\n\n"
-            "После проверки можете попробовать снова ✅"
-        )
-        bot.edit_message_caption(chat_id=call.message.chat.id, message_id=call.message.message_id, caption=f"❌ Заявка #{sid} отклонена.")
+            try:
+                bot.send_message(
+                    user_id,
+                    f"🎉 <b>Задание #{task_id} одобрено!</b>\n\n"
+                    f"💰 Начислено: <b>{format_gmp(reward)} GMP</b>\n"
+                    f"💎 Баланс: <b>{format_gmp(user['balance'])} GMP</b>"
+                )
+            except Exception as e:
+                print("send approve message error:", e)
+
+            safe_edit_admin_message(
+                call,
+                f"✅ <b>Заявка #{sid} одобрена.</b>\n\n"
+                f"✅ Задание: #{task_id}\n"
+                f"💰 Начислено: {format_gmp(reward)} GMP\n"
+                f"🆔 ID: <code>{user_id}</code>"
+            )
+
+        else:
+            data["submits"].pop(sid, None)
+            save_data(data)
+
+            try:
+                bot.send_message(
+                    user_id,
+                    f"❌ <b>Задание #{task_id} отклонено</b>\n\n"
+                    "Проверьте, что вы выполнили задание до конца и отправили правильный скриншот.\n\n"
+                    "После проверки можете попробовать снова ✅"
+                )
+            except Exception as e:
+                print("send reject message error:", e)
+
+            safe_edit_admin_message(
+                call,
+                f"❌ <b>Заявка #{sid} отклонена.</b>\n\n"
+                f"✅ Задание: #{task_id}\n"
+                f"🆔 ID: <code>{user_id}</code>"
+            )
+
+    except Exception as e:
+        print("task approve/reject callback error:", e)
+        safe_edit_admin_message(call, "❌ Ошибка обработки заявки. Проверь логи Render.")
 
 
 @bot.message_handler(func=lambda m: m.text == "💸 Вывод")
@@ -675,7 +763,10 @@ def withdraw(message):
     data = load_data()
     user = get_user(data, message.from_user.id)
 
-    if user.get("withdraw_pending"):
+    active_withdraws = [w for w in data.get("withdraws", {}).values() if str(w.get("user_id")) == str(message.from_user.id) and w.get("status") == "wait"]
+    if user.get("withdraw_pending") or active_withdraws:
+        user["withdraw_pending"] = True
+        save_data(data)
         return bot.send_message(
             message.chat.id,
             "⏳ У тебя уже есть заявка на вывод на проверке.\nДождись решения администратора."
@@ -707,23 +798,26 @@ def withdraw(message):
 @bot.callback_query_handler(func=lambda c: c.data.startswith("payyes_") or c.data.startswith("payno_"))
 def pay_check(call):
     if call.from_user.id != ADMIN_ID:
-        return bot.answer_callback_query(call.id, "Нет доступа.")
+        return safe_answer_callback(call, "❌ Нет доступа.", show_alert=True)
+
+    safe_answer_callback(call, "⏳ Обрабатываю выплату...")
 
     data = load_data()
     action, wid = call.data.split("_", 1)
     w = data["withdraws"].get(wid)
 
     if not w or w.get("status") != "wait":
-        return bot.answer_callback_query(call.id, "Заявка уже обработана.")
+        safe_edit_admin_message(call, f"⚠️ Заявка на вывод #{wid} уже обработана или не найдена.")
+        return
 
     user = get_user(data, w["user_id"])
     amount = float(w["amount"])
 
     if action == "payyes":
-        user["withdraw_pending"] = False
         user["withdraw_count"] = int(user.get("withdraw_count", 0)) + 1
         user["withdrawn_total"] = round(float(user.get("withdrawn_total", 0)) + amount, 2)
         del data["withdraws"][wid]
+        user["withdraw_pending"] = any(str(x.get("user_id")) == str(w["user_id"]) and x.get("status") == "wait" for x in data.get("withdraws", {}).values())
         save_data(data)
 
         bot.send_message(
@@ -732,16 +826,16 @@ def pay_check(call):
             "💎 GMP успешно выданы 💜\n\n"
             "Спасибо за использование «Заработок GMP» ✨"
         )
-        bot.edit_message_text("✅ Выплата подтверждена.", call.message.chat.id, call.message.message_id)
+        safe_edit_admin_message(call, f"✅ Выплата #{wid} подтверждена.")
 
     else:
         user["balance"] = round(float(user["balance"]) + amount, 2)
-        user["withdraw_pending"] = False
         del data["withdraws"][wid]
+        user["withdraw_pending"] = any(str(x.get("user_id")) == str(w["user_id"]) and x.get("status") == "wait" for x in data.get("withdraws", {}).values())
         save_data(data)
 
         bot.send_message(w["user_id"], f"❌ Заявка на вывод #{wid} отклонена.\n💰 <b>{format_gmp(amount)} GMP</b> возвращены на баланс.")
-        bot.edit_message_text("❌ Выплата отклонена. GMP возвращены.", call.message.chat.id, call.message.message_id)
+        safe_edit_admin_message(call, f"❌ Выплата #{wid} отклонена. GMP возвращены.")
 
 
 @bot.message_handler(commands=["addtask"])
@@ -765,8 +859,10 @@ def add_task(message):
     if reward <= 0:
         return bot.send_message(message.chat.id, "❌ Награда должна быть больше 0.")
 
+    if link.startswith("t.me/"):
+        link = "https://" + link
     if not link.startswith("http://") and not link.startswith("https://"):
-        return bot.send_message(message.chat.id, "❌ Ссылка должна начинаться с https://")
+        return bot.send_message(message.chat.id, "❌ Ссылка должна быть https:// или t.me/...")
 
     data = load_data()
     data["last_task_id"] += 1
@@ -820,8 +916,10 @@ def edit_task_link(message):
         return bot.send_message(message.chat.id, "❌ Формат:\n/editlink 39 https://t.me/example")
 
     task_id, new_link = parts[1], parts[2].strip()
+    if new_link.startswith("t.me/"):
+        new_link = "https://" + new_link
     if not new_link.startswith("http://") and not new_link.startswith("https://"):
-        return bot.send_message(message.chat.id, "❌ Ссылка должна начинаться с https://")
+        return bot.send_message(message.chat.id, "❌ Ссылка должна быть https:// или t.me/...")
 
     data = load_data()
     if task_id not in data["tasks"]:
@@ -907,13 +1005,25 @@ def give_gmp(message):
     if len(parts) != 3:
         return bot.send_message(message.chat.id, "❌ Формат:\n/give user_id сумма")
 
-    user_id = parts[1]
+    user_query = parts[1].strip()
     try:
         amount = float(parts[2].replace(",", "."))
     except Exception:
         return bot.send_message(message.chat.id, "❌ Сумма должна быть числом.")
 
     data = load_data()
+    user_id = user_query
+    if user_query.startswith("@"):
+        clean = user_query[1:].lower()
+        found = None
+        for uid, u in data.get("users", {}).items():
+            if str(u.get("username", "")).replace("@", "").lower() == clean:
+                found = uid
+                break
+        if not found:
+            return bot.send_message(message.chat.id, "❌ Username не найден. Пусть человек нажмёт /start в боте или дай его ID.")
+        user_id = found
+
     user = get_user(data, user_id)
     user["balance"] = round(float(user["balance"]) + amount, 2)
     user["total_earned"] = round(float(user.get("total_earned", 0)) + amount, 2)
@@ -925,6 +1035,46 @@ def give_gmp(message):
     except Exception:
         pass
 
+
+
+@bot.message_handler(commands=["take"])
+def take_gmp(message):
+    if message.from_user.id != ADMIN_ID:
+        return bot.send_message(message.chat.id, "❌ Нет доступа.")
+
+    parts = message.text.split(maxsplit=2)
+    if len(parts) != 3:
+        return bot.send_message(message.chat.id, "❌ Формат:\n/take user_id сумма")
+
+    user_query = parts[1].strip()
+    try:
+        amount = float(parts[2].replace(",", "."))
+    except Exception:
+        return bot.send_message(message.chat.id, "❌ Сумма должна быть числом.")
+
+    if amount <= 0:
+        return bot.send_message(message.chat.id, "❌ Сумма должна быть больше 0.")
+
+    data = load_data()
+    user_id = user_query
+    if user_query.startswith("@"):
+        clean = user_query[1:].lower()
+        found = None
+        for uid, u in data.get("users", {}).items():
+            if str(u.get("username", "")).replace("@", "").lower() == clean:
+                found = uid
+                break
+        if not found:
+            return bot.send_message(message.chat.id, "❌ Username не найден. Пусть человек нажмёт /start в боте или дай его ID.")
+        user_id = found
+
+    user = get_user(data, user_id)
+    user["balance"] = round(float(user.get("balance", 0)) - amount, 2)
+    user["fines_total"] = round(float(user.get("fines_total", 0)) + amount, 2)
+    save_data(data)
+
+    bot.send_message(message.chat.id, f"✅ У пользователя {user_id} списано {format_gmp(amount)} GMP. Баланс: {format_gmp(user['balance'])} GMP")
+    safe_send(user_id, f"⚠️ Админ списал <b>{format_gmp(amount)} GMP</b>.\n💰 Баланс: <b>{format_gmp(user['balance'])} GMP</b>")
 
 
 @bot.message_handler(commands=["fine"])
@@ -997,7 +1147,7 @@ def add_task_info(message):
         "<code>/deletetask 39</code>\n"
         "<code>/setstart Новый текст старта</code>\n"
         "<code>/profile user_id</code> — профиль игрока\n"
-        "<code>/fine user_id сумма причина</code> — штраф"
+        "<code>/give user_id сумма</code> — выдать GMP\n<code>/take user_id сумма</code> — списать GMP\n<code>/fine user_id сумма причина</code> — штраф"
     )
 
 
@@ -1174,6 +1324,7 @@ def text_router(message):
         withdraw_to = user.get("withdraw_to") or "не указано"
 
         user["balance"] = round(float(user["balance"]) - amount, 2)
+        user["withdraw_pending"] = True
         user["withdraw_step"] = None
         user["withdraw_to"] = None
 
