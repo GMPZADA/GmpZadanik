@@ -234,14 +234,14 @@
       ],
       "pending_tasks": [],
       "waiting_task": null,
-      "withdraw_pending": true,
+      "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781641964,
       "completed_tasks": 15,
       "total_earned": 19.2,
-      "withdraw_count": 6,
-      "withdrawn_total": 14.2,
+      "withdraw_count": 7,
+      "withdrawn_total": 18.2,
       "fines_total": 1.0,
       "username": "xux_xuxx"
     },
@@ -1046,16 +1046,7 @@
     }
   },
   "last_task_id": 60,
-  "withdraws": {
-    "72": {
-      "user_id": 5224773359,
-      "username": "xux_xuxx",
-      "to": "@xux_xuxx",
-      "amount": 4.0,
-      "status": "wait",
-      "time": 1781805346
-    }
-  },
+  "withdraws": {},
   "last_withdraw_id": 72,
   "submits": {},
   "last_submit_id": 175,
