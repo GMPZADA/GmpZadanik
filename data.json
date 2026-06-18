@@ -1089,20 +1089,19 @@
       "fines_total": 0
     },
     "6071965562": {
-      "balance": 0.0,
+      "balance": 1.0,
       "done_tasks": [
-        "38"
-      ],
-      "pending_tasks": [
+        "38",
         "54"
       ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": true,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 0,
-      "completed_tasks": 1,
-      "total_earned": 1.0,
+      "completed_tasks": 2,
+      "total_earned": 2.0,
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
@@ -1243,15 +1242,6 @@
       "status": "wait",
       "photo_file_id": "AgACAgIAAxkBAAIUc2o0W8NDy7VyJMVz1k9bnBXANWZ2AAKLG2sbHfSgSVyXnAjKAAGplQEAAwIAA3kAAzwE",
       "time": 1781816259
-    },
-    "187": {
-      "user_id": 6071965562,
-      "username": "MINIPEKKA993",
-      "task_id": "54",
-      "reward": 1.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIUsWo0XRLOMXLnNlAQaLxiuDe5lmoaAAIqFmsbx9GpSditmWv0a5BDAQADAgADeQADPAQ",
-      "time": 1781816594
     }
   },
   "last_submit_id": 187,
