@@ -1053,21 +1053,19 @@
       "fines_total": 0
     },
     "7970947663": {
-      "balance": 8.0,
+      "balance": 12.0,
       "done_tasks": [
         "52",
         "42",
         "44",
         "57",
-        "45"
+        "43"
       ],
-      "pending_tasks": [
-        "46"
-      ],
+      "pending_tasks": [],
       "waiting_task": null,
-      "withdraw_pending": true,
-      "withdraw_step": null,
-      "withdraw_to": null,
+      "withdraw_pending": false,
+      "withdraw_step": "amount",
+      "withdraw_to": "@neevspominay",
       "last_bonus": 1781816161,
       "completed_tasks": 5,
       "total_earned": 13.2,
@@ -1268,28 +1266,9 @@
     }
   },
   "last_task_id": 60,
-  "withdraws": {
-    "80": {
-      "user_id": 7970947663,
-      "username": "neevspominay",
-      "to": "@neevspominay",
-      "amount": 4.0,
-      "status": "wait",
-      "time": 1781820426
-    }
-  },
+  "withdraws": {},
   "last_withdraw_id": 80,
-  "submits": {
-    "202": {
-      "user_id": 7970947663,
-      "username": "neevspominay",
-      "task_id": "46",
-      "reward": 2.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIWfGo0cCa5K74W8h59w8mGtdrAYmvfAAIfG2sbauOpSW02Vp2QtCu2AQADAgADeQADPAQ",
-      "time": 1781821508
-    }
-  },
+  "submits": {},
   "last_submit_id": 202,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "promocodes": {},
@@ -1373,18 +1352,25 @@
         "time": 1781821069
       },
       "201": {
-        "status": "approved",
+        "status": "rejected",
         "admin_id": 7837011810,
         "user_id": "7970947663",
         "note": "task #45",
-        "time": 1781821505
+        "time": 1781821619
       },
       "197": {
         "status": "rejected",
         "admin_id": 7837011810,
         "user_id": "8031414696",
         "note": "task #44",
-        "time": 1781821517
+        "time": 1781821632
+      },
+      "202": {
+        "status": "approved",
+        "admin_id": 7837011810,
+        "user_id": "7970947663",
+        "note": "task #43",
+        "time": 1781821657
       }
     },
     "withdraws": {
@@ -1401,6 +1387,13 @@
         "user_id": "7970947663",
         "note": "amount 1.2",
         "time": 1781819282
+      },
+      "80": {
+        "status": "rejected",
+        "admin_id": 7837011810,
+        "user_id": "7970947663",
+        "note": "amount 4.0",
+        "time": 1781821633
       }
     }
   }
