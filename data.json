@@ -1079,14 +1079,15 @@
       "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
-      "withdraw_step": "username",
-      "withdraw_to": null,
+      "withdraw_step": "amount",
+      "withdraw_to": "@grimReapersing 6",
       "last_bonus": 1781816350,
       "completed_tasks": 3,
       "total_earned": 8.2,
       "withdraw_count": 0,
       "withdrawn_total": 0,
-      "fines_total": 0
+      "fines_total": 0,
+      "username": "grimReapersing"
     },
     "6071965562": {
       "balance": 1.0,
