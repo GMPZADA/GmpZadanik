@@ -149,7 +149,7 @@
       "username": "loridjedje"
     },
     "8431020779": {
-      "balance": 7.0,
+      "balance": 0.0,
       "done_tasks": [
         "41",
         "54",
@@ -166,8 +166,8 @@
       ],
       "waiting_task": null,
       "withdraw_pending": true,
-      "withdraw_step": "amount",
-      "withdraw_to": "@username",
+      "withdraw_step": null,
+      "withdraw_to": null,
       "last_bonus": 1781672960,
       "completed_tasks": 8,
       "total_earned": 16.4,
@@ -1321,9 +1321,21 @@
       "admin_sent": true,
       "admin_sent_time": 1781850101,
       "admin_message_id": 6049
+    },
+    "87": {
+      "user_id": 8431020779,
+      "username": "sksksskskmsdm",
+      "to": "@username",
+      "amount": 7.0,
+      "status": "wait",
+      "time": 1781850252,
+      "source_message_id": 6060,
+      "admin_sent": true,
+      "admin_sent_time": 1781850252,
+      "admin_message_id": "sending"
     }
   },
-  "last_withdraw_id": 86,
+  "last_withdraw_id": 87,
   "submits": {
     "202": {
       "user_id": 7970947663,
@@ -1619,6 +1631,10 @@
       "86": {
         "message_id": 6049,
         "time": 1781850101
+      },
+      "87": {
+        "message_id": "sending",
+        "time": 1781850252
       }
     }
   },
@@ -1730,6 +1746,15 @@
       "new": 0.2,
       "reason": "withdraw_created",
       "request_id": "86"
+    },
+    {
+      "time": 1781850252,
+      "user_id": "8431020779",
+      "old": 7.0,
+      "amount": -7.0,
+      "new": 0.0,
+      "reason": "withdraw_created",
+      "request_id": "87"
     }
   ]
 }
