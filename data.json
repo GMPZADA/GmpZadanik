@@ -1391,8 +1391,8 @@
       "time": 1781861990,
       "source_message_id": 6675,
       "admin_sent": true,
-      "admin_sent_time": 1781861990,
-      "admin_message_id": "sending"
+      "admin_sent_time": 1781861991,
+      "admin_message_id": 6677
     }
   },
   "last_withdraw_id": 94,
@@ -1912,8 +1912,8 @@
         "time": 1781861687
       },
       "94": {
-        "message_id": "sending",
-        "time": 1781861990
+        "message_id": 6677,
+        "time": 1781861991
       }
     }
   },
