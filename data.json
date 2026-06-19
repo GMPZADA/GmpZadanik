@@ -385,16 +385,16 @@
       "username": "kiril6789"
     },
     "8534240629": {
-      "balance": 1.2,
+      "balance": 1.4,
       "done_tasks": [],
       "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
-      "last_bonus": 1781609419,
+      "last_bonus": 1781854616,
       "completed_tasks": 0,
-      "total_earned": 1.2,
+      "total_earned": 1.4,
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
@@ -1904,6 +1904,15 @@
       "new": 0.0,
       "reason": "withdraw_created",
       "request_id": "89"
+    },
+    {
+      "time": 1781854616,
+      "user_id": "8534240629",
+      "old": 1.2,
+      "amount": 0.2,
+      "new": 1.4,
+      "reason": "add",
+      "request_id": ""
     }
   ]
 }
