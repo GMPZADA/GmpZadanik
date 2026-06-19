@@ -866,14 +866,14 @@
       ],
       "pending_tasks": [],
       "waiting_task": null,
-      "withdraw_pending": true,
+      "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781787078,
       "completed_tasks": 6,
       "total_earned": 17.4,
-      "withdraw_count": 3,
-      "withdrawn_total": 14.4,
+      "withdraw_count": 4,
+      "withdrawn_total": 17.4,
       "fines_total": 0,
       "username": "EbyV0",
       "banned": false,
@@ -1599,20 +1599,7 @@
     }
   },
   "last_task_id": 62,
-  "withdraws": {
-    "98": {
-      "user_id": 7106223662,
-      "username": "EbyV0",
-      "to": "@EbyV0",
-      "amount": 3.0,
-      "status": "wait",
-      "time": 1781894093,
-      "source_message_id": 7209,
-      "admin_sent": true,
-      "admin_sent_time": 1781894093,
-      "admin_message_id": "sending"
-    }
-  },
+  "withdraws": {},
   "last_withdraw_id": 98,
   "submits": {},
   "last_submit_id": 233,
@@ -2076,6 +2063,13 @@
         "user_id": "6976874613",
         "note": "amount 5.0",
         "time": 1781892773
+      },
+      "98": {
+        "status": "paid",
+        "admin_id": 7837011810,
+        "user_id": "7106223662",
+        "note": "amount 3.0",
+        "time": 1781894116
       }
     }
   },
