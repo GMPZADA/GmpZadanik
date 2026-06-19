@@ -1085,7 +1085,7 @@
       "username": "neevspominay"
     },
     "7811863751": {
-      "balance": 12.0,
+      "balance": 0.0,
       "done_tasks": [
         "51",
         "49",
@@ -1096,9 +1096,9 @@
       ],
       "pending_tasks": [],
       "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": "amount",
-      "withdraw_to": "@grimReapersing",
+      "withdraw_pending": true,
+      "withdraw_step": null,
+      "withdraw_to": null,
       "last_bonus": 1781816350,
       "completed_tasks": 6,
       "total_earned": 18.2,
@@ -1280,8 +1280,21 @@
     }
   },
   "last_task_id": 60,
-  "withdraws": {},
-  "last_withdraw_id": 87,
+  "withdraws": {
+    "88": {
+      "user_id": 7811863751,
+      "username": "grimReapersing",
+      "to": "@grimReapersing",
+      "amount": 12.0,
+      "status": "wait",
+      "time": 1781851813,
+      "source_message_id": 6164,
+      "admin_sent": true,
+      "admin_sent_time": 1781851813,
+      "admin_message_id": "sending"
+    }
+  },
+  "last_withdraw_id": 88,
   "submits": {},
   "last_submit_id": 215,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
@@ -1642,6 +1655,10 @@
       "87": {
         "message_id": 6062,
         "time": 1781850253
+      },
+      "88": {
+        "message_id": "sending",
+        "time": 1781851813
       }
     }
   },
@@ -1843,6 +1860,15 @@
       "new": 14.0,
       "reason": "withdraw_rejected_return",
       "request_id": "80"
+    },
+    {
+      "time": 1781851813,
+      "user_id": "7811863751",
+      "old": 12.0,
+      "amount": -12.0,
+      "new": 0.0,
+      "reason": "withdraw_created",
+      "request_id": "88"
     }
   ]
 }
