@@ -149,25 +149,25 @@
       "username": "loridjedje"
     },
     "8431020779": {
-      "balance": 4.0,
+      "balance": 0.0,
       "done_tasks": [
         "41",
         "54",
         "52",
         "38",
-        "53",
-        "44"
+        "53"
       ],
       "pending_tasks": [
-        "45"
+        "45",
+        "43"
       ],
-      "waiting_task": null,
+      "waiting_task": "44",
       "withdraw_pending": true,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781672960,
-      "completed_tasks": 6,
-      "total_earned": 10.4,
+      "completed_tasks": 5,
+      "total_earned": 6.4,
       "withdraw_count": 3,
       "withdrawn_total": 4.4,
       "fines_total": 0,
@@ -1327,6 +1327,18 @@
       "admin_sent": true,
       "admin_sent_time": 1781823095,
       "admin_message_id": 5856
+    },
+    "206": {
+      "user_id": 8431020779,
+      "username": "sksksskskmsdm",
+      "task_id": "43",
+      "reward": 2.0,
+      "status": "wait",
+      "photo_file_id": "AgACAgIAAxkBAAIXOmo01v2-Ftd_ysW20tg0-PATwuD6AALFFWsbOXypSak9OIyz23jWAQADAgADeQADPAQ",
+      "time": 1781847806,
+      "admin_sent": true,
+      "admin_sent_time": 1781847807,
+      "admin_message_id": 5948
     }
   },
   "last_submit_id": 206,
@@ -1438,13 +1450,6 @@
         "user_id": "8431020779",
         "note": "task #53",
         "time": 1781847358
-      },
-      "206": {
-        "status": "approved",
-        "admin_id": 7837011810,
-        "user_id": "8431020779",
-        "note": "task #44",
-        "time": 1781847832
       }
     },
     "withdraws": {
@@ -1483,8 +1488,8 @@
         "time": 1781847354
       },
       "206": {
-        "message_id": 5953,
-        "time": 1781847828
+        "message_id": 5948,
+        "time": 1781847807
       }
     },
     "withdraws": {
@@ -1529,15 +1534,6 @@
       "new": 0.0,
       "reason": "withdraw_created",
       "request_id": "82"
-    },
-    {
-      "time": 1781847832,
-      "user_id": "8431020779",
-      "old": 0.0,
-      "amount": 4.0,
-      "new": 4.0,
-      "reason": "task_approved",
-      "request_id": "206"
     }
   ]
 }
