@@ -153,7 +153,7 @@
       "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
-      "withdraw_step": null,
+      "withdraw_step": "username",
       "withdraw_to": null,
       "last_bonus": 1781803597,
       "completed_tasks": 7,
@@ -162,8 +162,8 @@
       "withdrawn_total": 50559216.6,
       "fines_total": 1407.0,
       "username": "loridjedje",
-      "banned": true,
-      "ban_reason": "Тест"
+      "banned": false,
+      "ban_reason": ""
     },
     "8431020779": {
       "balance": 6.0,
