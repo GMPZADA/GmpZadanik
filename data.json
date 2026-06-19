@@ -1043,14 +1043,14 @@
       ],
       "pending_tasks": [],
       "waiting_task": null,
-      "withdraw_pending": true,
+      "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781788751,
       "completed_tasks": 3,
       "total_earned": 7.2,
-      "withdraw_count": 1,
-      "withdrawn_total": 2.2,
+      "withdraw_count": 2,
+      "withdrawn_total": 7.2,
       "fines_total": 0,
       "username": "Gffffah",
       "banned": false,
@@ -1596,20 +1596,7 @@
     }
   },
   "last_task_id": 62,
-  "withdraws": {
-    "97": {
-      "user_id": 6976874613,
-      "username": "Gffffah",
-      "to": "@EbyV0",
-      "amount": 5.0,
-      "status": "wait",
-      "time": 1781892702,
-      "source_message_id": 7158,
-      "admin_sent": true,
-      "admin_sent_time": 1781892702,
-      "admin_message_id": "sending"
-    }
-  },
+  "withdraws": {},
   "last_withdraw_id": 97,
   "submits": {},
   "last_submit_id": 230,
@@ -2045,6 +2032,13 @@
         "user_id": "7106223662",
         "note": "amount 2.0",
         "time": 1781892655
+      },
+      "97": {
+        "status": "paid",
+        "admin_id": 7837011810,
+        "user_id": "6976874613",
+        "note": "amount 5.0",
+        "time": 1781892773
       }
     }
   },
