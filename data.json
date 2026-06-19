@@ -1304,7 +1304,9 @@
         "42",
         "50"
       ],
-      "pending_tasks": [],
+      "pending_tasks": [
+        "51"
+      ],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
@@ -1465,9 +1467,21 @@
       "admin_sent": true,
       "admin_sent_time": 1781863893,
       "admin_message_id": 6746
+    },
+    "228": {
+      "user_id": 7463485005,
+      "username": "nurr_b077",
+      "task_id": "51",
+      "reward": 3.0,
+      "status": "wait",
+      "photo_file_id": "AgACAgIAAxkBAAIanGo1Fzeu4_xb54p5LkvQ3zFrLuIlAAKDFmsbLo-pSR9oIrqmqMx5AQADAgADeQADPAQ",
+      "time": 1781864247,
+      "admin_sent": true,
+      "admin_sent_time": 1781864247,
+      "admin_message_id": "sending"
     }
   },
-  "last_submit_id": 227,
+  "last_submit_id": 228,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "promocodes": {},
   "processed_requests": {
@@ -1966,6 +1980,10 @@
       "227": {
         "message_id": 6805,
         "time": 1781864232
+      },
+      "228": {
+        "message_id": "sending",
+        "time": 1781864247
       }
     },
     "withdraws": {
