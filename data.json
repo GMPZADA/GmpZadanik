@@ -162,8 +162,8 @@
       "withdrawn_total": 50559216.6,
       "fines_total": 1407.0,
       "username": "loridjedje",
-      "banned": false,
-      "ban_reason": ""
+      "banned": true,
+      "ban_reason": "Тест"
     },
     "8431020779": {
       "balance": 6.0,
