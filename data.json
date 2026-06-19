@@ -1350,8 +1350,8 @@
       "photo_file_id": "AgACAgIAAxkBAAIW3mo0dnap6V0FVr-QXx0ThqVofIcfAAIVFWsbOXypSU9UgFN-GBFXAQADAgADeQADPAQ",
       "time": 1781823094,
       "admin_sent": true,
-      "admin_sent_time": 1781823095,
-      "admin_message_id": 5856
+      "admin_sent_time": 1781851764,
+      "admin_message_id": 6139
     },
     "206": {
       "user_id": 8431020779,
@@ -1597,8 +1597,8 @@
         "time": 1781851763
       },
       "203": {
-        "message_id": 5856,
-        "time": 1781823095
+        "message_id": 6139,
+        "time": 1781851764
       },
       "204": {
         "message_id": 5863,
