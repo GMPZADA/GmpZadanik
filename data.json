@@ -1298,8 +1298,8 @@
       "time": 1781855377,
       "source_message_id": 6273,
       "admin_sent": true,
-      "admin_sent_time": 1781855377,
-      "admin_message_id": "sending"
+      "admin_sent_time": 1781855378,
+      "admin_message_id": 6275
     }
   },
   "last_withdraw_id": 90,
@@ -1709,8 +1709,8 @@
         "time": 1781854113
       },
       "90": {
-        "message_id": "sending",
-        "time": 1781855377
+        "message_id": 6275,
+        "time": 1781855378
       }
     }
   },
