@@ -1278,9 +1278,15 @@
       "link": "https://t.me/StarsMakeBot?start=1wWqkbBz7",
       "reward": 2.0,
       "active": true
+    },
+    "61": {
+      "text": "Зайти в бота, нажать на любой подарок, подписаться на спонсоров и отправить скриншот выполнения",
+      "link": "https://t.me/MilingCows_bot?start=18877370",
+      "reward": 2.0,
+      "active": true
     }
   },
-  "last_task_id": 60,
+  "last_task_id": 61,
   "withdraws": {},
   "last_withdraw_id": 89,
   "submits": {},
