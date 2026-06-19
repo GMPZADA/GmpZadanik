@@ -242,14 +242,14 @@
       ],
       "pending_tasks": [],
       "waiting_task": null,
-      "withdraw_pending": true,
+      "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781641964,
       "completed_tasks": 15,
       "total_earned": 20.2,
-      "withdraw_count": 7,
-      "withdrawn_total": 18.2,
+      "withdraw_count": 8,
+      "withdrawn_total": 19.2,
       "fines_total": 1.0,
       "username": "xux_xuxx"
     },
@@ -1281,20 +1281,7 @@
     }
   },
   "last_task_id": 60,
-  "withdraws": {
-    "89": {
-      "user_id": 5224773359,
-      "username": "xux_xuxx",
-      "to": "@xux_xuxx",
-      "amount": 1.0,
-      "status": "wait",
-      "time": 1781854112,
-      "source_message_id": 6219,
-      "admin_sent": true,
-      "admin_sent_time": 1781854113,
-      "admin_message_id": 6221
-    }
-  },
+  "withdraws": {},
   "last_withdraw_id": 89,
   "submits": {},
   "last_submit_id": 216,
@@ -1576,6 +1563,13 @@
         "user_id": "7811863751",
         "note": "amount 12.0",
         "time": 1781851843
+      },
+      "89": {
+        "status": "paid",
+        "admin_id": 7837011810,
+        "user_id": "5224773359",
+        "note": "amount 1.0",
+        "time": 1781854141
       }
     }
   },
