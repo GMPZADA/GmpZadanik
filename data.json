@@ -1195,20 +1195,19 @@
       "username": "Gangsters_95"
     },
     "8341360449": {
-      "balance": 0.0,
-      "done_tasks": [
+      "balance": 0,
+      "done_tasks": [],
+      "pending_tasks": [
+        "42",
         "41"
       ],
-      "pending_tasks": [
-        "42"
-      ],
       "waiting_task": null,
-      "withdraw_pending": true,
+      "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 0,
-      "completed_tasks": 1,
-      "total_earned": 2.0,
+      "completed_tasks": 0,
+      "total_earned": 0,
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
@@ -1373,21 +1372,8 @@
     }
   },
   "last_task_id": 61,
-  "withdraws": {
-    "92": {
-      "user_id": 8341360449,
-      "username": "chrevoygodied",
-      "to": "@chrevoygodied",
-      "amount": 2.0,
-      "status": "wait",
-      "time": 1781859342,
-      "source_message_id": 6431,
-      "admin_sent": true,
-      "admin_sent_time": 1781859343,
-      "admin_message_id": 6433
-    }
-  },
-  "last_withdraw_id": 92,
+  "withdraws": {},
+  "last_withdraw_id": 91,
   "submits": {
     "218": {
       "user_id": 8341360449,
@@ -1400,6 +1386,18 @@
       "admin_sent": true,
       "admin_sent_time": 1781859113,
       "admin_message_id": 6359
+    },
+    "219": {
+      "user_id": 8341360449,
+      "username": "chrevoygodied",
+      "task_id": "41",
+      "reward": 2.0,
+      "status": "wait",
+      "photo_file_id": "AgACAgIAAxkBAAIZAWo1A74JSKdTc6FaES9Myrnweac4AAKzGGsbjoOoSTlnduM4XrIrAQADAgADeQADPAQ",
+      "time": 1781859280,
+      "admin_sent": true,
+      "admin_sent_time": 1781859281,
+      "admin_message_id": 6410
     }
   },
   "last_submit_id": 219,
@@ -1609,13 +1607,6 @@
         "user_id": "8823804307",
         "note": "task #61",
         "time": 1781855232
-      },
-      "219": {
-        "status": "approved",
-        "admin_id": 7837011810,
-        "user_id": "8341360449",
-        "note": "task #41",
-        "time": 1781859322
       }
     },
     "withdraws": {
@@ -1842,10 +1833,6 @@
       "91": {
         "message_id": 6342,
         "time": 1781859083
-      },
-      "92": {
-        "message_id": 6433,
-        "time": 1781859343
       }
     }
   },
@@ -2146,24 +2133,6 @@
       "new": 0.2,
       "reason": "add",
       "request_id": ""
-    },
-    {
-      "time": 1781859322,
-      "user_id": "8341360449",
-      "old": 0.0,
-      "amount": 2.0,
-      "new": 2.0,
-      "reason": "task_approved",
-      "request_id": "219"
-    },
-    {
-      "time": 1781859342,
-      "user_id": "8341360449",
-      "old": 2.0,
-      "amount": -2.0,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "92"
     }
   ]
 }
