@@ -1304,9 +1304,7 @@
         "42",
         "50"
       ],
-      "pending_tasks": [
-        "51"
-      ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
@@ -1467,18 +1465,6 @@
       "admin_sent": true,
       "admin_sent_time": 1781863893,
       "admin_message_id": 6746
-    },
-    "228": {
-      "user_id": 7463485005,
-      "username": "nurr_b077",
-      "task_id": "51",
-      "reward": 3.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIanGo1Fzeu4_xb54p5LkvQ3zFrLuIlAAKDFmsbLo-pSR9oIrqmqMx5AQADAgADeQADPAQ",
-      "time": 1781864247,
-      "admin_sent": true,
-      "admin_sent_time": 1781864248,
-      "admin_message_id": 6815
     }
   },
   "last_submit_id": 228,
@@ -1751,6 +1737,13 @@
         "user_id": "8341360449",
         "note": "task #57",
         "time": 1781864242
+      },
+      "228": {
+        "status": "rejected",
+        "admin_id": 7837011810,
+        "user_id": "7463485005",
+        "note": "task #51",
+        "time": 1781864262
       }
     },
     "withdraws": {
