@@ -269,7 +269,7 @@
       "pending_tasks": [
         "62"
       ],
-      "waiting_task": null,
+      "waiting_task": "61",
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
