@@ -648,7 +648,7 @@
       "username": "Lemon4ikkkkkkkkkkkkkkkk"
     },
     "6276600731": {
-      "balance": 12.0,
+      "balance": 10.0,
       "done_tasks": [
         "38",
         "41",
@@ -659,8 +659,7 @@
         "46",
         "61",
         "62",
-        "59",
-        "55"
+        "59"
       ],
       "pending_tasks": [],
       "waiting_task": null,
@@ -668,8 +667,8 @@
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781894478,
-      "completed_tasks": 11,
-      "total_earned": 18.4,
+      "completed_tasks": 10,
+      "total_earned": 16.4,
       "withdraw_count": 1,
       "withdrawn_total": 6.4,
       "fines_total": 0,
@@ -1614,7 +1613,7 @@
   "withdraws": {},
   "last_withdraw_id": 100,
   "submits": {},
-  "last_submit_id": 245,
+  "last_submit_id": 244,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "promocodes": {},
   "processed_requests": {
@@ -2010,13 +2009,6 @@
         "user_id": "8258106768",
         "note": "task #55",
         "time": 1781895903
-      },
-      "245": {
-        "status": "approved",
-        "admin_id": 7837011810,
-        "user_id": "6276600731",
-        "note": "task #55",
-        "time": 1781896056
       }
     },
     "withdraws": {
@@ -2356,10 +2348,6 @@
       "244": {
         "message_id": "sending",
         "time": 1781895874
-      },
-      "245": {
-        "message_id": "sending",
-        "time": 1781896043
       }
     },
     "withdraws": {
@@ -3079,15 +3067,6 @@
       "new": 10.0,
       "reason": "task_approved",
       "request_id": "243"
-    },
-    {
-      "time": 1781896056,
-      "user_id": "6276600731",
-      "old": 10.0,
-      "amount": 2.0,
-      "new": 12.0,
-      "reason": "task_approved",
-      "request_id": "245"
     }
   ]
 }
