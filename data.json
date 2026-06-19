@@ -1620,8 +1620,8 @@
       "time": 1781896923,
       "source_message_id": 7477,
       "admin_sent": true,
-      "admin_sent_time": 1781896923,
-      "admin_message_id": "sending"
+      "admin_sent_time": 1781896924,
+      "admin_message_id": 7479
     }
   },
   "last_withdraw_id": 102,
@@ -2460,8 +2460,8 @@
         "time": 1781896103
       },
       "102": {
-        "message_id": "sending",
-        "time": 1781896923
+        "message_id": 7479,
+        "time": 1781896924
       }
     }
   },
