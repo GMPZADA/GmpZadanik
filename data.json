@@ -1204,7 +1204,6 @@
         "53"
       ],
       "pending_tasks": [
-        "42",
         "41"
       ],
       "waiting_task": null,
@@ -1381,18 +1380,6 @@
   "withdraws": {},
   "last_withdraw_id": 91,
   "submits": {
-    "218": {
-      "user_id": 8341360449,
-      "username": "chrevoygodied",
-      "task_id": "42",
-      "reward": 4.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIYzmo1Ax5BDSxzBkfXArrQDK6PxHS_AAKsGGsbjoOoSWxG83f6R9eAAQADAgADeQADPAQ",
-      "time": 1781859111,
-      "admin_sent": true,
-      "admin_sent_time": 1781859783,
-      "admin_message_id": 6507
-    },
     "219": {
       "user_id": 8341360449,
       "username": "chrevoygodied",
@@ -1639,6 +1626,13 @@
         "user_id": "8341360449",
         "note": "task #53",
         "time": 1781859719
+      },
+      "218": {
+        "status": "rejected",
+        "admin_id": 7837011810,
+        "user_id": "8341360449",
+        "note": "task #42",
+        "time": 1781859800
       }
     },
     "withdraws": {
