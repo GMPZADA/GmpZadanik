@@ -1266,7 +1266,9 @@
     "8478884644": {
       "balance": 0,
       "done_tasks": [],
-      "pending_tasks": [],
+      "pending_tasks": [
+        "44"
+      ],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
@@ -1415,7 +1417,20 @@
   "last_task_id": 62,
   "withdraws": {},
   "last_withdraw_id": 94,
-  "submits": {},
+  "submits": {
+    "224": {
+      "user_id": 8478884644,
+      "username": "debashev",
+      "task_id": "44",
+      "reward": 4.0,
+      "status": "wait",
+      "photo_file_id": "AgACAgIAAxkBAAIaWGo1FdO3NaWQwIgEv1tZLDAijPSbAALUF2sb942oScIzRvIaaYGrAQADAgADeAADPAQ",
+      "time": 1781863892,
+      "admin_sent": true,
+      "admin_sent_time": 1781863893,
+      "admin_message_id": 6746
+    }
+  },
   "last_submit_id": 224,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "promocodes": {},
@@ -1665,13 +1680,6 @@
         "user_id": "7811863751",
         "note": "task #61",
         "time": 1781861955
-      },
-      "224": {
-        "status": "rejected",
-        "admin_id": 7837011810,
-        "user_id": "8478884644",
-        "note": "task #44",
-        "time": 1781863915
       }
     },
     "withdraws": {
