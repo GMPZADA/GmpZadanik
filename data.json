@@ -635,14 +635,14 @@
       ],
       "pending_tasks": [],
       "waiting_task": null,
-      "withdraw_pending": true,
+      "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781893665,
       "completed_tasks": 7,
       "total_earned": 12.4,
-      "withdraw_count": 1,
-      "withdrawn_total": 10.0,
+      "withdraw_count": 2,
+      "withdrawn_total": 12.0,
       "fines_total": 0,
       "banned": false,
       "ban_reason": "",
@@ -1614,20 +1614,7 @@
     }
   },
   "last_task_id": 62,
-  "withdraws": {
-    "104": {
-      "user_id": 8258106768,
-      "username": "Lemon4ikkkkkkkkkkkkkkkk",
-      "to": "@Lemon4ikkkkkkkkkkkkkkkk",
-      "amount": 2.0,
-      "status": "wait",
-      "time": 1781898274,
-      "source_message_id": 7556,
-      "admin_sent": true,
-      "admin_sent_time": 1781898275,
-      "admin_message_id": 7558
-    }
-  },
+  "withdraws": {},
   "last_withdraw_id": 104,
   "submits": {},
   "last_submit_id": 249,
@@ -2245,6 +2232,13 @@
         "user_id": "6276600731",
         "note": "amount 5.0",
         "time": 1781898299
+      },
+      "104": {
+        "status": "paid",
+        "admin_id": 7837011810,
+        "user_id": "8258106768",
+        "note": "amount 2.0",
+        "time": 1781898321
       }
     }
   },
