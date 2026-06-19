@@ -1622,8 +1622,8 @@
       "photo_file_id": "AgACAgUAAxkBAAIctmo1kPThZubOIvsEIBCyBPigp3j0AAJ5DmsbWf2wVT7aKH5uzHb0AQADAgADeQADPAQ",
       "time": 1781895412,
       "admin_sent": true,
-      "admin_sent_time": 1781895496,
-      "admin_message_id": 7361
+      "admin_sent_time": 1781895580,
+      "admin_message_id": 7378
     }
   },
   "last_submit_id": 242,
@@ -2326,8 +2326,8 @@
         "time": 1781895329
       },
       "241": {
-        "message_id": 7361,
-        "time": 1781895496
+        "message_id": 7378,
+        "time": 1781895580
       },
       "242": {
         "message_id": 7369,
