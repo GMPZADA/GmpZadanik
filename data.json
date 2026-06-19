@@ -683,14 +683,15 @@
       "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
-      "withdraw_step": "username",
-      "withdraw_to": null,
+      "withdraw_step": "amount",
+      "withdraw_to": "@Als1win",
       "last_bonus": 1781817623,
       "completed_tasks": 2,
       "total_earned": 4.4,
       "withdraw_count": 0,
       "withdrawn_total": 0,
-      "fines_total": 0
+      "fines_total": 0,
+      "username": "Als1win"
     },
     "5040999888": {
       "balance": 0,
