@@ -1390,8 +1390,8 @@
       "photo_file_id": "AgACAgIAAxkBAAIYzmo1Ax5BDSxzBkfXArrQDK6PxHS_AAKsGGsbjoOoSWxG83f6R9eAAQADAgADeQADPAQ",
       "time": 1781859111,
       "admin_sent": true,
-      "admin_sent_time": 1781859113,
-      "admin_message_id": 6359
+      "admin_sent_time": 1781859783,
+      "admin_message_id": 6507
     },
     "219": {
       "user_id": 8341360449,
@@ -1809,8 +1809,8 @@
         "time": 1781855227
       },
       "218": {
-        "message_id": 6359,
-        "time": 1781859113
+        "message_id": 6507,
+        "time": 1781859783
       },
       "219": {
         "message_id": 6410,
