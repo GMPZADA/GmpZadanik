@@ -2288,6 +2288,59 @@ def text_router(message):
 
 
 
+
+@bot.message_handler(commands=["ban"])
+def ban_user(message):
+    if message.from_user.id != ADMIN_ID:
+        return bot.send_message(message.chat.id, "❌ Нет доступа.")
+
+    parts = message.text.split(maxsplit=2)
+    if len(parts) < 3:
+        return bot.send_message(message.chat.id,
+            "❌ Формат:\n<code>/ban user_id причина</code>")
+
+    user_id = parts[1].strip()
+    reason = parts[2].strip()
+
+    with DATA_LOCK:
+        data = load_data()
+        user = get_user(data, user_id)
+        user["banned"] = True
+        user["ban_reason"] = reason
+        save_data(data)
+
+    bot.send_message(message.chat.id, f"✅ Пользователь {user_id} заблокирован.")
+
+    safe_send(user_id,
+        f"⛔ <b>Ваш аккаунт заблокирован</b>\n\n"
+        f"📌 Причина: {reason}\n\n"
+        f"Для уточнения обратитесь к администрации.")
+
+@bot.message_handler(commands=["unban"])
+def unban_user(message):
+    if message.from_user.id != ADMIN_ID:
+        return bot.send_message(message.chat.id, "❌ Нет доступа.")
+
+    parts = message.text.split(maxsplit=1)
+    if len(parts) < 2:
+        return bot.send_message(message.chat.id,
+            "❌ Формат:\n<code>/unban user_id</code>")
+
+    user_id = parts[1].strip()
+
+    with DATA_LOCK:
+        data = load_data()
+        user = get_user(data, user_id)
+        user["banned"] = False
+        user["ban_reason"] = ""
+        save_data(data)
+
+    bot.send_message(message.chat.id, f"✅ Пользователь {user_id} разблокирован.")
+
+    safe_send(user_id,
+        "✅ <b>Ваш аккаунт разблокирован</b>\n\nТеперь вы снова можете пользоваться ботом.")
+
+
 if __name__ == "__main__":
     if not TOKEN:
         print("❌ BOT_TOKEN не найден.")
