@@ -1336,7 +1336,10 @@
       "reward": 2.0,
       "status": "wait",
       "photo_file_id": "AgACAgIAAxkBAAIWfGo0cCa5K74W8h59w8mGtdrAYmvfAAIfG2sbauOpSW02Vp2QtCu2AQADAgADeQADPAQ",
-      "time": 1781821508
+      "time": 1781821508,
+      "admin_sent": true,
+      "admin_sent_time": 1781851763,
+      "admin_message_id": 6138
     },
     "203": {
       "user_id": 8431020779,
@@ -1590,8 +1593,8 @@
   "admin_sent": {
     "submits": {
       "202": {
-        "message_id": 5826,
-        "time": 1781821802
+        "message_id": 6138,
+        "time": 1781851763
       },
       "203": {
         "message_id": 5856,
