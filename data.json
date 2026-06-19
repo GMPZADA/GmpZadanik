@@ -1298,18 +1298,18 @@
       "username": "BLAG542"
     },
     "7463485005": {
-      "balance": 0.2,
-      "done_tasks": [],
-      "pending_tasks": [
+      "balance": 4.2,
+      "done_tasks": [
         "42"
       ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781864103,
-      "completed_tasks": 0,
-      "total_earned": 0.2,
+      "completed_tasks": 1,
+      "total_earned": 4.2,
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
@@ -1447,18 +1447,6 @@
       "admin_sent": true,
       "admin_sent_time": 1781863893,
       "admin_message_id": 6746
-    },
-    "225": {
-      "user_id": 7463485005,
-      "username": "nurr_b077",
-      "task_id": "42",
-      "reward": 4.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIac2o1Fslms_TFjPbI_vTFbAkbjaWJAAKAFmsbLo-pSRyEgvA-Lkl2AQADAgADeQADPAQ",
-      "time": 1781864137,
-      "admin_sent": true,
-      "admin_sent_time": 1781864138,
-      "admin_message_id": 6773
     }
   },
   "last_submit_id": 225,
@@ -1710,6 +1698,13 @@
         "user_id": "7811863751",
         "note": "task #61",
         "time": 1781861955
+      },
+      "225": {
+        "status": "approved",
+        "admin_id": 7837011810,
+        "user_id": "7463485005",
+        "note": "task #42",
+        "time": 1781864168
       }
     },
     "withdraws": {
@@ -2392,6 +2387,15 @@
       "new": 0.2,
       "reason": "add",
       "request_id": ""
+    },
+    {
+      "time": 1781864168,
+      "user_id": "7463485005",
+      "old": 0.2,
+      "amount": 4.0,
+      "new": 4.2,
+      "reason": "task_approved",
+      "request_id": "225"
     }
   ]
 }
