@@ -1183,9 +1183,7 @@
       "done_tasks": [
         "61"
       ],
-      "pending_tasks": [
-        "57"
-      ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
@@ -1377,20 +1375,7 @@
   "last_task_id": 61,
   "withdraws": {},
   "last_withdraw_id": 91,
-  "submits": {
-    "221": {
-      "user_id": 8804288474,
-      "username": "Gangsters_95",
-      "task_id": "57",
-      "reward": 2.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIZWmo1BQ-cRE2NrpCE2jXmB9s5drr7AALdFmsb_YuoSdwPYPWwujVeAQADAgADeQADPAQ",
-      "time": 1781859599,
-      "admin_sent": true,
-      "admin_sent_time": 1781859871,
-      "admin_message_id": 6520
-    }
-  },
+  "submits": {},
   "last_submit_id": 222,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "promocodes": {},
@@ -1626,6 +1611,13 @@
         "user_id": "8341360449",
         "note": "task #41",
         "time": 1781859875
+      },
+      "221": {
+        "status": "rejected",
+        "admin_id": 7837011810,
+        "user_id": "8804288474",
+        "note": "task #57",
+        "time": 1781859881
       }
     },
     "withdraws": {
