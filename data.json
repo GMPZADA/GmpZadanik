@@ -1289,8 +1289,8 @@
       "status": "wait",
       "time": 1781843765,
       "admin_sent": true,
-      "admin_sent_time": 1781843765,
-      "admin_message_id": "sending"
+      "admin_sent_time": 1781843766,
+      "admin_message_id": 5905
     }
   },
   "last_withdraw_id": 81,
@@ -1470,8 +1470,8 @@
         "time": 1781821803
       },
       "81": {
-        "message_id": "sending",
-        "time": 1781843765
+        "message_id": 5905,
+        "time": 1781843766
       }
     }
   },
