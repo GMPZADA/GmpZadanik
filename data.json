@@ -1402,8 +1402,8 @@
       "photo_file_id": "AgACAgIAAxkBAAIZAWo1A74JSKdTc6FaES9Myrnweac4AAKzGGsbjoOoSTlnduM4XrIrAQADAgADeQADPAQ",
       "time": 1781859280,
       "admin_sent": true,
-      "admin_sent_time": 1781859281,
-      "admin_message_id": 6410
+      "admin_sent_time": 1781859784,
+      "admin_message_id": 6508
     },
     "221": {
       "user_id": 8804288474,
@@ -1813,8 +1813,8 @@
         "time": 1781859783
       },
       "219": {
-        "message_id": 6410,
-        "time": 1781859281
+        "message_id": 6508,
+        "time": 1781859784
       },
       "220": {
         "message_id": "sending",
