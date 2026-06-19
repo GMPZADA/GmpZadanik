@@ -1074,14 +1074,14 @@
       ],
       "pending_tasks": [],
       "waiting_task": null,
-      "withdraw_pending": true,
+      "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781816161,
       "completed_tasks": 6,
       "total_earned": 19.2,
-      "withdraw_count": 1,
-      "withdrawn_total": 1.2,
+      "withdraw_count": 2,
+      "withdrawn_total": 15.2,
       "fines_total": 0,
       "username": "neevspominay"
     },
@@ -1281,20 +1281,7 @@
     }
   },
   "last_task_id": 60,
-  "withdraws": {
-    "90": {
-      "user_id": 7970947663,
-      "username": "neevspominay",
-      "to": "@neevspominay",
-      "amount": 14.0,
-      "status": "wait",
-      "time": 1781854319,
-      "source_message_id": 6227,
-      "admin_sent": true,
-      "admin_sent_time": 1781854320,
-      "admin_message_id": 6229
-    }
-  },
+  "withdraws": {},
   "last_withdraw_id": 90,
   "submits": {},
   "last_submit_id": 216,
@@ -1583,6 +1570,13 @@
         "user_id": "5224773359",
         "note": "amount 1.0",
         "time": 1781854141
+      },
+      "90": {
+        "status": "paid",
+        "admin_id": 7837011810,
+        "user_id": "7970947663",
+        "note": "amount 14.0",
+        "time": 1781854342
       }
     }
   },
