@@ -1303,7 +1303,7 @@
         "50"
       ],
       "pending_tasks": [],
-      "waiting_task": null,
+      "waiting_task": "48",
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
@@ -1459,8 +1459,8 @@
       "time": 1781864543,
       "source_message_id": 6887,
       "admin_sent": true,
-      "admin_sent_time": 1781864543,
-      "admin_message_id": "sending"
+      "admin_sent_time": 1781864544,
+      "admin_message_id": 6889
     }
   },
   "last_withdraw_id": 95,
@@ -2061,8 +2061,8 @@
         "time": 1781861991
       },
       "95": {
-        "message_id": "sending",
-        "time": 1781864543
+        "message_id": 6889,
+        "time": 1781864544
       }
     }
   },
