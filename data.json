@@ -648,7 +648,7 @@
       "username": "Lemon4ikkkkkkkkkkkkkkkk"
     },
     "6276600731": {
-      "balance": 6.0,
+      "balance": 8.0,
       "done_tasks": [
         "38",
         "41",
@@ -657,18 +657,17 @@
         "51",
         "43",
         "46",
-        "61"
-      ],
-      "pending_tasks": [
+        "61",
         "62"
       ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781894478,
-      "completed_tasks": 8,
-      "total_earned": 12.4,
+      "completed_tasks": 9,
+      "total_earned": 14.4,
       "withdraw_count": 1,
       "withdrawn_total": 6.4,
       "fines_total": 0,
@@ -1612,20 +1611,7 @@
   "last_task_id": 62,
   "withdraws": {},
   "last_withdraw_id": 100,
-  "submits": {
-    "241": {
-      "user_id": 6276600731,
-      "username": "BOG_PIGR",
-      "task_id": "62",
-      "reward": 2.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgUAAxkBAAIctmo1kPThZubOIvsEIBCyBPigp3j0AAJ5DmsbWf2wVT7aKH5uzHb0AQADAgADeQADPAQ",
-      "time": 1781895412,
-      "admin_sent": true,
-      "admin_sent_time": 1781895580,
-      "admin_message_id": 7378
-    }
-  },
+  "submits": {},
   "last_submit_id": 242,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "promocodes": {},
@@ -2001,6 +1987,13 @@
         "user_id": "6276600731",
         "note": "task #61",
         "time": 1781895554
+      },
+      "241": {
+        "status": "approved",
+        "admin_id": 7837011810,
+        "user_id": "6276600731",
+        "note": "task #62",
+        "time": 1781895587
       }
     },
     "withdraws": {
@@ -3033,6 +3026,15 @@
       "new": 6.0,
       "reason": "task_approved",
       "request_id": "242"
+    },
+    {
+      "time": 1781895587,
+      "user_id": "6276600731",
+      "old": 6.0,
+      "amount": 2.0,
+      "new": 8.0,
+      "reason": "task_approved",
+      "request_id": "241"
     }
   ]
 }
