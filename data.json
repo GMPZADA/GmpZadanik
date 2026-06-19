@@ -1290,7 +1290,10 @@
       "to": "@neevspominay",
       "amount": 4.0,
       "status": "wait",
-      "time": 1781820426
+      "time": 1781820426,
+      "admin_sent": true,
+      "admin_sent_time": 1781851767,
+      "admin_message_id": 6143
     },
     "81": {
       "user_id": 8431020779,
@@ -1374,8 +1377,8 @@
       "photo_file_id": "AgACAgIAAxkBAAIXiWo03vlj4ZM_98nY2VnBedEUUOXTAAKvG2sbQu-pSVukrMTIPpxYAQADAgADeQADPAQ",
       "time": 1781849850,
       "admin_sent": true,
-      "admin_sent_time": 1781851766,
-      "admin_message_id": 6141
+      "admin_sent_time": 1781849851,
+      "admin_message_id": 6027
     }
   },
   "last_submit_id": 215,
@@ -1625,8 +1628,8 @@
         "time": 1781848080
       },
       "210": {
-        "message_id": 6141,
-        "time": 1781851766
+        "message_id": 6027,
+        "time": 1781849851
       },
       "211": {
         "message_id": 6040,
@@ -1651,8 +1654,8 @@
     },
     "withdraws": {
       "80": {
-        "message_id": 5827,
-        "time": 1781821803
+        "message_id": 6143,
+        "time": 1781851767
       },
       "81": {
         "message_id": 5918,
