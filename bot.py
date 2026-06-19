@@ -748,15 +748,76 @@ def safe_send(user_id, text):
 
 
 
-def check_ban(message):
-    data = load_data()
+def load_fresh_data_for_ban_check():
+    # Для бана/разбана читаем свежую базу из GitHub, чтобы после /unban сразу всё обновлялось.
+    if GITHUB_TOKEN and GITHUB_REPO:
+        try:
+            r = requests.get(
+                github_url(),
+                headers=github_headers(),
+                params={"ref": GITHUB_BRANCH},
+                timeout=10
+            )
+            if r.status_code == 200:
+                content = r.json()["content"]
+                file_text = base64.b64decode(content).decode("utf-8")
+                data = fix_data(json.loads(file_text))
+                try:
+                    with open(LOCAL_DATA_FILE, "w", encoding="utf-8") as f:
+                        json.dump(data, f, ensure_ascii=False, indent=2)
+                except Exception:
+                    pass
+                return data
+        except Exception as e:
+            print("Fresh ban check load error:", e)
+
+    return load_data()
+
+
+def is_banned_user(message):
+    if message.from_user.id == ADMIN_ID:
+        return False
+
+    data = load_fresh_data_for_ban_check()
     user = get_user(data, message.from_user.id)
-    if user.get("banned"):
-        reason = user.get("ban_reason","Не указана")
-        bot.send_message(message.chat.id,
-            f"⛔ Ваш аккаунт заблокирован\n\n📌 Причина: {reason}\n\nДля уточнения обратитесь к администрации.")
+
+    if bool(user.get("banned", False)):
+        reason = user.get("ban_reason") or "не указана"
+        bot.send_message(
+            message.chat.id,
+            f"⛔ <b>Ваш аккаунт заблокирован</b>\n\n"
+            f"📌 Причина: {reason}\n\n"
+            "Для уточнения обратитесь к администрации."
+        )
         return True
+
     return False
+
+
+def is_banned_call(call):
+    if call.from_user.id == ADMIN_ID:
+        return False
+
+    data = load_fresh_data_for_ban_check()
+    user = get_user(data, call.from_user.id)
+
+    if bool(user.get("banned", False)):
+        reason = user.get("ban_reason") or "не указана"
+        try:
+            bot.answer_callback_query(call.id, "Аккаунт заблокирован.", show_alert=True)
+        except Exception:
+            pass
+        bot.send_message(
+            call.message.chat.id,
+            f"⛔ <b>Ваш аккаунт заблокирован</b>\n\n"
+            f"📌 Причина: {reason}\n\n"
+            "Для уточнения обратитесь к администрации."
+        )
+        return True
+
+    return False
+
+
 
 def main_menu():
     kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
@@ -795,6 +856,9 @@ def admin(message):
 
 @bot.message_handler(func=lambda m: m.text == "🏠 Меню")
 def menu(message):
+    if is_banned_user(message):
+        return
+
     data = load_data()
     user = get_user(data, message.from_user.id)
     cancel_user_states(user)
@@ -804,11 +868,17 @@ def menu(message):
 
 @bot.message_handler(func=lambda m: m.text == "💬 Общение")
 def chat_message(message):
+    if is_banned_user(message):
+        return
+
     chat_button(message)
 
 
 @bot.message_handler(func=lambda m: m.text == "ℹ️ Помощь")
 def help_message(message):
+    if is_banned_user(message):
+        return
+
     bot.send_message(
         message.chat.id,
         "ℹ️ <b>Как работает бот:</b>\n\n"
@@ -824,8 +894,9 @@ def help_message(message):
 
 @bot.message_handler(func=lambda m: m.text == "💰 Баланс")
 def balance(message):
-    if check_ban(message):
+    if is_banned_user(message):
         return
+
     data = load_data()
     user = get_user(data, message.from_user.id)
     save_data(data)
@@ -838,6 +909,9 @@ def balance(message):
 
 @bot.message_handler(func=lambda m: m.text in ["🖥 Профиль", "👤 Профиль"])
 def my_profile(message):
+    if is_banned_user(message):
+        return
+
     data = load_data()
     user = get_user(data, message.from_user.id)
     user["username"] = message.from_user.username or ""
@@ -894,8 +968,9 @@ def admin_profile(message):
 
 @bot.message_handler(func=lambda m: m.text == "🎉 Бонус")
 def daily_bonus(message):
-    if check_ban(message):
+    if is_banned_user(message):
         return
+
     data = load_data()
     user = get_user(data, message.from_user.id)
 
@@ -926,8 +1001,9 @@ def daily_bonus(message):
 
 @bot.message_handler(func=lambda m: m.text == "📋 Задания")
 def tasks(message):
-    if check_ban(message):
+    if is_banned_user(message):
         return
+
     data = load_data()
     user = get_user(data, message.from_user.id)
 
@@ -960,6 +1036,9 @@ def tasks(message):
 
 @bot.callback_query_handler(func=lambda c: c.data.startswith("task_"))
 def open_task(call):
+    if is_banned_call(call):
+        return
+
     data = load_data()
     user = get_user(data, call.from_user.id)
     task_id = call.data.split("_")[1]
@@ -992,6 +1071,9 @@ def open_task(call):
 
 @bot.callback_query_handler(func=lambda c: c.data.startswith("done_"))
 def done_task(call):
+    if is_banned_call(call):
+        return
+
     data = load_data()
     user = get_user(data, call.from_user.id)
     task_id = call.data.split("_")[1]
@@ -1019,6 +1101,9 @@ def done_task(call):
 
 @bot.message_handler(content_types=["photo"])
 def photo(message):
+    if is_banned_user(message):
+        return
+
     """
     Железная логика заявки на задание:
     - один пользователь + одно задание = только одна активная заявка;
@@ -1353,8 +1438,9 @@ def check_request(call):
 
 @bot.message_handler(func=lambda m: m.text == "💸 Вывод")
 def withdraw(message):
-    if check_ban(message):
+    if is_banned_user(message):
         return
+
     data = load_data()
     user = get_user(data, message.from_user.id)
 
@@ -2161,6 +2247,8 @@ def admin_broadcast(message):
     )
 
 
+
+
 @bot.message_handler(commands=["ban"])
 def ban_user(message):
     if message.from_user.id != ADMIN_ID:
@@ -2168,25 +2256,35 @@ def ban_user(message):
 
     parts = message.text.split(maxsplit=2)
     if len(parts) < 3:
-        return bot.send_message(message.chat.id,
-            "❌ Формат:\n<code>/ban user_id причина</code>")
+        return bot.send_message(
+            message.chat.id,
+            "❌ Формат:\n<code>/ban user_id причина</code>\n\nПример:\n<code>/ban 8823804307 Тест</code>"
+        )
 
-    user_id = parts[1].strip()
+    user_id = parts[1].strip().replace("@", "")
     reason = parts[2].strip()
 
     with DATA_LOCK:
-        data = load_data()
+        data = load_fresh_data_for_ban_check()
         user = get_user(data, user_id)
         user["banned"] = True
         user["ban_reason"] = reason
         save_data(data)
 
-    bot.send_message(message.chat.id, f"✅ Пользователь {user_id} заблокирован.")
+    bot.send_message(
+        message.chat.id,
+        f"✅ Пользователь заблокирован\n\n"
+        f"🆔 ID: <code>{user_id}</code>\n"
+        f"📌 Причина: {reason}"
+    )
 
-    safe_send(user_id,
+    safe_send(
+        user_id,
         f"⛔ <b>Ваш аккаунт заблокирован</b>\n\n"
         f"📌 Причина: {reason}\n\n"
-        f"Для уточнения обратитесь к администрации.")
+        "Для уточнения обратитесь к администрации."
+    )
+
 
 @bot.message_handler(commands=["unban"])
 def unban_user(message):
@@ -2195,25 +2293,49 @@ def unban_user(message):
 
     parts = message.text.split(maxsplit=1)
     if len(parts) < 2:
-        return bot.send_message(message.chat.id,
-            "❌ Формат:\n<code>/unban user_id</code>")
+        return bot.send_message(
+            message.chat.id,
+            "❌ Формат:\n<code>/unban user_id</code>\n\nПример:\n<code>/unban 8823804307</code>"
+        )
 
-    user_id = parts[1].strip()
+    user_id = parts[1].strip().replace("@", "")
 
     with DATA_LOCK:
-        data = load_data()
+        data = load_fresh_data_for_ban_check()
         user = get_user(data, user_id)
+        was_banned = bool(user.get("banned", False))
+
         user["banned"] = False
         user["ban_reason"] = ""
+
         save_data(data)
 
-    bot.send_message(message.chat.id, f"✅ Пользователь {user_id} разблокирован.")
+        # Сразу обновляем локальную копию, чтобы бот не видел старый бан
+        try:
+            with open(LOCAL_DATA_FILE, "w", encoding="utf-8") as f:
+                json.dump(data, f, ensure_ascii=False, indent=2)
+        except Exception as e:
+            print("Local unban save error:", e)
 
-    safe_send(user_id,
-        "✅ <b>Ваш аккаунт разблокирован</b>\n\nТеперь вы снова можете пользоваться ботом.")
+    bot.send_message(
+        message.chat.id,
+        f"✅ Пользователь разблокирован\n\n"
+        f"🆔 ID: <code>{user_id}</code>\n"
+        f"📌 Был заблокирован: {'да' if was_banned else 'нет'}"
+    )
+
+    safe_send(
+        user_id,
+        "✅ <b>Ваш аккаунт разблокирован</b>\n\n"
+        "Теперь вы снова можете пользоваться ботом."
+    )
+
 
 @bot.message_handler(func=lambda m: True)
 def text_router(message):
+    if is_banned_user(message):
+        return
+
     data = load_data()
     user = get_user(data, message.from_user.id)
     user["username"] = message.from_user.username or user.get("username", "")
