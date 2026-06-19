@@ -138,14 +138,14 @@
       ],
       "pending_tasks": [],
       "waiting_task": null,
-      "withdraw_pending": true,
+      "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781803597,
       "completed_tasks": 7,
       "total_earned": 50560623.6,
-      "withdraw_count": 2,
-      "withdrawn_total": 50559214.6,
+      "withdraw_count": 3,
+      "withdrawn_total": 50559216.6,
       "fines_total": 1407.0,
       "username": "loridjedje"
     },
@@ -1288,20 +1288,7 @@
     }
   },
   "last_task_id": 61,
-  "withdraws": {
-    "90": {
-      "user_id": 8823804307,
-      "username": "loridjedje",
-      "to": "@username",
-      "amount": 2.0,
-      "status": "wait",
-      "time": 1781855377,
-      "source_message_id": 6273,
-      "admin_sent": true,
-      "admin_sent_time": 1781855378,
-      "admin_message_id": 6275
-    }
-  },
+  "withdraws": {},
   "last_withdraw_id": 90,
   "submits": {},
   "last_submit_id": 217,
@@ -1597,6 +1584,13 @@
         "user_id": "5224773359",
         "note": "amount 1.0",
         "time": 1781854141
+      },
+      "90": {
+        "status": "paid",
+        "admin_id": 7837011810,
+        "user_id": "8823804307",
+        "note": "amount 2.0",
+        "time": 1781855381
       }
     }
   },
