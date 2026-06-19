@@ -126,24 +126,25 @@
       "fines_total": 0
     },
     "8823804307": {
-      "balance": 2.0,
+      "balance": 0.0,
       "done_tasks": [
         "38",
         "39",
         "40",
         "42",
         "43",
-        "46",
+        "46"
+      ],
+      "pending_tasks": [
         "61"
       ],
-      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
-      "withdraw_step": "username",
+      "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781803597,
-      "completed_tasks": 7,
-      "total_earned": 50560623.6,
+      "completed_tasks": 6,
+      "total_earned": 50560621.6,
       "withdraw_count": 2,
       "withdrawn_total": 50559214.6,
       "fines_total": 1407.0,
@@ -1290,7 +1291,20 @@
   "last_task_id": 61,
   "withdraws": {},
   "last_withdraw_id": 89,
-  "submits": {},
+  "submits": {
+    "217": {
+      "user_id": 8823804307,
+      "username": "loridjedje",
+      "task_id": "61",
+      "reward": 2.0,
+      "status": "wait",
+      "photo_file_id": "AgACAgIAAxkBAAIYZWo0824QjmyzHp5hmPfwlsmnZDxPAAI-GGsbhsepSckJ6o94f6znAQADAgADeQADPAQ",
+      "time": 1781855086,
+      "admin_sent": true,
+      "admin_sent_time": 1781855088,
+      "admin_message_id": 6247
+    }
+  },
   "last_submit_id": 217,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "promocodes": {},
@@ -1491,13 +1505,6 @@
         "user_id": "8431020779",
         "note": "task #55",
         "time": 1781852126
-      },
-      "217": {
-        "status": "approved",
-        "admin_id": 7837011810,
-        "user_id": "8823804307",
-        "note": "task #61",
-        "time": 1781855141
       }
     },
     "withdraws": {
@@ -1931,15 +1938,6 @@
       "new": 1.4,
       "reason": "add",
       "request_id": ""
-    },
-    {
-      "time": 1781855141,
-      "user_id": "8823804307",
-      "old": 0.0,
-      "amount": 2.0,
-      "new": 2.0,
-      "reason": "task_approved",
-      "request_id": "217"
     }
   ]
 }
