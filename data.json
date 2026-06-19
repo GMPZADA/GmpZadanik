@@ -1195,38 +1195,37 @@
       "username": "Gangsters_95"
     },
     "8341360449": {
-      "balance": 4.0,
-      "done_tasks": [
+      "balance": 0,
+      "done_tasks": [],
+      "pending_tasks": [
         "42"
       ],
-      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 0,
-      "completed_tasks": 1,
-      "total_earned": 4.0,
+      "completed_tasks": 0,
+      "total_earned": 0,
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
       "username": "chrevoygodied"
     },
     "6324214210": {
-      "balance": 0.2,
+      "balance": 0,
       "done_tasks": [],
       "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
-      "last_bonus": 1781859154,
+      "last_bonus": 0,
       "completed_tasks": 0,
-      "total_earned": 0.2,
+      "total_earned": 0,
       "withdraw_count": 0,
       "withdrawn_total": 0,
-      "fines_total": 0,
-      "username": "belinov_Team"
+      "fines_total": 0
     }
   },
   "tasks": {
@@ -1342,8 +1341,21 @@
   "last_task_id": 61,
   "withdraws": {},
   "last_withdraw_id": 91,
-  "submits": {},
-  "last_submit_id": 219,
+  "submits": {
+    "218": {
+      "user_id": 8341360449,
+      "username": "chrevoygodied",
+      "task_id": "42",
+      "reward": 4.0,
+      "status": "wait",
+      "photo_file_id": "AgACAgIAAxkBAAIYzmo1Ax5BDSxzBkfXArrQDK6PxHS_AAKsGGsbjoOoSWxG83f6R9eAAQADAgADeQADPAQ",
+      "time": 1781859111,
+      "admin_sent": true,
+      "admin_sent_time": 1781859113,
+      "admin_message_id": 6359
+    }
+  },
+  "last_submit_id": 218,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "promocodes": {},
   "processed_requests": {
@@ -1550,20 +1562,6 @@
         "user_id": "8823804307",
         "note": "task #61",
         "time": 1781855232
-      },
-      "218": {
-        "status": "approved",
-        "admin_id": 7837011810,
-        "user_id": "8341360449",
-        "note": "task #42",
-        "time": 1781859128
-      },
-      "219": {
-        "status": "rejected",
-        "admin_id": 7837011810,
-        "user_id": "8341360449",
-        "note": "task #50",
-        "time": 1781859152
       }
     },
     "withdraws": {
@@ -1736,10 +1734,6 @@
       "218": {
         "message_id": 6359,
         "time": 1781859113
-      },
-      "219": {
-        "message_id": 6368,
-        "time": 1781859143
       }
     },
     "withdraws": {
@@ -2067,24 +2061,6 @@
     {
       "time": 1781859100,
       "user_id": "8804288474",
-      "old": 0.0,
-      "amount": 0.2,
-      "new": 0.2,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1781859128,
-      "user_id": "8341360449",
-      "old": 0.0,
-      "amount": 4.0,
-      "new": 4.0,
-      "reason": "task_approved",
-      "request_id": "218"
-    },
-    {
-      "time": 1781859154,
-      "user_id": "6324214210",
       "old": 0.0,
       "amount": 0.2,
       "new": 0.2,
