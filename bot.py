@@ -1256,14 +1256,9 @@ def withdraw(message):
     data = load_data()
     user = get_user(data, message.from_user.id)
 
-    active_wid = has_active_withdraw(data, message.from_user.id)
-    if user.get("withdraw_pending") or active_wid:
-        user["withdraw_pending"] = True
-        save_data(data)
-        return bot.send_message(
-            message.chat.id,
-            "⏳ У тебя уже есть заявка на вывод на проверке.\nДождись решения администратора."
-        )
+    # ВАЖНО: несколько выводов разрешены.
+    # Если у пользователя уже есть заявка на вывод, мы НЕ блокируем новый вывод.
+    # Защита от случайных дублей стоит ниже при создании заявки по сумме.
 
     if float(user["balance"]) < 0:
         return bot.send_message(
@@ -2148,23 +2143,15 @@ def text_router(message):
             user = get_user(data, message.from_user.id)
             withdraw_to = user.get("withdraw_to") or "не указано"
 
-            old_wid = has_active_withdraw(data, message.from_user.id)
-            if old_wid:
-                user["withdraw_pending"] = True
-                user["withdraw_step"] = None
-                user["withdraw_to"] = None
-                save_data(data)
-                return bot.send_message(
-                    message.chat.id,
-                    f"⚠️ У тебя уже есть заявка на вывод на проверке.\nНомер заявки: <b>#{old_wid}</b>"
-                )
-
+            # Разрешаем несколько активных выводов, если хватает баланса.
+            # Но если Telegram/интернет продублировал одно и то же сообщение с суммой,
+            # в течение 10 секунд повтор НЕ создаём и баланс второй раз НЕ списываем.
             duplicate_wid = find_recent_duplicate_withdraw(
                 data,
                 message.from_user.id,
                 withdraw_to,
                 amount,
-                window_seconds=120
+                window_seconds=10
             )
             if duplicate_wid:
                 user["withdraw_pending"] = True
@@ -2174,7 +2161,7 @@ def text_router(message):
                 return bot.send_message(
                     message.chat.id,
                     f"⚠️ Повторная заявка не создана.\n"
-                    f"У тебя уже есть заявка на вывод с этим же номером: <b>#{duplicate_wid}</b>"
+                    f"Похоже, Telegram повторил то же действие. Номер заявки: <b>#{duplicate_wid}</b>"
                 )
 
             if amount > float(user.get("balance", 0)):
