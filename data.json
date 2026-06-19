@@ -149,7 +149,7 @@
       "username": "loridjedje"
     },
     "8431020779": {
-      "balance": 6.0,
+      "balance": 10.0,
       "done_tasks": [
         "41",
         "54",
@@ -157,20 +157,20 @@
         "38",
         "53",
         "44",
-        "57"
+        "57",
+        "42"
       ],
       "pending_tasks": [
         "45",
-        "43",
-        "42"
+        "43"
       ],
       "waiting_task": null,
       "withdraw_pending": true,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781672960,
-      "completed_tasks": 7,
-      "total_earned": 12.4,
+      "completed_tasks": 8,
+      "total_earned": 16.4,
       "withdraw_count": 3,
       "withdrawn_total": 4.4,
       "fines_total": 0,
@@ -1342,18 +1342,6 @@
       "admin_sent": true,
       "admin_sent_time": 1781847807,
       "admin_message_id": 5948
-    },
-    "208": {
-      "user_id": 8431020779,
-      "username": "sksksskskmsdm",
-      "task_id": "42",
-      "reward": 4.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIXRGo010BNOJGFYiBcymDabQpgWn9NAALGFWsbOXypSebwlns4ARuIAQADAgADeQADPAQ",
-      "time": 1781848071,
-      "admin_sent": true,
-      "admin_sent_time": 1781848072,
-      "admin_message_id": 5970
     }
   },
   "last_submit_id": 209,
@@ -1479,6 +1467,13 @@
         "user_id": "8431020779",
         "note": "task #57",
         "time": 1781848082
+      },
+      "208": {
+        "status": "approved",
+        "admin_id": 7837011810,
+        "user_id": "8431020779",
+        "note": "task #42",
+        "time": 1781848085
       }
     },
     "withdraws": {
@@ -1593,6 +1588,15 @@
       "new": 6.0,
       "reason": "task_approved",
       "request_id": "209"
+    },
+    {
+      "time": 1781848085,
+      "user_id": "8431020779",
+      "old": 6.0,
+      "amount": 4.0,
+      "new": 10.0,
+      "reason": "task_approved",
+      "request_id": "208"
     }
   ]
 }
