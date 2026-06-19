@@ -1086,6 +1086,23 @@ def safe_edit_admin_message(call, text):
             print("send admin status error:", e3)
 
 
+def safe_close_old_buttons(call, callback_text="⚠️ Заявка уже закрыта"):
+    """
+    Для старых/повторных кнопок.
+    НЕ отправляет новое сообщение в чат, чтобы не было спама:
+    просто показывает маленькое уведомление и пытается убрать кнопки.
+    """
+    safe_answer_callback(call, callback_text, show_alert=False)
+    try:
+        bot.edit_message_reply_markup(
+            chat_id=call.message.chat.id,
+            message_id=call.message.message_id,
+            reply_markup=None
+        )
+    except Exception as e:
+        print("safe_close_old_buttons error:", e)
+
+
 @bot.callback_query_handler(func=lambda c: c.data.startswith("del_"))
 def delete_submit_request(call):
     if call.from_user.id != ADMIN_ID:
@@ -1163,8 +1180,15 @@ def check_request(call):
         with DATA_LOCK:
             data = load_data()
 
-            if request_already_processed(data, "submits", sid):
-                already_text = f"⚠️ <b>Заявка #{sid} уже была обработана ранее.</b>\n\nПовторное начисление заблокировано."
+            processed = data.setdefault("processed_requests", {}).setdefault("submits", {}).get(str(sid))
+            if processed:
+                status = processed.get("status")
+                if status == "approved":
+                    already_text = f"✅ <b>Заявка #{sid} уже была одобрена.</b>\n\nПовторное начисление заблокировано."
+                elif status == "rejected":
+                    already_text = f"❌ <b>Заявка #{sid} уже была отклонена.</b>\n\nПовторное действие заблокировано."
+                else:
+                    already_text = f"⚠️ <b>Заявка #{sid} уже обработана.</b>\n\nПовторное действие заблокировано."
             else:
                 real_sid, submit = find_request_by_id(data.get("submits", {}), sid)
 
@@ -1211,7 +1235,7 @@ def check_request(call):
                     save_data(data)
 
         if already_text:
-            safe_edit_admin_message(call, already_text)
+            safe_close_old_buttons(call, "⚠️ Эта заявка уже закрыта")
             return
 
         if result_status == "approved":
@@ -1303,8 +1327,15 @@ def pay_check(call):
         with DATA_LOCK:
             data = load_data()
 
-            if request_already_processed(data, "withdraws", wid):
-                already_text = f"⚠️ <b>Заявка на вывод #{wid} уже была обработана ранее.</b>\n\nПовторная выплата заблокирована."
+            processed = data.setdefault("processed_requests", {}).setdefault("withdraws", {}).get(str(wid))
+            if processed:
+                status = processed.get("status")
+                if status == "paid":
+                    already_text = f"✅ <b>Заявка на вывод #{wid} уже была выплачена.</b>\n\nПовторная выплата заблокирована."
+                elif status == "rejected":
+                    already_text = f"❌ <b>Заявка на вывод #{wid} уже была отклонена.</b>\n\nПовторный возврат заблокирован."
+                else:
+                    already_text = f"⚠️ <b>Заявка на вывод #{wid} уже обработана.</b>\n\nПовторное действие заблокировано."
             else:
                 real_wid, w = find_request_by_id(data.get("withdraws", {}), wid)
 
@@ -1355,7 +1386,7 @@ def pay_check(call):
                     save_data(data)
 
         if already_text:
-            safe_edit_admin_message(call, already_text)
+            safe_close_old_buttons(call, "⚠️ Эта заявка уже закрыта")
             return
 
         if result_status == "paid":
@@ -2154,14 +2185,16 @@ def text_router(message):
                 window_seconds=10
             )
             if duplicate_wid:
-                user["withdraw_pending"] = True
+                # Это не новая заявка, а повтор того же сообщения/лага Telegram.
+                # Баланс НЕ списываем второй раз, просто показываем тот же номер.
                 user["withdraw_step"] = None
                 user["withdraw_to"] = None
                 save_data(data)
                 return bot.send_message(
                     message.chat.id,
-                    f"⚠️ Повторная заявка не создана.\n"
-                    f"Похоже, Telegram повторил то же действие. Номер заявки: <b>#{duplicate_wid}</b>"
+                    f"✅ Заявка уже создана.\n"
+                    f"Номер заявки: <b>#{duplicate_wid}</b>\n\n"
+                    "Повтор не создал новый вывод и не списал баланс второй раз."
                 )
 
             if amount > float(user.get("balance", 0)):
