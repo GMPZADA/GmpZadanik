@@ -1095,8 +1095,10 @@
         "42",
         "44"
       ],
-      "pending_tasks": [],
-      "waiting_task": "41",
+      "pending_tasks": [
+        "41"
+      ],
+      "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
@@ -1371,9 +1373,21 @@
       "admin_sent": true,
       "admin_sent_time": 1781849851,
       "admin_message_id": 6027
+    },
+    "214": {
+      "user_id": 7811863751,
+      "username": "grimReapersing",
+      "task_id": "41",
+      "reward": 2.0,
+      "status": "wait",
+      "photo_file_id": "AgACAgIAAxkBAAIX1Wo05IWl4TnCJOpb3b6mXTp0HWXCAAJBGmsbHfSoSZagC1cW8WiwAQADAgADeQADPAQ",
+      "time": 1781851269,
+      "admin_sent": true,
+      "admin_sent_time": 1781851269,
+      "admin_message_id": "sending"
     }
   },
-  "last_submit_id": 213,
+  "last_submit_id": 214,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "promocodes": {},
   "processed_requests": {
@@ -1620,6 +1634,10 @@
       "213": {
         "message_id": 6084,
         "time": 1781850936
+      },
+      "214": {
+        "message_id": "sending",
+        "time": 1781851269
       }
     },
     "withdraws": {
