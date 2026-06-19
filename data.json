@@ -1206,14 +1206,14 @@
       ],
       "pending_tasks": [],
       "waiting_task": null,
-      "withdraw_pending": true,
+      "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781859371,
       "completed_tasks": 2,
       "total_earned": 3.2,
-      "withdraw_count": 0,
-      "withdrawn_total": 0,
+      "withdraw_count": 1,
+      "withdrawn_total": 3.2,
       "fines_total": 0,
       "username": "chrevoygodied"
     },
@@ -1449,20 +1449,7 @@
     }
   },
   "last_task_id": 62,
-  "withdraws": {
-    "95": {
-      "user_id": 8341360449,
-      "username": "chrevoygodied",
-      "to": "@chrevoygodied",
-      "amount": 3.2,
-      "status": "wait",
-      "time": 1781864543,
-      "source_message_id": 6887,
-      "admin_sent": true,
-      "admin_sent_time": 1781864544,
-      "admin_message_id": 6889
-    }
-  },
+  "withdraws": {},
   "last_withdraw_id": 95,
   "submits": {},
   "last_submit_id": 229,
@@ -1877,6 +1864,13 @@
         "user_id": "7811863751",
         "note": "amount 2.0",
         "time": 1781862053
+      },
+      "95": {
+        "status": "paid",
+        "admin_id": 7837011810,
+        "user_id": "8341360449",
+        "note": "amount 3.2",
+        "time": 1781864568
       }
     }
   },
