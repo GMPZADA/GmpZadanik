@@ -362,6 +362,24 @@ def find_recent_duplicate_withdraw(data, user_id, withdraw_to, amount, window_se
     return None
 
 
+def find_duplicate_withdraw_by_message(data, user_id, source_message_id):
+    """
+    Дубль вывода считаем только если Telegram повторно прислал ТО ЖЕ самое сообщение
+    с той же суммой (одинаковый message_id). Это не мешает пользователю создавать
+    много новых выводов подряд, если баланс позволяет.
+    """
+    if source_message_id is None:
+        return None
+    for wid, withdraw in data.get("withdraws", {}).items():
+        if withdraw.get("status") != "wait":
+            continue
+        if str(withdraw.get("user_id")) != str(user_id):
+            continue
+        if str(withdraw.get("source_message_id", "")) == str(source_message_id):
+            return str(wid)
+    return None
+
+
 def admin_request_was_sent(data, kind, request_id):
     """
     Железная проверка: заявка уже отправлялась админу.
@@ -884,6 +902,8 @@ def tasks(message):
             continue
         if task_id in user["pending_tasks"]:
             continue
+        if str(user.get("waiting_task")) == str(task_id):
+            continue
 
         found = True
         kb.add(types.InlineKeyboardButton(
@@ -910,6 +930,8 @@ def open_task(call):
 
     if task_id in user["pending_tasks"]:
         return bot.answer_callback_query(call.id, "Задание уже на проверке.")
+    if str(user.get("waiting_task")) == str(task_id):
+        return bot.answer_callback_query(call.id, "Сначала отправь скрин по этому заданию.")
 
     task = data["tasks"].get(task_id)
     if not task or not task.get("active", True):
@@ -1170,6 +1192,7 @@ def check_request(call):
         user_id = None
         task_id = None
         reward = 0
+        credited_amount = 0
         new_balance = None
         result_status = None
         already_text = None
@@ -1215,6 +1238,9 @@ def check_request(call):
                             add_balance_to_user(data, user_id, reward, reason="task_approved", request_id=real_sid)
                             user["completed_tasks"] = int(user.get("completed_tasks", len(user.get("done_tasks", [])))) + 1
                             user["done_tasks"].append(task_id)
+                            credited_amount = reward
+                        else:
+                            credited_amount = 0
 
                         new_balance = float(user.get("balance", 0))
                         result_status = "approved"
@@ -1239,18 +1265,27 @@ def check_request(call):
             return
 
         if result_status == "approved":
-            safe_send(
-                user_id,
-                f"🎉 <b>Задание #{task_id} одобрено!</b>\n\n"
-                f"💰 Начислено: <b>{format_gmp(reward)} GMP</b>\n"
-                f"💎 Баланс: <b>{format_gmp(new_balance)} GMP</b>"
-            )
+            if credited_amount > 0:
+                user_text = (
+                    f"🎉 <b>Задание #{task_id} одобрено!</b>\n\n"
+                    f"💰 Начислено: <b>{format_gmp(credited_amount)} GMP</b>\n"
+                    f"💎 Баланс: <b>{format_gmp(new_balance)} GMP</b>"
+                )
+                admin_credit_text = f"💰 Начислено: {format_gmp(credited_amount)} GMP\n"
+            else:
+                user_text = (
+                    f"✅ <b>Задание #{task_id} уже было засчитано ранее.</b>\n\n"
+                    f"💎 Баланс: <b>{format_gmp(new_balance)} GMP</b>"
+                )
+                admin_credit_text = "⚠️ Повтор: GMP не начислялись второй раз\n"
+
+            safe_send(user_id, user_text)
 
             safe_edit_admin_message(
                 call,
-                f"✅ <b>Заявка #{sid} одобрена.</b>\n\n"
+                f"✅ <b>Заявка #{sid} закрыта.</b>\n\n"
                 f"✅ Задание: #{task_id}\n"
-                f"💰 Начислено: {format_gmp(reward)} GMP\n"
+                f"{admin_credit_text}"
                 f"🆔 ID: <code>{user_id}</code>"
             )
             return
@@ -2174,27 +2209,23 @@ def text_router(message):
             user = get_user(data, message.from_user.id)
             withdraw_to = user.get("withdraw_to") or "не указано"
 
-            # Разрешаем несколько активных выводов, если хватает баланса.
-            # Но если Telegram/интернет продублировал одно и то же сообщение с суммой,
-            # в течение 10 секунд повтор НЕ создаём и баланс второй раз НЕ списываем.
-            duplicate_wid = find_recent_duplicate_withdraw(
+            # Разрешаем много активных выводов, если хватает баланса.
+            # Дублем считаем ТОЛЬКО повтор того же самого сообщения Telegram
+            # (одинаковый message_id). Поэтому пользователь может сразу создать
+            # ещё один вывод на ту же сумму, если отправит новое сообщение.
+            duplicate_wid = find_duplicate_withdraw_by_message(
                 data,
                 message.from_user.id,
-                withdraw_to,
-                amount,
-                window_seconds=10
+                getattr(message, "message_id", None)
             )
             if duplicate_wid:
-                # Это не новая заявка, а повтор того же сообщения/лага Telegram.
-                # Баланс НЕ списываем второй раз, просто показываем тот же номер.
                 user["withdraw_step"] = None
                 user["withdraw_to"] = None
                 save_data(data)
                 return bot.send_message(
                     message.chat.id,
-                    f"✅ Заявка уже создана.\n"
-                    f"Номер заявки: <b>#{duplicate_wid}</b>\n\n"
-                    "Повтор не создал новый вывод и не списал баланс второй раз."
+                    f"✅ Заявка на вывод уже принята.\n"
+                    f"Номер заявки: <b>#{duplicate_wid}</b>"
                 )
 
             if amount > float(user.get("balance", 0)):
@@ -2217,7 +2248,8 @@ def text_router(message):
                 "to": withdraw_to,
                 "amount": amount,
                 "status": "wait",
-                "time": int(time.time())
+                "time": int(time.time()),
+                "source_message_id": getattr(message, "message_id", None)
             }
 
             # СНАЧАЛА ставим метку, что заявка уже отправляется админу.
