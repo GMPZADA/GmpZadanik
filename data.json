@@ -1229,16 +1229,16 @@
       "fines_total": 0
     },
     "7853702709": {
-      "balance": 0,
+      "balance": 0.2,
       "done_tasks": [],
       "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
-      "last_bonus": 0,
+      "last_bonus": 1781859281,
       "completed_tasks": 0,
-      "total_earned": 0,
+      "total_earned": 0.2,
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
@@ -1380,8 +1380,8 @@
       "photo_file_id": "AgACAgIAAxkBAAIZAWo1A74JSKdTc6FaES9Myrnweac4AAKzGGsbjoOoSTlnduM4XrIrAQADAgADeQADPAQ",
       "time": 1781859280,
       "admin_sent": true,
-      "admin_sent_time": 1781859280,
-      "admin_message_id": "sending"
+      "admin_sent_time": 1781859281,
+      "admin_message_id": 6410
     }
   },
   "last_submit_id": 219,
@@ -1765,8 +1765,8 @@
         "time": 1781859113
       },
       "219": {
-        "message_id": "sending",
-        "time": 1781859280
+        "message_id": 6410,
+        "time": 1781859281
       }
     },
     "withdraws": {
@@ -2094,6 +2094,15 @@
     {
       "time": 1781859100,
       "user_id": "8804288474",
+      "old": 0.0,
+      "amount": 0.2,
+      "new": 0.2,
+      "reason": "add",
+      "request_id": ""
+    },
+    {
+      "time": 1781859281,
+      "user_id": "7853702709",
       "old": 0.0,
       "amount": 0.2,
       "new": 0.2,
