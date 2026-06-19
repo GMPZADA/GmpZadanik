@@ -117,6 +117,8 @@ def fix_data(data):
         user.setdefault("withdraw_count", 0)
         user.setdefault("withdrawn_total", 0)
         user.setdefault("fines_total", 0)
+        user.setdefault("banned", False)
+        user.setdefault("ban_reason", "")
 
     for task_id, task in data.get("tasks", {}).items():
         task.setdefault("active", True)
@@ -519,7 +521,9 @@ def get_user(data, user_id):
             "total_earned": 0,
             "withdraw_count": 0,
             "withdrawn_total": 0,
-            "fines_total": 0
+            "fines_total": 0,
+            "banned": False,
+            "ban_reason": ""
         }
 
     user = data["users"][uid]
@@ -2138,6 +2142,57 @@ def admin_broadcast(message):
     )
 
 
+@bot.message_handler(commands=["ban"])
+def ban_user(message):
+    if message.from_user.id != ADMIN_ID:
+        return bot.send_message(message.chat.id, "❌ Нет доступа.")
+
+    parts = message.text.split(maxsplit=2)
+    if len(parts) < 3:
+        return bot.send_message(message.chat.id,
+            "❌ Формат:\n<code>/ban user_id причина</code>")
+
+    user_id = parts[1].strip()
+    reason = parts[2].strip()
+
+    with DATA_LOCK:
+        data = load_data()
+        user = get_user(data, user_id)
+        user["banned"] = True
+        user["ban_reason"] = reason
+        save_data(data)
+
+    bot.send_message(message.chat.id, f"✅ Пользователь {user_id} заблокирован.")
+
+    safe_send(user_id,
+        f"⛔ <b>Ваш аккаунт заблокирован</b>\n\n"
+        f"📌 Причина: {reason}\n\n"
+        f"Для уточнения обратитесь к администрации.")
+
+@bot.message_handler(commands=["unban"])
+def unban_user(message):
+    if message.from_user.id != ADMIN_ID:
+        return bot.send_message(message.chat.id, "❌ Нет доступа.")
+
+    parts = message.text.split(maxsplit=1)
+    if len(parts) < 2:
+        return bot.send_message(message.chat.id,
+            "❌ Формат:\n<code>/unban user_id</code>")
+
+    user_id = parts[1].strip()
+
+    with DATA_LOCK:
+        data = load_data()
+        user = get_user(data, user_id)
+        user["banned"] = False
+        user["ban_reason"] = ""
+        save_data(data)
+
+    bot.send_message(message.chat.id, f"✅ Пользователь {user_id} разблокирован.")
+
+    safe_send(user_id,
+        "✅ <b>Ваш аккаунт разблокирован</b>\n\nТеперь вы снова можете пользоваться ботом.")
+
 @bot.message_handler(func=lambda m: True)
 def text_router(message):
     data = load_data()
@@ -2287,58 +2342,6 @@ def text_router(message):
     bot.send_message(message.chat.id, "👇 Выбери кнопку в меню.", reply_markup=main_menu())
 
 
-
-
-@bot.message_handler(commands=["ban"])
-def ban_user(message):
-    if message.from_user.id != ADMIN_ID:
-        return bot.send_message(message.chat.id, "❌ Нет доступа.")
-
-    parts = message.text.split(maxsplit=2)
-    if len(parts) < 3:
-        return bot.send_message(message.chat.id,
-            "❌ Формат:\n<code>/ban user_id причина</code>")
-
-    user_id = parts[1].strip()
-    reason = parts[2].strip()
-
-    with DATA_LOCK:
-        data = load_data()
-        user = get_user(data, user_id)
-        user["banned"] = True
-        user["ban_reason"] = reason
-        save_data(data)
-
-    bot.send_message(message.chat.id, f"✅ Пользователь {user_id} заблокирован.")
-
-    safe_send(user_id,
-        f"⛔ <b>Ваш аккаунт заблокирован</b>\n\n"
-        f"📌 Причина: {reason}\n\n"
-        f"Для уточнения обратитесь к администрации.")
-
-@bot.message_handler(commands=["unban"])
-def unban_user(message):
-    if message.from_user.id != ADMIN_ID:
-        return bot.send_message(message.chat.id, "❌ Нет доступа.")
-
-    parts = message.text.split(maxsplit=1)
-    if len(parts) < 2:
-        return bot.send_message(message.chat.id,
-            "❌ Формат:\n<code>/unban user_id</code>")
-
-    user_id = parts[1].strip()
-
-    with DATA_LOCK:
-        data = load_data()
-        user = get_user(data, user_id)
-        user["banned"] = False
-        user["ban_reason"] = ""
-        save_data(data)
-
-    bot.send_message(message.chat.id, f"✅ Пользователь {user_id} разблокирован.")
-
-    safe_send(user_id,
-        "✅ <b>Ваш аккаунт разблокирован</b>\n\nТеперь вы снова можете пользоваться ботом.")
 
 
 if __name__ == "__main__":
