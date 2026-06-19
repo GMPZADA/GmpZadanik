@@ -682,14 +682,14 @@
       ],
       "pending_tasks": [],
       "waiting_task": null,
-      "withdraw_pending": false,
+      "withdraw_pending": true,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781817623,
       "completed_tasks": 2,
       "total_earned": 4.4,
-      "withdraw_count": 1,
-      "withdrawn_total": 4.4,
+      "withdraw_count": 0,
+      "withdrawn_total": 0,
       "fines_total": 0,
       "username": "Als1win"
     },
@@ -1380,7 +1380,20 @@
     }
   },
   "last_task_id": 62,
-  "withdraws": {},
+  "withdraws": {
+    "92": {
+      "user_id": 8322172966,
+      "username": "Als1win",
+      "to": "все",
+      "amount": 4.4,
+      "status": "wait",
+      "time": 1781861040,
+      "source_message_id": 6613,
+      "admin_sent": true,
+      "admin_sent_time": 1781861041,
+      "admin_message_id": 6615
+    }
+  },
   "last_withdraw_id": 92,
   "submits": {},
   "last_submit_id": 222,
@@ -1725,13 +1738,6 @@
         "user_id": "1631337389",
         "note": "amount 2.2",
         "time": 1781859106
-      },
-      "92": {
-        "status": "paid",
-        "admin_id": 7837011810,
-        "user_id": "8322172966",
-        "note": "amount 4.4",
-        "time": 1781861081
       }
     }
   },
