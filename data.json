@@ -1300,7 +1300,7 @@
       "username": "BLAG542"
     },
     "7463485005": {
-      "balance": 4.2,
+      "balance": 0.0,
       "done_tasks": [
         "42"
       ],
@@ -1308,9 +1308,9 @@
         "50"
       ],
       "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": "amount",
-      "withdraw_to": "@nurr_b077",
+      "withdraw_pending": true,
+      "withdraw_step": null,
+      "withdraw_to": null,
       "last_bonus": 1781864103,
       "completed_tasks": 1,
       "total_earned": 4.2,
@@ -1453,8 +1453,21 @@
     }
   },
   "last_task_id": 62,
-  "withdraws": {},
-  "last_withdraw_id": 94,
+  "withdraws": {
+    "95": {
+      "user_id": 7463485005,
+      "username": "nurr_b077",
+      "to": "@nurr_b077",
+      "amount": 4.2,
+      "status": "wait",
+      "time": 1781864310,
+      "source_message_id": 6834,
+      "admin_sent": true,
+      "admin_sent_time": 1781864310,
+      "admin_message_id": "sending"
+    }
+  },
+  "last_withdraw_id": 95,
   "submits": {
     "224": {
       "user_id": 8478884644,
@@ -2040,6 +2053,10 @@
       "94": {
         "message_id": 6677,
         "time": 1781861991
+      },
+      "95": {
+        "message_id": "sending",
+        "time": 1781864310
       }
     }
   },
@@ -2457,6 +2474,15 @@
       "new": 0.2,
       "reason": "add",
       "request_id": ""
+    },
+    {
+      "time": 1781864310,
+      "user_id": "7463485005",
+      "old": 4.2,
+      "amount": -4.2,
+      "new": 0.0,
+      "reason": "withdraw_created",
+      "request_id": "95"
     }
   ]
 }
