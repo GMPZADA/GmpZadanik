@@ -166,7 +166,7 @@
       ],
       "waiting_task": null,
       "withdraw_pending": true,
-      "withdraw_step": null,
+      "withdraw_step": "username",
       "withdraw_to": null,
       "last_bonus": 1781672960,
       "completed_tasks": 8,
