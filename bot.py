@@ -265,6 +265,24 @@ def load_data_from_github_only():
         return None
 
 
+
+
+def load_data_for_admin_action():
+    """
+    Для админ-кнопок читаем самую свежую базу.
+    Если на Render локальный data.json старый, берём GitHub.
+    """
+    data = load_data_from_github_only()
+    if data is not None:
+        try:
+            with open(LOCAL_DATA_FILE, "w", encoding="utf-8") as f:
+                json.dump(data, f, ensure_ascii=False, indent=2)
+        except Exception as e:
+            print("fresh cache save error:", e)
+        return data
+    return load_data()
+
+
 def find_request_by_id(requests_dict, request_id):
     """
     Безопасно ищет заявку по ID.
@@ -1201,7 +1219,7 @@ def check_request(call):
         # Если ты нажмёшь кнопку 2/10/50 раз, второй callback дождётся lock
         # и увидит, что заявка уже обработана.
         with DATA_LOCK:
-            data = load_data()
+            data = load_data_for_admin_action()
 
             processed = data.setdefault("processed_requests", {}).setdefault("submits", {}).get(str(sid))
             if processed:
@@ -1261,7 +1279,9 @@ def check_request(call):
                     save_data(data)
 
         if already_text:
-            safe_close_old_buttons(call, "⚠️ Эта заявка уже закрыта")
+            # Не убираем кнопки, если бот не смог найти заявку из-за старого локального файла/лага.
+            # Иначе получается: кнопки пропали, а заявка не обработалась.
+            safe_answer_callback(call, "⚠️ Не получилось обработать. Нажми /requests и попробуй новую кнопку.", show_alert=True)
             return
 
         if result_status == "approved":
@@ -1360,7 +1380,7 @@ def pay_check(call):
 
         # ЖЕЛЕЗНАЯ ЗОНА: повторное нажатие кнопки не сможет провести выплату/возврат дважды.
         with DATA_LOCK:
-            data = load_data()
+            data = load_data_for_admin_action()
 
             processed = data.setdefault("processed_requests", {}).setdefault("withdraws", {}).get(str(wid))
             if processed:
@@ -1421,7 +1441,8 @@ def pay_check(call):
                     save_data(data)
 
         if already_text:
-            safe_close_old_buttons(call, "⚠️ Эта заявка уже закрыта")
+            # Не убираем кнопки, если бот не смог найти выплату из-за старого локального файла/лага.
+            safe_answer_callback(call, "⚠️ Не получилось обработать. Нажми /requests и попробуй новую кнопку.", show_alert=True)
             return
 
         if result_status == "paid":
@@ -2042,77 +2063,48 @@ def requests_msg(message):
     if message.from_user.id != ADMIN_ID:
         return
 
-    # ВАЖНО: сначала внутри lock помечаем заявки как отправленные,
-    # и только потом реально шлём сообщения. Так /requests не создаст дубли.
+    # /requests теперь работает как архив активных заявок:
+    # даже если ты удалил сообщение админа, команда снова отправит все активные заявки с кнопками.
     with DATA_LOCK:
-        data = load_data()
-        submits = data.get("submits", {})
-        withdraws = data.get("withdraws", {})
-
-        wait_submits = {str(sid): s for sid, s in submits.items() if s.get("status") == "wait"}
-        wait_withdraws = {str(wid): w for wid, w in withdraws.items() if w.get("status") == "wait"}
-
-        to_send_submits = []
-        to_send_withdraws = []
-        already = []
-
-        for sid, submit in list(wait_submits.items()):
-            if admin_request_was_sent(data, "submits", sid):
-                already.append(f"📸 #{sid}")
-                continue
-            mark_admin_request_sent(data, "submits", sid, "sending")
-            to_send_submits.append((sid, dict(submit)))
-
-        for wid, w in list(wait_withdraws.items()):
-            if admin_request_was_sent(data, "withdraws", wid):
-                already.append(f"💸 #{wid}")
-                continue
-            mark_admin_request_sent(data, "withdraws", wid, "sending")
-            to_send_withdraws.append((wid, dict(w)))
-
+        data = load_data_for_admin_action()
+        wait_submits = {str(sid): dict(s) for sid, s in data.get("submits", {}).items() if s.get("status") == "wait"}
+        wait_withdraws = {str(wid): dict(w) for wid, w in data.get("withdraws", {}).items() if w.get("status") == "wait"}
         save_data(data)
 
-    sent_now = 0
+    sent_submit = 0
+    sent_withdraw = 0
 
-    for sid, submit in to_send_submits:
+    for sid, submit in wait_submits.items():
         try:
             msg = send_submit_request(message.chat.id, sid, submit)
-            sent_now += 1
+            sent_submit += 1
             with DATA_LOCK:
-                data = load_data()
+                data = load_data_for_admin_action()
                 mark_admin_request_sent(data, "submits", sid, getattr(msg, "message_id", None))
                 save_data(data)
         except Exception as e:
             print("/requests send submit error:", e)
 
-    for wid, w in to_send_withdraws:
+    for wid, w in wait_withdraws.items():
         try:
             msg = send_withdraw_request(message.chat.id, wid, w)
-            sent_now += 1
+            sent_withdraw += 1
             with DATA_LOCK:
-                data = load_data()
+                data = load_data_for_admin_action()
                 mark_admin_request_sent(data, "withdraws", wid, getattr(msg, "message_id", None))
                 save_data(data)
         except Exception as e:
             print("/requests send withdraw error:", e)
 
-    active_submit_count = len(to_send_submits) + sum(1 for x in already if x.startswith('📸'))
-    active_withdraw_count = len(to_send_withdraws) + sum(1 for x in already if x.startswith('💸'))
-
-    text = (
-        f"📨 <b>Активные заявки:</b>\n\n"
-        f"📸 Задания: {active_submit_count}\n"
-        f"💸 Выводы: {active_withdraw_count}\n\n"
-    )
-
-    if sent_now:
-        text += f"✅ Отправил новых заявок с кнопками: <b>{sent_now}</b>\n"
-    if already:
-        text += "\n⚠️ Уже были отправлены админу раньше, повторно не дублирую:\n" + ", ".join(already[:30])
-        if len(already) > 30:
-            text += f" и ещё {len(already) - 30}"
-    if not sent_now and not already:
-        text += "✅ Активных заявок нет."
+    if sent_submit or sent_withdraw:
+        text = (
+            "📨 <b>Активные заявки:</b>\n\n"
+            f"📸 Задания: <b>{len(wait_submits)}</b>\n"
+            f"💸 Выводы: <b>{len(wait_withdraws)}</b>\n\n"
+            f"✅ Снова отправил с кнопками: <b>{sent_submit + sent_withdraw}</b>"
+        )
+    else:
+        text = "✅ Активных заявок нет."
 
     bot.send_message(message.chat.id, text)
 
