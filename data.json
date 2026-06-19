@@ -861,25 +861,24 @@
       "ban_reason": ""
     },
     "7106223662": {
-      "balance": 0.2,
+      "balance": 3.2,
       "done_tasks": [
         "42",
         "60",
         "57",
         "55",
         "59",
-        "51"
-      ],
-      "pending_tasks": [
+        "51",
         "50"
       ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781895136,
-      "completed_tasks": 6,
-      "total_earned": 17.6,
+      "completed_tasks": 7,
+      "total_earned": 20.6,
       "withdraw_count": 4,
       "withdrawn_total": 17.4,
       "fines_total": 0,
@@ -1609,20 +1608,7 @@
   "last_task_id": 62,
   "withdraws": {},
   "last_withdraw_id": 100,
-  "submits": {
-    "238": {
-      "user_id": 7106223662,
-      "username": "EbyV0",
-      "task_id": "50",
-      "reward": 3.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIcmWo1j-uWmUHSV-2Oc_jMV8rzoMR2AALKF2sb6eqxSV_IytJkOmXwAQADAgADeQADPAQ",
-      "time": 1781895147,
-      "admin_sent": true,
-      "admin_sent_time": 1781895148,
-      "admin_message_id": 7323
-    }
-  },
+  "submits": {},
   "last_submit_id": 239,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "promocodes": {},
@@ -1977,6 +1963,13 @@
         "user_id": "6276600731",
         "note": "task #43",
         "time": 1781895171
+      },
+      "238": {
+        "status": "approved",
+        "admin_id": 7837011810,
+        "user_id": "7106223662",
+        "note": "task #50",
+        "time": 1781895192
       }
     },
     "withdraws": {
@@ -2970,6 +2963,15 @@
       "new": 2.0,
       "reason": "task_approved",
       "request_id": "239"
+    },
+    {
+      "time": 1781895192,
+      "user_id": "7106223662",
+      "old": 0.2,
+      "amount": 3.0,
+      "new": 3.2,
+      "reason": "task_approved",
+      "request_id": "238"
     }
   ]
 }
