@@ -1179,20 +1179,19 @@
       "username": ""
     },
     "8804288474": {
-      "balance": 2.2,
+      "balance": 4.2,
       "done_tasks": [
-        "61"
-      ],
-      "pending_tasks": [
+        "61",
         "57"
       ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781859100,
-      "completed_tasks": 1,
-      "total_earned": 2.2,
+      "completed_tasks": 2,
+      "total_earned": 4.2,
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
@@ -1402,18 +1401,6 @@
       "admin_sent": true,
       "admin_sent_time": 1781859281,
       "admin_message_id": 6410
-    },
-    "221": {
-      "user_id": 8804288474,
-      "username": "Gangsters_95",
-      "task_id": "57",
-      "reward": 2.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIZWmo1BQ-cRE2NrpCE2jXmB9s5drr7AALdFmsb_YuoSdwPYPWwujVeAQADAgADeQADPAQ",
-      "time": 1781859599,
-      "admin_sent": true,
-      "admin_sent_time": 1781859600,
-      "admin_message_id": 6492
     }
   },
   "last_submit_id": 221,
@@ -1630,6 +1617,13 @@
         "user_id": "8804288474",
         "note": "task #61",
         "time": 1781859524
+      },
+      "221": {
+        "status": "approved",
+        "admin_id": 7837011810,
+        "user_id": "8804288474",
+        "note": "task #57",
+        "time": 1781859622
       }
     },
     "withdraws": {
@@ -2182,6 +2176,15 @@
       "new": 2.2,
       "reason": "task_approved",
       "request_id": "220"
+    },
+    {
+      "time": 1781859622,
+      "user_id": "8804288474",
+      "old": 2.2,
+      "amount": 2.0,
+      "new": 4.2,
+      "reason": "task_approved",
+      "request_id": "221"
     }
   ]
 }
