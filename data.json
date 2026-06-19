@@ -1198,9 +1198,10 @@
       "balance": 0,
       "done_tasks": [],
       "pending_tasks": [
-        "42"
+        "42",
+        "41"
       ],
-      "waiting_task": "41",
+      "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
@@ -1369,9 +1370,21 @@
       "admin_sent": true,
       "admin_sent_time": 1781859113,
       "admin_message_id": 6359
+    },
+    "219": {
+      "user_id": 8341360449,
+      "username": "chrevoygodied",
+      "task_id": "41",
+      "reward": 2.0,
+      "status": "wait",
+      "photo_file_id": "AgACAgIAAxkBAAIZAWo1A74JSKdTc6FaES9Myrnweac4AAKzGGsbjoOoSTlnduM4XrIrAQADAgADeQADPAQ",
+      "time": 1781859280,
+      "admin_sent": true,
+      "admin_sent_time": 1781859280,
+      "admin_message_id": "sending"
     }
   },
-  "last_submit_id": 218,
+  "last_submit_id": 219,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "promocodes": {},
   "processed_requests": {
@@ -1750,6 +1763,10 @@
       "218": {
         "message_id": 6359,
         "time": 1781859113
+      },
+      "219": {
+        "message_id": "sending",
+        "time": 1781859280
       }
     },
     "withdraws": {
