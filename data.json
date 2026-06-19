@@ -1362,8 +1362,8 @@
       "photo_file_id": "AgACAgIAAxkBAAIXOmo01v2-Ftd_ysW20tg0-PATwuD6AALFFWsbOXypSak9OIyz23jWAQADAgADeQADPAQ",
       "time": 1781847806,
       "admin_sent": true,
-      "admin_sent_time": 1781847807,
-      "admin_message_id": 5948
+      "admin_sent_time": 1781851765,
+      "admin_message_id": 6140
     },
     "210": {
       "user_id": 1631337389,
@@ -1609,8 +1609,8 @@
         "time": 1781847354
       },
       "206": {
-        "message_id": 5948,
-        "time": 1781847807
+        "message_id": 6140,
+        "time": 1781851765
       },
       "207": {
         "message_id": 5958,
