@@ -253,7 +253,7 @@
       "username": "xux_xuxx"
     },
     "1631337389": {
-      "balance": 4.2,
+      "balance": 2.2,
       "done_tasks": [
         "41",
         "52",
@@ -267,9 +267,9 @@
       "withdraw_to": null,
       "last_bonus": 1781849754,
       "completed_tasks": 4,
-      "total_earned": 7.6,
-      "withdraw_count": 1,
-      "withdrawn_total": 1.4,
+      "total_earned": 5.6,
+      "withdraw_count": 2,
+      "withdrawn_total": 3.4,
       "fines_total": 0,
       "username": "sugaringnn"
     },
@@ -1085,7 +1085,7 @@
       "username": "neevspominay"
     },
     "7811863751": {
-      "balance": 12.0,
+      "balance": 0.0,
       "done_tasks": [
         "51",
         "49",
@@ -1102,8 +1102,8 @@
       "last_bonus": 1781816350,
       "completed_tasks": 6,
       "total_earned": 18.2,
-      "withdraw_count": 1,
-      "withdrawn_total": 6.2,
+      "withdraw_count": 2,
+      "withdrawn_total": 18.2,
       "fines_total": 0,
       "username": "grimReapersing"
     },
@@ -1281,7 +1281,7 @@
   },
   "last_task_id": 60,
   "withdraws": {},
-  "last_withdraw_id": 87,
+  "last_withdraw_id": 88,
   "submits": {},
   "last_submit_id": 215,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
@@ -1528,26 +1528,33 @@
         "note": "amount 4.0",
         "time": 1781851800
       },
-      "86": {
-        "status": "rejected",
+      "81": {
+        "status": "paid",
         "admin_id": 7837011810,
-        "user_id": "1631337389",
-        "note": "amount 2.0",
-        "time": 1781851878
+        "user_id": "8431020779",
+        "note": "amount 1.0",
+        "time": 1781851803
       },
       "82": {
         "status": "paid",
         "admin_id": 7837011810,
         "user_id": "8431020779",
         "note": "amount 1.0",
-        "time": 1781851881
+        "time": 1781851804
       },
-      "81": {
+      "86": {
         "status": "paid",
         "admin_id": 7837011810,
-        "user_id": "8431020779",
-        "note": "amount 1.0",
-        "time": 1781851883
+        "user_id": "1631337389",
+        "note": "amount 2.0",
+        "time": 1781851811
+      },
+      "88": {
+        "status": "paid",
+        "admin_id": 7837011810,
+        "user_id": "7811863751",
+        "note": "amount 12.0",
+        "time": 1781851843
       }
     }
   },
@@ -1616,12 +1623,12 @@
         "time": 1781851767
       },
       "81": {
-        "message_id": 6171,
-        "time": 1781851867
+        "message_id": 6145,
+        "time": 1781851768
       },
       "82": {
-        "message_id": 6172,
-        "time": 1781851867
+        "message_id": 6146,
+        "time": 1781851769
       },
       "83": {
         "message_id": 5984,
@@ -1636,12 +1643,16 @@
         "time": 1781848946
       },
       "86": {
-        "message_id": 6173,
-        "time": 1781851868
+        "message_id": 6147,
+        "time": 1781851770
       },
       "87": {
         "message_id": 6062,
         "time": 1781850253
+      },
+      "88": {
+        "message_id": 6166,
+        "time": 1781851814
       }
     }
   },
@@ -1845,13 +1856,13 @@
       "request_id": "80"
     },
     {
-      "time": 1781851878,
-      "user_id": "1631337389",
-      "old": 2.2,
-      "amount": 2.0,
-      "new": 4.2,
-      "reason": "withdraw_rejected_return",
-      "request_id": "86"
+      "time": 1781851813,
+      "user_id": "7811863751",
+      "old": 12.0,
+      "amount": -12.0,
+      "new": 0.0,
+      "reason": "withdraw_created",
+      "request_id": "88"
     }
   ]
 }
