@@ -853,7 +853,7 @@
       "ban_reason": ""
     },
     "7106223662": {
-      "balance": 2.0,
+      "balance": 0.0,
       "done_tasks": [
         "42",
         "60",
@@ -863,9 +863,9 @@
       ],
       "pending_tasks": [],
       "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": "amount",
-      "withdraw_to": "@EbyV0",
+      "withdraw_pending": true,
+      "withdraw_step": null,
+      "withdraw_to": null,
       "last_bonus": 1781787078,
       "completed_tasks": 5,
       "total_earned": 14.4,
@@ -1595,8 +1595,21 @@
     }
   },
   "last_task_id": 62,
-  "withdraws": {},
-  "last_withdraw_id": 95,
+  "withdraws": {
+    "96": {
+      "user_id": 7106223662,
+      "username": "EbyV0",
+      "to": "@EbyV0",
+      "amount": 2.0,
+      "status": "wait",
+      "time": 1781892511,
+      "source_message_id": 7133,
+      "admin_sent": true,
+      "admin_sent_time": 1781892511,
+      "admin_message_id": "sending"
+    }
+  },
+  "last_withdraw_id": 96,
   "submits": {},
   "last_submit_id": 229,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
@@ -2203,6 +2216,10 @@
       "95": {
         "message_id": 6889,
         "time": 1781864544
+      },
+      "96": {
+        "message_id": "sending",
+        "time": 1781892511
       }
     }
   },
@@ -2647,6 +2664,15 @@
       "new": 0.0,
       "reason": "withdraw_created",
       "request_id": "95"
+    },
+    {
+      "time": 1781892511,
+      "user_id": "7106223662",
+      "old": 2.0,
+      "amount": -2.0,
+      "new": 0.0,
+      "reason": "withdraw_created",
+      "request_id": "96"
     }
   ]
 }
