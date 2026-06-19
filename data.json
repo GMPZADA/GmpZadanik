@@ -171,8 +171,8 @@
       "last_bonus": 1781672960,
       "completed_tasks": 8,
       "total_earned": 16.4,
-      "withdraw_count": 3,
-      "withdrawn_total": 4.4,
+      "withdraw_count": 4,
+      "withdrawn_total": 5.4,
       "fines_total": 0,
       "username": "sksksskskmsdm"
     },
@@ -1306,17 +1306,6 @@
       "admin_sent": true,
       "admin_sent_time": 1781847372,
       "admin_message_id": 5933
-    },
-    "83": {
-      "user_id": 8431020779,
-      "username": "sksksskskmsdm",
-      "to": "@username",
-      "amount": 1.0,
-      "status": "wait",
-      "time": 1781848160,
-      "admin_sent": true,
-      "admin_sent_time": 1781848161,
-      "admin_message_id": 5984
     }
   },
   "last_withdraw_id": 83,
@@ -1501,6 +1490,13 @@
         "user_id": "7970947663",
         "note": "amount 1.2",
         "time": 1781819282
+      },
+      "83": {
+        "status": "paid",
+        "admin_id": 7837011810,
+        "user_id": "8431020779",
+        "note": "amount 1.0",
+        "time": 1781848190
       }
     }
   },
