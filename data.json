@@ -1203,9 +1203,7 @@
       "done_tasks": [
         "53"
       ],
-      "pending_tasks": [
-        "41"
-      ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
@@ -1380,18 +1378,6 @@
   "withdraws": {},
   "last_withdraw_id": 91,
   "submits": {
-    "219": {
-      "user_id": 8341360449,
-      "username": "chrevoygodied",
-      "task_id": "41",
-      "reward": 2.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIZAWo1A74JSKdTc6FaES9Myrnweac4AAKzGGsbjoOoSTlnduM4XrIrAQADAgADeQADPAQ",
-      "time": 1781859280,
-      "admin_sent": true,
-      "admin_sent_time": 1781859784,
-      "admin_message_id": 6508
-    },
     "221": {
       "user_id": 8804288474,
       "username": "Gangsters_95",
@@ -1633,6 +1619,13 @@
         "user_id": "8341360449",
         "note": "task #42",
         "time": 1781859800
+      },
+      "219": {
+        "status": "rejected",
+        "admin_id": 7837011810,
+        "user_id": "8341360449",
+        "note": "task #41",
+        "time": 1781859813
       }
     },
     "withdraws": {
