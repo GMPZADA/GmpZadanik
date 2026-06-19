@@ -1088,24 +1088,23 @@
       "username": "neevspominay"
     },
     "7811863751": {
-      "balance": 10.0,
+      "balance": 12.0,
       "done_tasks": [
         "51",
         "49",
         "42",
         "44",
-        "41"
-      ],
-      "pending_tasks": [
+        "41",
         "43"
       ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781816350,
-      "completed_tasks": 5,
-      "total_earned": 16.2,
+      "completed_tasks": 6,
+      "total_earned": 18.2,
       "withdraw_count": 1,
       "withdrawn_total": 6.2,
       "fines_total": 0,
@@ -1374,18 +1373,6 @@
       "admin_sent": true,
       "admin_sent_time": 1781849851,
       "admin_message_id": 6027
-    },
-    "215": {
-      "user_id": 7811863751,
-      "username": "grimReapersing",
-      "task_id": "43",
-      "reward": 2.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIX8Wo05lk4E7z0bkdZfMZts9pmPi8AA0caaxsd9KhJ0-TPDyX8nTUBAAMCAAN5AAM8BA",
-      "time": 1781851738,
-      "admin_sent": true,
-      "admin_sent_time": 1781851739,
-      "admin_message_id": 6131
     }
   },
   "last_submit_id": 215,
@@ -1546,6 +1533,13 @@
         "user_id": "7811863751",
         "note": "task #41",
         "time": 1781851285
+      },
+      "215": {
+        "status": "approved",
+        "admin_id": 7837011810,
+        "user_id": "7811863751",
+        "note": "task #43",
+        "time": 1781851753
       }
     },
     "withdraws": {
@@ -1831,6 +1825,15 @@
       "new": 10.0,
       "reason": "task_approved",
       "request_id": "214"
+    },
+    {
+      "time": 1781851753,
+      "user_id": "7811863751",
+      "old": 10.0,
+      "amount": 2.0,
+      "new": 12.0,
+      "reason": "task_approved",
+      "request_id": "215"
     }
   ]
 }
