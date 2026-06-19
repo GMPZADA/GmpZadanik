@@ -1370,9 +1370,15 @@
       "link": "https://t.me/MilingCows_bot?start=18877370",
       "reward": 2.0,
       "active": true
+    },
+    "62": {
+      "text": "Запустить бота, выполнить 3 задания и отправить скриншот выполнения",
+      "link": "https://t.me/EarnStarsFarmbot?start=7837011810",
+      "reward": 2.0,
+      "active": true
     }
   },
-  "last_task_id": 61,
+  "last_task_id": 62,
   "withdraws": {},
   "last_withdraw_id": 91,
   "submits": {},
