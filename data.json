@@ -648,24 +648,23 @@
       "username": "Lemon4ikkkkkkkkkkkkkkkk"
     },
     "6276600731": {
-      "balance": 0.0,
+      "balance": 2.0,
       "done_tasks": [
         "38",
         "41",
         "42",
         "48",
-        "51"
-      ],
-      "pending_tasks": [
+        "51",
         "43"
       ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781894478,
-      "completed_tasks": 5,
-      "total_earned": 6.4,
+      "completed_tasks": 6,
+      "total_earned": 8.4,
       "withdraw_count": 1,
       "withdrawn_total": 6.4,
       "fines_total": 0,
@@ -1622,18 +1621,6 @@
       "admin_sent": true,
       "admin_sent_time": 1781895148,
       "admin_message_id": 7323
-    },
-    "239": {
-      "user_id": 6276600731,
-      "username": "BOG_PIGR",
-      "task_id": "43",
-      "reward": 2.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgUAAxkBAAIcnWo1j_kUKrpl_4B9GZbeK1zIBrqmAAJ3DmsbWf2wVUI8V6j8ODlsAQADAgADdwADPAQ",
-      "time": 1781895161,
-      "admin_sent": true,
-      "admin_sent_time": 1781895162,
-      "admin_message_id": 7327
     }
   },
   "last_submit_id": 239,
@@ -1983,6 +1970,13 @@
         "user_id": "7106223662",
         "note": "task #50",
         "time": 1781895100
+      },
+      "239": {
+        "status": "approved",
+        "admin_id": 7837011810,
+        "user_id": "6276600731",
+        "note": "task #43",
+        "time": 1781895171
       }
     },
     "withdraws": {
@@ -2967,6 +2961,15 @@
       "new": 0.2,
       "reason": "add",
       "request_id": ""
+    },
+    {
+      "time": 1781895171,
+      "user_id": "6276600731",
+      "old": 0.0,
+      "amount": 2.0,
+      "new": 2.0,
+      "reason": "task_approved",
+      "request_id": "239"
     }
   ]
 }
