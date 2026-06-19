@@ -1280,16 +1280,16 @@
       "username": "debashev"
     },
     "5379263036": {
-      "balance": 0,
+      "balance": 0.2,
       "done_tasks": [],
       "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
-      "last_bonus": 0,
+      "last_bonus": 1781863877,
       "completed_tasks": 0,
-      "total_earned": 0,
+      "total_earned": 0.2,
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
@@ -2319,6 +2319,15 @@
       "old": 0.0,
       "amount": 0.5,
       "new": 0.5,
+      "reason": "add",
+      "request_id": ""
+    },
+    {
+      "time": 1781863877,
+      "user_id": "5379263036",
+      "old": 0.0,
+      "amount": 0.2,
+      "new": 0.2,
       "reason": "add",
       "request_id": ""
     }
