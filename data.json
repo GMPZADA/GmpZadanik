@@ -871,7 +871,7 @@
       "ban_reason": ""
     },
     "7106223662": {
-      "balance": 3.2,
+      "balance": 0.2,
       "done_tasks": [
         "42",
         "60",
@@ -883,9 +883,9 @@
       ],
       "pending_tasks": [],
       "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": "amount",
-      "withdraw_to": "@EbyV0",
+      "withdraw_pending": true,
+      "withdraw_step": null,
+      "withdraw_to": null,
       "last_bonus": 1781895136,
       "completed_tasks": 7,
       "total_earned": 20.6,
@@ -1634,8 +1634,21 @@
     }
   },
   "last_task_id": 62,
-  "withdraws": {},
-  "last_withdraw_id": 104,
+  "withdraws": {
+    "105": {
+      "user_id": 7106223662,
+      "username": "EbyV0",
+      "to": "@EbyV0",
+      "amount": 3.0,
+      "status": "wait",
+      "time": 1781900408,
+      "source_message_id": 7625,
+      "admin_sent": true,
+      "admin_sent_time": 1781900408,
+      "admin_message_id": "sending"
+    }
+  },
+  "last_withdraw_id": 105,
   "submits": {
     "250": {
       "user_id": 8258106768,
@@ -2574,6 +2587,10 @@
       "104": {
         "message_id": 7558,
         "time": 1781898275
+      },
+      "105": {
+        "message_id": "sending",
+        "time": 1781900408
       }
     }
   },
@@ -3297,6 +3314,15 @@
       "new": 0.2,
       "reason": "add",
       "request_id": ""
+    },
+    {
+      "time": 1781900408,
+      "user_id": "7106223662",
+      "old": 3.2,
+      "amount": -3.0,
+      "new": 0.2,
+      "reason": "withdraw_created",
+      "request_id": "105"
     }
   ]
 }
