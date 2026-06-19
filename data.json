@@ -663,14 +663,14 @@
       ],
       "pending_tasks": [],
       "waiting_task": null,
-      "withdraw_pending": true,
+      "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781894478,
       "completed_tasks": 10,
       "total_earned": 16.4,
-      "withdraw_count": 1,
-      "withdrawn_total": 6.4,
+      "withdraw_count": 2,
+      "withdrawn_total": 16.4,
       "fines_total": 0,
       "banned": false,
       "ban_reason": "",
@@ -1610,20 +1610,7 @@
     }
   },
   "last_task_id": 62,
-  "withdraws": {
-    "101": {
-      "user_id": 6276600731,
-      "username": "BOG_PIGR",
-      "to": "@Lemon4ikkkkkkkkkkkkkkkk",
-      "amount": 10.0,
-      "status": "wait",
-      "time": 1781896102,
-      "source_message_id": 7435,
-      "admin_sent": true,
-      "admin_sent_time": 1781896103,
-      "admin_message_id": 7437
-    }
-  },
+  "withdraws": {},
   "last_withdraw_id": 101,
   "submits": {},
   "last_submit_id": 244,
@@ -2185,6 +2172,13 @@
         "user_id": "6276600731",
         "note": "amount 6.4",
         "time": 1781895029
+      },
+      "101": {
+        "status": "paid",
+        "admin_id": 7837011810,
+        "user_id": "6276600731",
+        "note": "amount 10.0",
+        "time": 1781896123
       }
     }
   },
