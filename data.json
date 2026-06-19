@@ -1183,7 +1183,9 @@
       "done_tasks": [
         "61"
       ],
-      "pending_tasks": [],
+      "pending_tasks": [
+        "57"
+      ],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
@@ -1201,7 +1203,9 @@
       "done_tasks": [
         "53"
       ],
-      "pending_tasks": [],
+      "pending_tasks": [
+        "41"
+      ],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
@@ -1375,7 +1379,32 @@
   "last_task_id": 61,
   "withdraws": {},
   "last_withdraw_id": 91,
-  "submits": {},
+  "submits": {
+    "219": {
+      "user_id": 8341360449,
+      "username": "chrevoygodied",
+      "task_id": "41",
+      "reward": 2.0,
+      "status": "wait",
+      "photo_file_id": "AgACAgIAAxkBAAIZAWo1A74JSKdTc6FaES9Myrnweac4AAKzGGsbjoOoSTlnduM4XrIrAQADAgADeQADPAQ",
+      "time": 1781859280,
+      "admin_sent": true,
+      "admin_sent_time": 1781859784,
+      "admin_message_id": 6508
+    },
+    "221": {
+      "user_id": 8804288474,
+      "username": "Gangsters_95",
+      "task_id": "57",
+      "reward": 2.0,
+      "status": "wait",
+      "photo_file_id": "AgACAgIAAxkBAAIZWmo1BQ-cRE2NrpCE2jXmB9s5drr7AALdFmsb_YuoSdwPYPWwujVeAQADAgADeQADPAQ",
+      "time": 1781859599,
+      "admin_sent": true,
+      "admin_sent_time": 1781859786,
+      "admin_message_id": 6509
+    }
+  },
   "last_submit_id": 222,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "promocodes": {},
@@ -1604,20 +1633,6 @@
         "user_id": "8341360449",
         "note": "task #42",
         "time": 1781859800
-      },
-      "219": {
-        "status": "rejected",
-        "admin_id": 7837011810,
-        "user_id": "8341360449",
-        "note": "task #41",
-        "time": 1781859813
-      },
-      "221": {
-        "status": "rejected",
-        "admin_id": 7837011810,
-        "user_id": "8804288474",
-        "note": "task #57",
-        "time": 1781859831
       }
     },
     "withdraws": {
