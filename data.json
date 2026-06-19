@@ -648,7 +648,7 @@
       "username": "Lemon4ikkkkkkkkkkkkkkkk"
     },
     "6276600731": {
-      "balance": 0.0,
+      "balance": 2.0,
       "done_tasks": [
         "38",
         "41",
@@ -668,7 +668,7 @@
       "withdraw_to": null,
       "last_bonus": 1781894478,
       "completed_tasks": 10,
-      "total_earned": 16.4,
+      "total_earned": 18.4,
       "withdraw_count": 2,
       "withdrawn_total": 16.4,
       "fines_total": 0,
@@ -3087,6 +3087,15 @@
       "new": 0.0,
       "reason": "withdraw_created",
       "request_id": "101"
+    },
+    {
+      "time": 1781896471,
+      "user_id": "6276600731",
+      "old": 0.0,
+      "amount": 2.0,
+      "new": 2.0,
+      "reason": "admin_give",
+      "request_id": "manual"
     }
   ]
 }
