@@ -1316,8 +1316,8 @@
       "time": 1781848937,
       "source_message_id": 5998,
       "admin_sent": true,
-      "admin_sent_time": 1781848937,
-      "admin_message_id": "sending"
+      "admin_sent_time": 1781848938,
+      "admin_message_id": 6000
     }
   },
   "last_withdraw_id": 84,
@@ -1565,8 +1565,8 @@
         "time": 1781848161
       },
       "84": {
-        "message_id": "sending",
-        "time": 1781848937
+        "message_id": 6000,
+        "time": 1781848938
       }
     }
   },
