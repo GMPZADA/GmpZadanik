@@ -164,14 +164,14 @@
       ],
       "pending_tasks": [],
       "waiting_task": null,
-      "withdraw_pending": false,
+      "withdraw_pending": true,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781672960,
       "completed_tasks": 10,
       "total_earned": 20.4,
-      "withdraw_count": 9,
-      "withdrawn_total": 16.4,
+      "withdraw_count": 7,
+      "withdrawn_total": 14.4,
       "fines_total": 0,
       "username": "sksksskskmsdm"
     },
@@ -262,14 +262,14 @@
       ],
       "pending_tasks": [],
       "waiting_task": null,
-      "withdraw_pending": false,
+      "withdraw_pending": true,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781849754,
       "completed_tasks": 4,
       "total_earned": 5.6,
-      "withdraw_count": 2,
-      "withdrawn_total": 3.4,
+      "withdraw_count": 1,
+      "withdrawn_total": 1.4,
       "fines_total": 0,
       "username": "sugaringnn"
     },
@@ -1085,7 +1085,7 @@
       "username": "neevspominay"
     },
     "7811863751": {
-      "balance": 0.0,
+      "balance": 12.0,
       "done_tasks": [
         "51",
         "49",
@@ -1102,8 +1102,8 @@
       "last_bonus": 1781816350,
       "completed_tasks": 6,
       "total_earned": 18.2,
-      "withdraw_count": 2,
-      "withdrawn_total": 18.2,
+      "withdraw_count": 1,
+      "withdrawn_total": 6.2,
       "fines_total": 0,
       "username": "grimReapersing"
     },
@@ -1280,8 +1280,43 @@
     }
   },
   "last_task_id": 60,
-  "withdraws": {},
-  "last_withdraw_id": 88,
+  "withdraws": {
+    "81": {
+      "user_id": 8431020779,
+      "username": "sksksskskmsdm",
+      "to": "@username",
+      "amount": 1.0,
+      "status": "wait",
+      "time": 1781847338,
+      "admin_sent": true,
+      "admin_sent_time": 1781851768,
+      "admin_message_id": 6145
+    },
+    "82": {
+      "user_id": 8431020779,
+      "username": "sksksskskmsdm",
+      "to": "@username",
+      "amount": 1.0,
+      "status": "wait",
+      "time": 1781847371,
+      "admin_sent": true,
+      "admin_sent_time": 1781851769,
+      "admin_message_id": 6146
+    },
+    "86": {
+      "user_id": 1631337389,
+      "username": "sugaringnn",
+      "to": "@sugaringnn",
+      "amount": 2.0,
+      "status": "wait",
+      "time": 1781850100,
+      "source_message_id": 6047,
+      "admin_sent": true,
+      "admin_sent_time": 1781851770,
+      "admin_message_id": 6147
+    }
+  },
+  "last_withdraw_id": 87,
   "submits": {},
   "last_submit_id": 215,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
@@ -1527,34 +1562,6 @@
         "user_id": "7970947663",
         "note": "amount 4.0",
         "time": 1781851800
-      },
-      "81": {
-        "status": "paid",
-        "admin_id": 7837011810,
-        "user_id": "8431020779",
-        "note": "amount 1.0",
-        "time": 1781851803
-      },
-      "82": {
-        "status": "paid",
-        "admin_id": 7837011810,
-        "user_id": "8431020779",
-        "note": "amount 1.0",
-        "time": 1781851804
-      },
-      "86": {
-        "status": "paid",
-        "admin_id": 7837011810,
-        "user_id": "1631337389",
-        "note": "amount 2.0",
-        "time": 1781851811
-      },
-      "88": {
-        "status": "paid",
-        "admin_id": 7837011810,
-        "user_id": "7811863751",
-        "note": "amount 12.0",
-        "time": 1781851843
       }
     }
   },
@@ -1649,10 +1656,6 @@
       "87": {
         "message_id": 6062,
         "time": 1781850253
-      },
-      "88": {
-        "message_id": 6166,
-        "time": 1781851814
       }
     }
   },
@@ -1854,15 +1857,6 @@
       "new": 14.0,
       "reason": "withdraw_rejected_return",
       "request_id": "80"
-    },
-    {
-      "time": 1781851813,
-      "user_id": "7811863751",
-      "old": 12.0,
-      "amount": -12.0,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "88"
     }
   ]
 }
