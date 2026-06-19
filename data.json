@@ -253,22 +253,21 @@
       "username": "xux_xuxx"
     },
     "1631337389": {
-      "balance": 0.2,
+      "balance": 2.2,
       "done_tasks": [
         "41",
         "52",
-        "43"
-      ],
-      "pending_tasks": [
+        "43",
         "57"
       ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": true,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781849754,
-      "completed_tasks": 3,
-      "total_earned": 3.6,
+      "completed_tasks": 4,
+      "total_earned": 5.6,
       "withdraw_count": 1,
       "withdrawn_total": 1.4,
       "fines_total": 0,
@@ -1329,20 +1328,7 @@
     }
   },
   "last_withdraw_id": 87,
-  "submits": {
-    "210": {
-      "user_id": 1631337389,
-      "username": "sugaringnn",
-      "task_id": "57",
-      "reward": 2.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIXiWo03vlj4ZM_98nY2VnBedEUUOXTAAKvG2sbQu-pSVukrMTIPpxYAQADAgADeQADPAQ",
-      "time": 1781849850,
-      "admin_sent": true,
-      "admin_sent_time": 1781849851,
-      "admin_message_id": 6027
-    }
-  },
+  "submits": {},
   "last_submit_id": 215,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "promocodes": {},
@@ -1529,6 +1515,13 @@
         "user_id": "8431020779",
         "note": "task #43",
         "time": 1781851783
+      },
+      "210": {
+        "status": "approved",
+        "admin_id": 7837011810,
+        "user_id": "1631337389",
+        "note": "task #57",
+        "time": 1781851792
       }
     },
     "withdraws": {
@@ -1850,6 +1843,15 @@
       "new": 4.0,
       "reason": "task_approved",
       "request_id": "206"
+    },
+    {
+      "time": 1781851792,
+      "user_id": "1631337389",
+      "old": 0.2,
+      "amount": 2.0,
+      "new": 2.2,
+      "reason": "task_approved",
+      "request_id": "210"
     }
   ]
 }
