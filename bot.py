@@ -747,6 +747,17 @@ def safe_send(user_id, text):
 
 
 
+
+def check_ban(message):
+    data = load_data()
+    user = get_user(data, message.from_user.id)
+    if user.get("banned"):
+        reason = user.get("ban_reason","Не указана")
+        bot.send_message(message.chat.id,
+            f"⛔ Ваш аккаунт заблокирован\n\n📌 Причина: {reason}\n\nДля уточнения обратитесь к администрации.")
+        return True
+    return False
+
 def main_menu():
     kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
     kb.row("📋 Задания", "💰 Баланс")
@@ -813,6 +824,8 @@ def help_message(message):
 
 @bot.message_handler(func=lambda m: m.text == "💰 Баланс")
 def balance(message):
+    if check_ban(message):
+        return
     data = load_data()
     user = get_user(data, message.from_user.id)
     save_data(data)
@@ -881,6 +894,8 @@ def admin_profile(message):
 
 @bot.message_handler(func=lambda m: m.text == "🎉 Бонус")
 def daily_bonus(message):
+    if check_ban(message):
+        return
     data = load_data()
     user = get_user(data, message.from_user.id)
 
@@ -911,6 +926,8 @@ def daily_bonus(message):
 
 @bot.message_handler(func=lambda m: m.text == "📋 Задания")
 def tasks(message):
+    if check_ban(message):
+        return
     data = load_data()
     user = get_user(data, message.from_user.id)
 
@@ -1336,6 +1353,8 @@ def check_request(call):
 
 @bot.message_handler(func=lambda m: m.text == "💸 Вывод")
 def withdraw(message):
+    if check_ban(message):
+        return
     data = load_data()
     user = get_user(data, message.from_user.id)
 
