@@ -254,7 +254,7 @@
       "username": "xux_xuxx"
     },
     "1631337389": {
-      "balance": 2.2,
+      "balance": 0.2,
       "done_tasks": [
         "41",
         "52",
@@ -264,9 +264,9 @@
         "57"
       ],
       "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": "amount",
-      "withdraw_to": "@sugaringnn",
+      "withdraw_pending": true,
+      "withdraw_step": null,
+      "withdraw_to": null,
       "last_bonus": 1781849754,
       "completed_tasks": 3,
       "total_earned": 3.6,
@@ -1309,9 +1309,21 @@
       "admin_sent": true,
       "admin_sent_time": 1781847372,
       "admin_message_id": 5933
+    },
+    "86": {
+      "user_id": 1631337389,
+      "username": "sugaringnn",
+      "to": "@sugaringnn",
+      "amount": 2.0,
+      "status": "wait",
+      "time": 1781850100,
+      "source_message_id": 6047,
+      "admin_sent": true,
+      "admin_sent_time": 1781850100,
+      "admin_message_id": "sending"
     }
   },
-  "last_withdraw_id": 85,
+  "last_withdraw_id": 86,
   "submits": {
     "202": {
       "user_id": 7970947663,
@@ -1603,6 +1615,10 @@
       "85": {
         "message_id": 6007,
         "time": 1781848946
+      },
+      "86": {
+        "message_id": "sending",
+        "time": 1781850100
       }
     }
   },
@@ -1705,6 +1721,15 @@
       "new": 2.2,
       "reason": "task_approved",
       "request_id": "211"
+    },
+    {
+      "time": 1781850100,
+      "user_id": "1631337389",
+      "old": 2.2,
+      "amount": -2.0,
+      "new": 0.2,
+      "reason": "withdraw_created",
+      "request_id": "86"
     }
   ]
 }
