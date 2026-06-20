@@ -166,7 +166,7 @@
       "ban_reason": ""
     },
     "8431020779": {
-      "balance": 0.0,
+      "balance": 6.2,
       "done_tasks": [
         "41",
         "54",
@@ -182,12 +182,12 @@
       ],
       "pending_tasks": [],
       "waiting_task": null,
-      "withdraw_pending": true,
+      "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781929723,
       "completed_tasks": 11,
-      "total_earned": 22.6,
+      "total_earned": 28.8,
       "withdraw_count": 9,
       "withdrawn_total": 16.4,
       "fines_total": 0,
@@ -1653,20 +1653,7 @@
     }
   },
   "last_task_id": 62,
-  "withdraws": {
-    "106": {
-      "user_id": 8431020779,
-      "username": "sksksskskmsdm",
-      "to": "@username",
-      "amount": 6.2,
-      "status": "wait",
-      "time": 1781931252,
-      "source_message_id": 7701,
-      "admin_sent": true,
-      "admin_sent_time": 1781931253,
-      "admin_message_id": 7703
-    }
-  },
+  "withdraws": {},
   "last_withdraw_id": 106,
   "submits": {},
   "last_submit_id": 252,
@@ -2319,6 +2306,13 @@
         "user_id": "7106223662",
         "note": "amount 3.0",
         "time": 1781922534
+      },
+      "106": {
+        "status": "rejected",
+        "admin_id": 7837011810,
+        "user_id": "8431020779",
+        "note": "amount 6.2",
+        "time": 1781931260
       }
     }
   },
@@ -3413,6 +3407,15 @@
       "amount": -6.2,
       "new": 0.0,
       "reason": "withdraw_created",
+      "request_id": "106"
+    },
+    {
+      "time": 1781931260,
+      "user_id": "8431020779",
+      "old": 0.0,
+      "amount": 6.2,
+      "new": 6.2,
+      "reason": "withdraw_rejected_return",
       "request_id": "106"
     }
   ],
