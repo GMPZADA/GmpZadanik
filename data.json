@@ -248,7 +248,7 @@
       "ban_reason": ""
     },
     "5224773359": {
-      "balance": 0.0,
+      "balance": 0.2,
       "done_tasks": [
         "44",
         "46",
@@ -273,9 +273,9 @@
       "withdraw_pending": true,
       "withdraw_step": null,
       "withdraw_to": null,
-      "last_bonus": 1781641964,
+      "last_bonus": 1781931622,
       "completed_tasks": 17,
-      "total_earned": 24.2,
+      "total_earned": 24.4,
       "withdraw_count": 8,
       "withdrawn_total": 19.2,
       "fines_total": 1.0,
@@ -3443,6 +3443,15 @@
       "new": 0.0,
       "reason": "withdraw_created",
       "request_id": "107"
+    },
+    {
+      "time": 1781931622,
+      "user_id": "5224773359",
+      "old": 0.0,
+      "amount": 0.2,
+      "new": 0.2,
+      "reason": "add",
+      "request_id": ""
     }
   ],
   "withdraw_enabled": false
