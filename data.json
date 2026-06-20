@@ -1663,8 +1663,8 @@
       "time": 1781931560,
       "source_message_id": 7709,
       "admin_sent": true,
-      "admin_sent_time": 1781931560,
-      "admin_message_id": "sending"
+      "admin_sent_time": 1781931561,
+      "admin_message_id": 7711
     }
   },
   "last_withdraw_id": 107,
@@ -2646,8 +2646,8 @@
         "time": 1781931253
       },
       "107": {
-        "message_id": "sending",
-        "time": 1781931560
+        "message_id": 7711,
+        "time": 1781931561
       }
     }
   },
