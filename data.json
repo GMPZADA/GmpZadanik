@@ -248,7 +248,7 @@
       "ban_reason": ""
     },
     "5224773359": {
-      "balance": 2.0,
+      "balance": 4.0,
       "done_tasks": [
         "44",
         "46",
@@ -265,18 +265,17 @@
         "42",
         "59",
         "60",
-        "62"
-      ],
-      "pending_tasks": [
+        "62",
         "61"
       ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781641964,
-      "completed_tasks": 16,
-      "total_earned": 22.2,
+      "completed_tasks": 17,
+      "total_earned": 24.2,
       "withdraw_count": 8,
       "withdrawn_total": 19.2,
       "fines_total": 1.0,
@@ -1651,18 +1650,6 @@
       "admin_sent": true,
       "admin_sent_time": 1781898627,
       "admin_message_id": "sending"
-    },
-    "252": {
-      "user_id": 5224773359,
-      "username": "xux_xuxx",
-      "task_id": "61",
-      "reward": 2.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAId1mo1qpWgnJ8RWAgRxMPpIAgjx3LOAAKiHGsbeNaxSYlt31dBOqibAQADAgADeQADPAQ",
-      "time": 1781901974,
-      "admin_sent": true,
-      "admin_sent_time": 1781901975,
-      "admin_message_id": 7640
     }
   },
   "last_submit_id": 252,
@@ -2103,6 +2090,13 @@
         "user_id": "5224773359",
         "note": "task #62",
         "time": 1781922567
+      },
+      "252": {
+        "status": "approved",
+        "admin_id": 7837011810,
+        "user_id": "5224773359",
+        "note": "task #61",
+        "time": 1781922591
       }
     },
     "withdraws": {
@@ -3356,6 +3350,15 @@
       "new": 2.0,
       "reason": "task_approved",
       "request_id": "251"
+    },
+    {
+      "time": 1781922591,
+      "user_id": "5224773359",
+      "old": 2.0,
+      "amount": 2.0,
+      "new": 4.0,
+      "reason": "task_approved",
+      "request_id": "252"
     }
   ]
 }
