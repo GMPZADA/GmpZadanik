@@ -806,7 +806,7 @@
       "ban_reason": ""
     },
     "6744639669": {
-      "balance": 2.4,
+      "balance": 3.4,
       "done_tasks": [
         "38",
         "46",
@@ -819,18 +819,17 @@
         "51",
         "45",
         "53",
-        "43"
-      ],
-      "pending_tasks": [
+        "43",
         "54"
       ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781976529,
-      "completed_tasks": 12,
-      "total_earned": 7.4,
+      "completed_tasks": 13,
+      "total_earned": 8.4,
       "withdraw_count": 2,
       "withdrawn_total": 5.0,
       "fines_total": 0,
@@ -1750,20 +1749,7 @@
   "last_task_id": 62,
   "withdraws": {},
   "last_withdraw_id": 107,
-  "submits": {
-    "255": {
-      "user_id": 6744639669,
-      "username": "Defak97",
-      "task_id": "54",
-      "reward": 1.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIe5Wo2zqIOB7hgA8-DabQfHJL81NIeAALLH2sbdFC5SWkyU4rzeXbiAQADAgADeQADPAQ",
-      "time": 1781976739,
-      "admin_sent": true,
-      "admin_sent_time": 1781976739,
-      "admin_message_id": "sending"
-    }
-  },
+  "submits": {},
   "last_submit_id": 255,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "promocodes": {},
@@ -2230,6 +2216,13 @@
         "user_id": "6744639669",
         "note": "task #43",
         "time": 1781976599
+      },
+      "255": {
+        "status": "approved",
+        "admin_id": 7837011810,
+        "user_id": "6744639669",
+        "note": "task #54",
+        "time": 1781976794
       }
     },
     "withdraws": {
@@ -3661,6 +3654,15 @@
       "new": 2.4,
       "reason": "task_approved",
       "request_id": "254"
+    },
+    {
+      "time": 1781976794,
+      "user_id": "6744639669",
+      "old": 2.4,
+      "amount": 1.0,
+      "new": 3.4,
+      "reason": "task_approved",
+      "request_id": "255"
     }
   ],
   "withdraw_enabled": false
