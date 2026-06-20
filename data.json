@@ -1540,8 +1540,10 @@
     "7827244299": {
       "balance": 0.2,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": "42",
+      "pending_tasks": [
+        "42"
+      ],
+      "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
@@ -1693,8 +1695,21 @@
   "last_task_id": 62,
   "withdraws": {},
   "last_withdraw_id": 107,
-  "submits": {},
-  "last_submit_id": 253,
+  "submits": {
+    "254": {
+      "user_id": 7827244299,
+      "username": "Mr_Apelsin",
+      "task_id": "42",
+      "reward": 4.0,
+      "status": "wait",
+      "photo_file_id": "AgACAgIAAxkBAAIeiWo2VsSUYPp-8mju3msnfdiCXmBtAAJ-GWsbPa64SUwVSQrcNda2AQADAgADeQADPAQ",
+      "time": 1781946052,
+      "admin_sent": true,
+      "admin_sent_time": 1781946052,
+      "admin_message_id": "sending"
+    }
+  },
+  "last_submit_id": 254,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "promocodes": {},
   "processed_requests": {
@@ -2577,6 +2592,10 @@
       "253": {
         "message_id": "sending",
         "time": 1781932259
+      },
+      "254": {
+        "message_id": "sending",
+        "time": 1781946052
       }
     },
     "withdraws": {
