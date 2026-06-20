@@ -3380,5 +3380,6 @@
       "reason": "task_approved",
       "request_id": "250"
     }
-  ]
+  ],
+  "withdraw_enabled": false
 }
