@@ -625,7 +625,7 @@
       "ban_reason": ""
     },
     "8258106768": {
-      "balance": 0.4,
+      "balance": 2.4,
       "done_tasks": [
         "52",
         "42",
@@ -633,18 +633,17 @@
         "44",
         "50",
         "48",
-        "59"
-      ],
-      "pending_tasks": [
+        "59",
         "55"
       ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781893665,
-      "completed_tasks": 7,
-      "total_earned": 12.4,
+      "completed_tasks": 8,
+      "total_earned": 14.4,
       "withdraw_count": 2,
       "withdrawn_total": 12.0,
       "fines_total": 0,
@@ -1638,20 +1637,7 @@
   "last_task_id": 62,
   "withdraws": {},
   "last_withdraw_id": 105,
-  "submits": {
-    "250": {
-      "user_id": 8258106768,
-      "username": "Lemon4ikkkkkkkkkkkkkkkk",
-      "task_id": "55",
-      "reward": 2.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIdj2o1nYPP-Hrq0VtGw1vc2qm3JA2ZAAJcH2sbGZ2pSZi6QDuze24jAQADAgADeQADPAQ",
-      "time": 1781898627,
-      "admin_sent": true,
-      "admin_sent_time": 1781922699,
-      "admin_message_id": 7651
-    }
-  },
+  "submits": {},
   "last_submit_id": 252,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "promocodes": {},
@@ -2097,6 +2083,13 @@
         "user_id": "5224773359",
         "note": "task #61",
         "time": 1781922591
+      },
+      "250": {
+        "status": "approved",
+        "admin_id": 7837011810,
+        "user_id": "8258106768",
+        "note": "task #55",
+        "time": 1781922706
       }
     },
     "withdraws": {
@@ -3359,6 +3352,15 @@
       "new": 4.0,
       "reason": "task_approved",
       "request_id": "252"
+    },
+    {
+      "time": 1781922706,
+      "user_id": "8258106768",
+      "old": 0.4,
+      "amount": 2.0,
+      "new": 2.4,
+      "reason": "task_approved",
+      "request_id": "250"
     }
   ]
 }
