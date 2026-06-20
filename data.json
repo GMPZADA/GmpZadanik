@@ -153,8 +153,8 @@
       "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
-      "withdraw_step": "amount",
-      "withdraw_to": "@Makeejejdjxcj",
+      "withdraw_step": null,
+      "withdraw_to": null,
       "last_bonus": 1781803597,
       "completed_tasks": 7,
       "total_earned": 50560624.1,
@@ -183,7 +183,7 @@
       "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
-      "withdraw_step": "username",
+      "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781929723,
       "completed_tasks": 11,
@@ -219,7 +219,7 @@
       "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
-      "withdraw_step": "username",
+      "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781549370,
       "completed_tasks": 0,
@@ -434,7 +434,7 @@
       "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
-      "withdraw_step": "username",
+      "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781854616,
       "completed_tasks": 0,
@@ -1217,7 +1217,7 @@
       "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
-      "withdraw_step": "username",
+      "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781816161,
       "completed_tasks": 6,
@@ -1282,7 +1282,7 @@
       "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
-      "withdraw_step": "username",
+      "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781818320,
       "completed_tasks": 0,
@@ -3454,5 +3454,5 @@
       "request_id": ""
     }
   ],
-  "withdraw_enabled": true
+  "withdraw_enabled": false
 }
