@@ -103,6 +103,8 @@ def fix_data(data):
         if key not in data:
             data[key] = value
 
+    data.setdefault("withdraw_enabled", True)
+
     for uid, user in data.get("users", {}).items():
         user.setdefault("balance", 0)
         user.setdefault("done_tasks", [])
@@ -839,6 +841,13 @@ def admin_menu():
 @bot.message_handler(commands=["start"])
 def start(message):
     data = load_data()
+
+    if not data.get("withdraw_enabled", True):
+        return bot.send_message(
+            message.chat.id,
+            "⚠️ Выплаты временно недоступны.\n\n🔄 Пожалуйста, попробуйте позже.\n📢 О возобновлении выплат будет сообщено в боте."
+        )
+
     user = get_user(data, message.from_user.id)
     user["username"] = message.from_user.username or ""
     cancel_user_states(user)
