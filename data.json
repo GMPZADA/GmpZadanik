@@ -1353,7 +1353,7 @@
       "ban_reason": ""
     },
     "8341360449": {
-      "balance": 0.0,
+      "balance": 0.2,
       "done_tasks": [
         "53",
         "57"
@@ -1363,9 +1363,9 @@
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
-      "last_bonus": 1781859371,
+      "last_bonus": 1781966646,
       "completed_tasks": 2,
-      "total_earned": 3.2,
+      "total_earned": 3.4,
       "withdraw_count": 1,
       "withdrawn_total": 3.2,
       "fines_total": 0,
@@ -3580,6 +3580,15 @@
     {
       "time": 1781952130,
       "user_id": "8721133146",
+      "old": 0.0,
+      "amount": 0.2,
+      "new": 0.2,
+      "reason": "add",
+      "request_id": ""
+    },
+    {
+      "time": 1781966646,
+      "user_id": "8341360449",
       "old": 0.0,
       "amount": 0.2,
       "new": 0.2,
