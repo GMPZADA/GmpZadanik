@@ -512,7 +512,7 @@
       "ban_reason": ""
     },
     "7130773702": {
-      "balance": 1.4,
+      "balance": 1.6,
       "done_tasks": [
         "41",
         "44",
@@ -529,9 +529,9 @@
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
-      "last_bonus": 1781717822,
+      "last_bonus": 1781939245,
       "completed_tasks": 9,
-      "total_earned": 10.4,
+      "total_earned": 10.6,
       "withdraw_count": 3,
       "withdrawn_total": 9.0,
       "fines_total": 0,
@@ -3477,6 +3477,15 @@
       "new": 3.4,
       "reason": "task_approved",
       "request_id": "253"
+    },
+    {
+      "time": 1781939245,
+      "user_id": "7130773702",
+      "old": 1.4,
+      "amount": 0.2,
+      "new": 1.6,
+      "reason": "add",
+      "request_id": ""
     }
   ],
   "withdraw_enabled": false
