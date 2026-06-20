@@ -166,7 +166,7 @@
       "ban_reason": ""
     },
     "8431020779": {
-      "balance": 6.0,
+      "balance": 6.2,
       "done_tasks": [
         "41",
         "54",
@@ -185,9 +185,9 @@
       "withdraw_pending": false,
       "withdraw_step": "amount",
       "withdraw_to": "@username",
-      "last_bonus": 1781672960,
+      "last_bonus": 1781929723,
       "completed_tasks": 11,
-      "total_earned": 22.4,
+      "total_earned": 22.6,
       "withdraw_count": 9,
       "withdrawn_total": 16.4,
       "fines_total": 0,
@@ -3379,6 +3379,15 @@
       "new": 2.4,
       "reason": "task_approved",
       "request_id": "250"
+    },
+    {
+      "time": 1781929723,
+      "user_id": "8431020779",
+      "old": 6.0,
+      "amount": 0.2,
+      "new": 6.2,
+      "reason": "add",
+      "request_id": ""
     }
   ],
   "withdraw_enabled": false
