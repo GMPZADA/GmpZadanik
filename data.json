@@ -3454,5 +3454,5 @@
       "request_id": ""
     }
   ],
-  "withdraw_enabled": false
+  "withdraw_enabled": true
 }
