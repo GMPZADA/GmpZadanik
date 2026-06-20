@@ -248,7 +248,7 @@
       "ban_reason": ""
     },
     "5224773359": {
-      "balance": 0.2,
+      "balance": 4.2,
       "done_tasks": [
         "44",
         "46",
@@ -270,12 +270,12 @@
       ],
       "pending_tasks": [],
       "waiting_task": null,
-      "withdraw_pending": true,
+      "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781931622,
       "completed_tasks": 17,
-      "total_earned": 24.4,
+      "total_earned": 28.4,
       "withdraw_count": 8,
       "withdrawn_total": 19.2,
       "fines_total": 1.0,
@@ -1653,20 +1653,7 @@
     }
   },
   "last_task_id": 62,
-  "withdraws": {
-    "107": {
-      "user_id": 5224773359,
-      "username": "xux_xuxx",
-      "to": "@xux_xuxx",
-      "amount": 4.0,
-      "status": "wait",
-      "time": 1781931560,
-      "source_message_id": 7709,
-      "admin_sent": true,
-      "admin_sent_time": 1781931561,
-      "admin_message_id": 7711
-    }
-  },
+  "withdraws": {},
   "last_withdraw_id": 107,
   "submits": {},
   "last_submit_id": 252,
@@ -2326,6 +2313,13 @@
         "user_id": "8431020779",
         "note": "amount 6.2",
         "time": 1781931260
+      },
+      "107": {
+        "status": "rejected",
+        "admin_id": 7837011810,
+        "user_id": "5224773359",
+        "note": "amount 4.0",
+        "time": 1781932137
       }
     }
   },
@@ -3452,6 +3446,15 @@
       "new": 0.2,
       "reason": "add",
       "request_id": ""
+    },
+    {
+      "time": 1781932137,
+      "user_id": "5224773359",
+      "old": 0.2,
+      "amount": 4.0,
+      "new": 4.2,
+      "reason": "withdraw_rejected_return",
+      "request_id": "107"
     }
   ],
   "withdraw_enabled": false
