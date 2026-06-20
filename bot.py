@@ -847,6 +847,25 @@ def start(message):
     bot.send_message(message.chat.id, data["start_text"], reply_markup=main_menu())
 
 
+
+@bot.message_handler(commands=["withdrawoff"])
+def withdraw_off(message):
+    if message.from_user.id != ADMIN_ID:
+        return
+    data = load_data()
+    data["withdraw_enabled"] = False
+    save_data(data)
+    bot.send_message(message.chat.id, "✅ Выплаты отключены. Пользователи смогут зарабатывать GMP, но вывод будет закрыт.")
+
+@bot.message_handler(commands=["withdrawon"])
+def withdraw_on(message):
+    if message.from_user.id != ADMIN_ID:
+        return
+    data = load_data()
+    data["withdraw_enabled"] = True
+    save_data(data)
+    bot.send_message(message.chat.id, "✅ Выплаты включены.")
+
 @bot.message_handler(commands=["admin"])
 def admin(message):
     if message.from_user.id != ADMIN_ID:
