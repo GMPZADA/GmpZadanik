@@ -841,13 +841,6 @@ def admin_menu():
 @bot.message_handler(commands=["start"])
 def start(message):
     data = load_data()
-
-    if not data.get("withdraw_enabled", True):
-        return bot.send_message(
-            message.chat.id,
-            "⚠️ Выплаты временно недоступны.\n\n🔄 Пожалуйста, попробуйте позже.\n📢 О возобновлении выплат будет сообщено в боте."
-        )
-
     user = get_user(data, message.from_user.id)
     user["username"] = message.from_user.username or ""
     cancel_user_states(user)
@@ -860,21 +853,33 @@ def start(message):
 @bot.message_handler(commands=["withdrawoff"])
 def withdraw_off(message):
     if message.from_user.id != ADMIN_ID:
-        return
+        return bot.send_message(message.chat.id, "❌ Нет доступа.")
+
     data = load_data()
     data["withdraw_enabled"] = False
+
+    # Если кто-то уже начал вводить вывод — сбрасываем шаги, чтобы заявка не создалась после отключения.
+    for u in data.get("users", {}).values():
+        u["withdraw_step"] = None
+        u["withdraw_to"] = None
+
     save_data(data)
-    bot.send_message(message.chat.id, "✅ Выплаты отключены. Пользователи смогут зарабатывать GMP, но вывод будет закрыт.")
+    bot.send_message(
+        message.chat.id,
+        "✅ Выплаты отключены.\\n\\n"
+        "Пользователи могут выполнять задания и зарабатывать GMP, но вывод временно закрыт."
+    )
+
 
 @bot.message_handler(commands=["withdrawon"])
 def withdraw_on(message):
     if message.from_user.id != ADMIN_ID:
-        return
+        return bot.send_message(message.chat.id, "❌ Нет доступа.")
+
     data = load_data()
     data["withdraw_enabled"] = True
     save_data(data)
-    bot.send_message(message.chat.id, "✅ Выплаты включены.")
-
+    bot.send_message(message.chat.id, "✅ Выплаты включены. Пользователи снова могут создавать заявки на вывод.")
 @bot.message_handler(commands=["admin"])
 def admin(message):
     if message.from_user.id != ADMIN_ID:
@@ -1471,6 +1476,17 @@ def withdraw(message):
 
     data = load_data()
     user = get_user(data, message.from_user.id)
+
+    if not data.get("withdraw_enabled", True):
+        user["withdraw_step"] = None
+        user["withdraw_to"] = None
+        save_data(data)
+        return bot.send_message(
+            message.chat.id,
+            "⚠️ <b>Выплаты временно недоступны.</b>\n\n"
+            "🔄 Пожалуйста, попробуйте позже.\n"
+            "📢 О возобновлении выплат будет сообщено в боте."
+        )
 
     # ВАЖНО: несколько выводов разрешены.
     # Если у пользователя уже есть заявка на вывод, мы НЕ блокируем новый вывод.
@@ -2370,6 +2386,17 @@ def text_router(message):
 
     text = (message.text or "").strip()
 
+    if user.get("withdraw_step") and not data.get("withdraw_enabled", True):
+        user["withdraw_step"] = None
+        user["withdraw_to"] = None
+        save_data(data)
+        return bot.send_message(
+            message.chat.id,
+            "⚠️ <b>Выплаты временно недоступны.</b>\n\n"
+            "🔄 Пожалуйста, попробуйте позже.\n"
+            "📢 О возобновлении выплат будет сообщено в боте."
+        )
+
     if text.lower() in ["отмена", "cancel", "назад"]:
         cancel_user_states(user)
         save_data(data)
@@ -2423,6 +2450,18 @@ def text_router(message):
         with WITHDRAW_CREATE_LOCK:
             data = load_data()
             user = get_user(data, message.from_user.id)
+
+            if not data.get("withdraw_enabled", True):
+                user["withdraw_step"] = None
+                user["withdraw_to"] = None
+                save_data(data)
+                return bot.send_message(
+                    message.chat.id,
+                    "⚠️ <b>Выплаты временно недоступны.</b>\n\n"
+                    "🔄 Пожалуйста, попробуйте позже.\n"
+                    "📢 О возобновлении выплат будет сообщено в боте."
+                )
+
             withdraw_to = user.get("withdraw_to") or "не указано"
 
             # Разрешаем много активных выводов, если хватает баланса.
