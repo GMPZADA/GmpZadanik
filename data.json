@@ -1679,14 +1679,14 @@
       ],
       "pending_tasks": [],
       "waiting_task": null,
-      "withdraw_pending": true,
+      "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1782049836,
       "completed_tasks": 1,
       "total_earned": 3.2,
-      "withdraw_count": 0,
-      "withdrawn_total": 0,
+      "withdraw_count": 1,
+      "withdrawn_total": 3.2,
       "fines_total": 0,
       "banned": false,
       "ban_reason": "",
@@ -1810,20 +1810,7 @@
     }
   },
   "last_task_id": 64,
-  "withdraws": {
-    "123": {
-      "user_id": 8651016638,
-      "username": "Danil77261",
-      "to": "@gangsters_95",
-      "amount": 3.2,
-      "status": "wait",
-      "time": 1782051410,
-      "source_message_id": 8868,
-      "admin_sent": true,
-      "admin_sent_time": 1782051410,
-      "admin_message_id": "sending"
-    }
-  },
+  "withdraws": {},
   "last_withdraw_id": 123,
   "submits": {},
   "last_submit_id": 291,
@@ -2868,6 +2855,13 @@
         "user_id": "8804288474",
         "note": "amount 3.0",
         "time": 1782049712
+      },
+      "123": {
+        "status": "paid",
+        "admin_id": 7837011810,
+        "user_id": "8651016638",
+        "note": "amount 3.2",
+        "time": 1782051438
       }
     }
   },
