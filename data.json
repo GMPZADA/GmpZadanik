@@ -407,14 +407,14 @@
       ],
       "pending_tasks": [],
       "waiting_task": null,
-      "withdraw_pending": true,
+      "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 0,
       "completed_tasks": 4,
       "total_earned": 12.0,
-      "withdraw_count": 1,
-      "withdrawn_total": 4.0,
+      "withdraw_count": 2,
+      "withdrawn_total": 12.0,
       "fines_total": 0,
       "username": "kiril6789",
       "banned": false,
@@ -1766,20 +1766,7 @@
     }
   },
   "last_task_id": 64,
-  "withdraws": {
-    "119": {
-      "user_id": 1401650206,
-      "username": "kiril6789",
-      "to": "@kiril6789",
-      "amount": 8.0,
-      "status": "wait",
-      "time": 1782045177,
-      "source_message_id": 8771,
-      "admin_sent": true,
-      "admin_sent_time": 1782045178,
-      "admin_message_id": 8773
-    }
-  },
+  "withdraws": {},
   "last_withdraw_id": 119,
   "submits": {},
   "last_submit_id": 286,
@@ -2761,6 +2748,13 @@
         "user_id": "8380620424",
         "note": "amount 2.0",
         "time": 1782042456
+      },
+      "119": {
+        "status": "paid",
+        "admin_id": 7837011810,
+        "user_id": "1401650206",
+        "note": "amount 8.0",
+        "time": 1782045504
       }
     }
   },
