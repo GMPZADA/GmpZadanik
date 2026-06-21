@@ -1335,21 +1335,20 @@
       "ban_reason": ""
     },
     "8804288474": {
-      "balance": 0.2,
+      "balance": 3.2,
       "done_tasks": [
         "61",
-        "44"
-      ],
-      "pending_tasks": [
+        "44",
         "51"
       ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781859100,
-      "completed_tasks": 2,
-      "total_earned": 5.2,
+      "completed_tasks": 3,
+      "total_earned": 8.2,
       "withdraw_count": 2,
       "withdrawn_total": 5.0,
       "fines_total": 0,
@@ -1815,20 +1814,7 @@
   "last_task_id": 64,
   "withdraws": {},
   "last_withdraw_id": 124,
-  "submits": {
-    "293": {
-      "user_id": 8804288474,
-      "username": "Gangsters_95",
-      "task_id": "51",
-      "reward": 3.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIivmo39e_n-lUWUv6-NXU3xlTA0W8TAAKMHGsbNNjBSaIBZGrgtrrZAQADAgADeQADPAQ",
-      "time": 1782052335,
-      "admin_sent": true,
-      "admin_sent_time": 1782052336,
-      "admin_message_id": 8896
-    }
-  },
+  "submits": {},
   "last_submit_id": 293,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "promocodes": {},
@@ -2561,6 +2547,13 @@
         "user_id": "8651016638",
         "note": "task #44",
         "time": 1782051955
+      },
+      "293": {
+        "status": "approved",
+        "admin_id": 7837011810,
+        "user_id": "8804288474",
+        "note": "task #51",
+        "time": 1782052351
       }
     },
     "withdraws": {
@@ -4808,6 +4801,15 @@
       "new": 0.0,
       "reason": "withdraw_created",
       "request_id": "124"
+    },
+    {
+      "time": 1782052351,
+      "user_id": "8804288474",
+      "old": 0.2,
+      "amount": 3.0,
+      "new": 3.2,
+      "reason": "task_approved",
+      "request_id": "293"
     }
   ],
   "withdraw_enabled": true
