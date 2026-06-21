@@ -124,7 +124,7 @@
       "username": "KPOCOTKO"
     },
     "5609899938": {
-      "balance": 5.0,
+      "balance": 0.0,
       "done_tasks": [
         "41",
         "43",
@@ -135,9 +135,9 @@
       ],
       "pending_tasks": [],
       "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": "amount",
-      "withdraw_to": "@KPACOTKAA",
+      "withdraw_pending": true,
+      "withdraw_step": null,
+      "withdraw_to": null,
       "last_bonus": 0,
       "completed_tasks": 6,
       "total_earned": 13.0,
@@ -1751,8 +1751,21 @@
     }
   },
   "last_task_id": 62,
-  "withdraws": {},
-  "last_withdraw_id": 112,
+  "withdraws": {
+    "113": {
+      "user_id": 5609899938,
+      "username": "KPACOTKAA",
+      "to": "@KPACOTKAA",
+      "amount": 5.0,
+      "status": "wait",
+      "time": 1782025592,
+      "source_message_id": 8338,
+      "admin_sent": true,
+      "admin_sent_time": 1782025592,
+      "admin_message_id": "sending"
+    }
+  },
+  "last_withdraw_id": 113,
   "submits": {},
   "last_submit_id": 266,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
@@ -2949,6 +2962,10 @@
       "112": {
         "message_id": 8282,
         "time": 1782025244
+      },
+      "113": {
+        "message_id": "sending",
+        "time": 1782025592
       }
     }
   },
@@ -4005,6 +4022,15 @@
       "new": 5.0,
       "reason": "task_approved",
       "request_id": "266"
+    },
+    {
+      "time": 1782025592,
+      "user_id": "5609899938",
+      "old": 5.0,
+      "amount": -5.0,
+      "new": 0.0,
+      "reason": "withdraw_created",
+      "request_id": "113"
     }
   ],
   "withdraw_enabled": true
