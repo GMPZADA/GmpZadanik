@@ -1702,8 +1702,10 @@
         "44",
         "48"
       ],
-      "pending_tasks": [],
-      "waiting_task": "51",
+      "pending_tasks": [
+        "51"
+      ],
+      "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
@@ -1855,8 +1857,21 @@
   "last_task_id": 64,
   "withdraws": {},
   "last_withdraw_id": 127,
-  "submits": {},
-  "last_submit_id": 300,
+  "submits": {
+    "301": {
+      "user_id": 6909264712,
+      "username": "dipeniks",
+      "task_id": "51",
+      "reward": 3.0,
+      "status": "wait",
+      "photo_file_id": "AgACAgIAAxkBAAIjemo4B0rWBQrw9nUzUrtDjIC2bIUKAAK8HGsbJJrBSaXRN_Y2s4biAQADAgADeQADPAQ",
+      "time": 1782056779,
+      "admin_sent": true,
+      "admin_sent_time": 1782056779,
+      "admin_message_id": "sending"
+    }
+  },
+  "last_submit_id": 301,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "promocodes": {},
   "processed_requests": {
@@ -3396,6 +3411,10 @@
       "300": {
         "message_id": "sending",
         "time": 1782056433
+      },
+      "301": {
+        "message_id": "sending",
+        "time": 1782056779
       }
     },
     "withdraws": {
