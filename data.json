@@ -1707,14 +1707,14 @@
       ],
       "pending_tasks": [],
       "waiting_task": null,
-      "withdraw_pending": true,
+      "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 0,
       "completed_tasks": 6,
       "total_earned": 13.0,
-      "withdraw_count": 1,
-      "withdrawn_total": 4.0,
+      "withdraw_count": 2,
+      "withdrawn_total": 13.0,
       "fines_total": 0,
       "banned": false,
       "ban_reason": "",
@@ -1890,18 +1890,6 @@
       "source_message_id": 9229,
       "admin_sent": true,
       "admin_sent_time": 1782058052,
-      "admin_message_id": "sending"
-    },
-    "129": {
-      "user_id": 6909264712,
-      "username": "dipeniks",
-      "to": "@dipeniks",
-      "amount": 9.0,
-      "status": "wait",
-      "time": 1782058076,
-      "source_message_id": 9236,
-      "admin_sent": true,
-      "admin_sent_time": 1782058076,
       "admin_message_id": "sending"
     }
   },
@@ -3110,6 +3098,13 @@
         "user_id": "6909264712",
         "note": "amount 4.0",
         "time": 1782056076
+      },
+      "129": {
+        "status": "paid",
+        "admin_id": 7837011810,
+        "user_id": "6909264712",
+        "note": "amount 9.0",
+        "time": 1782058106
       }
     }
   },
