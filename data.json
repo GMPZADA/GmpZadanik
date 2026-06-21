@@ -1222,7 +1222,7 @@
       "ban_reason": ""
     },
     "7811863751": {
-      "balance": 0.0,
+      "balance": 0.2,
       "done_tasks": [
         "51",
         "49",
@@ -1237,9 +1237,9 @@
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
-      "last_bonus": 1781816350,
+      "last_bonus": 1782031557,
       "completed_tasks": 7,
-      "total_earned": 20.2,
+      "total_earned": 20.4,
       "withdraw_count": 3,
       "withdrawn_total": 20.2,
       "fines_total": 0,
@@ -4102,6 +4102,15 @@
       "new": 0.0,
       "reason": "withdraw_created",
       "request_id": "114"
+    },
+    {
+      "time": 1782031557,
+      "user_id": "7811863751",
+      "old": 0.0,
+      "amount": 0.2,
+      "new": 0.2,
+      "reason": "add",
+      "request_id": ""
     }
   ],
   "withdraw_enabled": true
