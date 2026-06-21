@@ -404,8 +404,10 @@
         "46",
         "49"
       ],
-      "pending_tasks": [],
-      "waiting_task": "50",
+      "pending_tasks": [
+        "50"
+      ],
+      "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
@@ -1767,8 +1769,21 @@
   "last_task_id": 64,
   "withdraws": {},
   "last_withdraw_id": 118,
-  "submits": {},
-  "last_submit_id": 285,
+  "submits": {
+    "286": {
+      "user_id": 1401650206,
+      "username": "kiril6789",
+      "task_id": "50",
+      "reward": 3.0,
+      "status": "wait",
+      "photo_file_id": "AgACAgIAAxkBAAIiO2o32RclqHuQFIcnToHLB8tJ2CY1AAK-Gmsb0VLBSZbgEWMIBG9cAQADAgADeQADPAQ",
+      "time": 1782044951,
+      "admin_sent": true,
+      "admin_sent_time": 1782044951,
+      "admin_message_id": "sending"
+    }
+  },
+  "last_submit_id": 286,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "promocodes": {},
   "processed_requests": {
@@ -3080,6 +3095,10 @@
       "285": {
         "message_id": 8759,
         "time": 1782044858
+      },
+      "286": {
+        "message_id": "sending",
+        "time": 1782044951
       }
     },
     "withdraws": {
