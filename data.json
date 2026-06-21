@@ -1507,7 +1507,7 @@
       "ban_reason": ""
     },
     "8031026603": {
-      "balance": 1.2,
+      "balance": 1.4,
       "done_tasks": [
         "38"
       ],
@@ -1516,9 +1516,9 @@
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
-      "last_bonus": 1781899635,
+      "last_bonus": 1782049647,
       "completed_tasks": 1,
-      "total_earned": 1.2,
+      "total_earned": 1.4,
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
@@ -4648,6 +4648,15 @@
       "new": 1.2,
       "reason": "task_approved",
       "request_id": "289"
+    },
+    {
+      "time": 1782049647,
+      "user_id": "8031026603",
+      "old": 1.2,
+      "amount": 0.2,
+      "new": 1.4,
+      "reason": "add",
+      "request_id": ""
     }
   ],
   "withdraw_enabled": true
