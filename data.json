@@ -101,22 +101,21 @@
       "ban_reason": ""
     },
     "8317326202": {
-      "balance": 4.0,
+      "balance": 5.0,
       "done_tasks": [
         "41",
         "61",
-        "59"
-      ],
-      "pending_tasks": [
+        "59",
         "52"
       ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 0,
-      "completed_tasks": 3,
-      "total_earned": 4.0,
+      "completed_tasks": 4,
+      "total_earned": 5.0,
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
@@ -1751,20 +1750,7 @@
   "last_task_id": 62,
   "withdraws": {},
   "last_withdraw_id": 110,
-  "submits": {
-    "264": {
-      "user_id": 8317326202,
-      "username": "KPOCOTKO",
-      "task_id": "52",
-      "reward": 1.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIgG2o3iu2vpmQ30gqu0pQ9ChTCTFkfAAIdHGsbVlW5SQjEPMY55pXDAQADAgADdwADPAQ",
-      "time": 1782024942,
-      "admin_sent": true,
-      "admin_sent_time": 1782024942,
-      "admin_message_id": "sending"
-    }
-  },
+  "submits": {},
   "last_submit_id": 264,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "promocodes": {},
@@ -2294,6 +2280,13 @@
         "user_id": "8317326202",
         "note": "task #53",
         "time": 1782024924
+      },
+      "264": {
+        "status": "approved",
+        "admin_id": 7837011810,
+        "user_id": "8317326202",
+        "note": "task #52",
+        "time": 1782024952
       }
     },
     "withdraws": {
@@ -3920,6 +3913,15 @@
       "new": 4.0,
       "reason": "task_approved",
       "request_id": "262"
+    },
+    {
+      "time": 1782024952,
+      "user_id": "8317326202",
+      "old": 4.0,
+      "amount": 1.0,
+      "new": 5.0,
+      "reason": "task_approved",
+      "request_id": "264"
     }
   ],
   "withdraw_enabled": true
