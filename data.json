@@ -1737,19 +1737,20 @@
       "username": "DIMITEY92"
     },
     "7476447439": {
-      "balance": 0,
-      "done_tasks": [],
-      "pending_tasks": [
-        "50",
+      "balance": 3.0,
+      "done_tasks": [
         "44"
+      ],
+      "pending_tasks": [
+        "50"
       ],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 0,
-      "completed_tasks": 0,
-      "total_earned": 0,
+      "completed_tasks": 1,
+      "total_earned": 3.0,
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
@@ -1889,18 +1890,6 @@
       "admin_sent": true,
       "admin_sent_time": 1782057333,
       "admin_message_id": 9112
-    },
-    "304": {
-      "user_id": 7476447439,
-      "username": "missnipery",
-      "task_id": "44",
-      "reward": 3.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIjnGo4Cbmj5XLZs5XGBaTFQ018mI8oAAKYG2sb6YLBSZRr9ExzRonVAQADAgADeQADPAQ",
-      "time": 1782057401,
-      "admin_sent": true,
-      "admin_sent_time": 1782057403,
-      "admin_message_id": 9127
     }
   },
   "last_submit_id": 304,
@@ -2705,6 +2694,13 @@
         "user_id": "7476447439",
         "note": "task #50",
         "time": 1782057292
+      },
+      "304": {
+        "status": "approved",
+        "admin_id": 7837011810,
+        "user_id": "7476447439",
+        "note": "task #44",
+        "time": 1782057445
       }
     },
     "withdraws": {
@@ -5128,6 +5124,15 @@
       "new": 6.0,
       "reason": "task_approved",
       "request_id": "301"
+    },
+    {
+      "time": 1782057445,
+      "user_id": "7476447439",
+      "old": 0.0,
+      "amount": 3.0,
+      "new": 3.0,
+      "reason": "task_approved",
+      "request_id": "304"
     }
   ],
   "withdraw_enabled": true
