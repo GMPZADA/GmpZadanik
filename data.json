@@ -975,8 +975,8 @@
       "fines_total": 1.0,
       "username": "SHORA_1",
       "debt_paid_total": 1.0,
-      "banned": false,
-      "ban_reason": ""
+      "banned": true,
+      "ban_reason": "тест"
     },
     "8590322435": {
       "balance": 4.0,
