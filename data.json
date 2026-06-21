@@ -1749,12 +1749,6 @@
       "link": "https://t.me/EarnStarsFarmbot?start=7837011810",
       "reward": 2.0,
       "active": true
-    },
-    "63": {
-      "text": "Зайти в бота, подписаться на спонсоров и отправить скриншот выполнения",
-      "link": "https://t.me/SpartanStars_bot?start=7837011810",
-      "reward": 1.0,
-      "active": true
     }
   },
   "last_task_id": 63,
