@@ -1234,7 +1234,7 @@
       "ban_reason": ""
     },
     "7811863751": {
-      "balance": 0.2,
+      "balance": 1.2,
       "done_tasks": [
         "51",
         "49",
@@ -1242,18 +1242,17 @@
         "44",
         "41",
         "43",
-        "61"
-      ],
-      "pending_tasks": [
+        "61",
         "64"
       ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1782031557,
-      "completed_tasks": 7,
-      "total_earned": 20.4,
+      "completed_tasks": 8,
+      "total_earned": 21.4,
       "withdraw_count": 3,
       "withdrawn_total": 20.2,
       "fines_total": 0,
@@ -1771,18 +1770,6 @@
   "withdraws": {},
   "last_withdraw_id": 118,
   "submits": {
-    "283": {
-      "user_id": 7811863751,
-      "username": "grimReapersing",
-      "task_id": "64",
-      "reward": 1.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIiJGo32CzSOP1VtBqkHBFmKqKQ-UVjAAJMGWsbVOLBSfaUutdWMS-FAQADAgADeQADPAQ",
-      "time": 1782044716,
-      "admin_sent": true,
-      "admin_sent_time": 1782044716,
-      "admin_message_id": "sending"
-    },
     "284": {
       "user_id": 1401650206,
       "username": "kiril6789",
@@ -2458,6 +2445,13 @@
         "user_id": "1401650206",
         "note": "task #49",
         "time": 1782044608
+      },
+      "283": {
+        "status": "approved",
+        "admin_id": 7837011810,
+        "user_id": "7811863751",
+        "note": "task #64",
+        "time": 1782044785
       }
     },
     "withdraws": {
@@ -4450,6 +4444,15 @@
       "new": 5.0,
       "reason": "task_approved",
       "request_id": "282"
+    },
+    {
+      "time": 1782044785,
+      "user_id": "7811863751",
+      "old": 0.2,
+      "amount": 1.0,
+      "new": 1.2,
+      "reason": "task_approved",
+      "request_id": "283"
     }
   ],
   "withdraw_enabled": true
