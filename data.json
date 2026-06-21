@@ -825,14 +825,14 @@
       ],
       "pending_tasks": [],
       "waiting_task": null,
-      "withdraw_pending": true,
+      "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781976529,
       "completed_tasks": 14,
       "total_earned": 10.4,
-      "withdraw_count": 2,
-      "withdrawn_total": 5.0,
+      "withdraw_count": 3,
+      "withdrawn_total": 10.0,
       "fines_total": 0,
       "username": "Defak97",
       "banned": false,
@@ -1748,20 +1748,7 @@
     }
   },
   "last_task_id": 62,
-  "withdraws": {
-    "108": {
-      "user_id": 6744639669,
-      "username": "Defak97",
-      "to": "@Defak97",
-      "amount": 5.0,
-      "status": "wait",
-      "time": 1782016578,
-      "source_message_id": 7967,
-      "admin_sent": true,
-      "admin_sent_time": 1782016578,
-      "admin_message_id": "sending"
-    }
-  },
+  "withdraws": {},
   "last_withdraw_id": 108,
   "submits": {},
   "last_submit_id": 256,
@@ -2456,6 +2443,13 @@
         "user_id": "5224773359",
         "note": "amount 4.0",
         "time": 1781932137
+      },
+      "108": {
+        "status": "paid",
+        "admin_id": 7837011810,
+        "user_id": "6744639669",
+        "note": "amount 5.0",
+        "time": 1782016629
       }
     }
   },
