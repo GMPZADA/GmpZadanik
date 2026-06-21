@@ -615,14 +615,14 @@
       ],
       "pending_tasks": [],
       "waiting_task": null,
-      "withdraw_pending": true,
+      "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1782021540,
       "completed_tasks": 9,
       "total_earned": 16.6,
-      "withdraw_count": 2,
-      "withdrawn_total": 12.0,
+      "withdraw_count": 3,
+      "withdrawn_total": 16.0,
       "fines_total": 0,
       "banned": false,
       "ban_reason": "",
@@ -1724,20 +1724,7 @@
     }
   },
   "last_task_id": 62,
-  "withdraws": {
-    "109": {
-      "user_id": 8258106768,
-      "username": "trqLemon4ik",
-      "to": "@trqLemon4ik",
-      "amount": 4.0,
-      "status": "wait",
-      "time": 1782021707,
-      "source_message_id": 8111,
-      "admin_sent": true,
-      "admin_sent_time": 1782021708,
-      "admin_message_id": 8114
-    }
-  },
+  "withdraws": {},
   "last_withdraw_id": 109,
   "submits": {},
   "last_submit_id": 257,
@@ -2446,6 +2433,13 @@
         "user_id": "6744639669",
         "note": "amount 5.0",
         "time": 1782016629
+      },
+      "109": {
+        "status": "paid",
+        "admin_id": 7837011810,
+        "user_id": "8258106768",
+        "note": "amount 4.0",
+        "time": 1782021745
       }
     }
   },
