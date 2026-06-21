@@ -3686,5 +3686,5 @@
       "request_id": "256"
     }
   ],
-  "withdraw_enabled": false
+  "withdraw_enabled": true
 }
