@@ -111,8 +111,8 @@
       "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
-      "withdraw_step": "username",
-      "withdraw_to": null,
+      "withdraw_step": "amount",
+      "withdraw_to": "@KPOCOTKO",
       "last_bonus": 0,
       "completed_tasks": 4,
       "total_earned": 5.0,
@@ -120,7 +120,8 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "banned": false,
-      "ban_reason": ""
+      "ban_reason": "",
+      "username": "KPOCOTKO"
     },
     "5609899938": {
       "balance": 0.0,
@@ -1659,7 +1660,7 @@
     "44": {
       "text": "Зайти в бота, выполнить 6 заданий, перейти в раздел «Профиль» и прислать скриншот, где видно выполненные 6 заданий",
       "link": "https://t.me/FrogsStarsBot?start=ref_7837011810",
-      "reward": 4.0,
+      "reward": 3.0,
       "active": true
     },
     "45": {
