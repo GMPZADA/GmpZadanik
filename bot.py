@@ -959,6 +959,38 @@ def my_profile(message):
     bot.send_message(message.chat.id, text)
 
 
+
+@bot.message_handler(commands=["richest"])
+def richest_command(message):
+    data = load_data()
+
+    users = []
+    for uid, user in data.get("users", {}).items():
+        try:
+            balance = float(user.get("balance", 0))
+        except:
+            balance = 0
+
+        username = user.get("username")
+        if username:
+            username = "@" + username
+        else:
+            username = f"ID {uid}"
+
+        users.append((balance, username))
+
+    users.sort(key=lambda x: x[0], reverse=True)
+
+    text_msg = "🏆 Топ богатых игроков\n\n"
+
+    medals = ["🥇", "🥈", "🥉"]
+
+    for i, (balance, username) in enumerate(users[:10], start=1):
+        prefix = medals[i-1] if i <= 3 else f"{i}."
+        text_msg += f"{prefix} {username} — {balance} GMP\n"
+
+    bot.send_message(message.chat.id, text_msg)
+
 @bot.message_handler(commands=["profile", "user", "whois"])
 def admin_profile(message):
     if message.from_user.id != ADMIN_ID:
