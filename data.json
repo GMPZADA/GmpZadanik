@@ -1335,15 +1335,15 @@
       "ban_reason": ""
     },
     "8804288474": {
-      "balance": 2.2,
+      "balance": 0.2,
       "done_tasks": [
         "61"
       ],
       "pending_tasks": [],
       "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": "amount",
-      "withdraw_to": "@gangsters_95",
+      "withdraw_pending": true,
+      "withdraw_step": null,
+      "withdraw_to": null,
       "last_bonus": 1781859100,
       "completed_tasks": 1,
       "total_earned": 2.2,
@@ -1787,8 +1787,21 @@
     }
   },
   "last_task_id": 64,
-  "withdraws": {},
-  "last_withdraw_id": 120,
+  "withdraws": {
+    "121": {
+      "user_id": 8804288474,
+      "username": "Gangsters_95",
+      "to": "@gangsters_95",
+      "amount": 2.0,
+      "status": "wait",
+      "time": 1782049367,
+      "source_message_id": 8808,
+      "admin_sent": true,
+      "admin_sent_time": 1782049367,
+      "admin_message_id": "sending"
+    }
+  },
+  "last_withdraw_id": 121,
   "submits": {},
   "last_submit_id": 288,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
@@ -3315,6 +3328,10 @@
       "120": {
         "message_id": "sending",
         "time": 1782047146
+      },
+      "121": {
+        "message_id": "sending",
+        "time": 1782049367
       }
     }
   },
@@ -4587,6 +4604,15 @@
       "new": 0.0,
       "reason": "withdraw_created",
       "request_id": "120"
+    },
+    {
+      "time": 1782049367,
+      "user_id": "8804288474",
+      "old": 2.2,
+      "amount": -2.0,
+      "new": 0.2,
+      "reason": "withdraw_created",
+      "request_id": "121"
     }
   ],
   "withdraw_enabled": true
