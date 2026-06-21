@@ -756,7 +756,8 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "banned": false,
-      "ban_reason": ""
+      "ban_reason": "",
+      "username": "kr1k0n1"
     },
     "8322172966": {
       "balance": 0.0,
