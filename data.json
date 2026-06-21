@@ -1738,22 +1738,21 @@
       "username": "DIMITEY92"
     },
     "7476447439": {
-      "balance": 7.0,
+      "balance": 8.0,
       "done_tasks": [
         "44",
         "48",
-        "38"
-      ],
-      "pending_tasks": [
+        "38",
         "52"
       ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 0,
-      "completed_tasks": 3,
-      "total_earned": 7.0,
+      "completed_tasks": 4,
+      "total_earned": 8.0,
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
@@ -1881,20 +1880,7 @@
   "last_task_id": 64,
   "withdraws": {},
   "last_withdraw_id": 127,
-  "submits": {
-    "308": {
-      "user_id": 7476447439,
-      "username": "missnipery",
-      "task_id": "52",
-      "reward": 1.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIj6Wo4C1oj94Y7vmPzgP2nGnouOAZEAAK0G2sb6YLBSTqLTF7BHdkXAQADAgADeQADPAQ",
-      "time": 1782057818,
-      "admin_sent": true,
-      "admin_sent_time": 1782057818,
-      "admin_message_id": "sending"
-    }
-  },
+  "submits": {},
   "last_submit_id": 308,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "promocodes": {},
@@ -2732,6 +2718,13 @@
         "user_id": "7476447439",
         "note": "task #38",
         "time": 1782057727
+      },
+      "308": {
+        "status": "approved",
+        "admin_id": 7837011810,
+        "user_id": "7476447439",
+        "note": "task #52",
+        "time": 1782057842
       }
     },
     "withdraws": {
@@ -5207,6 +5200,15 @@
       "new": 7.0,
       "reason": "task_approved",
       "request_id": "307"
+    },
+    {
+      "time": 1782057842,
+      "user_id": "7476447439",
+      "old": 7.0,
+      "amount": 1.0,
+      "new": 8.0,
+      "reason": "task_approved",
+      "request_id": "308"
     }
   ],
   "withdraw_enabled": true
