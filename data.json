@@ -1696,22 +1696,21 @@
       "username": "Danil77261"
     },
     "6909264712": {
-      "balance": 3.0,
+      "balance": 6.0,
       "done_tasks": [
         "38",
         "44",
-        "48"
-      ],
-      "pending_tasks": [
+        "48",
         "51"
       ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 0,
-      "completed_tasks": 3,
-      "total_earned": 7.0,
+      "completed_tasks": 4,
+      "total_earned": 10.0,
       "withdraw_count": 1,
       "withdrawn_total": 4.0,
       "fines_total": 0,
@@ -1857,20 +1856,7 @@
   "last_task_id": 64,
   "withdraws": {},
   "last_withdraw_id": 127,
-  "submits": {
-    "301": {
-      "user_id": 6909264712,
-      "username": "dipeniks",
-      "task_id": "51",
-      "reward": 3.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIje2o4B0pfxk9GAjxIOjcRBihE7KBoAAK9HGsbJJrBSckhM0WrG20AAQEAAwIAA3kAAzwE",
-      "time": 1782056779,
-      "admin_sent": true,
-      "admin_sent_time": 1782056780,
-      "admin_message_id": 9087
-    }
-  },
+  "submits": {},
   "last_submit_id": 301,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "promocodes": {},
@@ -2659,6 +2645,13 @@
         "user_id": "6909264712",
         "note": "task #50",
         "time": 1782056469
+      },
+      "301": {
+        "status": "approved",
+        "admin_id": 7837011810,
+        "user_id": "6909264712",
+        "note": "task #51",
+        "time": 1782056788
       }
     },
     "withdraws": {
@@ -5061,6 +5054,15 @@
       "new": 3.0,
       "reason": "task_approved",
       "request_id": "298"
+    },
+    {
+      "time": 1782056788,
+      "user_id": "6909264712",
+      "old": 3.0,
+      "amount": 3.0,
+      "new": 6.0,
+      "reason": "task_approved",
+      "request_id": "301"
     }
   ],
   "withdraw_enabled": true
