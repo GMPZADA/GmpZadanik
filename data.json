@@ -1590,9 +1590,7 @@
     "8118631172": {
       "balance": 0,
       "done_tasks": [],
-      "pending_tasks": [
-        "42"
-      ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
@@ -1763,20 +1761,7 @@
   "last_task_id": 64,
   "withdraws": {},
   "last_withdraw_id": 117,
-  "submits": {
-    "279": {
-      "user_id": 8118631172,
-      "username": "Mister_ykt",
-      "task_id": "42",
-      "reward": 3.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIh8mo3yQRBRzNs3Xi-QMJHQT209o3cAALdGGsb_sLASYF7mDJO5MrbAQADAgADdwADPAQ",
-      "time": 1782040837,
-      "admin_sent": true,
-      "admin_sent_time": 1782040837,
-      "admin_message_id": "sending"
-    }
-  },
+  "submits": {},
   "last_submit_id": 279,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "promocodes": {},
@@ -2411,6 +2396,13 @@
         "user_id": "8258106768",
         "note": "task #63",
         "time": 1782040231
+      },
+      "279": {
+        "status": "rejected",
+        "admin_id": 7837011810,
+        "user_id": "8118631172",
+        "note": "task #42",
+        "time": 1782040974
       }
     },
     "withdraws": {
