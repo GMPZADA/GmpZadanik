@@ -101,20 +101,19 @@
       "ban_reason": ""
     },
     "8317326202": {
-      "balance": 0,
+      "balance": 2.0,
       "done_tasks": [
-        "41"
-      ],
-      "pending_tasks": [
+        "41",
         "61"
       ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 0,
-      "completed_tasks": 1,
-      "total_earned": 0,
+      "completed_tasks": 2,
+      "total_earned": 2.0,
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
@@ -1749,20 +1748,7 @@
   "last_task_id": 62,
   "withdraws": {},
   "last_withdraw_id": 110,
-  "submits": {
-    "261": {
-      "user_id": 8317326202,
-      "username": "KPOCOTKO",
-      "task_id": "61",
-      "reward": 2.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIf9Go3ifcTB0sLMoxUdCZfqH8IJeTTAAIQHGsbVlW5SY-1LN5vC6QvAQADAgADdwADPAQ",
-      "time": 1782024695,
-      "admin_sent": true,
-      "admin_sent_time": 1782024696,
-      "admin_message_id": 8182
-    }
-  },
+  "submits": {},
   "last_submit_id": 261,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "promocodes": {},
@@ -2271,6 +2257,13 @@
         "user_id": "8317326202",
         "note": "task #62",
         "time": 1782024638
+      },
+      "261": {
+        "status": "approved",
+        "admin_id": 7837011810,
+        "user_id": "8317326202",
+        "note": "task #61",
+        "time": 1782024754
       }
     },
     "withdraws": {
@@ -3867,6 +3860,15 @@
       "new": 0.0,
       "reason": "withdraw_created",
       "request_id": "110"
+    },
+    {
+      "time": 1782024754,
+      "user_id": "8317326202",
+      "old": 0.0,
+      "amount": 2.0,
+      "new": 2.0,
+      "reason": "task_approved",
+      "request_id": "261"
     }
   ],
   "withdraw_enabled": true
