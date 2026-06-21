@@ -1739,7 +1739,7 @@
       "username": "DIMITEY92"
     },
     "7476447439": {
-      "balance": 0.0,
+      "balance": 8.0,
       "done_tasks": [
         "44",
         "48",
@@ -1748,12 +1748,12 @@
       ],
       "pending_tasks": [],
       "waiting_task": null,
-      "withdraw_pending": true,
+      "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 0,
       "completed_tasks": 4,
-      "total_earned": 8.0,
+      "total_earned": 16.0,
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
@@ -1879,20 +1879,7 @@
     }
   },
   "last_task_id": 64,
-  "withdraws": {
-    "128": {
-      "user_id": 7476447439,
-      "username": "missnipery",
-      "to": "@dipeniks",
-      "amount": 8.0,
-      "status": "wait",
-      "time": 1782058052,
-      "source_message_id": 9229,
-      "admin_sent": true,
-      "admin_sent_time": 1782061416,
-      "admin_message_id": 9266
-    }
-  },
+  "withdraws": {},
   "last_withdraw_id": 129,
   "submits": {},
   "last_submit_id": 309,
@@ -3105,6 +3092,13 @@
         "user_id": "6909264712",
         "note": "amount 9.0",
         "time": 1782058106
+      },
+      "128": {
+        "status": "rejected",
+        "admin_id": 7837011810,
+        "user_id": "7476447439",
+        "note": "amount 8.0",
+        "time": 1782061423
       }
     }
   },
@@ -5276,6 +5270,15 @@
       "new": 0.0,
       "reason": "withdraw_created",
       "request_id": "129"
+    },
+    {
+      "time": 1782061423,
+      "user_id": "7476447439",
+      "old": 0.0,
+      "amount": 8.0,
+      "new": 8.0,
+      "reason": "withdraw_rejected_return",
+      "request_id": "128"
     }
   ],
   "withdraw_enabled": false
