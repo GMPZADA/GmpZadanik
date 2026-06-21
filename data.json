@@ -172,7 +172,7 @@
       "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
-      "withdraw_step": "username",
+      "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781929723,
       "completed_tasks": 11,
@@ -5278,5 +5278,5 @@
       "request_id": "129"
     }
   ],
-  "withdraw_enabled": true
+  "withdraw_enabled": false
 }
