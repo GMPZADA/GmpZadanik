@@ -1883,10 +1883,10 @@
       "task_id": "50",
       "reward": 3.0,
       "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIji2o4CS3Q7Rqr7ojI43BkckVbYR58AAKUG2sb6YLBSfr0lVSiP97_AQADAgADeQADPAQ",
-      "time": 1782057331,
+      "photo_file_id": "AgACAgIAAxkBAAIjjGo4CS0SburNQQnczcQE424lliE6AAKVG2sb6YLBSTIV8pHHDYuaAQADAgADeQADPAQ",
+      "time": 1782057332,
       "admin_sent": true,
-      "admin_sent_time": 1782057331,
+      "admin_sent_time": 1782057332,
       "admin_message_id": "sending"
     }
   },
@@ -3455,7 +3455,7 @@
       },
       "303": {
         "message_id": "sending",
-        "time": 1782057331
+        "time": 1782057332
       }
     },
     "withdraws": {
