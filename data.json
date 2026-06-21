@@ -124,23 +124,22 @@
       "username": "KPOCOTKO"
     },
     "5609899938": {
-      "balance": 0.0,
+      "balance": 3.0,
       "done_tasks": [
         "41",
         "43",
         "62",
-        "61"
-      ],
-      "pending_tasks": [
+        "61",
         "48"
       ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 0,
-      "completed_tasks": 4,
-      "total_earned": 8.0,
+      "completed_tasks": 5,
+      "total_earned": 11.0,
       "withdraw_count": 1,
       "withdrawn_total": 8.0,
       "fines_total": 0,
@@ -1753,20 +1752,7 @@
   "last_task_id": 62,
   "withdraws": {},
   "last_withdraw_id": 112,
-  "submits": {
-    "265": {
-      "user_id": 5609899938,
-      "username": "KPACOTKAA",
-      "task_id": "48",
-      "reward": 3.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIgXmo3jH9nxwqwvW3RawXqhTwSWYxJAAKhGWsbPhrASVUosoxgFK6xAQADAgADdwADPAQ",
-      "time": 1782025349,
-      "admin_sent": true,
-      "admin_sent_time": 1782025349,
-      "admin_message_id": "sending"
-    }
-  },
+  "submits": {},
   "last_submit_id": 265,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "promocodes": {},
@@ -2303,6 +2289,13 @@
         "user_id": "8317326202",
         "note": "task #52",
         "time": 1782024952
+      },
+      "265": {
+        "status": "approved",
+        "admin_id": 7837011810,
+        "user_id": "5609899938",
+        "note": "task #48",
+        "time": 1782025362
       }
     },
     "withdraws": {
@@ -3982,6 +3975,15 @@
       "new": 0.0,
       "reason": "withdraw_created",
       "request_id": "112"
+    },
+    {
+      "time": 1782025362,
+      "user_id": "5609899938",
+      "old": 0.0,
+      "amount": 3.0,
+      "new": 3.0,
+      "reason": "task_approved",
+      "request_id": "265"
     }
   ],
   "withdraw_enabled": true
