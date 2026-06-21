@@ -1335,20 +1335,19 @@
       "ban_reason": ""
     },
     "8804288474": {
-      "balance": 0.2,
+      "balance": 3.2,
       "done_tasks": [
-        "61"
-      ],
-      "pending_tasks": [
+        "61",
         "44"
       ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1781859100,
-      "completed_tasks": 1,
-      "total_earned": 2.2,
+      "completed_tasks": 2,
+      "total_earned": 5.2,
       "withdraw_count": 1,
       "withdrawn_total": 2.0,
       "fines_total": 0,
@@ -1793,20 +1792,7 @@
   "last_task_id": 64,
   "withdraws": {},
   "last_withdraw_id": 121,
-  "submits": {
-    "290": {
-      "user_id": 8804288474,
-      "username": "Gangsters_95",
-      "task_id": "44",
-      "reward": 3.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIid2o3611TI-DDUCORDlan_mZVcvoTAAIpHGsbNNjBSfVvqMfNICcgAQADAgADeQADPAQ",
-      "time": 1782049640,
-      "admin_sent": true,
-      "admin_sent_time": 1782049640,
-      "admin_message_id": "sending"
-    }
-  },
+  "submits": {},
   "last_submit_id": 290,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "promocodes": {},
@@ -2518,6 +2504,13 @@
         "user_id": "8031026603",
         "note": "task #38",
         "time": 1782049638
+      },
+      "290": {
+        "status": "approved",
+        "admin_id": 7837011810,
+        "user_id": "8804288474",
+        "note": "task #44",
+        "time": 1782049654
       }
     },
     "withdraws": {
@@ -4657,6 +4650,15 @@
       "new": 1.4,
       "reason": "add",
       "request_id": ""
+    },
+    {
+      "time": 1782049654,
+      "user_id": "8804288474",
+      "old": 0.2,
+      "amount": 3.0,
+      "new": 3.2,
+      "reason": "task_approved",
+      "request_id": "290"
     }
   ],
   "withdraw_enabled": true
