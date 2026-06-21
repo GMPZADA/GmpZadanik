@@ -1714,16 +1714,16 @@
       "username": "dipeniks"
     },
     "547991053": {
-      "balance": 0,
+      "balance": 0.2,
       "done_tasks": [],
       "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
-      "last_bonus": 0,
+      "last_bonus": 1782055566,
       "completed_tasks": 0,
-      "total_earned": 0,
+      "total_earned": 0.2,
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
@@ -4927,6 +4927,15 @@
       "new": 0.0,
       "reason": "withdraw_created",
       "request_id": "126"
+    },
+    {
+      "time": 1782055566,
+      "user_id": "547991053",
+      "old": 0.0,
+      "amount": 0.2,
+      "new": 0.2,
+      "reason": "add",
+      "request_id": ""
     }
   ],
   "withdraw_enabled": true
