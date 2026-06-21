@@ -135,14 +135,14 @@
       ],
       "pending_tasks": [],
       "waiting_task": null,
-      "withdraw_pending": true,
+      "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 0,
       "completed_tasks": 6,
       "total_earned": 13.0,
-      "withdraw_count": 1,
-      "withdrawn_total": 8.0,
+      "withdraw_count": 2,
+      "withdrawn_total": 13.0,
       "fines_total": 0,
       "banned": false,
       "ban_reason": "",
@@ -1751,20 +1751,7 @@
     }
   },
   "last_task_id": 62,
-  "withdraws": {
-    "113": {
-      "user_id": 5609899938,
-      "username": "KPACOTKAA",
-      "to": "@KPACOTKAA",
-      "amount": 5.0,
-      "status": "wait",
-      "time": 1782025592,
-      "source_message_id": 8338,
-      "admin_sent": true,
-      "admin_sent_time": 1782025593,
-      "admin_message_id": 8340
-    }
-  },
+  "withdraws": {},
   "last_withdraw_id": 113,
   "submits": {},
   "last_submit_id": 266,
@@ -2564,6 +2551,13 @@
         "user_id": "5224773359",
         "note": "amount 4.2",
         "time": 1782025300
+      },
+      "113": {
+        "status": "paid",
+        "admin_id": 7837011810,
+        "user_id": "5609899938",
+        "note": "amount 5.0",
+        "time": 1782025626
       }
     }
   },
