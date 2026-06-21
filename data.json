@@ -613,7 +613,7 @@
       "ban_reason": ""
     },
     "8258106768": {
-      "balance": 4.6,
+      "balance": 0.6,
       "done_tasks": [
         "52",
         "42",
@@ -629,9 +629,9 @@
       ],
       "pending_tasks": [],
       "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": "amount",
-      "withdraw_to": "@trqLemon4ik",
+      "withdraw_pending": true,
+      "withdraw_step": null,
+      "withdraw_to": null,
       "last_bonus": 1782021540,
       "completed_tasks": 11,
       "total_earned": 20.6,
@@ -1770,9 +1770,21 @@
       "admin_sent": true,
       "admin_sent_time": 1782040379,
       "admin_message_id": 8657
+    },
+    "117": {
+      "user_id": 8258106768,
+      "username": "trqLemon4ik",
+      "to": "@trqLemon4ik",
+      "amount": 4.0,
+      "status": "wait",
+      "time": 1782040403,
+      "source_message_id": 8666,
+      "admin_sent": true,
+      "admin_sent_time": 1782040403,
+      "admin_message_id": "sending"
     }
   },
-  "last_withdraw_id": 116,
+  "last_withdraw_id": 117,
   "submits": {},
   "last_submit_id": 278,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
@@ -3138,6 +3150,10 @@
       "116": {
         "message_id": 8657,
         "time": 1782040379
+      },
+      "117": {
+        "message_id": "sending",
+        "time": 1782040403
       }
     }
   },
@@ -4302,6 +4318,15 @@
       "new": 0.0,
       "reason": "withdraw_created",
       "request_id": "116"
+    },
+    {
+      "time": 1782040403,
+      "user_id": "8258106768",
+      "old": 4.6,
+      "amount": -4.0,
+      "new": 0.6,
+      "reason": "withdraw_created",
+      "request_id": "117"
     }
   ],
   "withdraw_enabled": true
