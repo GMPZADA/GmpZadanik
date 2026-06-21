@@ -113,14 +113,14 @@
       ],
       "pending_tasks": [],
       "waiting_task": null,
-      "withdraw_pending": true,
+      "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 0,
       "completed_tasks": 7,
       "total_earned": 11.0,
-      "withdraw_count": 1,
-      "withdrawn_total": 5.0,
+      "withdraw_count": 2,
+      "withdrawn_total": 11.0,
       "fines_total": 0,
       "banned": false,
       "ban_reason": "",
@@ -1754,20 +1754,7 @@
     }
   },
   "last_task_id": 62,
-  "withdraws": {
-    "114": {
-      "user_id": 8317326202,
-      "username": "KPOCOTKO",
-      "to": "@KPOCOTKO",
-      "amount": 6.0,
-      "status": "wait",
-      "time": 1782026081,
-      "source_message_id": 8371,
-      "admin_sent": true,
-      "admin_sent_time": 1782026082,
-      "admin_message_id": 8373
-    }
-  },
+  "withdraws": {},
   "last_withdraw_id": 114,
   "submits": {},
   "last_submit_id": 269,
@@ -2595,6 +2582,13 @@
         "user_id": "5609899938",
         "note": "amount 5.0",
         "time": 1782025626
+      },
+      "114": {
+        "status": "paid",
+        "admin_id": 7837011810,
+        "user_id": "8317326202",
+        "note": "amount 6.0",
+        "time": 1782026132
       }
     }
   },
