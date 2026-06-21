@@ -616,8 +616,8 @@
       "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
-      "withdraw_step": "username",
-      "withdraw_to": null,
+      "withdraw_step": "amount",
+      "withdraw_to": "@trqLemon4ik",
       "last_bonus": 1782021540,
       "completed_tasks": 9,
       "total_earned": 16.6,
@@ -626,7 +626,7 @@
       "fines_total": 0,
       "banned": false,
       "ban_reason": "",
-      "username": "Lemon4ikkkkkkkkkkkkkkkk"
+      "username": "trqLemon4ik"
     },
     "6276600731": {
       "balance": 0.2,
