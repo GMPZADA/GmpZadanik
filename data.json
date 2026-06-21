@@ -806,7 +806,7 @@
       "ban_reason": ""
     },
     "6744639669": {
-      "balance": 5.4,
+      "balance": 0.4,
       "done_tasks": [
         "38",
         "46",
@@ -825,9 +825,9 @@
       ],
       "pending_tasks": [],
       "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": "amount",
-      "withdraw_to": "@Defak97",
+      "withdraw_pending": true,
+      "withdraw_step": null,
+      "withdraw_to": null,
       "last_bonus": 1781976529,
       "completed_tasks": 14,
       "total_earned": 10.4,
@@ -1748,8 +1748,21 @@
     }
   },
   "last_task_id": 62,
-  "withdraws": {},
-  "last_withdraw_id": 107,
+  "withdraws": {
+    "108": {
+      "user_id": 6744639669,
+      "username": "Defak97",
+      "to": "@Defak97",
+      "amount": 5.0,
+      "status": "wait",
+      "time": 1782016578,
+      "source_message_id": 7967,
+      "admin_sent": true,
+      "admin_sent_time": 1782016578,
+      "admin_message_id": "sending"
+    }
+  },
+  "last_withdraw_id": 108,
   "submits": {},
   "last_submit_id": 256,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
@@ -2781,6 +2794,10 @@
       "107": {
         "message_id": 7711,
         "time": 1781931561
+      },
+      "108": {
+        "message_id": "sending",
+        "time": 1782016578
       }
     }
   },
@@ -3684,6 +3701,15 @@
       "new": 5.4,
       "reason": "task_approved",
       "request_id": "256"
+    },
+    {
+      "time": 1782016578,
+      "user_id": "6744639669",
+      "old": 5.4,
+      "amount": -5.0,
+      "new": 0.4,
+      "reason": "withdraw_created",
+      "request_id": "108"
     }
   ],
   "withdraw_enabled": true
