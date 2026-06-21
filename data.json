@@ -1740,9 +1740,10 @@
       "balance": 0,
       "done_tasks": [],
       "pending_tasks": [
-        "50"
+        "50",
+        "44"
       ],
-      "waiting_task": "44",
+      "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
@@ -1888,9 +1889,21 @@
       "admin_sent": true,
       "admin_sent_time": 1782057333,
       "admin_message_id": 9112
+    },
+    "304": {
+      "user_id": 7476447439,
+      "username": "missnipery",
+      "task_id": "44",
+      "reward": 3.0,
+      "status": "wait",
+      "photo_file_id": "AgACAgIAAxkBAAIjnGo4Cbmj5XLZs5XGBaTFQ018mI8oAAKYG2sb6YLBSZRr9ExzRonVAQADAgADeQADPAQ",
+      "time": 1782057401,
+      "admin_sent": true,
+      "admin_sent_time": 1782057401,
+      "admin_message_id": "sending"
     }
   },
-  "last_submit_id": 303,
+  "last_submit_id": 304,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "promocodes": {},
   "processed_requests": {
@@ -3456,6 +3469,10 @@
       "303": {
         "message_id": 9112,
         "time": 1782057333
+      },
+      "304": {
+        "message_id": "sending",
+        "time": 1782057401
       }
     },
     "withdraws": {
