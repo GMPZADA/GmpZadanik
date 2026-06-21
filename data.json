@@ -601,7 +601,7 @@
       "ban_reason": ""
     },
     "8258106768": {
-      "balance": 2.4,
+      "balance": 2.6,
       "done_tasks": [
         "52",
         "42",
@@ -617,9 +617,9 @@
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
-      "last_bonus": 1781893665,
+      "last_bonus": 1782021540,
       "completed_tasks": 8,
-      "total_earned": 14.4,
+      "total_earned": 14.6,
       "withdraw_count": 2,
       "withdrawn_total": 12.0,
       "fines_total": 0,
@@ -3695,6 +3695,15 @@
       "old": 0.0,
       "amount": 0.2,
       "new": 0.2,
+      "reason": "add",
+      "request_id": ""
+    },
+    {
+      "time": 1782021540,
+      "user_id": "8258106768",
+      "old": 2.4,
+      "amount": 0.2,
+      "new": 2.6,
       "reason": "add",
       "request_id": ""
     }
