@@ -651,7 +651,7 @@
       "username": "trqLemon4ik"
     },
     "6276600731": {
-      "balance": 1.0,
+      "balance": 1.2,
       "done_tasks": [
         "38",
         "41",
@@ -675,9 +675,9 @@
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
-      "last_bonus": 1782021614,
+      "last_bonus": 1782114072,
       "completed_tasks": 16,
-      "total_earned": 28.6,
+      "total_earned": 28.8,
       "withdraw_count": 6,
       "withdrawn_total": 27.6,
       "fines_total": 0,
@@ -5443,6 +5443,15 @@
       "new": 2.8,
       "reason": "task_approved",
       "request_id": "316"
+    },
+    {
+      "time": 1782114072,
+      "user_id": "6276600731",
+      "old": 1.0,
+      "amount": 0.2,
+      "new": 1.2,
+      "reason": "add",
+      "request_id": ""
     }
   ],
   "withdraw_enabled": false
