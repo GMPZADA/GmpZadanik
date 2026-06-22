@@ -649,7 +649,7 @@
       "username": "trqLemon4ik"
     },
     "6276600731": {
-      "balance": 0.0,
+      "balance": 1.0,
       "done_tasks": [
         "38",
         "41",
@@ -665,18 +665,17 @@
         "55",
         "52",
         "44",
-        "63"
-      ],
-      "pending_tasks": [
+        "63",
         "64"
       ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1782021614,
-      "completed_tasks": 15,
-      "total_earned": 27.6,
+      "completed_tasks": 16,
+      "total_earned": 28.6,
       "withdraw_count": 6,
       "withdrawn_total": 27.6,
       "fines_total": 0,
@@ -1886,20 +1885,7 @@
   "last_task_id": 64,
   "withdraws": {},
   "last_withdraw_id": 129,
-  "submits": {
-    "314": {
-      "user_id": 6276600731,
-      "username": "BOG_PIGR",
-      "task_id": "64",
-      "reward": 1.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgUAAxkBAAIks2o45eT3v-La2U7FEdxi1Mk1yejqAAJcD2sbjaHJVYK8-k99XxkZAQADAgADdwADPAQ",
-      "time": 1782113764,
-      "admin_sent": true,
-      "admin_sent_time": 1782113766,
-      "admin_message_id": 9397
-    }
-  },
+  "submits": {},
   "last_submit_id": 314,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "promocodes": {},
@@ -2779,6 +2765,13 @@
         "user_id": "8651016638",
         "note": "task #59",
         "time": 1782105830
+      },
+      "314": {
+        "status": "approved",
+        "admin_id": 7837011810,
+        "user_id": "6276600731",
+        "note": "task #64",
+        "time": 1782113806
       }
     },
     "withdraws": {
@@ -5390,6 +5383,15 @@
       "new": 4.0,
       "reason": "task_approved",
       "request_id": "313"
+    },
+    {
+      "time": 1782113806,
+      "user_id": "6276600731",
+      "old": 0.0,
+      "amount": 1.0,
+      "new": 1.0,
+      "reason": "task_approved",
+      "request_id": "314"
     }
   ],
   "withdraw_enabled": false
