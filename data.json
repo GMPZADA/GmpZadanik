@@ -504,7 +504,7 @@
       "ban_reason": ""
     },
     "7130773702": {
-      "balance": 1.8,
+      "balance": 2.8,
       "done_tasks": [
         "41",
         "44",
@@ -514,18 +514,17 @@
         "57",
         "52",
         "55",
-        "42"
-      ],
-      "pending_tasks": [
+        "42",
         "64"
       ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1782135250,
-      "completed_tasks": 9,
-      "total_earned": 10.8,
+      "completed_tasks": 10,
+      "total_earned": 11.8,
       "withdraw_count": 3,
       "withdrawn_total": 9.0,
       "fines_total": 0,
@@ -1910,20 +1909,7 @@
   "last_task_id": 64,
   "withdraws": {},
   "last_withdraw_id": 129,
-  "submits": {
-    "319": {
-      "user_id": 7130773702,
-      "username": "kurokcek",
-      "task_id": "64",
-      "reward": 1.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIlCGo5Oe5QkQAB4Xm8orzigqkq-LwaQAAC3RprG7tbyUkC1eH5y2YAAWwBAAMCAAN5AAM8BA",
-      "time": 1782135278,
-      "admin_sent": true,
-      "admin_sent_time": 1782135278,
-      "admin_message_id": "sending"
-    }
-  },
+  "submits": {},
   "last_submit_id": 319,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "promocodes": {},
@@ -2838,6 +2824,13 @@
         "user_id": "8694892873",
         "note": "task #38",
         "time": 1782115882
+      },
+      "319": {
+        "status": "approved",
+        "admin_id": 7837011810,
+        "user_id": "7130773702",
+        "note": "task #64",
+        "time": 1782135313
       }
     },
     "withdraws": {
@@ -5550,6 +5543,15 @@
       "new": 1.8,
       "reason": "add",
       "request_id": ""
+    },
+    {
+      "time": 1782135313,
+      "user_id": "7130773702",
+      "old": 1.8,
+      "amount": 1.0,
+      "new": 2.8,
+      "reason": "task_approved",
+      "request_id": "319"
     }
   ],
   "withdraw_enabled": false
