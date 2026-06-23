@@ -1703,7 +1703,7 @@
       "username": "Danil77261"
     },
     "6909264712": {
-      "balance": 2.0,
+      "balance": 2.2,
       "done_tasks": [
         "38",
         "44",
@@ -1718,9 +1718,9 @@
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
-      "last_bonus": 0,
+      "last_bonus": 1782214184,
       "completed_tasks": 7,
-      "total_earned": 15.0,
+      "total_earned": 15.2,
       "withdraw_count": 2,
       "withdrawn_total": 13.0,
       "fines_total": 0,
@@ -5579,6 +5579,15 @@
       "old": 0.2,
       "amount": 0.2,
       "new": 0.4,
+      "reason": "add",
+      "request_id": ""
+    },
+    {
+      "time": 1782214184,
+      "user_id": "6909264712",
+      "old": 2.0,
+      "amount": 0.2,
+      "new": 2.2,
       "reason": "add",
       "request_id": ""
     }
