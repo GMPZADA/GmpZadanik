@@ -771,7 +771,7 @@
       "username": "kr1k0n1"
     },
     "8322172966": {
-      "balance": 0.2,
+      "balance": 0.4,
       "done_tasks": [
         "42",
         "44"
@@ -783,9 +783,9 @@
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
-      "last_bonus": 1782066456,
+      "last_bonus": 1782210047,
       "completed_tasks": 2,
-      "total_earned": 9.0,
+      "total_earned": 9.2,
       "withdraw_count": 1,
       "withdrawn_total": 4.4,
       "fines_total": 0,
@@ -5578,6 +5578,15 @@
       "old": 1.2,
       "amount": 0.2,
       "new": 1.4,
+      "reason": "add",
+      "request_id": ""
+    },
+    {
+      "time": 1782210047,
+      "user_id": "8322172966",
+      "old": 0.2,
+      "amount": 0.2,
+      "new": 0.4,
       "reason": "add",
       "request_id": ""
     }
