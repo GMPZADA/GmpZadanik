@@ -776,9 +776,7 @@
         "42",
         "44"
       ],
-      "pending_tasks": [
-        "48"
-      ],
+      "pending_tasks": [],
       "waiting_task": "49",
       "withdraw_pending": false,
       "withdraw_step": null,
@@ -1911,20 +1909,7 @@
   "last_task_id": 64,
   "withdraws": {},
   "last_withdraw_id": 129,
-  "submits": {
-    "320": {
-      "user_id": 8322172966,
-      "username": "Als1win",
-      "task_id": "48",
-      "reward": 3.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIlKWo6XfonTmTq1LbyDwJHMeVgHcfSAAKUGGsbQ1XQSf4lis1mbKgnAQADAgADeQADPAQ",
-      "time": 1782210042,
-      "admin_sent": true,
-      "admin_sent_time": 1782210043,
-      "admin_message_id": 9515
-    }
-  },
+  "submits": {},
   "last_submit_id": 320,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "promocodes": {},
@@ -2846,6 +2831,13 @@
         "user_id": "7130773702",
         "note": "task #64",
         "time": 1782135313
+      },
+      "320": {
+        "status": "rejected",
+        "admin_id": 7837011810,
+        "user_id": "8322172966",
+        "note": "task #48",
+        "time": 1782213574
       }
     },
     "withdraws": {
