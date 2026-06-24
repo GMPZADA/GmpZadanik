@@ -637,8 +637,10 @@
         "38",
         "41"
       ],
-      "pending_tasks": [],
-      "waiting_task": "54",
+      "pending_tasks": [
+        "54"
+      ],
+      "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
@@ -1910,8 +1912,21 @@
   "last_task_id": 64,
   "withdraws": {},
   "last_withdraw_id": 129,
-  "submits": {},
-  "last_submit_id": 321,
+  "submits": {
+    "322": {
+      "user_id": 8258106768,
+      "username": "trqLemon4ik",
+      "task_id": "54",
+      "reward": 1.0,
+      "status": "wait",
+      "photo_file_id": "AgACAgIAAxkBAAIlaGo75lXCPEePYOCFyDOU1ZfErm-zAALLF2sbP6jhSVnpEQ96mkolAQADAgADeQADPAQ",
+      "time": 1782310485,
+      "admin_sent": true,
+      "admin_sent_time": 1782310485,
+      "admin_message_id": "sending"
+    }
+  },
+  "last_submit_id": 322,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "promocodes": {},
   "processed_requests": {
@@ -3696,6 +3711,10 @@
       "321": {
         "message_id": 9554,
         "time": 1782263237
+      },
+      "322": {
+        "message_id": "sending",
+        "time": 1782310485
       }
     },
     "withdraws": {
