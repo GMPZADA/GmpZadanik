@@ -771,21 +771,20 @@
       "username": "kr1k0n1"
     },
     "8322172966": {
-      "balance": 0.4,
+      "balance": 3.4,
       "done_tasks": [
         "42",
-        "44"
-      ],
-      "pending_tasks": [
+        "44",
         "48"
       ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1782210047,
-      "completed_tasks": 2,
-      "total_earned": 9.2,
+      "completed_tasks": 3,
+      "total_earned": 12.2,
       "withdraw_count": 1,
       "withdrawn_total": 4.4,
       "fines_total": 0,
@@ -1911,20 +1910,7 @@
   "last_task_id": 64,
   "withdraws": {},
   "last_withdraw_id": 129,
-  "submits": {
-    "321": {
-      "user_id": 8322172966,
-      "username": "Als1win",
-      "task_id": "48",
-      "reward": 3.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIlKWo6XfonTmTq1LbyDwJHMeVgHcfSAAKUGGsbQ1XQSf4lis1mbKgnAQADAgADeQADPAQ",
-      "time": 1782263236,
-      "admin_sent": true,
-      "admin_sent_time": 1782263237,
-      "admin_message_id": 9554
-    }
-  },
+  "submits": {},
   "last_submit_id": 321,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "promocodes": {},
@@ -2853,6 +2839,13 @@
         "user_id": "8322172966",
         "note": "task #48",
         "time": 1782213574
+      },
+      "321": {
+        "status": "approved",
+        "admin_id": 7837011810,
+        "user_id": "8322172966",
+        "note": "task #48",
+        "time": 1782276010
       }
     },
     "withdraws": {
@@ -5609,6 +5602,15 @@
       "new": 2.2,
       "reason": "add",
       "request_id": ""
+    },
+    {
+      "time": 1782276010,
+      "user_id": "8322172966",
+      "old": 0.4,
+      "amount": 3.0,
+      "new": 3.4,
+      "reason": "task_approved",
+      "request_id": "321"
     }
   ],
   "withdraw_enabled": false
