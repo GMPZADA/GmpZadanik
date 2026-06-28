@@ -75,6 +75,7 @@ def empty_data():
     return {
         "users": {},
         "tasks": {},
+        "required_tasks": [],
         "submits": {},
         "withdraws": {},
         "promocodes": {},
@@ -104,6 +105,15 @@ def fix_data(data):
             data[key] = value
 
     data.setdefault("withdraw_enabled", True)
+    data.setdefault("required_tasks", [])
+    if not isinstance(data.get("required_tasks"), list):
+        data["required_tasks"] = []
+
+    # Чистим обязательные задания: если админ удалил задание, оно больше не блокирует вывод.
+    existing_task_ids = {str(tid) for tid in data.get("tasks", {}).keys()}
+    data["required_tasks"] = list(dict.fromkeys(
+        str(tid) for tid in data.get("required_tasks", []) if str(tid) in existing_task_ids
+    ))
 
     for uid, user in data.get("users", {}).items():
         user.setdefault("balance", 0)
@@ -124,6 +134,9 @@ def fix_data(data):
 
     for task_id, task in data.get("tasks", {}).items():
         task.setdefault("active", True)
+        task.setdefault("required", str(task_id) in data.get("required_tasks", []))
+        if task.get("required") and str(task_id) not in data.get("required_tasks", []):
+            data.setdefault("required_tasks", []).append(str(task_id))
 
     # Защита от повторной обработки заявок/выводов
     data.setdefault("processed_requests", {})
@@ -176,10 +189,17 @@ def fix_data(data):
 
     for uid, user in data.get("users", {}).items():
         user["withdraw_pending"] = str(uid) in active_withdraw_users
-        # Убираем зависшие pending_tasks, если заявки уже нет.
-        user["pending_tasks"] = [str(tid) for tid in user.get("pending_tasks", []) if (str(uid), str(tid)) in active_submit_pairs]
-        # Убираем дубли выполненных заданий.
-        user["done_tasks"] = list(dict.fromkeys(str(tid) for tid in user.get("done_tasks", [])))
+        # Убираем зависшие pending_tasks, если заявки уже нет или задание удалили.
+        user["pending_tasks"] = [
+            str(tid) for tid in user.get("pending_tasks", [])
+            if str(tid) in existing_task_ids and (str(uid), str(tid)) in active_submit_pairs
+        ]
+        # Убираем дубли выполненных заданий и мусор от удалённых заданий.
+        user["done_tasks"] = list(dict.fromkeys(
+            str(tid) for tid in user.get("done_tasks", []) if str(tid) in existing_task_ids
+        ))
+        if str(user.get("waiting_task")) not in existing_task_ids:
+            user["waiting_task"] = None
 
     return data
 
@@ -571,6 +591,42 @@ def parse_gmp_amount(raw):
     return round(amount, 2)
 
 
+def get_required_missing_tasks(data, user):
+    """Возвращает обязательные активные задания, которые пользователь ещё не выполнил."""
+    missing = []
+    done = {str(tid) for tid in user.get("done_tasks", [])}
+    required_ids = list(dict.fromkeys(str(tid) for tid in data.get("required_tasks", [])))
+
+    for task_id in required_ids:
+        task = data.get("tasks", {}).get(str(task_id))
+        if not task:
+            continue
+        if not task.get("active", True):
+            continue
+        if str(task_id) in done:
+            continue
+        missing.append(str(task_id))
+
+    return missing
+
+
+def required_tasks_block_text(missing):
+    if not missing:
+        return ""
+    if len(missing) == 1:
+        return (
+            f"❌ <b>Вывод пока недоступен.</b>\n\n"
+            f"Сначала выполни обязательное задание <b>#{missing[0]}</b>.\n"
+            f"После одобрения задания ты сможешь вывести GMP."
+        )
+    nums = ", ".join(f"#{x}" for x in missing[:10])
+    return (
+        f"❌ <b>Вывод пока недоступен.</b>\n\n"
+        f"Сначала выполни обязательные задания: <b>{nums}</b>.\n"
+        f"После одобрения заданий ты сможешь вывести GMP."
+    )
+
+
 def resolve_user_id(data, user_query):
     """
     Ищет пользователя по ID или @username.
@@ -693,7 +749,10 @@ def build_admin_profile_text(data, user_id, user, username=None):
         "<code>/requests</code> — активные заявки\n"
         "<code>/promo КОД сумма активации</code> — создать промокод\n"
         "<code>/promos</code> — список промокодов\n"
-        "<code>/delpromo КОД</code> — удалить промокод"
+        "<code>/delpromo КОД</code> — удалить промокод\n"
+        "<code>/addrequired Текст | ссылка | награда</code> — обязательное задание\n"
+        "<code>/required номер</code> — сделать задание обязательным\n"
+        "<code>/unrequired номер</code> — убрать обязательность"
     )
 
 
@@ -1087,7 +1146,7 @@ def tasks(message):
 
         found = True
         kb.add(types.InlineKeyboardButton(
-            f"✅ Задание #{task_id} — {format_gmp(task['reward'])} GMP",
+            f"{'🔥 Обязательное' if task.get('required') else '✅ Задание'} #{task_id} — {format_gmp(task['reward'])} GMP",
             callback_data=f"task_{task_id}"
         ))
 
@@ -1533,6 +1592,13 @@ def withdraw(message):
     if float(user["balance"]) <= 0:
         return bot.send_message(message.chat.id, "❌ У тебя нет GMP для вывода.")
 
+    missing_required = get_required_missing_tasks(data, user)
+    if missing_required:
+        user["withdraw_step"] = None
+        user["withdraw_to"] = None
+        save_data(data)
+        return bot.send_message(message.chat.id, required_tasks_block_text(missing_required))
+
 
     user["withdraw_step"] = "username"
     user["withdraw_to"] = None
@@ -1697,7 +1763,8 @@ def add_task(message):
         "text": task_text,
         "link": link,
         "reward": reward,
-        "active": True
+        "active": True,
+        "required": False
     }
 
     save_data(data)
@@ -1709,6 +1776,107 @@ def add_task(message):
         f"{task_text}\n\n"
         f"💰 Награда: {format_gmp(reward)} GMP"
     )
+
+
+@bot.message_handler(commands=["addrequired", "addreq"])
+def add_required_task(message):
+    if message.from_user.id != ADMIN_ID:
+        return bot.send_message(message.chat.id, "❌ Нет доступа.")
+
+    text = message.text.split(maxsplit=1)
+    if len(text) < 2:
+        return bot.send_message(message.chat.id, "❌ Формат:\n/addrequired Текст | ссылка | награда")
+
+    parts = [p.strip() for p in text[1].split("|")]
+    if len(parts) != 3:
+        return bot.send_message(message.chat.id, "❌ Формат:\n/addrequired Текст | ссылка | награда")
+
+    task_text, link, reward = parts
+
+    try:
+        reward = float(reward.replace(",", "."))
+    except Exception:
+        return bot.send_message(message.chat.id, "❌ Награда должна быть числом.")
+
+    if reward <= 0:
+        return bot.send_message(message.chat.id, "❌ Награда должна быть больше 0.")
+
+    if link.startswith("t.me/"):
+        link = "https://" + link
+    if not link.startswith("http://") and not link.startswith("https://"):
+        return bot.send_message(message.chat.id, "❌ Ссылка должна быть https:// или t.me/...")
+
+    with DATA_LOCK:
+        data = load_data()
+        data["last_task_id"] += 1
+        task_id = str(data["last_task_id"])
+
+        data.setdefault("tasks", {})[task_id] = {
+            "text": task_text,
+            "link": link,
+            "reward": reward,
+            "active": True,
+            "required": True
+        }
+        data.setdefault("required_tasks", [])
+        if task_id not in data["required_tasks"]:
+            data["required_tasks"].append(task_id)
+        save_data(data)
+
+    bot.send_message(
+        message.chat.id,
+        f"🔥 <b>Обязательное задание #{task_id} создано</b>\n\n"
+        f"Теперь пользователи не смогут вывести GMP, пока не выполнят это задание.\n\n"
+        f"🔗 Ссылка:\n{link}\n\n"
+        f"{task_text}\n\n"
+        f"💰 Награда: {format_gmp(reward)} GMP"
+    )
+
+
+@bot.message_handler(commands=["required", "reqtask"])
+def make_task_required(message):
+    if message.from_user.id != ADMIN_ID:
+        return bot.send_message(message.chat.id, "❌ Нет доступа.")
+
+    parts = message.text.split(maxsplit=1)
+    if len(parts) < 2:
+        return bot.send_message(message.chat.id, "❌ Формат:\n/required номер_задания")
+
+    task_id = parts[1].strip().replace("#", "")
+    with DATA_LOCK:
+        data = load_data()
+        task = data.get("tasks", {}).get(task_id)
+        if not task:
+            return bot.send_message(message.chat.id, "❌ Задание не найдено.")
+
+        task["required"] = True
+        task["active"] = True
+        data.setdefault("required_tasks", [])
+        if task_id not in data["required_tasks"]:
+            data["required_tasks"].append(task_id)
+        save_data(data)
+
+    bot.send_message(message.chat.id, f"🔥 Задание #{task_id} теперь обязательное для вывода GMP.")
+
+
+@bot.message_handler(commands=["unrequired", "unreqtask"])
+def remove_task_required(message):
+    if message.from_user.id != ADMIN_ID:
+        return bot.send_message(message.chat.id, "❌ Нет доступа.")
+
+    parts = message.text.split(maxsplit=1)
+    if len(parts) < 2:
+        return bot.send_message(message.chat.id, "❌ Формат:\n/unrequired номер_задания")
+
+    task_id = parts[1].strip().replace("#", "")
+    with DATA_LOCK:
+        data = load_data()
+        if task_id in data.get("tasks", {}):
+            data["tasks"][task_id]["required"] = False
+        data["required_tasks"] = [str(tid) for tid in data.get("required_tasks", []) if str(tid) != task_id]
+        save_data(data)
+
+    bot.send_message(message.chat.id, f"✅ Задание #{task_id} больше не обязательное. Вывод не будет блокироваться этим заданием.")
 
 
 @bot.message_handler(commands=["edittext"])
@@ -1798,9 +1966,25 @@ def delete_task(message):
     if task_id not in data["tasks"]:
         return bot.send_message(message.chat.id, "❌ Задание не найдено.")
 
+    # Удаляем задание и сразу чистим все следы, чтобы оно больше не блокировало вывод.
     del data["tasks"][task_id]
+    data["required_tasks"] = [str(tid) for tid in data.get("required_tasks", []) if str(tid) != str(task_id)]
+
+    removed_submits = 0
+    for sid, submit in list(data.get("submits", {}).items()):
+        if str(submit.get("task_id")) == str(task_id):
+            data["submits"].pop(sid, None)
+            removed_submits += 1
+
+    for u in data.get("users", {}).values():
+        u["done_tasks"] = [str(tid) for tid in u.get("done_tasks", []) if str(tid) != str(task_id)]
+        u["pending_tasks"] = [str(tid) for tid in u.get("pending_tasks", []) if str(tid) != str(task_id)]
+        if str(u.get("waiting_task")) == str(task_id):
+            u["waiting_task"] = None
+
     save_data(data)
-    bot.send_message(message.chat.id, f"✅ Задание #{task_id} удалено.")
+    extra = f"\n🧹 Очищено заявок по нему: {removed_submits}" if removed_submits else ""
+    bot.send_message(message.chat.id, f"✅ Задание #{task_id} удалено. Оно больше не блокирует вывод.{extra}")
 
 
 @bot.message_handler(commands=["setstart"])
@@ -2201,7 +2385,7 @@ def all_tasks(message):
 
     text = "📋 <b>Все задания:</b>\n\n"
     for task_id, task in data["tasks"].items():
-        status = "✅" if task.get("active", True) else "❌"
+        status = "🔥" if task.get("required") else ("✅" if task.get("active", True) else "❌")
         text += f"{status} #{task_id} — {format_gmp(task['reward'])} GMP\n{task['text']}\n\n"
 
     bot.send_message(message.chat.id, text)
@@ -2493,6 +2677,13 @@ def text_router(message):
                     "🔄 Пожалуйста, попробуйте позже.\n"
                     "📢 О возобновлении выплат будет сообщено в боте."
                 )
+
+            missing_required = get_required_missing_tasks(data, user)
+            if missing_required:
+                user["withdraw_step"] = None
+                user["withdraw_to"] = None
+                save_data(data)
+                return bot.send_message(message.chat.id, required_tasks_block_text(missing_required))
 
             withdraw_to = user.get("withdraw_to") or "не указано"
 
