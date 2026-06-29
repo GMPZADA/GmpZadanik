@@ -3,6 +3,9 @@ import json
 import base64
 import threading
 import time
+import re
+from datetime import datetime
+from zoneinfo import ZoneInfo
 from threading import RLock
 import requests
 from flask import Flask
@@ -78,6 +81,7 @@ def empty_data():
         "required_tasks": [],
         "submits": {},
         "withdraws": {},
+        "withdraw_blocks": {},
         "promocodes": {},
         "processed_requests": {"submits": {}, "withdraws": {}},
         "admin_sent": {"submits": {}, "withdraws": {}},
@@ -105,6 +109,9 @@ def fix_data(data):
             data[key] = value
 
     data.setdefault("withdraw_enabled", True)
+    data.setdefault("withdraw_blocks", {})
+    if not isinstance(data.get("withdraw_blocks"), dict):
+        data["withdraw_blocks"] = {}
     data.setdefault("required_tasks", [])
     if not isinstance(data.get("required_tasks"), list):
         data["required_tasks"] = []
@@ -589,6 +596,112 @@ def parse_gmp_amount(raw):
     if amount <= 0:
         return None
     return round(amount, 2)
+
+UA_TZ = ZoneInfo("Europe/Kyiv")
+
+
+def format_block_time(ts):
+    try:
+        return datetime.fromtimestamp(int(ts), UA_TZ).strftime("%d.%m.%Y %H:%M")
+    except Exception:
+        return "не указано"
+
+
+def parse_withdraw_block_until(text):
+    """
+    Поддержка сроков:
+    2h / 2ч / 2 часа, 30m / 30м, 6d / 6д / 6 дней
+    или точная дата: 01.07.2026 17:12
+    """
+    raw = str(text or "").strip().lower()
+    if not raw:
+        return None
+
+    m = re.fullmatch(r"(\d+)\s*(m|min|мин|м)", raw)
+    if m:
+        return int(time.time()) + int(m.group(1)) * 60
+
+    m = re.fullmatch(r"(\d+)\s*(h|hour|hours|ч|час|часа|часов)", raw)
+    if m:
+        return int(time.time()) + int(m.group(1)) * 60 * 60
+
+    m = re.fullmatch(r"(\d+)\s*(d|day|days|д|день|дня|дней)", raw)
+    if m:
+        return int(time.time()) + int(m.group(1)) * 24 * 60 * 60
+
+    try:
+        dt = datetime.strptime(raw, "%d.%m.%Y %H:%M")
+        return int(dt.replace(tzinfo=UA_TZ).timestamp())
+    except Exception:
+        return None
+
+
+def get_active_withdraw_block(data, user_id):
+    blocks = data.setdefault("withdraw_blocks", {})
+    block = blocks.get(str(user_id))
+    if not block:
+        return None
+
+    until = int(block.get("until", 0) or 0)
+    if until <= int(time.time()):
+        blocks.pop(str(user_id), None)
+        user = get_user(data, user_id)
+        user["withdraw_step"] = None
+        user["withdraw_to"] = None
+        return None
+
+    return block
+
+
+def withdraw_block_text(block):
+    reason = block.get("reason") or "не указана"
+    until_text = format_block_time(block.get("until", 0))
+    return (
+        f"🚫 <b>Ваш вывод заблокирован до {until_text}</b>\n\n"
+        f"📌 <b>Причина:</b> {reason}\n\n"
+        "Вы можете пользоваться ботом, выполнять задания и копить GMP, "
+        "но создать вывод получится только после окончания блокировки."
+    )
+
+
+def cleanup_expired_withdraw_blocks(notify_admin=False):
+    with DATA_LOCK:
+        data = load_data()
+        blocks = data.setdefault("withdraw_blocks", {})
+        now = int(time.time())
+        expired = []
+
+        for uid, block in list(blocks.items()):
+            if int(block.get("until", 0) or 0) <= now:
+                expired.append((str(uid), block))
+                blocks.pop(str(uid), None)
+                user = get_user(data, uid)
+                user["withdraw_step"] = None
+                user["withdraw_to"] = None
+
+        if expired:
+            save_data(data)
+
+    if notify_admin:
+        for uid, block in expired:
+            uname = block.get("username") or get_user(load_data(), uid).get("username") or "нет username"
+            safe_send(
+                ADMIN_ID,
+                f"✅ <b>Время блокировки вывода вышло</b>\n\n"
+                f"🆔 ID: <code>{uid}</code>\n"
+                f"👤 Username: @{str(uname).replace('@', '') if uname else 'нет username'}\n"
+                f"⏰ Было до: <b>{format_block_time(block.get('until', 0))}</b>"
+            )
+
+
+def auto_withdraw_unblock_loop():
+    time.sleep(20)
+    while True:
+        try:
+            cleanup_expired_withdraw_blocks(notify_admin=True)
+        except Exception as e:
+            print("withdraw unblock loop error:", e)
+        time.sleep(60)
 
 
 def get_required_missing_tasks(data, user):
@@ -1568,6 +1681,14 @@ def withdraw(message):
     data = load_data()
     user = get_user(data, message.from_user.id)
 
+    block = get_active_withdraw_block(data, message.from_user.id)
+    if block:
+        user["withdraw_step"] = None
+        user["withdraw_to"] = None
+        save_data(data)
+        return bot.send_message(message.chat.id, withdraw_block_text(block))
+    save_data(data)
+
     if not data.get("withdraw_enabled", True):
         user["withdraw_step"] = None
         user["withdraw_to"] = None
@@ -2546,6 +2667,131 @@ def ban_user(message):
     )
 
 
+@bot.message_handler(commands=["blockwithdraw", "wblock"])
+def block_withdraw_user(message):
+    if message.from_user.id != ADMIN_ID:
+        return bot.send_message(message.chat.id, "❌ Нет доступа.")
+
+    parts = (message.text or "").split()
+    if len(parts) < 3:
+        return bot.send_message(
+            message.chat.id,
+            "❌ Формат:\n"
+            "<code>/blockwithdraw ID 2h причина</code>\n"
+            "<code>/blockwithdraw @username 6d причина</code>\n"
+            "<code>/blockwithdraw ID 01.07.2026 17:12 причина</code>\n\n"
+            "Можно писать: <b>30m</b>, <b>2h</b>, <b>6d</b>, <b>2ч</b>, <b>6д</b>."
+        )
+
+    target = parts[1].strip()
+
+    # Если срок задан датой и временем — забираем 2 слова: 01.07.2026 17:12
+    if len(parts) >= 4 and re.fullmatch(r"\d{2}\.\d{2}\.\d{4}", parts[2]) and re.fullmatch(r"\d{1,2}:\d{2}", parts[3]):
+        until_raw = parts[2] + " " + parts[3]
+        reason = " ".join(parts[4:]).strip() or "не указана"
+    else:
+        until_raw = parts[2]
+        reason = " ".join(parts[3:]).strip() or "не указана"
+
+    until_ts = parse_withdraw_block_until(until_raw)
+    if not until_ts:
+        return bot.send_message(message.chat.id, "❌ Не понял срок. Пример: <code>2h</code>, <code>6d</code> или <code>01.07.2026 17:12</code>")
+
+    if until_ts <= int(time.time()):
+        return bot.send_message(message.chat.id, "❌ Это время уже прошло. Укажи будущую дату/срок.")
+
+    with DATA_LOCK:
+        data = load_fresh_data_for_ban_check()
+        user_id, err = resolve_user_id(data, target)
+        if err:
+            return bot.send_message(message.chat.id, f"❌ {err}")
+
+        user = get_user(data, user_id)
+        username = user.get("username", "")
+        user["withdraw_step"] = None
+        user["withdraw_to"] = None
+
+        data.setdefault("withdraw_blocks", {})[str(user_id)] = {
+            "until": int(until_ts),
+            "reason": reason,
+            "created": int(time.time()),
+            "by": int(message.from_user.id),
+            "username": username
+        }
+        save_data(data)
+
+    until_text = format_block_time(until_ts)
+    bot.send_message(
+        message.chat.id,
+        f"✅ <b>Вывод заблокирован</b>\n\n"
+        f"🆔 ID: <code>{user_id}</code>\n"
+        f"👤 Username: @{username or 'нет username'}\n"
+        f"⏰ До: <b>{until_text}</b>\n"
+        f"📌 Причина: {reason}"
+    )
+
+    safe_send(
+        user_id,
+        f"🚫 <b>Ваш вывод заблокирован до {until_text}</b>\n\n"
+        f"📌 <b>Причина:</b> {reason}\n\n"
+        "Ботом можно пользоваться дальше, но вывод временно недоступен."
+    )
+
+
+@bot.message_handler(commands=["unblockwithdraw", "wunblock"])
+def unblock_withdraw_user(message):
+    if message.from_user.id != ADMIN_ID:
+        return bot.send_message(message.chat.id, "❌ Нет доступа.")
+
+    parts = message.text.split(maxsplit=1)
+    if len(parts) < 2:
+        return bot.send_message(message.chat.id, "❌ Формат:\n<code>/unblockwithdraw ID</code> или <code>/unblockwithdraw @username</code>")
+
+    with DATA_LOCK:
+        data = load_fresh_data_for_ban_check()
+        user_id, err = resolve_user_id(data, parts[1].strip())
+        if err:
+            return bot.send_message(message.chat.id, f"❌ {err}")
+
+        block = data.setdefault("withdraw_blocks", {}).pop(str(user_id), None)
+        user = get_user(data, user_id)
+        user["withdraw_step"] = None
+        user["withdraw_to"] = None
+        save_data(data)
+
+    bot.send_message(
+        message.chat.id,
+        f"✅ <b>Блокировка вывода снята</b>\n\n"
+        f"🆔 ID: <code>{user_id}</code>\n"
+        f"📌 Блокировка была: {'да' if block else 'нет'}"
+    )
+    safe_send(user_id, "✅ <b>Блокировка вывода снята</b>\n\nТеперь вы снова можете создавать заявки на вывод.")
+
+
+@bot.message_handler(commands=["withdrawblocks", "wblocks"])
+def withdraw_blocks_list(message):
+    if message.from_user.id != ADMIN_ID:
+        return bot.send_message(message.chat.id, "❌ Нет доступа.")
+
+    cleanup_expired_withdraw_blocks(notify_admin=False)
+    data = load_data()
+    blocks = data.get("withdraw_blocks", {})
+    if not blocks:
+        return bot.send_message(message.chat.id, "✅ Активных блокировок вывода нет.")
+
+    lines = ["🚫 <b>Активные блокировки вывода:</b>\n"]
+    for uid, block in list(blocks.items())[:30]:
+        uname = block.get("username") or get_user(data, uid).get("username") or "нет username"
+        reason = block.get("reason") or "не указана"
+        lines.append(
+            f"\n🆔 <code>{uid}</code> | @{str(uname).replace('@', '')}\n"
+            f"⏰ До: <b>{format_block_time(block.get('until', 0))}</b>\n"
+            f"📌 {reason}"
+        )
+
+    bot.send_message(message.chat.id, "".join(lines))
+
+
 @bot.message_handler(commands=["unban"])
 def unban_user(message):
     if message.from_user.id != ADMIN_ID:
@@ -2601,6 +2847,15 @@ def text_router(message):
     user["username"] = message.from_user.username or user.get("username", "")
 
     text = (message.text or "").strip()
+
+    if user.get("withdraw_step"):
+        block = get_active_withdraw_block(data, message.from_user.id)
+        if block:
+            user["withdraw_step"] = None
+            user["withdraw_to"] = None
+            save_data(data)
+            return bot.send_message(message.chat.id, withdraw_block_text(block))
+        save_data(data)
 
     if user.get("withdraw_step") and not data.get("withdraw_enabled", True):
         user["withdraw_step"] = None
@@ -2666,6 +2921,13 @@ def text_router(message):
         with WITHDRAW_CREATE_LOCK:
             data = load_data()
             user = get_user(data, message.from_user.id)
+
+            block = get_active_withdraw_block(data, message.from_user.id)
+            if block:
+                user["withdraw_step"] = None
+                user["withdraw_to"] = None
+                save_data(data)
+                return bot.send_message(message.chat.id, withdraw_block_text(block))
 
             if not data.get("withdraw_enabled", True):
                 user["withdraw_step"] = None
@@ -2782,6 +3044,7 @@ if __name__ == "__main__":
 
     threading.Thread(target=run_site, daemon=True).start()
     threading.Thread(target=auto_ping, daemon=True).start()
+    threading.Thread(target=auto_withdraw_unblock_loop, daemon=True).start()
     print("✅ Bot started")
 
     while True:
