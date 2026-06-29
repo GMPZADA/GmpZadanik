@@ -138,7 +138,16 @@ def fix_data(data):
         if key not in data:
             data[key] = value
 
-    data.setdefault("withdraw_enabled", True)
+    # Глобальное включение/выключение выплат.
+    # Защита: старые/битые data.json иногда хранили withdraw_enabled=false без признака,
+    # что админ реально нажимал /withdrawoff. В таком случае выплаты не должны
+    # сами оставаться закрытыми после перезапуска.
+    data.setdefault("withdraw_disabled_by_admin", False)
+    if data.get("withdraw_enabled") is False and not data.get("withdraw_disabled_by_admin", False):
+        data["withdraw_enabled"] = True
+    else:
+        data.setdefault("withdraw_enabled", True)
+
     data.setdefault("withdraw_blocks", {})
     if not isinstance(data.get("withdraw_blocks"), dict):
         data["withdraw_blocks"] = {}
@@ -1106,6 +1115,9 @@ def withdraw_off(message):
 
     data = load_data()
     data["withdraw_enabled"] = False
+    data["withdraw_disabled_by_admin"] = True
+    data["withdraw_disabled_at"] = int(time.time())
+    data["withdraw_disabled_by"] = int(message.from_user.id)
 
     # Если кто-то уже начал вводить вывод — сбрасываем шаги, чтобы заявка не создалась после отключения.
     for u in data.get("users", {}).values():
@@ -1127,8 +1139,38 @@ def withdraw_on(message):
 
     data = load_data()
     data["withdraw_enabled"] = True
+    data["withdraw_disabled_by_admin"] = False
+    data.pop("withdraw_disabled_at", None)
+    data.pop("withdraw_disabled_by", None)
     save_data(data)
     bot.send_message(message.chat.id, "✅ Выплаты включены. Пользователи снова могут создавать заявки на вывод.")
+
+@bot.message_handler(commands=["withdrawstatus", "wstatus"])
+def withdraw_status(message):
+    if message.from_user.id != ADMIN_ID:
+        return bot.send_message(message.chat.id, "❌ Нет доступа.")
+
+    data = load_data()
+    enabled = data.get("withdraw_enabled", True)
+    disabled_by_admin = data.get("withdraw_disabled_by_admin", False)
+    blocks_count = len(data.get("withdraw_blocks", {}))
+
+    if enabled:
+        state = "включены ✅"
+    elif disabled_by_admin:
+        state = "отключены админом ❌"
+    else:
+        state = "были выключены старым data.json, но код теперь будет чинить это ✅"
+
+    bot.send_message(
+        message.chat.id,
+        "💸 <b>Статус выплат</b>\n\n"
+        f"Состояние: <b>{state}</b>\n"
+        f"Индивидуальных блокировок: <b>{blocks_count}</b>\n\n"
+        "Открыть выплаты: <code>/withdrawon</code>\n"
+        "Закрыть выплаты вручную: <code>/withdrawoff</code>"
+    )
+
 @bot.message_handler(commands=["admin"])
 def admin(message):
     if message.from_user.id != ADMIN_ID:
