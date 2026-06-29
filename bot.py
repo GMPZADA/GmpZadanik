@@ -4,6 +4,8 @@ import base64
 import threading
 import time
 import re
+import html
+import shutil
 from datetime import datetime
 from zoneinfo import ZoneInfo
 from threading import RLock
@@ -71,6 +73,34 @@ def chat_button(message):
         "Заходи, не стесняйся! 😌",
         reply_markup=kb
     )
+
+
+
+def h(value):
+    """Безопасный вывод текста в HTML-сообщениях Telegram."""
+    return html.escape(str(value or ""), quote=False)
+
+
+def short_text(value, limit=3500):
+    text = str(value or "").strip()
+    if len(text) <= limit:
+        return text
+    return text[:limit] + "..."
+
+
+def safe_username(username):
+    username = str(username or "").strip().replace("@", "")
+    return username if username else "нет username"
+
+
+def backup_bad_data_file():
+    """Если data.json сломался, сохраняем копию, чтобы не потерять данные полностью."""
+    try:
+        if os.path.exists(LOCAL_DATA_FILE):
+            ts = datetime.now().strftime("%Y%m%d_%H%M%S")
+            shutil.copy2(LOCAL_DATA_FILE, f"{LOCAL_DATA_FILE}.broken_{ts}.bak")
+    except Exception as e:
+        print("backup bad data error:", e)
 
 
 
@@ -208,6 +238,48 @@ def fix_data(data):
         if str(user.get("waiting_task")) not in existing_task_ids:
             user["waiting_task"] = None
 
+
+    # Авто-очистка мусора, чтобы data.json не раздувался бесконечно.
+    now = int(time.time())
+
+    # Старые обработанные заявки храним ограниченно.
+    for kind in ["submits", "withdraws"]:
+        processed = data.setdefault("processed_requests", {}).setdefault(kind, {})
+        if isinstance(processed, dict) and len(processed) > 500:
+            old_keys = sorted(processed.keys(), key=lambda k: processed[k].get("time", 0))[:-500]
+            for k in old_keys:
+                processed.pop(k, None)
+
+        sent = data.setdefault("admin_sent", {}).setdefault(kind, {})
+        if isinstance(sent, dict) and len(sent) > 500:
+            old_keys = sorted(sent.keys(), key=lambda k: sent[k].get("time", 0))[:-500]
+            for k in old_keys:
+                sent.pop(k, None)
+
+    # Логи баланса оставляем последние 1000 записей.
+    if len(data.get("balance_logs", [])) > 1000:
+        data["balance_logs"] = data["balance_logs"][-1000:]
+
+    # Удаляем старые зависшие заявки старше 7 дней и возвращаем GMP за старый вывод.
+    for sid, submit in list(data.get("submits", {}).items()):
+        if submit.get("status") == "wait" and now - int(submit.get("time", now) or now) > 7 * 24 * 60 * 60:
+            uid = str(submit.get("user_id"))
+            task_id = str(submit.get("task_id"))
+            user = get_user(data, uid)
+            if task_id in user.get("pending_tasks", []):
+                user["pending_tasks"].remove(task_id)
+            data["submits"].pop(sid, None)
+            mark_request_processed(data, "submits", sid, "expired", 0, uid, f"task #{task_id}")
+
+    for wid, w in list(data.get("withdraws", {}).items()):
+        if w.get("status") == "wait" and now - int(w.get("time", now) or now) > 7 * 24 * 60 * 60:
+            uid = str(w.get("user_id"))
+            amount = float(w.get("amount", 0) or 0)
+            if amount > 0:
+                add_balance_to_user(data, uid, amount, reason="withdraw_expired_return", request_id=wid)
+            data["withdraws"].pop(wid, None)
+            mark_request_processed(data, "withdraws", wid, "expired", 0, uid, f"amount {amount}")
+
     return data
 
 
@@ -231,6 +303,7 @@ def load_data():
                 return fix_data(json.load(f))
         except Exception as e:
             print("Local load exception:", e)
+            backup_bad_data_file()
 
     if GITHUB_TOKEN and GITHUB_REPO:
         try:
@@ -496,6 +569,10 @@ def save_data(data):
         with open(tmp_file, "w", encoding="utf-8") as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
         os.replace(tmp_file, LOCAL_DATA_FILE)
+        try:
+            shutil.copy2(LOCAL_DATA_FILE, LOCAL_DATA_FILE + ".backup")
+        except Exception:
+            pass
     except Exception as e:
         print("Local save exception:", e)
 
@@ -658,7 +735,7 @@ def withdraw_block_text(block):
     until_text = format_block_time(block.get("until", 0))
     return (
         f"🚫 <b>Ваш вывод заблокирован до {until_text}</b>\n\n"
-        f"📌 <b>Причина:</b> {reason}\n\n"
+        f"📌 <b>Причина:</b> {h(reason)}\n\n"
         "Вы можете пользоваться ботом, выполнять задания и копить GMP, "
         "но создать вывод получится только после окончания блокировки."
     )
@@ -1419,7 +1496,7 @@ def photo(message):
                 f"📨 <b>Новая заявка #{sid}</b>\n\n"
                 f"✅ Задание: #{task_id}\n"
                 f"💰 Награда: {format_gmp(task.get('reward', 0))} GMP\n"
-                f"👤 Пользователь: @{message.from_user.username or 'нет username'}\n"
+                f"👤 Пользователь: @{safe_username(message.from_user.username)}\n"
                 f"🆔 ID: <code>{message.from_user.id}</code>"
             ),
             reply_markup=kb
@@ -1431,6 +1508,15 @@ def photo(message):
             save_data(data)
     except Exception as e:
         print("send submit to admin error:", e)
+        with DATA_LOCK:
+            data = load_data()
+            data.setdefault("admin_sent", {}).setdefault("submits", {}).pop(str(sid), None)
+            submit = data.get("submits", {}).get(str(sid))
+            if submit:
+                submit.pop("admin_sent", None)
+                submit.pop("admin_sent_time", None)
+                submit.pop("admin_message_id", None)
+            save_data(data)
 
 def safe_answer_callback(call, text=None, show_alert=False):
     try:
@@ -2438,7 +2524,7 @@ def fine_user(message):
         f"🆔 ID: <code>{user_id}</code>\n"
         f"💸 Штраф: <b>{format_gmp(amount)} GMP</b>\n"
         f"💰 Баланс: <b>{format_gmp(old_balance)} → {format_gmp(user['balance'])} GMP</b>\n"
-        f"📌 Причина: {reason}"
+        f"📌 Причина: {h(reason)}"
     )
 
     safe_send(
@@ -2521,9 +2607,9 @@ def send_withdraw_request(chat_id, wid, w):
     return bot.send_message(
         chat_id,
         f"💸 <b>Заявка на вывод #{wid}</b>\n\n"
-        f"👤 Пользователь: @{w.get('username') or 'нет username'}\n"
+        f"👤 Пользователь: @{safe_username(w.get('username'))}\n"
         f"🆔 ID: <code>{w.get('user_id')}</code>\n"
-        f"📤 Куда вывести: <b>{w.get('to', 'не указано')}</b>\n"
+        f"📤 Куда вывести: <b>{h(w.get('to', 'не указано'))}</b>\n"
         f"💰 Сумма: <b>{format_gmp(float(w.get('amount', 0)))} GMP</b>",
         reply_markup=kb
     )
@@ -2538,7 +2624,7 @@ def send_submit_request(chat_id, sid, submit):
         f"📸 <b>Заявка на задание #{sid}</b>\n\n"
         f"✅ Задание: #{submit.get('task_id')}\n"
         f"💰 Награда: {format_gmp(float(submit.get('reward', 0)))} GMP\n"
-        f"👤 Пользователь: @{submit.get('username') or 'нет username'}\n"
+        f"👤 Пользователь: @{safe_username(submit.get('username'))}\n"
         f"🆔 ID: <code>{submit.get('user_id')}</code>"
     )
     photo_id = submit.get("photo_file_id")
@@ -2656,7 +2742,7 @@ def ban_user(message):
         message.chat.id,
         f"✅ Пользователь заблокирован\n\n"
         f"🆔 ID: <code>{user_id}</code>\n"
-        f"📌 Причина: {reason}"
+        f"📌 Причина: {h(reason)}"
     )
 
     safe_send(
@@ -2725,15 +2811,15 @@ def block_withdraw_user(message):
         message.chat.id,
         f"✅ <b>Вывод заблокирован</b>\n\n"
         f"🆔 ID: <code>{user_id}</code>\n"
-        f"👤 Username: @{username or 'нет username'}\n"
+        f"👤 Username: @{safe_username(username)}\n"
         f"⏰ До: <b>{until_text}</b>\n"
-        f"📌 Причина: {reason}"
+        f"📌 Причина: {h(reason)}"
     )
 
     safe_send(
         user_id,
         f"🚫 <b>Ваш вывод заблокирован до {until_text}</b>\n\n"
-        f"📌 <b>Причина:</b> {reason}\n\n"
+        f"📌 <b>Причина:</b> {h(reason)}\n\n"
         "Ботом можно пользоваться дальше, но вывод временно недоступен."
     )
 
@@ -2837,6 +2923,29 @@ def unban_user(message):
     )
 
 
+@bot.message_handler(commands=["status"])
+def status_command(message):
+    if message.from_user.id != ADMIN_ID:
+        return bot.send_message(message.chat.id, "❌ Нет доступа.")
+    data = load_data()
+    active_submits = sum(1 for s in data.get("submits", {}).values() if s.get("status") == "wait")
+    active_withdraws = sum(1 for w in data.get("withdraws", {}).values() if w.get("status") == "wait")
+    users_count = len(data.get("users", {}))
+    tasks_count = sum(1 for t in data.get("tasks", {}).values() if t.get("active", True))
+    blocks_count = len(data.get("withdraw_blocks", {}))
+    withdraw_state = "включены ✅" if data.get("withdraw_enabled", True) else "отключены ❌"
+    bot.send_message(
+        message.chat.id,
+        "📊 <b>Статус бота</b>\n\n"
+        f"👥 Пользователей: <b>{users_count}</b>\n"
+        f"📋 Активных заданий: <b>{tasks_count}</b>\n"
+        f"📸 Заявок заданий: <b>{active_submits}</b>\n"
+        f"💸 Заявок вывода: <b>{active_withdraws}</b>\n"
+        f"🚫 Блокировок вывода: <b>{blocks_count}</b>\n"
+        f"💳 Выплаты: <b>{withdraw_state}</b>"
+    )
+
+
 @bot.message_handler(func=lambda m: True)
 def text_router(message):
     if is_banned_user(message):
@@ -2897,7 +3006,7 @@ def text_router(message):
             amount = float(user["balance"])
         else:
             try:
-                amount = float(amount_text.replace(",", "."))
+                amount = float(amount_text.replace(" ", "").replace(",", "."))
             except Exception:
                 return bot.send_message(message.chat.id, "❌ Напиши число. Например: <code>10</code>")
 
@@ -3006,7 +3115,7 @@ def text_router(message):
         bot.send_message(
             message.chat.id,
             f"✅ <b>Заявка на вывод #{wid} создана</b>\n\n"
-            f"👤 Куда: <b>{withdraw_to}</b>\n"
+            f"👤 Куда: <b>{h(withdraw_to)}</b>\n"
             f"💰 Сумма: <b>{format_gmp(amount)} GMP</b>\n\n"
             "⏳ Заявка отправлена на проверку.\n"
             "Ожидайте выплату до 24 часов."
@@ -3016,9 +3125,9 @@ def text_router(message):
             admin_msg = bot.send_message(
                 ADMIN_ID,
                 f"💸 <b>Новая заявка на вывод #{wid}</b>\n\n"
-                f"👤 Пользователь: @{message.from_user.username or 'нет username'}\n"
+                f"👤 Пользователь: @{safe_username(message.from_user.username)}\n"
                 f"🆔 ID: <code>{message.from_user.id}</code>\n"
-                f"📤 Куда вывести: <b>{withdraw_to}</b>\n"
+                f"📤 Куда вывести: <b>{h(withdraw_to)}</b>\n"
                 f"💰 Сумма: <b>{format_gmp(amount)} GMP</b>",
                 reply_markup=kb
             )
@@ -3029,6 +3138,15 @@ def text_router(message):
                 save_data(data)
         except Exception as e:
             print("send withdraw to admin error:", e)
+            with DATA_LOCK:
+                data = load_data()
+                data.setdefault("admin_sent", {}).setdefault("withdraws", {}).pop(str(wid), None)
+                w = data.get("withdraws", {}).get(str(wid))
+                if w:
+                    w.pop("admin_sent", None)
+                    w.pop("admin_sent_time", None)
+                    w.pop("admin_message_id", None)
+                save_data(data)
         return
 
     # Если сюда дошло обычное сообщение без активного шага — показываем меню.
