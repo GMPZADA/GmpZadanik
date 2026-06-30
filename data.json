@@ -1849,15 +1849,15 @@
       "language_code": "ru"
     },
     "8949642102": {
-      "balance": 1.0,
+      "balance": 0.0,
       "done_tasks": [
         "52"
       ],
       "pending_tasks": [],
       "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": "amount",
-      "withdraw_to": "@username",
+      "withdraw_pending": true,
+      "withdraw_step": null,
+      "withdraw_to": null,
       "last_bonus": 0,
       "completed_tasks": 1,
       "total_earned": 1.0,
@@ -2017,7 +2017,20 @@
   },
   "required_tasks": [],
   "submits": {},
-  "withdraws": {},
+  "withdraws": {
+    "133": {
+      "user_id": 8949642102,
+      "username": "dfghhhhb",
+      "to": "@username",
+      "amount": 1.0,
+      "status": "wait",
+      "time": 1782844552,
+      "source_message_id": 12058,
+      "admin_sent": true,
+      "admin_sent_time": 1782844552,
+      "admin_message_id": "sending"
+    }
+  },
   "withdraw_blocks": {},
   "promocodes": {},
   "processed_requests": {
@@ -4103,6 +4116,10 @@
       "132": {
         "message_id": 11981,
         "time": 1782842157
+      },
+      "133": {
+        "message_id": "sending",
+        "time": 1782844552
       }
     }
   },
@@ -5960,13 +5977,22 @@
       "new": 1.0,
       "reason": "task_approved",
       "request_id": "327"
+    },
+    {
+      "time": 1782844552,
+      "user_id": "8949642102",
+      "old": 1.0,
+      "amount": -1.0,
+      "new": 0.0,
+      "reason": "withdraw_created",
+      "request_id": "133"
     }
   ],
   "total_paid": 9.0,
   "total_withdrawals": 3,
   "last_task_id": 65,
   "last_submit_id": 327,
-  "last_withdraw_id": 132,
+  "last_withdraw_id": 133,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "withdraw_disabled_by_admin": false,
   "withdraw_enabled": true
