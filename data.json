@@ -1969,13 +1969,6 @@
       "active": true,
       "required": false
     },
-    "62": {
-      "text": "Запустить бота, выполнить 3 задания и отправить скриншот выполнения",
-      "link": "https://t.me/EarnStarsFarmbot?start=7837011810",
-      "reward": 2.0,
-      "active": true,
-      "required": false
-    },
     "64": {
       "text": "Зайти в бота, подписаться на спонсоров и отправить скриншот выполнения",
       "link": "https://t.me/PeanutStarsRobot?start=7837011810",
@@ -1991,7 +1984,13 @@
       "required": false
     }
   },
-  "deleted_tasks": {},
+  "deleted_tasks": {
+    "62": {
+      "time": 1782844211,
+      "by": 7837011810,
+      "text": "Запустить бота, выполнить 3 задания и отправить скриншот выполнения"
+    }
+  },
   "required_tasks": [],
   "submits": {},
   "withdraws": {},
