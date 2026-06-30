@@ -509,7 +509,7 @@
         "64"
       ],
       "pending_tasks": [],
-      "waiting_task": "59",
+      "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
@@ -523,7 +523,7 @@
       "banned": false,
       "ban_reason": "",
       "created_at": 1782848000,
-      "updated_at": 1782848062,
+      "updated_at": 1782848068,
       "user_id": 7130773702,
       "first_name": "sleepy",
       "last_name": "",
