@@ -303,50 +303,136 @@ def github_url():
     return f"https://api.github.com/repos/{GITHUB_REPO}/contents/{GITHUB_FILE}"
 
 
+def read_local_data_raw():
+    """Читает локальный data.json без вызова load_data, чтобы не было перезаписи по кругу."""
+    if not os.path.exists(LOCAL_DATA_FILE):
+        return None
+    try:
+        with open(LOCAL_DATA_FILE, "r", encoding="utf-8") as f:
+            return fix_data(json.load(f))
+    except Exception as e:
+        print("Read local raw error:", e)
+        backup_bad_data_file()
+        return None
+
+
+def read_github_data_raw():
+    """Читает data.json с GitHub без сохранения локально."""
+    if not (GITHUB_TOKEN and GITHUB_REPO):
+        return None
+    try:
+        r = requests.get(
+            github_url(),
+            headers=github_headers(),
+            params={"ref": GITHUB_BRANCH},
+            timeout=10
+        )
+        if r.status_code != 200:
+            if r.status_code != 404:
+                print("Read GitHub raw error:", r.status_code, r.text)
+            return None
+        content = r.json()["content"]
+        file_text = base64.b64decode(content).decode("utf-8")
+        return fix_data(json.loads(file_text))
+    except Exception as e:
+        print("Read GitHub raw exception:", e)
+        return None
+
+
+def merge_data(primary, secondary):
+    """
+    Склеивает две базы, чтобы при старом локальном/GitHub файле не пропадали пользователи.
+    primary важнее: его новые значения остаются, secondary только добавляет то, чего не хватает.
+    """
+    primary = fix_data(primary or empty_data())
+    secondary = fix_data(secondary or empty_data())
+
+    result = json.loads(json.dumps(secondary, ensure_ascii=False))
+    result = fix_data(result)
+
+    # Пользователи: никого не удаляем, а существующего пользователя обновляем свежими данными из primary.
+    result_users = result.setdefault("users", {})
+    for uid, user in primary.get("users", {}).items():
+        uid = str(uid)
+        if uid not in result_users or not isinstance(result_users.get(uid), dict):
+            result_users[uid] = user
+        else:
+            merged_user = dict(result_users[uid])
+            merged_user.update(user)
+            result_users[uid] = merged_user
+
+    # Задания тоже не теряем.
+    result_tasks = result.setdefault("tasks", {})
+    for tid, task in primary.get("tasks", {}).items():
+        result_tasks[str(tid)] = task
+
+    # Заявки/промо/тех.словари — объединяем.
+    for key in ["submits", "withdraws", "withdraw_blocks", "promocodes"]:
+        result.setdefault(key, {})
+        for k, v in primary.get(key, {}).items():
+            result[key][str(k)] = v
+
+    for section in ["processed_requests", "admin_sent"]:
+        result.setdefault(section, {})
+        for kind, values in primary.get(section, {}).items():
+            result[section].setdefault(kind, {})
+            if isinstance(values, dict):
+                for k, v in values.items():
+                    result[section][kind][str(k)] = v
+
+    # Обязательные задания: объединяем и оставляем только существующие.
+    req = [str(x) for x in result.get("required_tasks", [])] + [str(x) for x in primary.get("required_tasks", [])]
+    existing_task_ids = {str(tid) for tid in result.get("tasks", {}).keys()}
+    result["required_tasks"] = list(dict.fromkeys([x for x in req if x in existing_task_ids]))
+
+    # Счётчики не должны откатываться назад.
+    for key in ["last_task_id", "last_submit_id", "last_withdraw_id"]:
+        try:
+            result[key] = max(int(result.get(key, 0)), int(primary.get(key, 0)))
+        except Exception:
+            result[key] = primary.get(key, result.get(key, 0))
+
+    # Важные настройки берём из primary.
+    for key in ["start_text", "withdraw_enabled", "withdraw_disabled_by_admin", "withdraw_disabled_at", "withdraw_disabled_reason"]:
+        if key in primary:
+            result[key] = primary[key]
+
+    # Логи не раздуваем: оставляем последние 500 записей.
+    logs = result.get("balance_logs", [])
+    if not isinstance(logs, list):
+        logs = []
+    p_logs = primary.get("balance_logs", [])
+    if isinstance(p_logs, list):
+        logs = logs + [x for x in p_logs if x not in logs]
+    result["balance_logs"] = logs[-500:]
+
+    return fix_data(result)
+
+
 def load_data():
-    # ВАЖНО: сначала читаем локальный data.json.
-    # Так быстрые шаги вывода (@username -> сумма) не теряются, пока GitHub обновляется.
-    if os.path.exists(LOCAL_DATA_FILE):
-        try:
-            with open(LOCAL_DATA_FILE, "r", encoding="utf-8") as f:
-                return fix_data(json.load(f))
-        except Exception as e:
-            print("Local load exception:", e)
-            backup_bad_data_file()
+    # Читаем и локальный файл, и GitHub, потом склеиваем.
+    # Так старый локальный файл больше не сможет стереть пользователей из GitHub,
+    # а старый GitHub не сможет стереть пользователей из локального файла.
+    local_data = read_local_data_raw()
+    github_data = read_github_data_raw()
 
-    if GITHUB_TOKEN and GITHUB_REPO:
-        try:
-            r = requests.get(
-                github_url(),
-                headers=github_headers(),
-                params={"ref": GITHUB_BRANCH},
-                timeout=10
-            )
+    if local_data is not None and github_data is not None:
+        data = merge_data(local_data, github_data)  # локальные свежие изменения важнее, но пользователей берём из обоих файлов
+    elif local_data is not None:
+        data = local_data
+    elif github_data is not None:
+        data = github_data
+    else:
+        data = empty_data()
 
-            if r.status_code == 200:
-                content = r.json()["content"]
-                file_text = base64.b64decode(content).decode("utf-8")
-                data = fix_data(json.loads(file_text))
+    # Обновляем локальный кэш уже склеенной базой.
+    try:
+        with open(LOCAL_DATA_FILE, "w", encoding="utf-8") as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+    except Exception as e:
+        print("Local cache save after load error:", e)
 
-                # сохраняем локально, чтобы следующие сообщения читали свежую базу
-                try:
-                    with open(LOCAL_DATA_FILE, "w", encoding="utf-8") as f:
-                        json.dump(data, f, ensure_ascii=False, indent=2)
-                except Exception:
-                    pass
-
-                return data
-
-            if r.status_code == 404:
-                data = empty_data()
-                save_data(data)
-                return data
-
-            print("GitHub load error:", r.status_code, r.text)
-        except Exception as e:
-            print("GitHub load exception:", e)
-
-    return empty_data()
+    return fix_data(data)
 
 
 def load_data_from_github_only():
@@ -382,18 +468,27 @@ def load_data_from_github_only():
 
 def load_data_for_admin_action():
     """
-    Для админ-кнопок читаем самую свежую базу.
-    Если на Render локальный data.json старый, берём GitHub.
+    Для админ-кнопок берём свежий GitHub, но НЕ затираем локальных пользователей.
     """
-    data = load_data_from_github_only()
-    if data is not None:
-        try:
-            with open(LOCAL_DATA_FILE, "w", encoding="utf-8") as f:
-                json.dump(data, f, ensure_ascii=False, indent=2)
-        except Exception as e:
-            print("fresh cache save error:", e)
-        return data
-    return load_data()
+    github_data = load_data_from_github_only()
+    local_data = read_local_data_raw()
+
+    if github_data is not None and local_data is not None:
+        data = merge_data(github_data, local_data)  # для кнопок GitHub важнее, но локальные пользователи сохраняются
+    elif github_data is not None:
+        data = github_data
+    elif local_data is not None:
+        data = local_data
+    else:
+        data = empty_data()
+
+    try:
+        with open(LOCAL_DATA_FILE, "w", encoding="utf-8") as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+    except Exception as e:
+        print("fresh cache save error:", e)
+
+    return fix_data(data)
 
 
 def find_request_by_id(requests_dict, request_id):
@@ -572,16 +667,28 @@ def find_active_submit_by_photo(data, user_id, task_id, photo_file_id):
 def save_data(data):
     data = fix_data(data)
 
+    # Перед сохранением склеиваем текущие данные с тем, что уже есть локально и на GitHub.
+    # Это главная защита от падения счётчика пользователей 88 -> 87 -> 85.
+    try:
+        local_old = read_local_data_raw()
+        github_old = read_github_data_raw()
+
+        old_all = empty_data()
+        if github_old is not None:
+            old_all = merge_data(github_old, old_all)
+        if local_old is not None:
+            old_all = merge_data(local_old, old_all)
+
+        data = merge_data(data, old_all)  # новые изменения важнее, но отсутствующие пользователи не удаляются
+    except Exception as e:
+        print("Merge before save error:", e)
+
     # Сначала сохраняем локально атомарно, чтобы файл не ломался при перезапуске/ошибке.
     try:
         tmp_file = LOCAL_DATA_FILE + ".tmp"
         with open(tmp_file, "w", encoding="utf-8") as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
         os.replace(tmp_file, LOCAL_DATA_FILE)
-        try:
-            shutil.copy2(LOCAL_DATA_FILE, LOCAL_DATA_FILE + ".backup")
-        except Exception:
-            pass
     except Exception as e:
         print("Local save exception:", e)
 
@@ -616,8 +723,6 @@ def save_data(data):
 
         except Exception as e:
             print("GitHub save exception:", e)
-
-    # локально уже сохранено выше
 
 
 def get_user(data, user_id):
@@ -1009,29 +1114,26 @@ def safe_send(user_id, text):
 
 
 def load_fresh_data_for_ban_check():
-    # Для бана/разбана читаем свежую базу из GitHub, чтобы после /unban сразу всё обновлялось.
-    if GITHUB_TOKEN and GITHUB_REPO:
-        try:
-            r = requests.get(
-                github_url(),
-                headers=github_headers(),
-                params={"ref": GITHUB_BRANCH},
-                timeout=10
-            )
-            if r.status_code == 200:
-                content = r.json()["content"]
-                file_text = base64.b64decode(content).decode("utf-8")
-                data = fix_data(json.loads(file_text))
-                try:
-                    with open(LOCAL_DATA_FILE, "w", encoding="utf-8") as f:
-                        json.dump(data, f, ensure_ascii=False, indent=2)
-                except Exception:
-                    pass
-                return data
-        except Exception as e:
-            print("Fresh ban check load error:", e)
+    # Для бана/разбана читаем свежую базу, но не затираем локальных пользователей.
+    github_data = read_github_data_raw()
+    local_data = read_local_data_raw()
 
-    return load_data()
+    if github_data is not None and local_data is not None:
+        data = merge_data(github_data, local_data)
+    elif github_data is not None:
+        data = github_data
+    elif local_data is not None:
+        data = local_data
+    else:
+        data = empty_data()
+
+    try:
+        with open(LOCAL_DATA_FILE, "w", encoding="utf-8") as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+    except Exception:
+        pass
+
+    return fix_data(data)
 
 
 def is_banned_user(message):
