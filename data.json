@@ -523,7 +523,7 @@
       "banned": false,
       "ban_reason": "",
       "created_at": 1782848000,
-      "updated_at": 1782848003,
+      "updated_at": 1782848019,
       "user_id": 7130773702,
       "first_name": "sleepy",
       "last_name": "",
@@ -6150,6 +6150,15 @@
       "old": 0.0,
       "amount": 0.2,
       "new": 0.2,
+      "reason": "add",
+      "request_id": ""
+    },
+    {
+      "time": 1782848003,
+      "user_id": "7130773702",
+      "old": 3.0,
+      "amount": 0.2,
+      "new": 3.2,
       "reason": "add",
       "request_id": ""
     }
