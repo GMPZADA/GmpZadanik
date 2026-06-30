@@ -289,6 +289,7 @@ def fix_data(data):
             data["withdraws"].pop(wid, None)
             mark_request_processed(data, "withdraws", wid, "expired", 0, uid, f"amount {amount}")
 
+    cleanup_closed_requests(data)
     return data
 
 
@@ -367,9 +368,20 @@ def merge_data(primary, secondary):
         result_tasks[str(tid)] = task
 
     # Заявки/промо/тех.словари — объединяем.
+    # Важно: обработанные заявки НЕ возвращаем обратно из старого локального/GitHub файла.
+    processed_submits = {str(x).strip().replace("#", "") for x in primary.get("processed_requests", {}).get("submits", {}).keys()} | {str(x).strip().replace("#", "") for x in result.get("processed_requests", {}).get("submits", {}).keys()}
+    processed_withdraws = {str(x).strip().replace("#", "") for x in primary.get("processed_requests", {}).get("withdraws", {}).keys()} | {str(x).strip().replace("#", "") for x in result.get("processed_requests", {}).get("withdraws", {}).keys()}
+
     for key in ["submits", "withdraws", "withdraw_blocks", "promocodes"]:
         result.setdefault(key, {})
         for k, v in primary.get(key, {}).items():
+            clean_k = str(k).strip().replace("#", "")
+            if key == "submits" and clean_k in processed_submits:
+                result[key].pop(str(k), None)
+                continue
+            if key == "withdraws" and clean_k in processed_withdraws:
+                result[key].pop(str(k), None)
+                continue
             result[key][str(k)] = v
 
     for section in ["processed_requests", "admin_sent"]:
@@ -406,6 +418,7 @@ def merge_data(primary, secondary):
         logs = logs + [x for x in p_logs if x not in logs]
     result["balance_logs"] = logs[-500:]
 
+    cleanup_closed_requests(result)
     return fix_data(result)
 
 
@@ -540,6 +553,47 @@ def mark_request_processed(data, kind, request_id, status, admin_id=0, user_id=0
         for k in old_keys:
             processed.pop(k, None)
 
+
+
+
+def cleanup_closed_requests(data):
+    """
+    Убирает из активных списков заявки, которые уже были обработаны.
+    Главное исправление: после Одобрить/Отказать/Удалить заявка больше
+    не может вернуться в data.json при склейке локального файла и GitHub.
+    """
+    data.setdefault("processed_requests", {}).setdefault("submits", {})
+    data.setdefault("processed_requests", {}).setdefault("withdraws", {})
+
+    processed_submits = {str(x).strip().replace("#", "") for x in data["processed_requests"].get("submits", {}).keys()}
+    processed_withdraws = {str(x).strip().replace("#", "") for x in data["processed_requests"].get("withdraws", {}).keys()}
+
+    for sid, submit in list(data.get("submits", {}).items()):
+        clean_sid = str(sid).strip().replace("#", "")
+        if clean_sid in processed_submits or submit.get("status") in ["approved", "rejected", "deleted", "paid", "expired", "processing_done"]:
+            uid = str(submit.get("user_id", ""))
+            task_id = str(submit.get("task_id", ""))
+            if uid:
+                user = get_user(data, uid)
+                if task_id in user.get("pending_tasks", []):
+                    user["pending_tasks"].remove(task_id)
+                if str(user.get("waiting_task")) == task_id:
+                    user["waiting_task"] = None
+            data.setdefault("submits", {}).pop(sid, None)
+
+    for wid, w in list(data.get("withdraws", {}).items()):
+        clean_wid = str(wid).strip().replace("#", "")
+        if clean_wid in processed_withdraws or w.get("status") in ["paid", "rejected", "deleted", "expired", "processing_done"]:
+            uid = str(w.get("user_id", ""))
+            data.setdefault("withdraws", {}).pop(wid, None)
+            if uid:
+                user = get_user(data, uid)
+                user["withdraw_pending"] = any(
+                    str(x.get("user_id")) == uid and x.get("status") == "wait"
+                    for x in data.get("withdraws", {}).values()
+                )
+
+    return data
 
 def has_active_submit(data, user_id, task_id):
     for sid, submit in data.get("submits", {}).items():
@@ -1724,9 +1778,10 @@ def delete_submit_request(call):
     safe_answer_callback(call, "⏳ Удаляю заявку...")
 
     try:
-        data = load_data()
-        sid = call.data.split("_", 1)[1]
-        submit = data.get("submits", {}).get(sid)
+        data = load_data_for_admin_action()
+        sid = call.data.split("_", 1)[1].strip().replace("#", "")
+        real_sid, submit = find_request_by_id(data.get("submits", {}), sid)
+        sid = str(real_sid or sid)
 
         if request_already_processed(data, "submits", sid):
             return safe_answer_callback(call, f"⚠️ Заявка #{sid} уже была обработана ранее.", show_alert=True)
@@ -1964,7 +2019,7 @@ def withdraw(message):
     )
 
 
-@bot.callback_query_handler(func=lambda c: c.data.startswith("payyes_") or c.data.startswith("payno_"))
+@bot.callback_query_handler(func=lambda c: c.data.startswith("payyes_") or c.data.startswith("payno_") or c.data.startswith("paydel_"))
 def pay_check(call):
     if call.from_user.id != ADMIN_ID:
         return safe_answer_callback(call, "❌ Нет доступа.", show_alert=True)
@@ -2024,7 +2079,7 @@ def pay_check(call):
                         if real_wid != wid:
                             mark_request_processed(data, "withdraws", wid, "paid", call.from_user.id, user_id, f"amount {amount}")
 
-                    else:
+                    elif action == "payno":
                         # Отказ: возвращаем списанные GMP на баланс, но только один раз.
                         add_balance_to_user(data, user_id, amount, reason="withdraw_rejected_return", request_id=real_wid)
 
@@ -2039,6 +2094,21 @@ def pay_check(call):
                         mark_request_processed(data, "withdraws", real_wid, "rejected", call.from_user.id, user_id, f"amount {amount}")
                         if real_wid != wid:
                             mark_request_processed(data, "withdraws", wid, "rejected", call.from_user.id, user_id, f"amount {amount}")
+                    else:
+                        # Удалить: тоже возвращаем списанные GMP, но помечаем как deleted.
+                        add_balance_to_user(data, user_id, amount, reason="withdraw_deleted_return", request_id=real_wid)
+
+                        data.get("withdraws", {}).pop(real_wid, None)
+                        data.get("withdraws", {}).pop(wid, None)
+
+                        user["withdraw_pending"] = any(
+                            str(x.get("user_id")) == user_id and x.get("status") == "wait"
+                            for x in data.get("withdraws", {}).values()
+                        )
+                        result_status = "deleted"
+                        mark_request_processed(data, "withdraws", real_wid, "deleted", call.from_user.id, user_id, f"amount {amount}")
+                        if real_wid != wid:
+                            mark_request_processed(data, "withdraws", wid, "deleted", call.from_user.id, user_id, f"amount {amount}")
 
                     save_data(data)
 
@@ -2071,6 +2141,20 @@ def pay_check(call):
             safe_edit_admin_message(
                 call,
                 f"❌ <b>Выплата #{wid} отклонена.</b>\n\n"
+                f"🆔 ID: <code>{user_id}</code>\n"
+                f"💰 Возвращено: <b>{format_gmp(amount)} GMP</b>"
+            )
+            return
+
+        if result_status == "deleted":
+            safe_send(
+                user_id,
+                f"🗑 <b>Заявка на вывод #{wid} удалена.</b>\n\n"
+                f"💰 <b>{format_gmp(amount)} GMP</b> возвращены на баланс."
+            )
+            safe_edit_admin_message(
+                call,
+                f"🗑 <b>Выплата #{wid} удалена.</b>\n\n"
                 f"🆔 ID: <code>{user_id}</code>\n"
                 f"💰 Возвращено: <b>{format_gmp(amount)} GMP</b>"
             )
@@ -2748,6 +2832,7 @@ def send_withdraw_request(chat_id, wid, w):
         types.InlineKeyboardButton("✅ Выплачено", callback_data=f"payyes_{wid}"),
         types.InlineKeyboardButton("❌ Отказать", callback_data=f"payno_{wid}")
     )
+    kb.add(types.InlineKeyboardButton("🗑 Удалить", callback_data=f"paydel_{wid}"))
     return bot.send_message(
         chat_id,
         f"💸 <b>Заявка на вывод #{wid}</b>\n\n"
@@ -2775,6 +2860,80 @@ def send_submit_request(chat_id, sid, submit):
     if photo_id:
         return bot.send_photo(chat_id, photo_id, caption=caption, reply_markup=kb)
     return bot.send_message(chat_id, caption + "\n\n⚠️ Фото не сохранено в старой заявке.", reply_markup=kb)
+
+
+@bot.message_handler(commands=["cleanrequests", "fixrequests"])
+def clean_requests_command(message):
+    if message.from_user.id != ADMIN_ID:
+        return bot.send_message(message.chat.id, "❌ Нет доступа.")
+
+    with DATA_LOCK:
+        data = load_data_for_admin_action()
+        before_s = sum(1 for s in data.get("submits", {}).values() if s.get("status") == "wait")
+        before_w = sum(1 for w in data.get("withdraws", {}).values() if w.get("status") == "wait")
+        cleanup_closed_requests(data)
+        save_data(data)
+        after_s = sum(1 for s in data.get("submits", {}).values() if s.get("status") == "wait")
+        after_w = sum(1 for w in data.get("withdraws", {}).values() if w.get("status") == "wait")
+
+    bot.send_message(
+        message.chat.id,
+        "🧹 <b>Проверка заявок выполнена</b>\n\n"
+        f"📸 Задания: <b>{before_s} → {after_s}</b>\n"
+        f"💸 Выводы: <b>{before_w} → {after_w}</b>\n\n"
+        "Если какие-то старые заявки всё равно остались активными, используй /clearrequests — он удалит ВСЕ активные заявки и вернёт GMP за выводы."
+    )
+
+
+@bot.message_handler(commands=["clearrequests"])
+def clear_requests_command(message):
+    if message.from_user.id != ADMIN_ID:
+        return bot.send_message(message.chat.id, "❌ Нет доступа.")
+
+    with DATA_LOCK:
+        data = load_data_for_admin_action()
+        removed_s = 0
+        removed_w = 0
+        returned = 0.0
+
+        for sid, submit in list(data.get("submits", {}).items()):
+            if submit.get("status") == "wait":
+                uid = str(submit.get("user_id"))
+                task_id = str(submit.get("task_id"))
+                user = get_user(data, uid)
+                if task_id in user.get("pending_tasks", []):
+                    user["pending_tasks"].remove(task_id)
+                if str(user.get("waiting_task")) == task_id:
+                    user["waiting_task"] = None
+                data["submits"].pop(sid, None)
+                mark_request_processed(data, "submits", sid, "deleted", message.from_user.id, uid, "clearrequests")
+                removed_s += 1
+
+        for wid, w in list(data.get("withdraws", {}).items()):
+            if w.get("status") == "wait":
+                uid = str(w.get("user_id"))
+                amount = float(w.get("amount", 0) or 0)
+                if amount > 0:
+                    add_balance_to_user(data, uid, amount, reason="withdraw_clear_return", request_id=wid)
+                    returned += amount
+                data["withdraws"].pop(wid, None)
+                user = get_user(data, uid)
+                user["withdraw_pending"] = any(
+                    str(x.get("user_id")) == uid and x.get("status") == "wait"
+                    for x in data.get("withdraws", {}).values()
+                )
+                mark_request_processed(data, "withdraws", wid, "deleted", message.from_user.id, uid, "clearrequests")
+                removed_w += 1
+
+        save_data(data)
+
+    bot.send_message(
+        message.chat.id,
+        "✅ <b>Все активные заявки очищены</b>\n\n"
+        f"📸 Удалено заявок заданий: <b>{removed_s}</b>\n"
+        f"💸 Удалено выводов: <b>{removed_w}</b>\n"
+        f"💰 Возвращено за выводы: <b>{format_gmp(returned)} GMP</b>"
+    )
 
 
 @bot.message_handler(func=lambda m: m.text == "📨 Заявки")
@@ -3255,6 +3414,7 @@ def text_router(message):
             types.InlineKeyboardButton("✅ Выплачено", callback_data=f"payyes_{wid}"),
             types.InlineKeyboardButton("❌ Отказать", callback_data=f"payno_{wid}")
         )
+        kb.add(types.InlineKeyboardButton("🗑 Удалить", callback_data=f"paydel_{wid}"))
 
         bot.send_message(
             message.chat.id,
