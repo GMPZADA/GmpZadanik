@@ -1881,14 +1881,14 @@
       ],
       "pending_tasks": [],
       "waiting_task": null,
-      "withdraw_pending": true,
+      "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 0,
       "completed_tasks": 1,
       "total_earned": 2.0,
-      "withdraw_count": 0,
-      "withdrawn_total": 0,
+      "withdraw_count": 1,
+      "withdrawn_total": 2.0,
       "fines_total": 0,
       "banned": false,
       "ban_reason": "",
@@ -2043,20 +2043,7 @@
   },
   "required_tasks": [],
   "submits": {},
-  "withdraws": {
-    "134": {
-      "user_id": 7779046668,
-      "username": "Redwinso",
-      "to": "@redwinso",
-      "amount": 2.0,
-      "status": "wait",
-      "time": 1782846042,
-      "source_message_id": 12125,
-      "admin_sent": true,
-      "admin_sent_time": 1782846045,
-      "admin_message_id": 12127
-    }
-  },
+  "withdraws": {},
   "withdraw_blocks": {},
   "promocodes": {},
   "processed_requests": {
@@ -3441,6 +3428,13 @@
         "user_id": "8949642102",
         "note": "amount 1.0",
         "time": 1782844629
+      },
+      "134": {
+        "status": "paid",
+        "admin_id": 7837011810,
+        "user_id": "7779046668",
+        "note": "amount 2.0",
+        "time": 1782846091
       }
     }
   },
@@ -6074,8 +6068,8 @@
       "request_id": "134"
     }
   ],
-  "total_paid": 10.0,
-  "total_withdrawals": 4,
+  "total_paid": 12.0,
+  "total_withdrawals": 5,
   "last_task_id": 65,
   "last_submit_id": 329,
   "last_withdraw_id": 134,
