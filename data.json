@@ -87,9 +87,7 @@
     },
     "8380620424": {
       "balance": 0.0,
-      "done_tasks": [
-        "62"
-      ],
+      "done_tasks": [],
       "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
@@ -112,7 +110,6 @@
         "59",
         "52",
         "57",
-        "62",
         "55"
       ],
       "pending_tasks": [],
@@ -135,7 +132,6 @@
       "done_tasks": [
         "41",
         "43",
-        "62",
         "48",
         "59"
       ],
@@ -252,8 +248,7 @@
         "51",
         "45",
         "42",
-        "59",
-        "62"
+        "59"
       ],
       "pending_tasks": [],
       "waiting_task": null,
@@ -420,9 +415,7 @@
     },
     "8534240629": {
       "balance": 3.4,
-      "done_tasks": [
-        "62"
-      ],
+      "done_tasks": [],
       "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
@@ -660,7 +653,6 @@
         "51",
         "43",
         "46",
-        "62",
         "59",
         "57",
         "55",
@@ -1361,7 +1353,7 @@
         "57"
       ],
       "pending_tasks": [],
-      "waiting_task": "62",
+      "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
@@ -1379,7 +1371,7 @@
       "balance": 0.2,
       "done_tasks": [],
       "pending_tasks": [],
-      "waiting_task": "62",
+      "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
@@ -1808,9 +1800,7 @@
     },
     "8862491905": {
       "balance": 0.0,
-      "done_tasks": [
-        "62"
-      ],
+      "done_tasks": [],
       "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
@@ -1835,7 +1825,6 @@
     "8930802649": {
       "balance": 0.2,
       "done_tasks": [
-        "62",
         "45"
       ],
       "pending_tasks": [],
