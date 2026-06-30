@@ -1879,9 +1879,7 @@
       "done_tasks": [
         "43"
       ],
-      "pending_tasks": [
-        "64"
-      ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
@@ -2044,20 +2042,7 @@
     }
   },
   "required_tasks": [],
-  "submits": {
-    "330": {
-      "user_id": 7779046668,
-      "username": "Redwinso",
-      "task_id": "64",
-      "reward": 1.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIvbGpEE1XpPVVAfnWEiQLybStyFGNJAAKSImsbqE4gSlhiHRTW7XMiAQADAgADeQADPAQ",
-      "time": 1782846296,
-      "admin_sent": true,
-      "admin_sent_time": 1782846299,
-      "admin_message_id": 12142
-    }
-  },
+  "submits": {},
   "withdraws": {},
   "withdraw_blocks": {},
   "promocodes": {},
@@ -3049,6 +3034,13 @@
         "user_id": "7779046668",
         "note": "task #43",
         "time": 1782845994
+      },
+      "330": {
+        "status": "rejected",
+        "admin_id": 7837011810,
+        "user_id": "7779046668",
+        "note": "task #64",
+        "time": 1782846435
       }
     },
     "withdraws": {
