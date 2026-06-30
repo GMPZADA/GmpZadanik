@@ -77,7 +77,13 @@
       "fines_total": 0,
       "username": "Artemwesh",
       "banned": false,
-      "ban_reason": ""
+      "ban_reason": "",
+      "created_at": 1782836891,
+      "updated_at": 1782836891,
+      "user_id": 7837011810,
+      "first_name": "Артем",
+      "last_name": "",
+      "language_code": "ru"
     },
     "8380620424": {
       "balance": 0.0,
