@@ -1877,10 +1877,8 @@
     "7779046668": {
       "balance": 0,
       "done_tasks": [],
-      "pending_tasks": [
-        "43"
-      ],
-      "waiting_task": null,
+      "pending_tasks": [],
+      "waiting_task": "43",
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
@@ -1893,7 +1891,7 @@
       "banned": false,
       "ban_reason": "",
       "created_at": 1782845579,
-      "updated_at": 1782845939,
+      "updated_at": 1782845942,
       "user_id": 7779046668,
       "username": "Redwinso",
       "first_name": "Redwinso #drl #mmq",
@@ -2042,20 +2040,7 @@
     }
   },
   "required_tasks": [],
-  "submits": {
-    "329": {
-      "user_id": 7779046668,
-      "username": "Redwinso",
-      "task_id": "43",
-      "reward": 2.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIvSWpEEc_YkxX0Us3UJNFBPtNZCEJ_AAKKImsbqE4gSg0N7Cz7Eld7AQADAgADeQADPAQ",
-      "time": 1782845942,
-      "admin_sent": true,
-      "admin_sent_time": 1782845942,
-      "admin_message_id": "sending"
-    }
-  },
+  "submits": {},
   "withdraws": {},
   "withdraw_blocks": {},
   "promocodes": {},
@@ -3946,10 +3931,6 @@
       "328": {
         "message_id": 12093,
         "time": 1782845816
-      },
-      "329": {
-        "message_id": "sending",
-        "time": 1782845942
       }
     },
     "withdraws": {
@@ -6048,7 +6029,7 @@
   "total_paid": 10.0,
   "total_withdrawals": 4,
   "last_task_id": 65,
-  "last_submit_id": 329,
+  "last_submit_id": 328,
   "last_withdraw_id": 133,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "withdraw_disabled_by_admin": false,
