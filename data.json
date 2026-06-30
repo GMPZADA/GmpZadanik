@@ -508,8 +508,10 @@
         "42",
         "64"
       ],
-      "pending_tasks": [],
-      "waiting_task": "51",
+      "pending_tasks": [
+        "51"
+      ],
+      "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
@@ -2111,6 +2113,18 @@
       "admin_sent": true,
       "admin_sent_time": 1782848079,
       "admin_message_id": 12206
+    },
+    "334": {
+      "user_id": 7130773702,
+      "username": "kurokcek",
+      "task_id": "51",
+      "reward": 3.0,
+      "status": "wait",
+      "photo_file_id": "AgACAgIAAxkBAAIvs2pEGoE6s-trLRu3WJHs2lr7kNWEAALCIWsbn5UhStd5nsQlduMCAQADAgADeQADPAQ",
+      "time": 1782848133,
+      "admin_sent": true,
+      "admin_sent_time": 1782848133,
+      "admin_message_id": "sending"
     }
   },
   "withdraws": {},
@@ -4044,6 +4058,10 @@
       "333": {
         "message_id": 12206,
         "time": 1782848079
+      },
+      "334": {
+        "message_id": "sending",
+        "time": 1782848133
       }
     },
     "withdraws": {
@@ -6182,7 +6200,7 @@
   "total_paid": 12.0,
   "total_withdrawals": 5,
   "last_task_id": 65,
-  "last_submit_id": 333,
+  "last_submit_id": 334,
   "last_withdraw_id": 134,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "withdraw_disabled_by_admin": false,
