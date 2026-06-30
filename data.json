@@ -1804,9 +1804,10 @@
       "balance": 0,
       "done_tasks": [],
       "pending_tasks": [
-        "62"
+        "62",
+        "65"
       ],
-      "waiting_task": "65",
+      "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
@@ -1982,6 +1983,18 @@
       "admin_sent": true,
       "admin_sent_time": 1782836802,
       "admin_message_id": 11889
+    },
+    "324": {
+      "user_id": 8862491905,
+      "username": "Unknown_1236",
+      "task_id": "65",
+      "reward": 3.0,
+      "status": "wait",
+      "photo_file_id": "AgACAgEAAxkBAAIuaGpD7jKlFxLbrP-NiNIFsJmmBzEhAAKQD2sbYiggRgvGzIgM4_PCAQADAgADeQADPAQ",
+      "time": 1782836843,
+      "admin_sent": true,
+      "admin_sent_time": 1782836843,
+      "admin_message_id": "sending"
     }
   },
   "withdraws": {},
@@ -3784,6 +3797,10 @@
       "323": {
         "message_id": 11889,
         "time": 1782836802
+      },
+      "324": {
+        "message_id": "sending",
+        "time": 1782836843
       }
     },
     "withdraws": {
@@ -5758,7 +5775,7 @@
   "total_paid": 0.0,
   "total_withdrawals": 0,
   "last_task_id": 65,
-  "last_submit_id": 323,
+  "last_submit_id": 324,
   "last_withdraw_id": 129,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "withdraw_disabled_by_admin": false,
