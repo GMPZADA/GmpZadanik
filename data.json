@@ -1838,8 +1838,10 @@
       "done_tasks": [
         "62"
       ],
-      "pending_tasks": [],
-      "waiting_task": "45",
+      "pending_tasks": [
+        "45"
+      ],
+      "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
@@ -1852,7 +1854,7 @@
       "banned": false,
       "ban_reason": "",
       "created_at": 1782839975,
-      "updated_at": 1782842089,
+      "updated_at": 1782842086,
       "user_id": 8930802649,
       "username": "Nsjsiakaj",
       "first_name": ".",
@@ -2003,7 +2005,20 @@
     }
   },
   "required_tasks": [],
-  "submits": {},
+  "submits": {
+    "326": {
+      "user_id": 8930802649,
+      "username": "Nsjsiakaj",
+      "task_id": "45",
+      "reward": 2.0,
+      "status": "wait",
+      "photo_file_id": "AgACAgIAAxkBAAIuumpEAtbz732J8CDNwvR134k15ETAAAJNG2sbOVchSt5wYkD1kh5pAQADAgADeQADPAQ",
+      "time": 1782842094,
+      "admin_sent": true,
+      "admin_sent_time": 1782842094,
+      "admin_message_id": "sending"
+    }
+  },
   "withdraws": {},
   "withdraw_blocks": {},
   "promocodes": {},
@@ -3847,6 +3862,10 @@
       "325": {
         "message_id": "sending",
         "time": 1782840081
+      },
+      "326": {
+        "message_id": "sending",
+        "time": 1782842094
       }
     },
     "withdraws": {
@@ -5892,7 +5911,7 @@
   "total_paid": 7.0,
   "total_withdrawals": 2,
   "last_task_id": 65,
-  "last_submit_id": 325,
+  "last_submit_id": 326,
   "last_withdraw_id": 131,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "withdraw_disabled_by_admin": false,
