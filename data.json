@@ -1834,16 +1834,18 @@
       "language_code": "ru"
     },
     "8930802649": {
-      "balance": 0.2,
-      "done_tasks": [],
+      "balance": 2.2,
+      "done_tasks": [
+        "62"
+      ],
       "pending_tasks": [],
-      "waiting_task": "62",
+      "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1782840087,
-      "completed_tasks": 0,
-      "total_earned": 0.2,
+      "completed_tasks": 1,
+      "total_earned": 2.2,
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
@@ -2001,20 +2003,7 @@
     }
   },
   "required_tasks": [],
-  "submits": {
-    "325": {
-      "user_id": 8930802649,
-      "username": "Nsjsiakaj",
-      "task_id": "62",
-      "reward": 2.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIuompD-wZnAfVckqUf_jTiHs9EVkq2AAIlG2sbOVchSls_wP7ch0T0AQADAgADeQADPAQ",
-      "time": 1782840081,
-      "admin_sent": true,
-      "admin_sent_time": 1782840081,
-      "admin_message_id": "sending"
-    }
-  },
+  "submits": {},
   "withdraws": {},
   "withdraw_blocks": {},
   "promocodes": {},
@@ -2971,6 +2960,13 @@
         "user_id": "8862491905",
         "note": "task #65",
         "time": 1782836869
+      },
+      "325": {
+        "status": "approved",
+        "admin_id": 7837011810,
+        "user_id": "8930802649",
+        "note": "task #62",
+        "time": 1782840109
       }
     },
     "withdraws": {
@@ -5862,6 +5858,15 @@
       "new": 0.2,
       "reason": "add",
       "request_id": ""
+    },
+    {
+      "time": 1782840109,
+      "user_id": "8930802649",
+      "old": 0.2,
+      "amount": 2.0,
+      "new": 2.2,
+      "reason": "task_approved",
+      "request_id": "325"
     }
   ],
   "total_paid": 5.0,
