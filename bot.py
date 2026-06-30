@@ -108,6 +108,7 @@ def empty_data():
     return {
         "users": {},
         "tasks": {},
+        "deleted_tasks": {},
         "required_tasks": [],
         "submits": {},
         "withdraws": {},
@@ -154,6 +155,14 @@ def fix_data(data):
     if not isinstance(data.get("withdraw_blocks"), dict):
         data["withdraw_blocks"] = {}
 
+    # Память удалённых заданий. Нужна, чтобы старый local/GitHub data.json
+    # не вернул задание после перезапуска Render.
+    data.setdefault("deleted_tasks", {})
+    if isinstance(data.get("deleted_tasks"), list):
+        data["deleted_tasks"] = {str(tid): {"time": 0} for tid in data.get("deleted_tasks", [])}
+    if not isinstance(data.get("deleted_tasks"), dict):
+        data["deleted_tasks"] = {}
+
     # Общая статистика выплат хранится отдельно, чтобы не пропадала,
     # если какой-то пользователь не записался/старый data.json вернулся после redeploy.
     data.setdefault("total_paid", 0)
@@ -169,6 +178,12 @@ def fix_data(data):
     data.setdefault("required_tasks", [])
     if not isinstance(data.get("required_tasks"), list):
         data["required_tasks"] = []
+
+    # Чистим удалённые задания: если задание удалено админом — оно не должно вернуться.
+    deleted_task_ids = {str(tid) for tid in data.get("deleted_tasks", {}).keys()}
+    for tid in list(data.get("tasks", {}).keys()):
+        if str(tid) in deleted_task_ids:
+            data["tasks"].pop(tid, None)
 
     # Чистим обязательные задания: если админ удалил задание, оно больше не блокирует вывод.
     existing_task_ids = {str(tid) for tid in data.get("tasks", {}).keys()}
@@ -366,6 +381,13 @@ def merge_data(primary, secondary):
     result = json.loads(json.dumps(secondary, ensure_ascii=False))
     result = fix_data(result)
 
+    # Память удалённых заданий объединяем из двух файлов.
+    # Это защита: если в одном файле задание удалили, второй старый файл не вернёт его назад.
+    result.setdefault("deleted_tasks", {})
+    for tid, info in primary.get("deleted_tasks", {}).items():
+        result["deleted_tasks"][str(tid)] = info if isinstance(info, dict) else {"time": 0}
+    deleted_task_ids = {str(tid) for tid in result.get("deleted_tasks", {}).keys()}
+
     # Пользователи: никого не удаляем, а существующего пользователя обновляем свежими данными из primary.
     result_users = result.setdefault("users", {})
     for uid, user in primary.get("users", {}).items():
@@ -377,9 +399,15 @@ def merge_data(primary, secondary):
             merged_user.update(user)
             result_users[uid] = merged_user
 
-    # Задания тоже не теряем.
+    # Задания не теряем, но удалённые задания НЕ возвращаем.
     result_tasks = result.setdefault("tasks", {})
+    for tid in list(result_tasks.keys()):
+        if str(tid) in deleted_task_ids:
+            result_tasks.pop(tid, None)
     for tid, task in primary.get("tasks", {}).items():
+        if str(tid) in deleted_task_ids:
+            result_tasks.pop(str(tid), None)
+            continue
         result_tasks[str(tid)] = task
 
     # Заявки/промо/тех.словари — объединяем.
@@ -410,7 +438,19 @@ def merge_data(primary, secondary):
     # Обязательные задания: объединяем и оставляем только существующие.
     req = [str(x) for x in result.get("required_tasks", [])] + [str(x) for x in primary.get("required_tasks", [])]
     existing_task_ids = {str(tid) for tid in result.get("tasks", {}).keys()}
-    result["required_tasks"] = list(dict.fromkeys([x for x in req if x in existing_task_ids]))
+    result["required_tasks"] = list(dict.fromkeys([x for x in req if x in existing_task_ids and x not in deleted_task_ids]))
+
+    # Убираем следы удалённых заданий у игроков и из активных заявок,
+    # но баланс/заработок игрока НЕ трогаем.
+    for sid, submit in list(result.get("submits", {}).items()):
+        if str(submit.get("task_id")) in deleted_task_ids:
+            result.get("submits", {}).pop(sid, None)
+            mark_request_processed(result, "submits", sid, "deleted_task", 0, submit.get("user_id", ""), f"task #{submit.get('task_id')}")
+    for u in result.get("users", {}).values():
+        u["done_tasks"] = [str(tid) for tid in u.get("done_tasks", []) if str(tid) not in deleted_task_ids]
+        u["pending_tasks"] = [str(tid) for tid in u.get("pending_tasks", []) if str(tid) not in deleted_task_ids]
+        if str(u.get("waiting_task")) in deleted_task_ids:
+            u["waiting_task"] = None
 
     # Счётчики не должны откатываться назад.
     for key in ["last_task_id", "last_submit_id", "last_withdraw_id", "total_withdrawals"]:
@@ -2498,14 +2538,22 @@ def delete_task(message):
     if task_id not in data["tasks"]:
         return bot.send_message(message.chat.id, "❌ Задание не найдено.")
 
-    # Удаляем задание и сразу чистим все следы, чтобы оно больше не блокировало вывод.
-    del data["tasks"][task_id]
+    # Удаляем задание и ставим "память удаления".
+    # Поэтому старый data.json с GitHub/Render уже не сможет вернуть это задание назад.
+    old_task = data["tasks"].pop(task_id, {})
+    data.setdefault("deleted_tasks", {})[str(task_id)] = {
+        "time": int(time.time()),
+        "by": int(message.from_user.id),
+        "text": str(old_task.get("text", ""))[:200]
+    }
     data["required_tasks"] = [str(tid) for tid in data.get("required_tasks", []) if str(tid) != str(task_id)]
 
     removed_submits = 0
     for sid, submit in list(data.get("submits", {}).items()):
         if str(submit.get("task_id")) == str(task_id):
+            uid = str(submit.get("user_id", ""))
             data["submits"].pop(sid, None)
+            mark_request_processed(data, "submits", sid, "deleted_task", message.from_user.id, uid, f"task #{task_id}")
             removed_submits += 1
 
     for u in data.get("users", {}).values():
