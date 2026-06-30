@@ -19,7 +19,7 @@ ADMIN_ID = int(os.getenv("ADMIN_ID", "0"))
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 GITHUB_REPO = os.getenv("GITHUB_REPO")  # пример: GMPZADA/GmpZadanik
 GITHUB_BRANCH = os.getenv("GITHUB_BRANCH", "main")
-GITHUB_FILE = os.getenv("GITHUB_FILE", "data.json")
+GITHUB_FILE = "data.json"
 
 LOCAL_DATA_FILE = "data.json"
 BONUS_AMOUNT = 0.2
@@ -772,8 +772,7 @@ def save_data(data):
 
             pr = requests.put(github_url(), headers=github_headers(), json=payload, timeout=10)
 
-            # Если GitHub ответил конфликтом 409, значит файл изменился между GET и PUT.
-            # Пробуем ещё раз получить новый sha и сохранить, чтобы новый пользователь не потерялся.
+            # Если GitHub вернул 409, значит SHA устарел: перечитываем SHA и пробуем ещё раз.
             if pr.status_code == 409:
                 try:
                     r2 = requests.get(
@@ -786,12 +785,12 @@ def save_data(data):
                         payload["sha"] = r2.json().get("sha")
                         pr = requests.put(github_url(), headers=github_headers(), json=payload, timeout=10)
                 except Exception as e:
-                    print("GitHub save retry exception:", e)
+                    print("GitHub retry after 409 exception:", e)
 
             if pr.status_code not in (200, 201):
                 print("GitHub save error:", pr.status_code, pr.text)
             else:
-                print(f"GitHub save OK: users={len(data.get('users', {}))}, file={GITHUB_REPO}/{GITHUB_FILE}")
+                print("GitHub save OK")
 
         except Exception as e:
             print("GitHub save exception:", e)
@@ -1214,6 +1213,8 @@ def is_banned_user(message):
 
     data = load_fresh_data_for_ban_check()
     user = get_user(data, message.from_user.id)
+    user["username"] = message.from_user.username or user.get("username", "")
+    save_data(data)  # важно: любое сообщение/кнопка сразу записывает пользователя в data.json и GitHub
 
     if bool(user.get("banned", False)):
         reason = user.get("ban_reason") or "не указана"
@@ -1234,6 +1235,8 @@ def is_banned_call(call):
 
     data = load_fresh_data_for_ban_check()
     user = get_user(data, call.from_user.id)
+    user["username"] = call.from_user.username or user.get("username", "")
+    save_data(data)  # важно: любой callback тоже записывает пользователя в data.json и GitHub
 
     if bool(user.get("banned", False)):
         reason = user.get("ban_reason") or "не указана"
@@ -1273,89 +1276,13 @@ def admin_menu():
 @bot.message_handler(commands=["start"])
 def start(message):
     data = load_data()
-    uid = str(message.from_user.id)
-    is_new_user = uid not in data.get("users", {})
-
-    user = get_user(data, uid)
+    user = get_user(data, message.from_user.id)
     user["username"] = message.from_user.username or ""
-    user["first_name"] = message.from_user.first_name or ""
-    user["last_seen"] = int(time.time())
-    if is_new_user:
-        user["joined_at"] = int(time.time())
-
     cancel_user_states(user)
     save_data(data)
 
-    # Если это новый пользователь, сразу перечитываем data.json и проверяем, что ID реально записался.
-    # Если GitHub/файл не сохранился, админ увидит предупреждение в логах/личке.
-    if is_new_user:
-        try:
-            check_data = load_data()
-            if uid not in check_data.get("users", {}):
-                print(f"CRITICAL SAVE WARNING: new user {uid} not found after save")
-                if ADMIN_ID:
-                    safe_send(ADMIN_ID, f"⚠️ Новый пользователь <code>{uid}</code> не сохранился в data.json. Проверь GitHub ENV/TOKEN.")
-        except Exception as e:
-            print("new user save check error:", e)
-
     bot.send_message(message.chat.id, data["start_text"], reply_markup=main_menu())
 
-
-@bot.message_handler(commands=["savecheck"])
-def savecheck(message):
-    if message.from_user.id != ADMIN_ID:
-        return bot.send_message(message.chat.id, "❌ Нет доступа.")
-
-    local_data = read_local_data_raw()
-    github_data = read_github_data_raw()
-
-    local_users = len(local_data.get("users", {})) if local_data else 0
-    github_users = len(github_data.get("users", {})) if github_data else 0
-
-    bot.send_message(
-        message.chat.id,
-        "🧪 <b>Проверка сохранения</b>\n\n"
-        f"📁 Локально users: <b>{local_users}</b>\n"
-        f"☁️ GitHub users: <b>{github_users}</b>\n"
-        f"📦 Repo: <code>{h(GITHUB_REPO or 'не указан')}</code>\n"
-        f"🌿 Branch: <code>{h(GITHUB_BRANCH)}</code>\n"
-        f"📄 File: <code>{h(GITHUB_FILE)}</code>\n"
-        f"🔑 Token: <b>{'есть' if GITHUB_TOKEN else 'нет'}</b>\n\n"
-        "Если локально больше, чем GitHub — значит бот сохраняет на Render, но не пушит в GitHub."
-    )
-
-
-@bot.message_handler(commands=["syncnow"])
-def syncnow(message):
-    if message.from_user.id != ADMIN_ID:
-        return bot.send_message(message.chat.id, "❌ Нет доступа.")
-
-    data = load_data()
-    save_data(data)
-    github_data = read_github_data_raw()
-    github_users = len(github_data.get("users", {})) if github_data else 0
-
-    bot.send_message(
-        message.chat.id,
-        "✅ <b>Синхронизация выполнена</b>\n\n"
-        f"👥 В боте/локально: <b>{len(data.get('users', {}))}</b>\n"
-        f"☁️ На GitHub сейчас: <b>{github_users}</b>"
-    )
-
-
-@bot.message_handler(commands=["findid"])
-def findid(message):
-    if message.from_user.id != ADMIN_ID:
-        return bot.send_message(message.chat.id, "❌ Нет доступа.")
-    parts = message.text.split(maxsplit=1)
-    if len(parts) < 2:
-        return bot.send_message(message.chat.id, "Формат: <code>/findid 8365156020</code>")
-    q = parts[1].strip()
-    data = load_data()
-    if q in data.get("users", {}):
-        u = data["users"][q]
-        return bot.send_message(message.chat.id, f"✅ ID <code>{q}</code> есть в data.json\nUsername: @{h(u.get('username') or 'нет')}")
-    return bot.send_message(message.chat.id, f"❌ ID <code>{q}</code> нет в текущем data.json")
 
 
 @bot.message_handler(commands=["withdrawoff"])
@@ -3341,6 +3268,67 @@ def status_command(message):
         f"🚫 Блокировок вывода: <b>{blocks_count}</b>\n"
         f"💳 Выплаты: <b>{withdraw_state}</b>"
     )
+
+
+
+
+@bot.message_handler(commands=["findid"])
+def findid_command(message):
+    if message.from_user.id != ADMIN_ID:
+        return bot.send_message(message.chat.id, "❌ Нет доступа.")
+
+    parts = message.text.split()
+    if len(parts) < 2:
+        return bot.send_message(message.chat.id, "Использование: /findid user_id")
+
+    uid = str(parts[1]).strip()
+    data = load_data()
+    exists = uid in data.get("users", {})
+    bot.send_message(message.chat.id, f"🔎 ID <code>{uid}</code> в data.json: {'✅ есть' if exists else '❌ нет'}\n👥 Пользователей сейчас: <b>{len(data.get('users', {}))}</b>")
+
+
+@bot.message_handler(commands=["githubstatus"])
+def githubstatus_command(message):
+    if message.from_user.id != ADMIN_ID:
+        return bot.send_message(message.chat.id, "❌ Нет доступа.")
+
+    data = load_data()
+    local_ok = os.path.exists(LOCAL_DATA_FILE)
+    gh_ok = False
+    gh_users = "нет"
+    gh_error = ""
+
+    try:
+        gh = read_github_data_raw()
+        if gh is not None:
+            gh_ok = True
+            gh_users = str(len(gh.get("users", {})))
+        else:
+            gh_error = "GitHub не прочитался. Проверь GITHUB_TOKEN, GITHUB_REPO, ветку main и права токена."
+    except Exception as e:
+        gh_error = str(e)
+
+    bot.send_message(
+        message.chat.id,
+        "🧪 <b>Проверка сохранения</b>\n\n"
+        f"📁 Локальный data.json: {'✅ есть' if local_ok else '❌ нет'}\n"
+        f"👥 Пользователей локально/после load: <b>{len(data.get('users', {}))}</b>\n"
+        f"🌐 GitHub data.json: {'✅ читается' if gh_ok else '❌ не читается'}\n"
+        f"👥 Пользователей в GitHub: <b>{gh_users}</b>\n"
+        f"⚙️ GITHUB_REPO: <code>{h(GITHUB_REPO or 'не задан')}</code>\n"
+        f"🌿 GITHUB_BRANCH: <code>{h(GITHUB_BRANCH)}</code>\n"
+        f"📄 GITHUB_FILE: <code>{h(GITHUB_FILE)}</code>\n"
+        f"⚠️ {h(gh_error)}"
+    )
+
+
+@bot.message_handler(commands=["forceaddme"])
+def forceaddme_command(message):
+    data = load_data()
+    user = get_user(data, message.from_user.id)
+    user["username"] = message.from_user.username or user.get("username", "")
+    save_data(data)
+    bot.send_message(message.chat.id, f"✅ Я принудительно записал этот аккаунт.\n🆔 ID: <code>{message.from_user.id}</code>\nПроверь: /findid {message.from_user.id}")
 
 
 @bot.message_handler(func=lambda m: True)
