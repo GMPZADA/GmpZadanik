@@ -814,7 +814,14 @@ def get_user(data, user_id):
             "withdrawn_total": 0,
             "fines_total": 0,
             "banned": False,
-            "ban_reason": ""
+            "ban_reason": "",
+            "created_at": int(time.time()),
+            "updated_at": int(time.time()),
+            "user_id": int(user_id) if str(user_id).isdigit() else str(user_id),
+            "username": "",
+            "first_name": "",
+            "last_name": "",
+            "language_code": ""
         }
 
     user = data["users"][uid]
@@ -831,6 +838,13 @@ def get_user(data, user_id):
     user.setdefault("withdraw_count", 0)
     user.setdefault("withdrawn_total", 0)
     user.setdefault("fines_total", 0)
+    user.setdefault("created_at", int(time.time()))
+    user.setdefault("updated_at", int(time.time()))
+    user.setdefault("user_id", int(user_id) if str(user_id).isdigit() else str(user_id))
+    user.setdefault("username", "")
+    user.setdefault("first_name", "")
+    user.setdefault("last_name", "")
+    user.setdefault("language_code", "")
     return user
 
 
@@ -1182,6 +1196,44 @@ def safe_send(user_id, text):
         return False
 
 
+def remember_telegram_user(data, tg_user):
+    """
+    Автоматически записывает/обновляет пользователя в data.json.
+    Вызывать при /start, любом сообщении и любой inline-кнопке.
+    """
+    uid = str(tg_user.id)
+    is_new = uid not in data.get("users", {})
+    user = get_user(data, uid)
+
+    now = int(time.time())
+    user.setdefault("created_at", now)
+    user["updated_at"] = now
+    user["user_id"] = int(tg_user.id)
+    user["username"] = tg_user.username or user.get("username", "")
+    user["first_name"] = tg_user.first_name or user.get("first_name", "")
+    user["last_name"] = tg_user.last_name or user.get("last_name", "")
+    user["language_code"] = getattr(tg_user, "language_code", None) or user.get("language_code", "")
+
+    return user, is_new
+
+
+def auto_save_user_from_message(message):
+    """Запись пользователя при любом обычном сообщении/кнопке клавиатуры."""
+    with DATA_LOCK:
+        data = load_fresh_data_for_ban_check()
+        user, is_new = remember_telegram_user(data, message.from_user)
+        save_data(data)
+    return data, user, is_new
+
+
+def auto_save_user_from_call(call):
+    """Запись пользователя при любой inline-кнопке."""
+    with DATA_LOCK:
+        data = load_fresh_data_for_ban_check()
+        user, is_new = remember_telegram_user(data, call.from_user)
+        save_data(data)
+    return data, user, is_new
+
 
 
 def load_fresh_data_for_ban_check():
@@ -1208,13 +1260,10 @@ def load_fresh_data_for_ban_check():
 
 
 def is_banned_user(message):
+    data, user, _ = auto_save_user_from_message(message)
+
     if message.from_user.id == ADMIN_ID:
         return False
-
-    data = load_fresh_data_for_ban_check()
-    user = get_user(data, message.from_user.id)
-    user["username"] = message.from_user.username or user.get("username", "")
-    save_data(data)  # важно: любое сообщение/кнопка сразу записывает пользователя в data.json и GitHub
 
     if bool(user.get("banned", False)):
         reason = user.get("ban_reason") or "не указана"
@@ -1230,13 +1279,10 @@ def is_banned_user(message):
 
 
 def is_banned_call(call):
+    data, user, _ = auto_save_user_from_call(call)
+
     if call.from_user.id == ADMIN_ID:
         return False
-
-    data = load_fresh_data_for_ban_check()
-    user = get_user(data, call.from_user.id)
-    user["username"] = call.from_user.username or user.get("username", "")
-    save_data(data)  # важно: любой callback тоже записывает пользователя в data.json и GitHub
 
     if bool(user.get("banned", False)):
         reason = user.get("ban_reason") or "не указана"
@@ -1253,7 +1299,6 @@ def is_banned_call(call):
         return True
 
     return False
-
 
 
 def main_menu():
@@ -1275,11 +1320,11 @@ def admin_menu():
 
 @bot.message_handler(commands=["start"])
 def start(message):
-    data = load_data()
-    user = get_user(data, message.from_user.id)
-    user["username"] = message.from_user.username or ""
-    cancel_user_states(user)
-    save_data(data)
+    with DATA_LOCK:
+        data = load_data()
+        user, is_new = remember_telegram_user(data, message.from_user)
+        cancel_user_states(user)
+        save_data(data)
 
     bot.send_message(message.chat.id, data["start_text"], reply_markup=main_menu())
 
