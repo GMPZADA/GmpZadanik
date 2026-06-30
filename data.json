@@ -1891,7 +1891,7 @@
       "banned": false,
       "ban_reason": "",
       "created_at": 1782845579,
-      "updated_at": 1782845701,
+      "updated_at": 1782845722,
       "user_id": 7779046668,
       "username": "Redwinso",
       "first_name": "Redwinso #drl #mmq",
@@ -6004,6 +6004,15 @@
       "new": 0.0,
       "reason": "withdraw_created",
       "request_id": "133"
+    },
+    {
+      "time": 1782845707,
+      "user_id": "7779046668",
+      "old": 0.0,
+      "amount": 0.2,
+      "new": 0.2,
+      "reason": "add",
+      "request_id": ""
     }
   ],
   "total_paid": 10.0,
