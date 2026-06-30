@@ -1840,14 +1840,14 @@
       ],
       "pending_tasks": [],
       "waiting_task": null,
-      "withdraw_pending": true,
+      "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1782840087,
       "completed_tasks": 1,
       "total_earned": 2.2,
-      "withdraw_count": 0,
-      "withdrawn_total": 0,
+      "withdraw_count": 1,
+      "withdrawn_total": 2.0,
       "fines_total": 0,
       "banned": false,
       "ban_reason": "",
@@ -2004,20 +2004,7 @@
   },
   "required_tasks": [],
   "submits": {},
-  "withdraws": {
-    "131": {
-      "user_id": 8930802649,
-      "username": "Nsjsiakaj",
-      "to": "@bubuzan11",
-      "amount": 2.0,
-      "status": "wait",
-      "time": 1782840176,
-      "source_message_id": 11951,
-      "admin_sent": true,
-      "admin_sent_time": 1782840179,
-      "admin_message_id": 11953
-    }
-  },
+  "withdraws": {},
   "withdraw_blocks": {},
   "promocodes": {},
   "processed_requests": {
@@ -3353,6 +3340,13 @@
         "user_id": "8862491905",
         "note": "amount 5.0",
         "time": 1782836977
+      },
+      "131": {
+        "status": "paid",
+        "admin_id": 7837011810,
+        "user_id": "8930802649",
+        "note": "amount 2.0",
+        "time": 1782840222
       }
     }
   },
@@ -5895,8 +5889,8 @@
       "request_id": "131"
     }
   ],
-  "total_paid": 5.0,
-  "total_withdrawals": 1,
+  "total_paid": 7.0,
+  "total_withdrawals": 2,
   "last_task_id": 65,
   "last_submit_id": 325,
   "last_withdraw_id": 131,
