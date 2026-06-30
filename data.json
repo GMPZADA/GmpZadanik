@@ -1834,15 +1834,15 @@
       "language_code": "ru"
     },
     "8930802649": {
-      "balance": 2.2,
+      "balance": 0.2,
       "done_tasks": [
         "62"
       ],
       "pending_tasks": [],
       "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": "amount",
-      "withdraw_to": "@bubuzan11",
+      "withdraw_pending": true,
+      "withdraw_step": null,
+      "withdraw_to": null,
       "last_bonus": 1782840087,
       "completed_tasks": 1,
       "total_earned": 2.2,
@@ -2004,7 +2004,20 @@
   },
   "required_tasks": [],
   "submits": {},
-  "withdraws": {},
+  "withdraws": {
+    "131": {
+      "user_id": 8930802649,
+      "username": "Nsjsiakaj",
+      "to": "@bubuzan11",
+      "amount": 2.0,
+      "status": "wait",
+      "time": 1782840176,
+      "source_message_id": 11951,
+      "admin_sent": true,
+      "admin_sent_time": 1782840176,
+      "admin_message_id": "sending"
+    }
+  },
   "withdraw_blocks": {},
   "promocodes": {},
   "processed_requests": {
@@ -4046,6 +4059,10 @@
       "130": {
         "message_id": 11916,
         "time": 1782836974
+      },
+      "131": {
+        "message_id": "sending",
+        "time": 1782840176
       }
     }
   },
@@ -5867,13 +5884,22 @@
       "new": 2.2,
       "reason": "task_approved",
       "request_id": "325"
+    },
+    {
+      "time": 1782840176,
+      "user_id": "8930802649",
+      "old": 2.2,
+      "amount": -2.0,
+      "new": 0.2,
+      "reason": "withdraw_created",
+      "request_id": "131"
     }
   ],
   "total_paid": 5.0,
   "total_withdrawals": 1,
   "last_task_id": 65,
   "last_submit_id": 325,
-  "last_withdraw_id": 130,
+  "last_withdraw_id": 131,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "withdraw_disabled_by_admin": false,
   "withdraw_enabled": true
