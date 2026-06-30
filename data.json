@@ -521,7 +521,13 @@
       "fines_total": 0,
       "username": "kurokcek",
       "banned": false,
-      "ban_reason": ""
+      "ban_reason": "",
+      "created_at": 1782848000,
+      "updated_at": 1782848000,
+      "user_id": 7130773702,
+      "first_name": "sleepy",
+      "last_name": "",
+      "language_code": "ru"
     },
     "5356400377": {
       "balance": 0.2,
