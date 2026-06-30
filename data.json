@@ -1838,10 +1838,8 @@
       "done_tasks": [
         "62"
       ],
-      "pending_tasks": [
-        "45"
-      ],
-      "waiting_task": null,
+      "pending_tasks": [],
+      "waiting_task": "45",
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
@@ -2015,8 +2013,8 @@
       "photo_file_id": "AgACAgIAAxkBAAIuumpEAtbz732J8CDNwvR134k15ETAAAJNG2sbOVchSt5wYkD1kh5pAQADAgADeQADPAQ",
       "time": 1782842094,
       "admin_sent": true,
-      "admin_sent_time": 1782842094,
-      "admin_message_id": "sending"
+      "admin_sent_time": 1782842100,
+      "admin_message_id": 11972
     }
   },
   "withdraws": {},
@@ -3864,8 +3862,8 @@
         "time": 1782840081
       },
       "326": {
-        "message_id": "sending",
-        "time": 1782842094
+        "message_id": 11972,
+        "time": 1782842100
       }
     },
     "withdraws": {
