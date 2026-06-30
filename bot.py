@@ -16,9 +16,9 @@ from telebot import TeleBot, types
 TOKEN = os.getenv("BOT_TOKEN")
 ADMIN_ID = int(os.getenv("ADMIN_ID", "0"))
 
-GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
-GITHUB_REPO = os.getenv("GITHUB_REPO")  # пример: GMPZADA/GmpZadanik
-GITHUB_BRANCH = os.getenv("GITHUB_BRANCH", "main")
+GITHUB_TOKEN = (os.getenv("GITHUB_TOKEN") or "").strip()
+GITHUB_REPO = (os.getenv("GITHUB_REPO") or "").strip()  # пример: GMPZADA/GmpZadanik
+GITHUB_BRANCH = (os.getenv("GITHUB_BRANCH") or "main").strip()
 GITHUB_FILE = "data.json"
 
 LOCAL_DATA_FILE = "data.json"
@@ -116,6 +116,8 @@ def empty_data():
         "processed_requests": {"submits": {}, "withdraws": {}},
         "admin_sent": {"submits": {}, "withdraws": {}},
         "balance_logs": [],
+        "total_paid": 0,
+        "total_withdrawals": 0,
         "last_task_id": 37,
         "last_submit_id": 0,
         "last_withdraw_id": 0,
@@ -151,6 +153,19 @@ def fix_data(data):
     data.setdefault("withdraw_blocks", {})
     if not isinstance(data.get("withdraw_blocks"), dict):
         data["withdraw_blocks"] = {}
+
+    # Общая статистика выплат хранится отдельно, чтобы не пропадала,
+    # если какой-то пользователь не записался/старый data.json вернулся после redeploy.
+    data.setdefault("total_paid", 0)
+    data.setdefault("total_withdrawals", 0)
+    try:
+        data["total_paid"] = round(float(data.get("total_paid", 0)), 2)
+    except Exception:
+        data["total_paid"] = 0
+    try:
+        data["total_withdrawals"] = int(data.get("total_withdrawals", 0))
+    except Exception:
+        data["total_withdrawals"] = 0
     data.setdefault("required_tasks", [])
     if not isinstance(data.get("required_tasks"), list):
         data["required_tasks"] = []
@@ -398,11 +413,17 @@ def merge_data(primary, secondary):
     result["required_tasks"] = list(dict.fromkeys([x for x in req if x in existing_task_ids]))
 
     # Счётчики не должны откатываться назад.
-    for key in ["last_task_id", "last_submit_id", "last_withdraw_id"]:
+    for key in ["last_task_id", "last_submit_id", "last_withdraw_id", "total_withdrawals"]:
         try:
             result[key] = max(int(result.get(key, 0)), int(primary.get(key, 0)))
         except Exception:
             result[key] = primary.get(key, result.get(key, 0))
+
+    try:
+        result["total_paid"] = max(float(result.get("total_paid", 0)), float(primary.get("total_paid", 0)))
+        result["total_paid"] = round(result["total_paid"], 2)
+    except Exception:
+        result["total_paid"] = primary.get("total_paid", result.get("total_paid", 0))
 
     # Важные настройки берём из primary.
     for key in ["start_text", "withdraw_enabled", "withdraw_disabled_by_admin", "withdraw_disabled_at", "withdraw_disabled_reason"]:
@@ -745,6 +766,9 @@ def save_data(data):
         os.replace(tmp_file, LOCAL_DATA_FILE)
     except Exception as e:
         print("Local save exception:", e)
+
+    if not GITHUB_TOKEN or not GITHUB_REPO:
+        print("GitHub save skipped: проверь GITHUB_TOKEN и GITHUB_REPO в Render")
 
     if GITHUB_TOKEN and GITHUB_REPO:
         try:
@@ -1108,13 +1132,15 @@ def build_admin_profile_text(data, user_id, user, username=None):
         sum(float(u.get("balance", 0)) for u in data.get("users", {}).values()),
         2
     )
-    total_paid = round(
+    users_total_paid = round(
         sum(float(u.get("withdrawn_total", 0)) for u in data.get("users", {}).values()),
         2
     )
-    total_withdraws = sum(
+    users_total_withdraws = sum(
         int(u.get("withdraw_count", 0)) for u in data.get("users", {}).values()
     )
+    total_paid = max(float(data.get("total_paid", 0)), users_total_paid)
+    total_withdraws = max(int(data.get("total_withdrawals", 0)), users_total_withdraws)
 
     return (
         "👑 <b>Профиль администратора</b>\n\n"
@@ -2132,6 +2158,11 @@ def pay_check(call):
                     if action == "payyes":
                         user["withdraw_count"] = int(user.get("withdraw_count", 0)) + 1
                         user["withdrawn_total"] = round(float(user.get("withdrawn_total", 0)) + amount, 2)
+
+                        # Общая статистика выплат отдельно в data.json.
+                        # Так она не откатится, даже если старый список users подтянется после перезапуска.
+                        data["total_paid"] = round(float(data.get("total_paid", 0)) + amount, 2)
+                        data["total_withdrawals"] = int(data.get("total_withdrawals", 0)) + 1
 
                         data.get("withdraws", {}).pop(real_wid, None)
                         data.get("withdraws", {}).pop(wid, None)
