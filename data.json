@@ -1801,10 +1801,11 @@
       "username": "drfggjjbh"
     },
     "8862491905": {
-      "balance": 0,
-      "done_tasks": [],
+      "balance": 2.0,
+      "done_tasks": [
+        "62"
+      ],
       "pending_tasks": [
-        "62",
         "65"
       ],
       "waiting_task": null,
@@ -1812,8 +1813,8 @@
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 0,
-      "completed_tasks": 0,
-      "total_earned": 0,
+      "completed_tasks": 1,
+      "total_earned": 2.0,
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
@@ -1972,18 +1973,6 @@
   },
   "required_tasks": [],
   "submits": {
-    "323": {
-      "user_id": 8862491905,
-      "username": "Unknown_1236",
-      "task_id": "62",
-      "reward": 2.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgEAAxkBAAIuaGpD7jKlFxLbrP-NiNIFsJmmBzEhAAKQD2sbYiggRgvGzIgM4_PCAQADAgADeQADPAQ",
-      "time": 1782836800,
-      "admin_sent": true,
-      "admin_sent_time": 1782836802,
-      "admin_message_id": 11889
-    },
     "324": {
       "user_id": 8862491905,
       "username": "Unknown_1236",
@@ -2939,6 +2928,13 @@
         "user_id": "8258106768",
         "note": "task #54",
         "time": 1782310494
+      },
+      "323": {
+        "status": "approved",
+        "admin_id": 7837011810,
+        "user_id": "8862491905",
+        "note": "task #62",
+        "time": 1782836862
       }
     },
     "withdraws": {
@@ -5770,6 +5766,15 @@
       "new": 3.0,
       "reason": "add",
       "request_id": ""
+    },
+    {
+      "time": 1782836862,
+      "user_id": "8862491905",
+      "old": 0.0,
+      "amount": 2.0,
+      "new": 2.0,
+      "reason": "task_approved",
+      "request_id": "323"
     }
   ],
   "total_paid": 0.0,
