@@ -508,8 +508,10 @@
         "42",
         "64"
       ],
-      "pending_tasks": [],
-      "waiting_task": "59",
+      "pending_tasks": [
+        "59"
+      ],
+      "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
@@ -523,7 +525,7 @@
       "banned": false,
       "ban_reason": "",
       "created_at": 1782848000,
-      "updated_at": 1782848073,
+      "updated_at": 1782848071,
       "user_id": 7130773702,
       "first_name": "sleepy",
       "last_name": "",
@@ -2099,6 +2101,18 @@
       "admin_sent": true,
       "admin_sent_time": 1782847734,
       "admin_message_id": 12179
+    },
+    "333": {
+      "user_id": 7130773702,
+      "username": "kurokcek",
+      "task_id": "59",
+      "reward": 2.0,
+      "status": "wait",
+      "photo_file_id": "AgACAgIAAxkBAAIvp2pEGj_xl4MZGR5dUNIl68dfDZtbAAK3IWsbn5UhSt3L1LN_VgEgAQADAgADeQADPAQ",
+      "time": 1782848075,
+      "admin_sent": true,
+      "admin_sent_time": 1782848075,
+      "admin_message_id": "sending"
     }
   },
   "withdraws": {},
@@ -4028,6 +4042,10 @@
       "332": {
         "message_id": 12179,
         "time": 1782847734
+      },
+      "333": {
+        "message_id": "sending",
+        "time": 1782848075
       }
     },
     "withdraws": {
@@ -6166,7 +6184,7 @@
   "total_paid": 12.0,
   "total_withdrawals": 5,
   "last_task_id": 65,
-  "last_submit_id": 332,
+  "last_submit_id": 333,
   "last_withdraw_id": 134,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "withdraw_disabled_by_admin": false,
