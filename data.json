@@ -3394,6 +3394,13 @@
         "user_id": "8853924649",
         "note": "task #53",
         "time": 1782928472
+      },
+      "344": {
+        "status": "rejected",
+        "admin_id": 7837011810,
+        "user_id": "8853924649",
+        "note": "task #50",
+        "time": 1782929667
       }
     },
     "withdraws": {
