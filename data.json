@@ -2252,8 +2252,8 @@
       "time": 1782917945,
       "source_message_id": 12518,
       "admin_sent": true,
-      "admin_sent_time": 1782917945,
-      "admin_message_id": "sending"
+      "admin_sent_time": 1782917947,
+      "admin_message_id": 12520
     }
   },
   "withdraw_blocks": {},
@@ -4486,8 +4486,8 @@
         "time": 1782917673
       },
       "138": {
-        "message_id": "sending",
-        "time": 1782917945
+        "message_id": 12520,
+        "time": 1782917947
       }
     }
   },
