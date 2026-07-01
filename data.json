@@ -2240,6 +2240,13 @@
       "reward": 1.0,
       "active": true,
       "required": false
+    },
+    "66": {
+      "text": "Зайти в бота, пройти капчу и отправить скриншот выполнения",
+      "link": "https://t.me/Starbuyearnbot?start=dsSbqBPR",
+      "reward": 1.0,
+      "active": true,
+      "required": false
     }
   },
   "deleted_tasks": {
@@ -6594,7 +6601,7 @@
   ],
   "total_paid": 26.6,
   "total_withdrawals": 10,
-  "last_task_id": 65,
+  "last_task_id": 66,
   "last_submit_id": 337,
   "last_withdraw_id": 139,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
