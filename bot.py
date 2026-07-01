@@ -307,7 +307,7 @@ def fix_data(data):
             user = get_user(data, uid)
             if task_id in user.get("pending_tasks", []):
                 user["pending_tasks"].remove(task_id)
-            data["submits"].pop(sid, None)
+            remove_submit_from_data(data, sid, uid, task_id)
             mark_request_processed(data, "submits", sid, "expired", 0, uid, f"task #{task_id}")
 
     for wid, w in list(data.get("withdraws", {}).items()):
@@ -444,7 +444,7 @@ def merge_data(primary, secondary):
     # но баланс/заработок игрока НЕ трогаем.
     for sid, submit in list(result.get("submits", {}).items()):
         if str(submit.get("task_id")) in deleted_task_ids:
-            result.get("submits", {}).pop(sid, None)
+            remove_submit_from_data(result, sid, submit.get("user_id", ""), submit.get("task_id", ""))
             mark_request_processed(result, "submits", sid, "deleted_task", 0, submit.get("user_id", ""), f"task #{submit.get('task_id')}")
     for u in result.get("users", {}).values():
         u["done_tasks"] = [str(tid) for tid in u.get("done_tasks", []) if str(tid) not in deleted_task_ids]
@@ -617,6 +617,90 @@ def mark_request_processed(data, kind, request_id, status, admin_id=0, user_id=0
 
 
 
+
+
+def remove_submit_from_data(data, submit_id, user_id=None, task_id=None):
+    """
+    Полностью убирает активную заявку на задание/фото из data.json.
+
+    После Одобрить/Отклонить/Удалить в data остаётся только нужное:
+    - users[user_id]["balance"] — новый баланс после начисления, если заявка одобрена;
+    - users[user_id]["done_tasks"] — задание добавлено только при одобрении;
+    - короткая метка processed_requests, чтобы старая копия GitHub/local
+      не вернула эту же закрытую заявку назад.
+    Сам объект data["submits"][id] удаляется, pending_tasks/waiting_task очищаются.
+    """
+    sid = str(submit_id).strip().replace("#", "")
+    data.setdefault("submits", {})
+
+    found_user_id = str(user_id or "")
+    found_task_id = str(task_id or "")
+
+    keys_to_delete = {sid, f"#{sid}", sid.lstrip("0") or "0"}
+    for key in list(data.get("submits", {}).keys()):
+        clean_key = str(key).strip().replace("#", "")
+        if clean_key == sid or clean_key.lstrip("0") == sid.lstrip("0") or str(key) in keys_to_delete:
+            submit = data["submits"].pop(key, {}) or {}
+            if not found_user_id:
+                found_user_id = str(submit.get("user_id", ""))
+            if not found_task_id:
+                found_task_id = str(submit.get("task_id", ""))
+
+    # Метки отправки админу больше не нужны после закрытия заявки.
+    sent = data.setdefault("admin_sent", {}).setdefault("submits", {})
+    for key in list(sent.keys()):
+        clean_key = str(key).strip().replace("#", "")
+        if clean_key == sid or clean_key.lstrip("0") == sid.lstrip("0"):
+            sent.pop(key, None)
+
+    if found_user_id:
+        user = get_user(data, found_user_id)
+        if found_task_id and found_task_id in user.get("pending_tasks", []):
+            user["pending_tasks"].remove(found_task_id)
+        if found_task_id and str(user.get("waiting_task")) == found_task_id:
+            user["waiting_task"] = None
+
+    return data
+
+def remove_withdraw_from_data(data, withdraw_id, user_id=None):
+    """
+    Полностью убирает активную заявку на вывод из data.json.
+
+    После одобрения/отказа/удаления в data остаётся только нужное:
+    - users[user_id]["balance"] — текущий баланс;
+    - статистика выплат/возвратов;
+    - короткая защита processed_requests, чтобы старая копия GitHub/local
+      не вернула закрытую заявку назад.
+    Сам объект data["withdraws"][id] удаляется.
+    """
+    wid = str(withdraw_id).strip().replace("#", "")
+    data.setdefault("withdraws", {})
+
+    keys_to_delete = {wid, f"#{wid}", wid.lstrip("0") or "0"}
+    for key in list(data.get("withdraws", {}).keys()):
+        clean_key = str(key).strip().replace("#", "")
+        if clean_key == wid or clean_key.lstrip("0") == wid.lstrip("0") or str(key) in keys_to_delete:
+            data["withdraws"].pop(key, None)
+
+    # Метки отправки админу больше не нужны для закрытой заявки.
+    sent = data.setdefault("admin_sent", {}).setdefault("withdraws", {})
+    for key in list(sent.keys()):
+        clean_key = str(key).strip().replace("#", "")
+        if clean_key == wid or clean_key.lstrip("0") == wid.lstrip("0"):
+            sent.pop(key, None)
+
+    if user_id is not None:
+        uid = str(user_id)
+        user = get_user(data, uid)
+        user["withdraw_pending"] = any(
+            str(x.get("user_id")) == uid and x.get("status") == "wait"
+            for x in data.get("withdraws", {}).values()
+        )
+        user["withdraw_step"] = None
+        user["withdraw_to"] = None
+
+    return data
+
 def cleanup_closed_requests(data):
     """
     Убирает из активных списков заявки, которые уже были обработаны.
@@ -640,7 +724,7 @@ def cleanup_closed_requests(data):
                     user["pending_tasks"].remove(task_id)
                 if str(user.get("waiting_task")) == task_id:
                     user["waiting_task"] = None
-            data.setdefault("submits", {}).pop(sid, None)
+            remove_submit_from_data(data, sid, uid, task_id)
 
     for wid, w in list(data.get("withdraws", {}).items()):
         clean_wid = str(wid).strip().replace("#", "")
@@ -1144,7 +1228,11 @@ def add_balance_to_user(data, user_id, amount, reason="add", request_id=""):
 
     user["balance"] = new_balance
 
-    if amount > 0:
+    # Возврат вывода — это НЕ новый заработок, а возврат уже списанных GMP.
+    # Поэтому total_earned не увеличиваем при rejected/deleted/expired/clear_return.
+    is_withdraw_return = str(reason or "").startswith("withdraw_") and str(reason or "").endswith("_return")
+
+    if amount > 0 and not is_withdraw_return:
         user["total_earned"] = round(float(user.get("total_earned", 0)) + amount, 2)
 
         # Статистика погашения долга: только для админа/проверки, на баланс не влияет.
@@ -1931,7 +2019,7 @@ def delete_submit_request(call):
         if str(user.get("waiting_task")) == task_id:
             user["waiting_task"] = None
 
-        data.get("submits", {}).pop(sid, None)
+        remove_submit_from_data(data, sid, user_id, task_id)
         mark_request_processed(data, "submits", sid, "deleted", call.from_user.id, user_id, f"task #{task_id}")
         save_data(data)
 
@@ -2022,16 +2110,18 @@ def check_request(call):
 
                         new_balance = float(user.get("balance", 0))
                         result_status = "approved"
-                        data.get("submits", {}).pop(real_sid, None)
-                        data.get("submits", {}).pop(sid, None)
+                        remove_submit_from_data(data, real_sid, user_id, task_id)
+                        if real_sid != sid:
+                            remove_submit_from_data(data, sid, user_id, task_id)
                         mark_request_processed(data, "submits", real_sid, "approved", call.from_user.id, user_id, f"task #{task_id}")
                         if real_sid != sid:
                             mark_request_processed(data, "submits", sid, "approved", call.from_user.id, user_id, f"task #{task_id}")
 
                     else:
                         result_status = "rejected"
-                        data.get("submits", {}).pop(real_sid, None)
-                        data.get("submits", {}).pop(sid, None)
+                        remove_submit_from_data(data, real_sid, user_id, task_id)
+                        if real_sid != sid:
+                            remove_submit_from_data(data, sid, user_id, task_id)
                         mark_request_processed(data, "submits", real_sid, "rejected", call.from_user.id, user_id, f"task #{task_id}")
                         if real_sid != sid:
                             mark_request_processed(data, "submits", sid, "rejected", call.from_user.id, user_id, f"task #{task_id}")
@@ -2204,13 +2294,10 @@ def pay_check(call):
                         data["total_paid"] = round(float(data.get("total_paid", 0)) + amount, 2)
                         data["total_withdrawals"] = int(data.get("total_withdrawals", 0)) + 1
 
-                        data.get("withdraws", {}).pop(real_wid, None)
-                        data.get("withdraws", {}).pop(wid, None)
+                        remove_withdraw_from_data(data, real_wid, user_id)
+                        if real_wid != wid:
+                            remove_withdraw_from_data(data, wid, user_id)
 
-                        user["withdraw_pending"] = any(
-                            str(x.get("user_id")) == user_id and x.get("status") == "wait"
-                            for x in data.get("withdraws", {}).values()
-                        )
                         result_status = "paid"
                         mark_request_processed(data, "withdraws", real_wid, "paid", call.from_user.id, user_id, f"amount {amount}")
                         if real_wid != wid:
@@ -2220,13 +2307,10 @@ def pay_check(call):
                         # Отказ: возвращаем списанные GMP на баланс, но только один раз.
                         add_balance_to_user(data, user_id, amount, reason="withdraw_rejected_return", request_id=real_wid)
 
-                        data.get("withdraws", {}).pop(real_wid, None)
-                        data.get("withdraws", {}).pop(wid, None)
+                        remove_withdraw_from_data(data, real_wid, user_id)
+                        if real_wid != wid:
+                            remove_withdraw_from_data(data, wid, user_id)
 
-                        user["withdraw_pending"] = any(
-                            str(x.get("user_id")) == user_id and x.get("status") == "wait"
-                            for x in data.get("withdraws", {}).values()
-                        )
                         result_status = "rejected"
                         mark_request_processed(data, "withdraws", real_wid, "rejected", call.from_user.id, user_id, f"amount {amount}")
                         if real_wid != wid:
@@ -2235,13 +2319,10 @@ def pay_check(call):
                         # Удалить: тоже возвращаем списанные GMP, но помечаем как deleted.
                         add_balance_to_user(data, user_id, amount, reason="withdraw_deleted_return", request_id=real_wid)
 
-                        data.get("withdraws", {}).pop(real_wid, None)
-                        data.get("withdraws", {}).pop(wid, None)
+                        remove_withdraw_from_data(data, real_wid, user_id)
+                        if real_wid != wid:
+                            remove_withdraw_from_data(data, wid, user_id)
 
-                        user["withdraw_pending"] = any(
-                            str(x.get("user_id")) == user_id and x.get("status") == "wait"
-                            for x in data.get("withdraws", {}).values()
-                        )
                         result_status = "deleted"
                         mark_request_processed(data, "withdraws", real_wid, "deleted", call.from_user.id, user_id, f"amount {amount}")
                         if real_wid != wid:
@@ -2552,7 +2633,7 @@ def delete_task(message):
     for sid, submit in list(data.get("submits", {}).items()):
         if str(submit.get("task_id")) == str(task_id):
             uid = str(submit.get("user_id", ""))
-            data["submits"].pop(sid, None)
+            remove_submit_from_data(data, sid, uid, task_id)
             mark_request_processed(data, "submits", sid, "deleted_task", message.from_user.id, uid, f"task #{task_id}")
             removed_submits += 1
 
@@ -3050,7 +3131,7 @@ def clear_requests_command(message):
                     user["pending_tasks"].remove(task_id)
                 if str(user.get("waiting_task")) == task_id:
                     user["waiting_task"] = None
-                data["submits"].pop(sid, None)
+                remove_submit_from_data(data, sid, uid, task_id)
                 mark_request_processed(data, "submits", sid, "deleted", message.from_user.id, uid, "clearrequests")
                 removed_s += 1
 
