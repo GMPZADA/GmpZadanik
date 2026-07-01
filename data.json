@@ -59,7 +59,7 @@
       "banned": false,
       "ban_reason": "",
       "created_at": 1782836891,
-      "updated_at": 1782932914,
+      "updated_at": 1782933018,
       "user_id": 7837011810,
       "first_name": "Артем",
       "last_name": "",
@@ -3371,98 +3371,35 @@
   },
   "balance_logs": [
     {
-      "time": 1782049836,
-      "user_id": "8651016638",
-      "old": 0.0,
-      "amount": 0.2,
-      "new": 0.2,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1782050045,
-      "user_id": "8651016638",
-      "old": 0.2,
-      "amount": 3.0,
-      "new": 3.2,
-      "reason": "task_approved",
-      "request_id": "291"
-    },
-    {
-      "time": 1782051410,
-      "user_id": "8651016638",
-      "old": 3.2,
-      "amount": -3.2,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "123"
-    },
-    {
-      "time": 1782051955,
-      "user_id": "8651016638",
-      "old": 0.0,
-      "amount": 3.0,
-      "new": 3.0,
-      "reason": "task_approved",
-      "request_id": "292"
-    },
-    {
-      "time": 1782051973,
-      "user_id": "8651016638",
-      "old": 3.0,
-      "amount": -3.0,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "124"
-    },
-    {
-      "time": 1782052351,
-      "user_id": "8804288474",
-      "old": 0.2,
-      "amount": 3.0,
-      "new": 3.2,
-      "reason": "task_approved",
-      "request_id": "293"
-    },
-    {
-      "time": 1782052377,
-      "user_id": "8804288474",
-      "old": 3.2,
-      "amount": -3.2,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "125"
-    },
-    {
-      "time": 1782052661,
-      "user_id": "8804288474",
-      "old": 0.0,
-      "amount": 0.2,
-      "new": 0.2,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1782053646,
-      "user_id": "8651016638",
+      "time": 1781861955,
+      "user_id": "7811863751",
       "old": 0.0,
       "amount": 2.0,
       "new": 2.0,
       "reason": "task_approved",
-      "request_id": "295"
+      "request_id": "223"
     },
     {
-      "time": 1782053667,
-      "user_id": "8651016638",
+      "time": 1781861990,
+      "user_id": "7811863751",
       "old": 2.0,
       "amount": -2.0,
       "new": 0.0,
       "reason": "withdraw_created",
-      "request_id": "126"
+      "request_id": "94"
     },
     {
-      "time": 1782055566,
-      "user_id": "547991053",
+      "time": 1781863464,
+      "user_id": "8823804307",
+      "old": 0.0,
+      "amount": 0.5,
+      "new": 0.5,
+      "reason": "add",
+      "request_id": ""
+    },
+    {
+      "time": 1781863877,
+      "user_id": "5379263036",
       "old": 0.0,
       "amount": 0.2,
       "new": 0.2,
@@ -3470,143 +3407,8 @@
       "request_id": ""
     },
     {
-      "time": 1782055600,
-      "user_id": "6909264712",
-      "old": 0.0,
-      "amount": 1.0,
-      "new": 1.0,
-      "reason": "task_approved",
-      "request_id": "296"
-    },
-    {
-      "time": 1782056034,
-      "user_id": "6909264712",
-      "old": 1.0,
-      "amount": 3.0,
-      "new": 4.0,
-      "reason": "task_approved",
-      "request_id": "297"
-    },
-    {
-      "time": 1782056053,
-      "user_id": "6909264712",
-      "old": 4.0,
-      "amount": -4.0,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "127"
-    },
-    {
-      "time": 1782056245,
-      "user_id": "6909264712",
-      "old": 0.0,
-      "amount": 3.0,
-      "new": 3.0,
-      "reason": "task_approved",
-      "request_id": "298"
-    },
-    {
-      "time": 1782056788,
-      "user_id": "6909264712",
-      "old": 3.0,
-      "amount": 3.0,
-      "new": 6.0,
-      "reason": "task_approved",
-      "request_id": "301"
-    },
-    {
-      "time": 1782057445,
-      "user_id": "7476447439",
-      "old": 0.0,
-      "amount": 3.0,
-      "new": 3.0,
-      "reason": "task_approved",
-      "request_id": "304"
-    },
-    {
-      "time": 1782057558,
-      "user_id": "6909264712",
-      "old": 6.0,
-      "amount": 2.0,
-      "new": 8.0,
-      "reason": "task_approved",
-      "request_id": "305"
-    },
-    {
-      "time": 1782057637,
-      "user_id": "7476447439",
-      "old": 3.0,
-      "amount": 3.0,
-      "new": 6.0,
-      "reason": "task_approved",
-      "request_id": "306"
-    },
-    {
-      "time": 1782057727,
-      "user_id": "7476447439",
-      "old": 6.0,
-      "amount": 1.0,
-      "new": 7.0,
-      "reason": "task_approved",
-      "request_id": "307"
-    },
-    {
-      "time": 1782057842,
-      "user_id": "7476447439",
-      "old": 7.0,
-      "amount": 1.0,
-      "new": 8.0,
-      "reason": "task_approved",
-      "request_id": "308"
-    },
-    {
-      "time": 1782057983,
-      "user_id": "6909264712",
-      "old": 8.0,
-      "amount": 1.0,
-      "new": 9.0,
-      "reason": "task_approved",
-      "request_id": "309"
-    },
-    {
-      "time": 1782058052,
-      "user_id": "7476447439",
-      "old": 8.0,
-      "amount": -8.0,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "128"
-    },
-    {
-      "time": 1782058076,
-      "user_id": "6909264712",
-      "old": 9.0,
-      "amount": -9.0,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "129"
-    },
-    {
-      "time": 1782061423,
-      "user_id": "7476447439",
-      "old": 0.0,
-      "amount": 8.0,
-      "new": 8.0,
-      "reason": "withdraw_rejected_return",
-      "request_id": "128"
-    },
-    {
-      "time": 1782064905,
-      "user_id": "6909264712",
-      "old": 0.0,
-      "amount": 2.0,
-      "new": 2.0,
-      "reason": "task_approved",
-      "request_id": "311"
-    },
-    {
-      "time": 1782066456,
-      "user_id": "8322172966",
+      "time": 1781864103,
+      "user_id": "7463485005",
       "old": 0.0,
       "amount": 0.2,
       "new": 0.2,
@@ -3614,89 +3416,17 @@
       "request_id": ""
     },
     {
-      "time": 1782095701,
-      "user_id": "7106223662",
+      "time": 1781864168,
+      "user_id": "7463485005",
       "old": 0.2,
-      "amount": 0.2,
-      "new": 0.4,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1782105544,
-      "user_id": "8651016638",
-      "old": 0.0,
-      "amount": 2.0,
-      "new": 2.0,
+      "amount": 4.0,
+      "new": 4.2,
       "reason": "task_approved",
-      "request_id": "312"
+      "request_id": "225"
     },
     {
-      "time": 1782105830,
-      "user_id": "8651016638",
-      "old": 2.0,
-      "amount": 2.0,
-      "new": 4.0,
-      "reason": "task_approved",
-      "request_id": "313"
-    },
-    {
-      "time": 1782113806,
-      "user_id": "6276600731",
-      "old": 0.0,
-      "amount": 1.0,
-      "new": 1.0,
-      "reason": "task_approved",
-      "request_id": "314"
-    },
-    {
-      "time": 1782113978,
-      "user_id": "8258106768",
-      "old": 0.6,
-      "amount": 1.0,
-      "new": 1.6,
-      "reason": "task_approved",
-      "request_id": "315"
-    },
-    {
-      "time": 1782113993,
-      "user_id": "8258106768",
-      "old": 1.6,
-      "amount": 0.2,
-      "new": 1.8,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1782114065,
-      "user_id": "8258106768",
-      "old": 1.8,
-      "amount": 1.0,
-      "new": 2.8,
-      "reason": "task_approved",
-      "request_id": "316"
-    },
-    {
-      "time": 1782114072,
-      "user_id": "6276600731",
-      "old": 1.0,
-      "amount": 0.2,
-      "new": 1.2,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1782114173,
-      "user_id": "8258106768",
-      "old": 2.8,
-      "amount": 2.0,
-      "new": 4.8,
-      "reason": "task_approved",
-      "request_id": "317"
-    },
-    {
-      "time": 1782115713,
-      "user_id": "8694892873",
+      "time": 1781864183,
+      "user_id": "7578157415",
       "old": 0.0,
       "amount": 0.2,
       "new": 0.2,
@@ -3704,422 +3434,71 @@
       "request_id": ""
     },
     {
-      "time": 1782115882,
-      "user_id": "8694892873",
-      "old": 0.2,
-      "amount": 1.0,
-      "new": 1.2,
+      "time": 1781864226,
+      "user_id": "7463485005",
+      "old": 4.2,
+      "amount": 3.0,
+      "new": 7.2,
       "reason": "task_approved",
-      "request_id": "318"
+      "request_id": "226"
     },
     {
-      "time": 1782135250,
-      "user_id": "7130773702",
-      "old": 1.6,
-      "amount": 0.2,
-      "new": 1.8,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1782135313,
-      "user_id": "7130773702",
-      "old": 1.8,
-      "amount": 1.0,
-      "new": 2.8,
-      "reason": "task_approved",
-      "request_id": "319"
-    },
-    {
-      "time": 1782206927,
-      "user_id": "6276600731",
+      "time": 1781864242,
+      "user_id": "8341360449",
       "old": 1.2,
-      "amount": 0.2,
-      "new": 1.4,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1782210047,
-      "user_id": "8322172966",
-      "old": 0.2,
-      "amount": 0.2,
-      "new": 0.4,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1782214184,
-      "user_id": "6909264712",
-      "old": 2.0,
-      "amount": 0.2,
-      "new": 2.2,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1782276010,
-      "user_id": "8322172966",
-      "old": 0.4,
-      "amount": 3.0,
-      "new": 3.4,
-      "reason": "task_approved",
-      "request_id": "321"
-    },
-    {
-      "time": 1782285548,
-      "user_id": "8258106768",
-      "old": 4.8,
-      "amount": 0.2,
-      "new": 5.0,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1782299133,
-      "user_id": "6276600731",
-      "old": 1.4,
-      "amount": 0.2,
-      "new": 1.6,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1782310494,
-      "user_id": "8258106768",
-      "old": 5.0,
-      "amount": 1.0,
-      "new": 6.0,
-      "reason": "task_approved",
-      "request_id": "322"
-    },
-    {
-      "time": 1782383477,
-      "user_id": "8322172966",
-      "old": 3.4,
-      "amount": 0.2,
-      "new": 3.6,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1782394274,
-      "user_id": "6909264712",
-      "old": 2.2,
-      "amount": 0.2,
-      "new": 2.4,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1782462636,
-      "user_id": "7130773702",
-      "old": 2.8,
-      "amount": 0.2,
-      "new": 3.0,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1782836862,
-      "user_id": "8862491905",
-      "old": 0.0,
       "amount": 2.0,
-      "new": 2.0,
+      "new": 3.2,
       "reason": "task_approved",
-      "request_id": "323"
+      "request_id": "227"
     },
     {
-      "time": 1782836869,
-      "user_id": "8862491905",
+      "time": 1781864543,
+      "user_id": "8341360449",
+      "old": 3.2,
+      "amount": -3.2,
+      "new": 0.0,
+      "reason": "withdraw_created",
+      "request_id": "95"
+    },
+    {
+      "time": 1781892511,
+      "user_id": "7106223662",
+      "old": 2.0,
+      "amount": -2.0,
+      "new": 0.0,
+      "reason": "withdraw_created",
+      "request_id": "96"
+    },
+    {
+      "time": 1781892677,
+      "user_id": "6976874613",
       "old": 2.0,
       "amount": 3.0,
       "new": 5.0,
       "reason": "task_approved",
-      "request_id": "324"
+      "request_id": "230"
     },
     {
-      "time": 1782836971,
-      "user_id": "8862491905",
+      "time": 1781892702,
+      "user_id": "6976874613",
       "old": 5.0,
       "amount": -5.0,
       "new": 0.0,
       "reason": "withdraw_created",
-      "request_id": "130"
+      "request_id": "97"
     },
     {
-      "time": 1782840078,
-      "user_id": "8930802649",
+      "time": 1781893627,
+      "user_id": "7106223662",
       "old": 0.0,
-      "amount": 0.2,
-      "new": 0.2,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1782840087,
-      "user_id": "8930802649",
-      "old": 0.0,
-      "amount": 0.2,
-      "new": 0.2,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1782840109,
-      "user_id": "8930802649",
-      "old": 0.2,
-      "amount": 2.0,
-      "new": 2.2,
-      "reason": "task_approved",
-      "request_id": "325"
-    },
-    {
-      "time": 1782840176,
-      "user_id": "8930802649",
-      "old": 2.2,
-      "amount": -2.0,
-      "new": 0.2,
-      "reason": "withdraw_created",
-      "request_id": "131"
-    },
-    {
-      "time": 1782842125,
-      "user_id": "8930802649",
-      "old": 0.2,
-      "amount": 2.0,
-      "new": 2.2,
-      "reason": "task_approved",
-      "request_id": "326"
-    },
-    {
-      "time": 1782842155,
-      "user_id": "8930802649",
-      "old": 2.2,
-      "amount": -2.0,
-      "new": 0.2,
-      "reason": "withdraw_created",
-      "request_id": "132"
-    },
-    {
-      "time": 1782844399,
-      "user_id": "8949642102",
-      "old": 0.0,
-      "amount": 1.0,
-      "new": 1.0,
-      "reason": "task_approved",
-      "request_id": "327"
-    },
-    {
-      "time": 1782844552,
-      "user_id": "8949642102",
-      "old": 1.0,
-      "amount": -1.0,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "133"
-    },
-    {
-      "time": 1782845707,
-      "user_id": "7779046668",
-      "old": 0.0,
-      "amount": 0.2,
-      "new": 0.2,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1782845994,
-      "user_id": "7779046668",
-      "old": 0.0,
-      "amount": 2.0,
-      "new": 2.0,
-      "reason": "task_approved",
-      "request_id": "329"
-    },
-    {
-      "time": 1782846042,
-      "user_id": "7779046668",
-      "old": 2.0,
-      "amount": -2.0,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "134"
-    },
-    {
-      "time": 1782847770,
-      "user_id": "6978702813",
-      "old": 0.0,
-      "amount": 0.2,
-      "new": 0.2,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1782848003,
-      "user_id": "7130773702",
-      "old": 3.0,
-      "amount": 0.2,
-      "new": 3.2,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1782875359,
-      "user_id": "6978702813",
-      "old": 0.2,
-      "amount": 1.0,
-      "new": 1.2,
-      "reason": "task_approved",
-      "request_id": "332"
-    },
-    {
-      "time": 1782875389,
-      "user_id": "7130773702",
-      "old": 3.0,
       "amount": 3.0,
-      "new": 6.0,
+      "new": 3.0,
       "reason": "task_approved",
-      "request_id": "334"
+      "request_id": "231"
     },
     {
-      "time": 1782886464,
-      "user_id": "6978702813",
-      "old": 1.2,
-      "amount": -1.2,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "135"
-    },
-    {
-      "time": 1782891478,
-      "user_id": "7130773702",
-      "old": 6.0,
-      "amount": -6.0,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "136"
-    },
-    {
-      "time": 1782895581,
-      "user_id": "8654965986",
-      "old": 0.0,
-      "amount": 0.2,
-      "new": 0.2,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1782895586,
-      "user_id": "8654965986",
-      "old": 0.0,
-      "amount": 0.2,
-      "new": 0.2,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1782895592,
-      "user_id": "8333791809",
-      "old": 0.0,
-      "amount": 0.2,
-      "new": 0.2,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1782895627,
-      "user_id": "8654965986",
-      "old": 0.0,
-      "amount": 0.2,
-      "new": 0.2,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1782914886,
-      "user_id": "8138693744",
-      "old": 0.0,
-      "amount": 0.2,
-      "new": 0.2,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1782915882,
-      "user_id": "8999626537",
-      "old": 0.0,
-      "amount": 0.2,
-      "new": 0.2,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1782917490,
-      "user_id": "8533057804",
-      "old": 0.0,
-      "amount": 2.0,
-      "new": 2.0,
-      "reason": "task_approved",
-      "request_id": "335"
-    },
-    {
-      "time": 1782917670,
-      "user_id": "8533057804",
-      "old": 2.0,
-      "amount": -2.0,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "137"
-    },
-    {
-      "time": 1782917945,
-      "user_id": "8590322435",
-      "old": 4.0,
-      "amount": -4.0,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "138"
-    },
-    {
-      "time": 1782918034,
-      "user_id": "8694892873",
-      "old": 1.2,
-      "amount": 0.2,
-      "new": 1.4,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1782918041,
-      "user_id": "8694892873",
-      "old": 1.2,
-      "amount": 0.2,
-      "new": 1.4,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1782918104,
-      "user_id": "8694892873",
-      "old": 1.4,
-      "amount": -1.4,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "139"
-    },
-    {
-      "time": 1782918159,
-      "user_id": "6276600731",
-      "old": 1.6,
-      "amount": 0.2,
-      "new": 1.8,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1782920074,
-      "user_id": "7581133015",
+      "time": 1781893665,
+      "user_id": "8258106768",
       "old": 0.2,
       "amount": 0.2,
       "new": 0.4,
@@ -4127,98 +3506,89 @@
       "request_id": ""
     },
     {
-      "time": 1782920327,
-      "user_id": "8694892873",
-      "old": 0.0,
-      "amount": 2.0,
-      "new": 2.0,
+      "time": 1781893801,
+      "user_id": "8258106768",
+      "old": 0.4,
+      "amount": 4.0,
+      "new": 4.4,
       "reason": "task_approved",
-      "request_id": "338"
+      "request_id": "232"
     },
     {
-      "time": 1782920981,
-      "user_id": "8694892873",
-      "old": 2.0,
-      "amount": 2.0,
-      "new": 4.0,
-      "reason": "task_approved",
-      "request_id": "340"
-    },
-    {
-      "time": 1782921231,
-      "user_id": "8694892873",
-      "old": 4.0,
-      "amount": 2.0,
-      "new": 6.0,
-      "reason": "task_approved",
-      "request_id": "341"
-    },
-    {
-      "time": 1782921448,
-      "user_id": "8694892873",
-      "old": 6.0,
-      "amount": -6.0,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "140"
-    },
-    {
-      "time": 1782929893,
-      "user_id": "8853924649",
-      "old": 0.0,
-      "amount": 2.0,
-      "new": 2.0,
-      "reason": "task_approved",
-      "request_id": "345"
-    },
-    {
-      "time": 1782930028,
-      "user_id": "8853924649",
-      "old": 2.0,
-      "amount": -2.0,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "141"
-    },
-    {
-      "time": 1782930112,
-      "user_id": "8853924649",
-      "old": 0.0,
-      "amount": 2.0,
-      "new": 2.0,
-      "reason": "withdraw_rejected_return",
-      "request_id": "141"
-    },
-    {
-      "time": 1782930227,
-      "user_id": "8853924649",
-      "old": 2.0,
-      "amount": -2.0,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "142"
-    },
-    {
-      "time": 1782932902,
-      "user_id": "7837011810",
-      "old": 0.0,
-      "amount": 0.2,
-      "new": 0.2,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1782046366,
-      "user_id": "7937166836",
-      "old": 3.0,
+      "time": 1781893998,
+      "user_id": "8258106768",
+      "old": 4.4,
       "amount": 3.0,
-      "new": 6.0,
+      "new": 7.4,
       "reason": "task_approved",
-      "request_id": "288"
+      "request_id": "233"
     },
     {
-      "time": 1782046422,
-      "user_id": "1631337389",
+      "time": 1781894093,
+      "user_id": "7106223662",
+      "old": 3.0,
+      "amount": -3.0,
+      "new": 0.0,
+      "reason": "withdraw_created",
+      "request_id": "98"
+    },
+    {
+      "time": 1781894192,
+      "user_id": "8258106768",
+      "old": 7.4,
+      "amount": 3.0,
+      "new": 10.4,
+      "reason": "task_approved",
+      "request_id": "234"
+    },
+    {
+      "time": 1781894308,
+      "user_id": "8258106768",
+      "old": 10.4,
+      "amount": -10.0,
+      "new": 0.4,
+      "reason": "withdraw_created",
+      "request_id": "99"
+    },
+    {
+      "time": 1781894478,
+      "user_id": "6276600731",
+      "old": 0.2,
+      "amount": 0.2,
+      "new": 0.4,
+      "reason": "add",
+      "request_id": ""
+    },
+    {
+      "time": 1781894574,
+      "user_id": "6276600731",
+      "old": 0.4,
+      "amount": 3.0,
+      "new": 3.4,
+      "reason": "task_approved",
+      "request_id": "235"
+    },
+    {
+      "time": 1781894951,
+      "user_id": "6276600731",
+      "old": 3.4,
+      "amount": 3.0,
+      "new": 6.4,
+      "reason": "task_approved",
+      "request_id": "236"
+    },
+    {
+      "time": 1781894970,
+      "user_id": "6276600731",
+      "old": 6.4,
+      "amount": -6.4,
+      "new": 0.0,
+      "reason": "withdraw_created",
+      "request_id": "100"
+    },
+    {
+      "time": 1781895136,
+      "user_id": "7106223662",
       "old": 0.0,
       "amount": 0.2,
       "new": 0.2,
@@ -4226,49 +3596,679 @@
       "request_id": ""
     },
     {
-      "time": 1782047146,
-      "user_id": "7937166836",
-      "old": 6.0,
-      "amount": -6.0,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "120"
-    },
-    {
-      "time": 1782049367,
-      "user_id": "8804288474",
-      "old": 2.2,
-      "amount": -2.0,
-      "new": 0.2,
-      "reason": "withdraw_created",
-      "request_id": "121"
-    },
-    {
-      "time": 1782049638,
-      "user_id": "8031026603",
-      "old": 0.2,
-      "amount": 1.0,
-      "new": 1.2,
+      "time": 1781895171,
+      "user_id": "6276600731",
+      "old": 0.0,
+      "amount": 2.0,
+      "new": 2.0,
       "reason": "task_approved",
-      "request_id": "289"
+      "request_id": "239"
     },
     {
-      "time": 1782049647,
-      "user_id": "8031026603",
-      "old": 1.2,
-      "amount": 0.2,
-      "new": 1.4,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1782049654,
-      "user_id": "8804288474",
+      "time": 1781895192,
+      "user_id": "7106223662",
       "old": 0.2,
       "amount": 3.0,
       "new": 3.2,
       "reason": "task_approved",
-      "request_id": "290"
+      "request_id": "238"
+    },
+    {
+      "time": 1781895341,
+      "user_id": "6276600731",
+      "old": 2.0,
+      "amount": 2.0,
+      "new": 4.0,
+      "reason": "task_approved",
+      "request_id": "240"
+    },
+    {
+      "time": 1781895554,
+      "user_id": "6276600731",
+      "old": 4.0,
+      "amount": 2.0,
+      "new": 6.0,
+      "reason": "task_approved",
+      "request_id": "242"
+    },
+    {
+      "time": 1781895587,
+      "user_id": "6276600731",
+      "old": 6.0,
+      "amount": 2.0,
+      "new": 8.0,
+      "reason": "task_approved",
+      "request_id": "241"
+    },
+    {
+      "time": 1781895814,
+      "user_id": "6276600731",
+      "old": 8.0,
+      "amount": 2.0,
+      "new": 10.0,
+      "reason": "task_approved",
+      "request_id": "243"
+    },
+    {
+      "time": 1781896102,
+      "user_id": "6276600731",
+      "old": 10.0,
+      "amount": -10.0,
+      "new": 0.0,
+      "reason": "withdraw_created",
+      "request_id": "101"
+    },
+    {
+      "time": 1781896471,
+      "user_id": "6276600731",
+      "old": 0.0,
+      "amount": 2.0,
+      "new": 2.0,
+      "reason": "admin_give",
+      "request_id": "manual"
+    },
+    {
+      "time": 1781896923,
+      "user_id": "6276600731",
+      "old": 2.0,
+      "amount": -2.0,
+      "new": 0.0,
+      "reason": "withdraw_created",
+      "request_id": "102"
+    },
+    {
+      "time": 1781897430,
+      "user_id": "6276600731",
+      "old": 0.0,
+      "amount": 2.0,
+      "new": 2.0,
+      "reason": "task_approved",
+      "request_id": "245"
+    },
+    {
+      "time": 1781898007,
+      "user_id": "6276600731",
+      "old": 2.0,
+      "amount": 2.0,
+      "new": 4.0,
+      "reason": "task_approved",
+      "request_id": "247"
+    },
+    {
+      "time": 1781898106,
+      "user_id": "8258106768",
+      "old": 0.4,
+      "amount": 2.0,
+      "new": 2.4,
+      "reason": "task_approved",
+      "request_id": "248"
+    },
+    {
+      "time": 1781898228,
+      "user_id": "6276600731",
+      "old": 4.0,
+      "amount": 1.0,
+      "new": 5.0,
+      "reason": "task_approved",
+      "request_id": "249"
+    },
+    {
+      "time": 1781898256,
+      "user_id": "6276600731",
+      "old": 5.0,
+      "amount": -5.0,
+      "new": 0.0,
+      "reason": "withdraw_created",
+      "request_id": "103"
+    },
+    {
+      "time": 1781898274,
+      "user_id": "8258106768",
+      "old": 2.4,
+      "amount": -2.0,
+      "new": 0.4,
+      "reason": "withdraw_created",
+      "request_id": "104"
+    },
+    {
+      "time": 1781899635,
+      "user_id": "8031026603",
+      "old": 0.0,
+      "amount": 0.2,
+      "new": 0.2,
+      "reason": "add",
+      "request_id": ""
+    },
+    {
+      "time": 1781900408,
+      "user_id": "7106223662",
+      "old": 3.2,
+      "amount": -3.0,
+      "new": 0.2,
+      "reason": "withdraw_created",
+      "request_id": "105"
+    },
+    {
+      "time": 1781922567,
+      "user_id": "5224773359",
+      "old": 0.0,
+      "amount": 2.0,
+      "new": 2.0,
+      "reason": "task_approved",
+      "request_id": "251"
+    },
+    {
+      "time": 1781922591,
+      "user_id": "5224773359",
+      "old": 2.0,
+      "amount": 2.0,
+      "new": 4.0,
+      "reason": "task_approved",
+      "request_id": "252"
+    },
+    {
+      "time": 1781922706,
+      "user_id": "8258106768",
+      "old": 0.4,
+      "amount": 2.0,
+      "new": 2.4,
+      "reason": "task_approved",
+      "request_id": "250"
+    },
+    {
+      "time": 1781929723,
+      "user_id": "8431020779",
+      "old": 6.0,
+      "amount": 0.2,
+      "new": 6.2,
+      "reason": "add",
+      "request_id": ""
+    },
+    {
+      "time": 1781931252,
+      "user_id": "8431020779",
+      "old": 6.2,
+      "amount": -6.2,
+      "new": 0.0,
+      "reason": "withdraw_created",
+      "request_id": "106"
+    },
+    {
+      "time": 1781931260,
+      "user_id": "8431020779",
+      "old": 0.0,
+      "amount": 6.2,
+      "new": 6.2,
+      "reason": "withdraw_rejected_return",
+      "request_id": "106"
+    },
+    {
+      "time": 1781931560,
+      "user_id": "5224773359",
+      "old": 4.0,
+      "amount": -4.0,
+      "new": 0.0,
+      "reason": "withdraw_created",
+      "request_id": "107"
+    },
+    {
+      "time": 1781931622,
+      "user_id": "5224773359",
+      "old": 0.0,
+      "amount": 0.2,
+      "new": 0.2,
+      "reason": "add",
+      "request_id": ""
+    },
+    {
+      "time": 1781932137,
+      "user_id": "5224773359",
+      "old": 0.2,
+      "amount": 4.0,
+      "new": 4.2,
+      "reason": "withdraw_rejected_return",
+      "request_id": "107"
+    },
+    {
+      "time": 1781932265,
+      "user_id": "8534240629",
+      "old": 1.4,
+      "amount": 2.0,
+      "new": 3.4,
+      "reason": "task_approved",
+      "request_id": "253"
+    },
+    {
+      "time": 1781939245,
+      "user_id": "7130773702",
+      "old": 1.4,
+      "amount": 0.2,
+      "new": 1.6,
+      "reason": "add",
+      "request_id": ""
+    },
+    {
+      "time": 1781946018,
+      "user_id": "7827244299",
+      "old": 0.0,
+      "amount": 0.2,
+      "new": 0.2,
+      "reason": "add",
+      "request_id": ""
+    },
+    {
+      "time": 1781946056,
+      "user_id": "8175217947",
+      "old": 0.0,
+      "amount": 0.2,
+      "new": 0.2,
+      "reason": "add",
+      "request_id": ""
+    },
+    {
+      "time": 1781952130,
+      "user_id": "8721133146",
+      "old": 0.0,
+      "amount": 0.2,
+      "new": 0.2,
+      "reason": "add",
+      "request_id": ""
+    },
+    {
+      "time": 1781966646,
+      "user_id": "8341360449",
+      "old": 0.0,
+      "amount": 0.2,
+      "new": 0.2,
+      "reason": "add",
+      "request_id": ""
+    },
+    {
+      "time": 1781976529,
+      "user_id": "6744639669",
+      "old": 0.2,
+      "amount": 0.2,
+      "new": 0.4,
+      "reason": "add",
+      "request_id": ""
+    },
+    {
+      "time": 1781976599,
+      "user_id": "6744639669",
+      "old": 0.4,
+      "amount": 2.0,
+      "new": 2.4,
+      "reason": "task_approved",
+      "request_id": "254"
+    },
+    {
+      "time": 1781976794,
+      "user_id": "6744639669",
+      "old": 2.4,
+      "amount": 1.0,
+      "new": 3.4,
+      "reason": "task_approved",
+      "request_id": "255"
+    },
+    {
+      "time": 1781976905,
+      "user_id": "6744639669",
+      "old": 3.4,
+      "amount": 2.0,
+      "new": 5.4,
+      "reason": "task_approved",
+      "request_id": "256"
+    },
+    {
+      "time": 1782016578,
+      "user_id": "6744639669",
+      "old": 5.4,
+      "amount": -5.0,
+      "new": 0.4,
+      "reason": "withdraw_created",
+      "request_id": "108"
+    },
+    {
+      "time": 1782020982,
+      "user_id": "5728227541",
+      "old": 0.2,
+      "amount": 0.2,
+      "new": 0.4,
+      "reason": "add",
+      "request_id": ""
+    },
+    {
+      "time": 1782020986,
+      "user_id": "6324214210",
+      "old": 0.0,
+      "amount": 0.2,
+      "new": 0.2,
+      "reason": "add",
+      "request_id": ""
+    },
+    {
+      "time": 1782021540,
+      "user_id": "8258106768",
+      "old": 2.4,
+      "amount": 0.2,
+      "new": 2.6,
+      "reason": "add",
+      "request_id": ""
+    },
+    {
+      "time": 1782021614,
+      "user_id": "6276600731",
+      "old": 0.0,
+      "amount": 0.2,
+      "new": 0.2,
+      "reason": "add",
+      "request_id": ""
+    },
+    {
+      "time": 1782021623,
+      "user_id": "8258106768",
+      "old": 2.6,
+      "amount": 2.0,
+      "new": 4.6,
+      "reason": "task_approved",
+      "request_id": "257"
+    },
+    {
+      "time": 1782021707,
+      "user_id": "8258106768",
+      "old": 4.6,
+      "amount": -4.0,
+      "new": 0.6,
+      "reason": "withdraw_created",
+      "request_id": "109"
+    },
+    {
+      "time": 1782024411,
+      "user_id": "5609899938",
+      "old": 4.0,
+      "amount": 2.0,
+      "new": 6.0,
+      "reason": "task_approved",
+      "request_id": "258"
+    },
+    {
+      "time": 1782024458,
+      "user_id": "5609899938",
+      "old": 6.0,
+      "amount": 2.0,
+      "new": 8.0,
+      "reason": "task_approved",
+      "request_id": "259"
+    },
+    {
+      "time": 1782024473,
+      "user_id": "5609899938",
+      "old": 8.0,
+      "amount": -8.0,
+      "new": 0.0,
+      "reason": "withdraw_created",
+      "request_id": "110"
+    },
+    {
+      "time": 1782024754,
+      "user_id": "8317326202",
+      "old": 0.0,
+      "amount": 2.0,
+      "new": 2.0,
+      "reason": "task_approved",
+      "request_id": "261"
+    },
+    {
+      "time": 1782024883,
+      "user_id": "8317326202",
+      "old": 2.0,
+      "amount": 2.0,
+      "new": 4.0,
+      "reason": "task_approved",
+      "request_id": "262"
+    },
+    {
+      "time": 1782024952,
+      "user_id": "8317326202",
+      "old": 4.0,
+      "amount": 1.0,
+      "new": 5.0,
+      "reason": "task_approved",
+      "request_id": "264"
+    },
+    {
+      "time": 1782025096,
+      "user_id": "8317326202",
+      "old": 5.0,
+      "amount": -5.0,
+      "new": 0.0,
+      "reason": "withdraw_created",
+      "request_id": "111"
+    },
+    {
+      "time": 1782025243,
+      "user_id": "5224773359",
+      "old": 4.2,
+      "amount": -4.2,
+      "new": 0.0,
+      "reason": "withdraw_created",
+      "request_id": "112"
+    },
+    {
+      "time": 1782025362,
+      "user_id": "5609899938",
+      "old": 0.0,
+      "amount": 3.0,
+      "new": 3.0,
+      "reason": "task_approved",
+      "request_id": "265"
+    },
+    {
+      "time": 1782025571,
+      "user_id": "5609899938",
+      "old": 3.0,
+      "amount": 2.0,
+      "new": 5.0,
+      "reason": "task_approved",
+      "request_id": "266"
+    },
+    {
+      "time": 1782025592,
+      "user_id": "5609899938",
+      "old": 5.0,
+      "amount": -5.0,
+      "new": 0.0,
+      "reason": "withdraw_created",
+      "request_id": "113"
+    },
+    {
+      "time": 1782025869,
+      "user_id": "8317326202",
+      "old": 0.0,
+      "amount": 2.0,
+      "new": 2.0,
+      "reason": "task_approved",
+      "request_id": "267"
+    },
+    {
+      "time": 1782025998,
+      "user_id": "8317326202",
+      "old": 2.0,
+      "amount": 2.0,
+      "new": 4.0,
+      "reason": "task_approved",
+      "request_id": "268"
+    },
+    {
+      "time": 1782026065,
+      "user_id": "8317326202",
+      "old": 4.0,
+      "amount": 2.0,
+      "new": 6.0,
+      "reason": "task_approved",
+      "request_id": "269"
+    },
+    {
+      "time": 1782026081,
+      "user_id": "8317326202",
+      "old": 6.0,
+      "amount": -6.0,
+      "new": 0.0,
+      "reason": "withdraw_created",
+      "request_id": "114"
+    },
+    {
+      "time": 1782031557,
+      "user_id": "7811863751",
+      "old": 0.0,
+      "amount": 0.2,
+      "new": 0.2,
+      "reason": "add",
+      "request_id": ""
+    },
+    {
+      "time": 1782036649,
+      "user_id": "6276600731",
+      "old": 0.2,
+      "amount": 3.0,
+      "new": 3.2,
+      "reason": "task_approved",
+      "request_id": "273"
+    },
+    {
+      "time": 1782036749,
+      "user_id": "6276600731",
+      "old": 3.2,
+      "amount": -3.2,
+      "new": 0.0,
+      "reason": "withdraw_created",
+      "request_id": "115"
+    },
+    {
+      "time": 1782037036,
+      "user_id": "8258106768",
+      "old": 0.6,
+      "amount": 3.0,
+      "new": 3.6,
+      "reason": "task_approved",
+      "request_id": "274"
+    },
+    {
+      "time": 1782040204,
+      "user_id": "6276600731",
+      "old": 0.0,
+      "amount": 1.0,
+      "new": 1.0,
+      "reason": "task_approved",
+      "request_id": "277"
+    },
+    {
+      "time": 1782040231,
+      "user_id": "8258106768",
+      "old": 3.6,
+      "amount": 1.0,
+      "new": 4.6,
+      "reason": "task_approved",
+      "request_id": "278"
+    },
+    {
+      "time": 1782040378,
+      "user_id": "6276600731",
+      "old": 1.0,
+      "amount": -1.0,
+      "new": 0.0,
+      "reason": "withdraw_created",
+      "request_id": "116"
+    },
+    {
+      "time": 1782040403,
+      "user_id": "8258106768",
+      "old": 4.6,
+      "amount": -4.0,
+      "new": 0.6,
+      "reason": "withdraw_created",
+      "request_id": "117"
+    },
+    {
+      "time": 1782042342,
+      "user_id": "8380620424",
+      "old": 0.0,
+      "amount": 2.0,
+      "new": 2.0,
+      "reason": "task_approved",
+      "request_id": "280"
+    },
+    {
+      "time": 1782042392,
+      "user_id": "8380620424",
+      "old": 2.0,
+      "amount": -2.0,
+      "new": 0.0,
+      "reason": "withdraw_created",
+      "request_id": "118"
+    },
+    {
+      "time": 1782044501,
+      "user_id": "1401650206",
+      "old": 0.0,
+      "amount": 2.0,
+      "new": 2.0,
+      "reason": "task_approved",
+      "request_id": "281"
+    },
+    {
+      "time": 1782044608,
+      "user_id": "1401650206",
+      "old": 2.0,
+      "amount": 3.0,
+      "new": 5.0,
+      "reason": "task_approved",
+      "request_id": "282"
+    },
+    {
+      "time": 1782044785,
+      "user_id": "7811863751",
+      "old": 0.2,
+      "amount": 1.0,
+      "new": 1.2,
+      "reason": "task_approved",
+      "request_id": "283"
+    },
+    {
+      "time": 1782045000,
+      "user_id": "1401650206",
+      "old": 5.0,
+      "amount": 3.0,
+      "new": 8.0,
+      "reason": "task_approved",
+      "request_id": "286"
+    },
+    {
+      "time": 1782045177,
+      "user_id": "1401650206",
+      "old": 8.0,
+      "amount": -8.0,
+      "new": 0.0,
+      "reason": "withdraw_created",
+      "request_id": "119"
+    },
+    {
+      "time": 1782046192,
+      "user_id": "7937166836",
+      "old": 0.0,
+      "amount": 3.0,
+      "new": 3.0,
+      "reason": "task_approved",
+      "request_id": "287"
+    },
+    {
+      "time": 1782049688,
+      "user_id": "8804288474",
+      "old": 3.2,
+      "amount": -3.0,
+      "new": 0.2,
+      "reason": "withdraw_created",
+      "request_id": "122"
     }
   ],
   "total_paid": 34.6,
