@@ -454,18 +454,44 @@ def attach_requests_to_data(data):
 
 
 def split_requests_from_data(data):
-    """Достаёт активные заявки в requests.json, а data.json оставляет чистым."""
+    """
+    data.json НЕ является источником старых заявок.
+    В requests.json сохраняем только активные заявки, которые уже есть в текущей памяти бота.
+    Старые заявки из data.json при чтении уже очищаются через strip_legacy_requests_from_data().
+    """
     data = fix_data(data or empty_data())
-    req = empty_requests()
-    req["submits"] = {
+
+    # Берём текущий requests.json как основу, чтобы случайно не стереть активные заявки
+    # при обычном сохранении data.json.
+    req = load_requests()
+
+    current_submits = {
         str(k): v for k, v in data.get("submits", {}).items()
         if isinstance(v, dict) and v.get("status") == "wait"
     }
-    req["withdraws"] = {
+    current_withdraws = {
         str(k): v for k, v in data.get("withdraws", {}).items()
         if isinstance(v, dict) and v.get("status") == "wait"
     }
-    req["admin_sent"] = data.get("admin_sent", {"submits": {}, "withdraws": {}})
+
+    # Если в памяти есть заявки — обновляем requests.json ими.
+    # Если заявок нет — оставляем requests.json как есть, а удаление делает обработчик отказа/одобрения.
+    if current_submits:
+        req["submits"] = current_submits
+    if current_withdraws:
+        req["withdraws"] = current_withdraws
+
+    req.setdefault("admin_sent", {"submits": {}, "withdraws": {}})
+    for kind in ["submits", "withdraws"]:
+        req["admin_sent"].setdefault(kind, {})
+        for rid, info in data.get("admin_sent", {}).get(kind, {}).items():
+            if str(rid) in req.get(kind, {}):
+                req["admin_sent"][kind][str(rid)] = info
+        # удаляем admin_sent без активной заявки
+        for rid in list(req["admin_sent"][kind].keys()):
+            if str(rid) not in req.get(kind, {}):
+                req["admin_sent"][kind].pop(rid, None)
+
     req = fix_requests(req)
 
     clean = json.loads(json.dumps(data, ensure_ascii=False))
@@ -1401,6 +1427,165 @@ def resolve_user_id(data, user_query):
     return q, None
 
 
+
+def get_clean_data_base_without_requests():
+    """
+    Берём data.json БЕЗ заявок. requests.json тут не читается и не меняется.
+    """
+    local_data = read_local_data_raw()
+    github_data = read_github_data_raw()
+
+    if local_data is not None and github_data is not None:
+        data = merge_data(local_data, github_data)
+    elif local_data is not None:
+        data = local_data
+    elif github_data is not None:
+        data = github_data
+    else:
+        data = empty_data()
+
+    return strip_legacy_requests_from_data(data)
+
+
+def count_active_requests_only():
+    """
+    Считает активные заявки только в requests.json.
+    data.json не трогает.
+    """
+    req = load_requests()
+    submits = sum(1 for v in req.get("submits", {}).values() if isinstance(v, dict) and v.get("status") == "wait")
+    withdraws = sum(1 for v in req.get("withdraws", {}).values() if isinstance(v, dict) and v.get("status") == "wait")
+    return submits, withdraws
+
+
+def clean_data_temp_fields(data):
+    """
+    Безопасно чистит data.json:
+    - НЕ трогает баланс
+    - НЕ трогает пользователей
+    - НЕ трогает done_tasks
+    - НЕ трогает задания
+    - НЕ трогает статистику
+    - НЕ читает/не меняет requests.json
+    """
+    data = strip_legacy_requests_from_data(data or empty_data())
+
+    cleaned = {
+        "waiting_task": 0,
+        "withdraw_step": 0,
+        "withdraw_to": 0,
+        "withdraw_pending": 0,
+        "pending_tasks": 0,
+        "top_submits": 0,
+        "top_withdraws": 0,
+        "top_admin_sent": 0,
+        "balance_logs_trimmed": 0,
+    }
+
+    # На всякий случай чистим старые заявки внутри data.json.
+    if data.get("submits"):
+        cleaned["top_submits"] = len(data.get("submits", {}))
+    if data.get("withdraws"):
+        cleaned["top_withdraws"] = len(data.get("withdraws", {}))
+    if data.get("admin_sent", {}).get("submits") or data.get("admin_sent", {}).get("withdraws"):
+        cleaned["top_admin_sent"] = len(data.get("admin_sent", {}).get("submits", {})) + len(data.get("admin_sent", {}).get("withdraws", {}))
+
+    data["submits"] = {}
+    data["withdraws"] = {}
+    data["admin_sent"] = {"submits": {}, "withdraws": {}}
+
+    for uid, user in data.get("users", {}).items():
+        if not isinstance(user, dict):
+            continue
+
+        if user.get("waiting_task") is not None:
+            cleaned["waiting_task"] += 1
+            user["waiting_task"] = None
+
+        if user.get("withdraw_step") is not None:
+            cleaned["withdraw_step"] += 1
+            user["withdraw_step"] = None
+
+        if user.get("withdraw_to") is not None:
+            cleaned["withdraw_to"] += 1
+            user["withdraw_to"] = None
+
+        if user.get("withdraw_pending") is not False:
+            cleaned["withdraw_pending"] += 1
+            user["withdraw_pending"] = False
+
+        if user.get("pending_tasks"):
+            cleaned["pending_tasks"] += len(user.get("pending_tasks", [])) if isinstance(user.get("pending_tasks"), list) else 1
+            user["pending_tasks"] = []
+
+    if isinstance(data.get("balance_logs"), list) and len(data["balance_logs"]) > 500:
+        cleaned["balance_logs_trimmed"] = len(data["balance_logs"]) - 500
+        data["balance_logs"] = data["balance_logs"][-500:]
+
+    return data, cleaned
+
+
+def save_data_only_no_requests(data, commit_message="clean data"):
+    """
+    Сохраняет только data.json.
+    ВАЖНО: requests.json вообще НЕ меняет.
+    """
+    data = strip_legacy_requests_from_data(data or empty_data())
+
+    try:
+        backup_name = f"{LOCAL_DATA_FILE}.backup_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
+        if os.path.exists(LOCAL_DATA_FILE):
+            shutil.copy2(LOCAL_DATA_FILE, backup_name)
+    except Exception as e:
+        print("Data backup error:", e)
+
+    try:
+        tmp_file = LOCAL_DATA_FILE + ".tmp"
+        with open(tmp_file, "w", encoding="utf-8") as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+        os.replace(tmp_file, LOCAL_DATA_FILE)
+    except Exception as e:
+        print("Local clean data save exception:", e)
+        raise
+
+    if GITHUB_TOKEN and GITHUB_REPO:
+        sha = None
+        r = requests.get(
+            github_url(GITHUB_FILE),
+            headers=github_headers(),
+            params={"ref": GITHUB_BRANCH},
+            timeout=10
+        )
+        if r.status_code == 200:
+            sha = r.json().get("sha")
+
+        content = json.dumps(data, ensure_ascii=False, indent=2)
+        payload = {
+            "message": commit_message,
+            "content": base64.b64encode(content.encode("utf-8")).decode("utf-8"),
+            "branch": GITHUB_BRANCH
+        }
+        if sha:
+            payload["sha"] = sha
+
+        pr = requests.put(github_url(GITHUB_FILE), headers=github_headers(), json=payload, timeout=10)
+        if pr.status_code == 409:
+            r2 = requests.get(
+                github_url(GITHUB_FILE),
+                headers=github_headers(),
+                params={"ref": GITHUB_BRANCH},
+                timeout=10
+            )
+            if r2.status_code == 200:
+                payload["sha"] = r2.json().get("sha")
+                pr = requests.put(github_url(GITHUB_FILE), headers=github_headers(), json=payload, timeout=10)
+
+        if pr.status_code not in (200, 201):
+            print("GitHub clean data save error:", pr.status_code, pr.text)
+            raise Exception(f"GitHub save error {pr.status_code}")
+
+
+
 def log_balance_change(data, user_id, old_balance, amount, new_balance, reason="", request_id=""):
     """Короткий лог баланса, чтобы потом понять, что и почему изменилось."""
     data.setdefault("balance_logs", [])
@@ -1677,6 +1862,86 @@ def admin_menu():
     kb.row("💎 Начислить баланс", "📨 Заявки")
     kb.row("🏠 Меню")
     return kb
+
+
+
+@bot.message_handler(commands=["cleandata_check"])
+def cleandata_check(message):
+    if message.from_user.id != ADMIN_ID:
+        return bot.send_message(message.chat.id, "❌ Нет доступа.")
+
+    try:
+        submits_count, withdraws_count = count_active_requests_only()
+        data = get_clean_data_base_without_requests()
+        _, cleaned = clean_data_temp_fields(json.loads(json.dumps(data, ensure_ascii=False)))
+        total_clean = sum(cleaned.values())
+
+        bot.send_message(
+            message.chat.id,
+            "🧹 <b>Проверка очистки DATA</b>\n\n"
+            f"👥 Пользователей: <b>{len(data.get('users', {}))}</b>\n"
+            f"📸 Активных фото-заявок в requests.json: <b>{submits_count}</b>\n"
+            f"💸 Активных выводов в requests.json: <b>{withdraws_count}</b>\n\n"
+            f"🗑 Можно очистить временных полей: <b>{total_clean}</b>\n\n"
+            "✅ Балансы, пользователи, задания и статистика не трогаются.\n"
+            "✅ requests.json не меняется.\n\n"
+            "Чтобы очистить: <code>/cleandata</code>"
+        )
+    except Exception as e:
+        bot.send_message(message.chat.id, f"❌ Ошибка проверки: <code>{html.escape(str(e))}</code>")
+
+
+@bot.message_handler(commands=["cleandata"])
+def cleandata(message):
+    if message.from_user.id != ADMIN_ID:
+        return bot.send_message(message.chat.id, "❌ Нет доступа.")
+
+    try:
+        submits_count, withdraws_count = count_active_requests_only()
+        if submits_count or withdraws_count:
+            return bot.send_message(
+                message.chat.id,
+                "⚠️ <b>Очистка остановлена</b>\n\n"
+                f"В requests.json есть активные заявки:\n"
+                f"📸 Фото-заявки: <b>{submits_count}</b>\n"
+                f"💸 Выводы: <b>{withdraws_count}</b>\n\n"
+                "Сначала обработай заявки через <code>/requests</code>, потом снова напиши <code>/cleandata</code>.\n"
+                "Так безопаснее, чтобы случайно не сбить состояние игрока."
+            )
+
+        data = get_clean_data_base_without_requests()
+        users_before = len(data.get("users", {}))
+        total_balance_before = round(sum(float(u.get("balance", 0) or 0) for u in data.get("users", {}).values() if isinstance(u, dict)), 2)
+
+        cleaned_data, cleaned = clean_data_temp_fields(data)
+        users_after = len(cleaned_data.get("users", {}))
+        total_balance_after = round(sum(float(u.get("balance", 0) or 0) for u in cleaned_data.get("users", {}).values() if isinstance(u, dict)), 2)
+
+        if users_before != users_after or total_balance_before != total_balance_after:
+            return bot.send_message(
+                message.chat.id,
+                "❌ Очистка отменена защитой.\n\n"
+                "Количество пользователей или общий баланс изменился. Я не стал сохранять DATA."
+            )
+
+        save_data_only_no_requests(cleaned_data, commit_message="clean data safely")
+
+        total_clean = sum(cleaned.values())
+        bot.send_message(
+            message.chat.id,
+            "✅ <b>DATA очищена безопасно</b>\n\n"
+            f"👥 Пользователей было/стало: <b>{users_before}</b>/<b>{users_after}</b>\n"
+            f"💰 Общий баланс был/стал: <b>{total_balance_before}</b>/<b>{total_balance_after}</b> GMP\n"
+            f"🗑 Очищено временных полей: <b>{total_clean}</b>\n\n"
+            "✅ Балансы сохранены\n"
+            "✅ Пользователи сохранены\n"
+            "✅ Задания сохранены\n"
+            "✅ Статистика сохранена\n"
+            "✅ requests.json не трогал"
+        )
+    except Exception as e:
+        bot.send_message(message.chat.id, f"❌ Ошибка очистки: <code>{html.escape(str(e))}</code>")
+
 
 
 @bot.message_handler(commands=["start"])
