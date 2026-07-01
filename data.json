@@ -1787,14 +1787,14 @@
       ],
       "pending_tasks": [],
       "waiting_task": null,
-      "withdraw_pending": true,
+      "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1782918041,
       "completed_tasks": 4,
       "total_earned": 7.4,
-      "withdraw_count": 1,
-      "withdrawn_total": 1.4,
+      "withdraw_count": 2,
+      "withdrawn_total": 7.4,
       "fines_total": 0,
       "banned": false,
       "ban_reason": "",
@@ -2288,20 +2288,7 @@
   },
   "required_tasks": [],
   "submits": {},
-  "withdraws": {
-    "140": {
-      "user_id": 8694892873,
-      "username": "Grade_top",
-      "to": "@GmpEarnBot",
-      "amount": 6.0,
-      "status": "wait",
-      "time": 1782921448,
-      "source_message_id": 12705,
-      "admin_sent": true,
-      "admin_sent_time": 1782921451,
-      "admin_message_id": 12707
-    }
-  },
+  "withdraws": {},
   "withdraw_blocks": {},
   "promocodes": {},
   "processed_requests": {
@@ -3812,6 +3799,13 @@
         "user_id": "8694892873",
         "note": "amount 1.4",
         "time": 1782918140
+      },
+      "140": {
+        "status": "paid",
+        "admin_id": 7837011810,
+        "user_id": "8694892873",
+        "note": "amount 6.0",
+        "time": 1782921545
       }
     }
   },
@@ -6709,8 +6703,8 @@
       "request_id": "140"
     }
   ],
-  "total_paid": 26.6,
-  "total_withdrawals": 10,
+  "total_paid": 32.6,
+  "total_withdrawals": 11,
   "last_task_id": 66,
   "last_submit_id": 341,
   "last_withdraw_id": 140,
