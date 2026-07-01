@@ -485,7 +485,7 @@
       "ban_reason": ""
     },
     "8258106768": {
-      "balance": 7.0,
+      "balance": 6.0,
       "done_tasks": [
         "42",
         "49",
@@ -502,7 +502,7 @@
       ],
       "last_bonus": 1782285548,
       "completed_tasks": 15,
-      "total_earned": 27.0,
+      "total_earned": 26.0,
       "withdraw_count": 4,
       "withdrawn_total": 20.0,
       "fines_total": 0,
@@ -510,7 +510,7 @@
       "ban_reason": "",
       "username": "trqLemon4ik",
       "created_at": 1782917856,
-      "updated_at": 1782935382,
+      "updated_at": 1782935397,
       "user_id": 8258106768,
       "first_name": "Lemon4ik",
       "last_name": "",
@@ -1841,12 +1841,11 @@
   "promocodes": {
     "GMPSTART": {
       "amount": 1.0,
-      "left": 7,
+      "left": 8,
       "created_by": 7837011810,
       "used_by": [
         "7837011810",
-        "7441149510",
-        "8258106768"
+        "7441149510"
       ],
       "time": 1782933971
     }
@@ -3424,15 +3423,6 @@
   },
   "balance_logs": [
     {
-      "time": 1781898106,
-      "user_id": "8258106768",
-      "old": 0.4,
-      "amount": 2.0,
-      "new": 2.4,
-      "reason": "task_approved",
-      "request_id": "248"
-    },
-    {
       "time": 1781898228,
       "user_id": "6276600731",
       "old": 4.0,
@@ -4322,6 +4312,15 @@
       "new": 7.0,
       "reason": "add",
       "request_id": ""
+    },
+    {
+      "time": 1781898007,
+      "user_id": "6276600731",
+      "old": 2.0,
+      "amount": 2.0,
+      "new": 4.0,
+      "reason": "task_approved",
+      "request_id": "247"
     }
   ],
   "total_paid": 34.6,
