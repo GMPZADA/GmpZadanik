@@ -972,7 +972,13 @@
       "fines_total": 0,
       "username": "grimReapersing",
       "banned": false,
-      "ban_reason": ""
+      "ban_reason": "",
+      "created_at": 1782933817,
+      "updated_at": 1782933817,
+      "user_id": 7811863751,
+      "first_name": "16:58 passed out",
+      "last_name": "",
+      "language_code": "ru"
     },
     "6071965562": {
       "balance": 1.0,
