@@ -1468,12 +1468,13 @@
       "banned": false,
       "ban_reason": "",
       "created_at": 1782845579,
-      "updated_at": 1782934027,
+      "updated_at": 1782934030,
       "user_id": 7779046668,
       "username": "Redwinso",
       "first_name": "Redwinso #drl #mmq",
       "last_name": "",
-      "language_code": "ru"
+      "language_code": "ru",
+      "waiting_task": "57"
     },
     "6978702813": {
       "balance": 0.0,
