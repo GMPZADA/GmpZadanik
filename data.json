@@ -2240,8 +2240,8 @@
       "time": 1782917670,
       "source_message_id": 12430,
       "admin_sent": true,
-      "admin_sent_time": 1782917670,
-      "admin_message_id": "sending"
+      "admin_sent_time": 1782917673,
+      "admin_message_id": 12432
     }
   },
   "withdraw_blocks": {},
@@ -4463,8 +4463,8 @@
         "time": 1782891483
       },
       "137": {
-        "message_id": "sending",
-        "time": 1782917670
+        "message_id": 12432,
+        "time": 1782917673
       }
     }
   },
