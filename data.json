@@ -643,7 +643,13 @@
       "fines_total": 0,
       "banned": false,
       "ban_reason": "",
-      "username": "trqLemon4ik"
+      "username": "trqLemon4ik",
+      "created_at": 1782917856,
+      "updated_at": 1782917856,
+      "user_id": 8258106768,
+      "first_name": "Lemon4ik",
+      "last_name": "",
+      "language_code": "ru"
     },
     "6276600731": {
       "balance": 1.6,
