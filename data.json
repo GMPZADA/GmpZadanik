@@ -418,7 +418,14 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "banned": false,
-      "ban_reason": ""
+      "ban_reason": "",
+      "created_at": 1782934390,
+      "updated_at": 1782934390,
+      "user_id": 5356400377,
+      "username": "hjklgf1",
+      "first_name": "Тимофей",
+      "last_name": "Рыбаков",
+      "language_code": "ru"
     },
     "8342695961": {
       "balance": 0.2,
@@ -3408,33 +3415,6 @@
   },
   "balance_logs": [
     {
-      "time": 1781895171,
-      "user_id": "6276600731",
-      "old": 0.0,
-      "amount": 2.0,
-      "new": 2.0,
-      "reason": "task_approved",
-      "request_id": "239"
-    },
-    {
-      "time": 1781895192,
-      "user_id": "7106223662",
-      "old": 0.2,
-      "amount": 3.0,
-      "new": 3.2,
-      "reason": "task_approved",
-      "request_id": "238"
-    },
-    {
-      "time": 1781895341,
-      "user_id": "6276600731",
-      "old": 2.0,
-      "amount": 2.0,
-      "new": 4.0,
-      "reason": "task_approved",
-      "request_id": "240"
-    },
-    {
       "time": 1781895554,
       "user_id": "6276600731",
       "old": 4.0,
@@ -4306,6 +4286,33 @@
       "new": 3.4,
       "reason": "task_approved",
       "request_id": "235"
+    },
+    {
+      "time": 1781894951,
+      "user_id": "6276600731",
+      "old": 3.4,
+      "amount": 3.0,
+      "new": 6.4,
+      "reason": "task_approved",
+      "request_id": "236"
+    },
+    {
+      "time": 1781894970,
+      "user_id": "6276600731",
+      "old": 6.4,
+      "amount": -6.4,
+      "new": 0.0,
+      "reason": "withdraw_created",
+      "request_id": "100"
+    },
+    {
+      "time": 1781895136,
+      "user_id": "7106223662",
+      "old": 0.0,
+      "amount": 0.2,
+      "new": 0.2,
+      "reason": "add",
+      "request_id": ""
     }
   ],
   "total_paid": 34.6,
