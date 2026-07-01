@@ -1909,18 +1909,18 @@
       "language_code": "ru"
     },
     "6978702813": {
-      "balance": 0.2,
-      "done_tasks": [],
-      "pending_tasks": [
+      "balance": 1.2,
+      "done_tasks": [
         "64"
       ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": "amount",
       "withdraw_to": "@qwntwq",
       "last_bonus": 1782847770,
-      "completed_tasks": 0,
-      "total_earned": 0.2,
+      "completed_tasks": 1,
+      "total_earned": 1.2,
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
@@ -2077,18 +2077,6 @@
   },
   "required_tasks": [],
   "submits": {
-    "332": {
-      "user_id": 6978702813,
-      "username": "qwntwq",
-      "task_id": "64",
-      "reward": 1.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIvjmpEGN4QlUIKfZ0EI-8IQJKNTWBuAALhImsbNtAhStQplkQGS0XwAQADAgADeQADPAQ",
-      "time": 1782847730,
-      "admin_sent": true,
-      "admin_sent_time": 1782847734,
-      "admin_message_id": 12179
-    },
     "333": {
       "user_id": 7130773702,
       "username": "kurokcek",
@@ -3119,6 +3107,13 @@
         "user_id": "6978702813",
         "note": "task #42",
         "time": 1782875351
+      },
+      "332": {
+        "status": "approved",
+        "admin_id": 7837011810,
+        "user_id": "6978702813",
+        "note": "task #64",
+        "time": 1782875359
       }
     },
     "withdraws": {
@@ -6189,6 +6184,15 @@
       "new": 3.2,
       "reason": "add",
       "request_id": ""
+    },
+    {
+      "time": 1782875359,
+      "user_id": "6978702813",
+      "old": 0.2,
+      "amount": 1.0,
+      "new": 1.2,
+      "reason": "task_approved",
+      "request_id": "332"
     }
   ],
   "total_paid": 12.0,
