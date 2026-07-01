@@ -1468,7 +1468,7 @@
       "banned": false,
       "ban_reason": "",
       "created_at": 1782845579,
-      "updated_at": 1782933890,
+      "updated_at": 1782933893,
       "user_id": 7779046668,
       "username": "Redwinso",
       "first_name": "Redwinso #drl #mmq",
@@ -3391,33 +3391,6 @@
   },
   "balance_logs": [
     {
-      "time": 1781864168,
-      "user_id": "7463485005",
-      "old": 0.2,
-      "amount": 4.0,
-      "new": 4.2,
-      "reason": "task_approved",
-      "request_id": "225"
-    },
-    {
-      "time": 1781864183,
-      "user_id": "7578157415",
-      "old": 0.0,
-      "amount": 0.2,
-      "new": 0.2,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1781864226,
-      "user_id": "7463485005",
-      "old": 4.2,
-      "amount": 3.0,
-      "new": 7.2,
-      "reason": "task_approved",
-      "request_id": "226"
-    },
-    {
       "time": 1781864242,
       "user_id": "8341360449",
       "old": 1.2,
@@ -4289,6 +4262,33 @@
       "new": 0.5,
       "reason": "add",
       "request_id": ""
+    },
+    {
+      "time": 1782933890,
+      "user_id": "7779046668",
+      "old": 0.0,
+      "amount": 0.2,
+      "new": 0.2,
+      "reason": "add",
+      "request_id": ""
+    },
+    {
+      "time": 1781864103,
+      "user_id": "7463485005",
+      "old": 0.0,
+      "amount": 0.2,
+      "new": 0.2,
+      "reason": "add",
+      "request_id": ""
+    },
+    {
+      "time": 1781864168,
+      "user_id": "7463485005",
+      "old": 0.2,
+      "amount": 4.0,
+      "new": 4.2,
+      "reason": "task_approved",
+      "request_id": "225"
     }
   ],
   "total_paid": 34.6,
