@@ -1788,21 +1788,20 @@
       "username": "missnipery"
     },
     "8694892873": {
-      "balance": 2.0,
+      "balance": 4.0,
       "done_tasks": [
         "38",
-        "41"
-      ],
-      "pending_tasks": [
+        "41",
         "43"
       ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1782918041,
-      "completed_tasks": 2,
-      "total_earned": 3.4,
+      "completed_tasks": 3,
+      "total_earned": 5.4,
       "withdraw_count": 1,
       "withdrawn_total": 1.4,
       "fines_total": 0,
@@ -2277,20 +2276,7 @@
     }
   },
   "required_tasks": [],
-  "submits": {
-    "340": {
-      "user_id": 8694892873,
-      "username": "Grade_top",
-      "task_id": "43",
-      "reward": 2.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIxaGpFNvO0633ktrcInDvDRe9m8u8hAAKVG2sba4YpSjTPmT8LmXVZAQADAgADeQADPAQ",
-      "time": 1782920967,
-      "admin_sent": true,
-      "admin_sent_time": 1782920967,
-      "admin_message_id": "sending"
-    }
-  },
+  "submits": {},
   "withdraws": {},
   "withdraw_blocks": {},
   "promocodes": {},
@@ -3352,6 +3338,13 @@
         "user_id": "8694892873",
         "note": "task #42",
         "time": 1782920662
+      },
+      "340": {
+        "status": "approved",
+        "admin_id": 7837011810,
+        "user_id": "8694892873",
+        "note": "task #43",
+        "time": 1782920981
       }
     },
     "withdraws": {
@@ -4328,10 +4321,6 @@
       "335": {
         "message_id": 12392,
         "time": 1782915916
-      },
-      "340": {
-        "message_id": "sending",
-        "time": 1782920967
       }
     },
     "withdraws": {
@@ -6656,6 +6645,15 @@
       "new": 2.0,
       "reason": "task_approved",
       "request_id": "338"
+    },
+    {
+      "time": 1782920981,
+      "user_id": "8694892873",
+      "old": 2.0,
+      "amount": 2.0,
+      "new": 4.0,
+      "reason": "task_approved",
+      "request_id": "340"
     }
   ],
   "total_paid": 26.6,
