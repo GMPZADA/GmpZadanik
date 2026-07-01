@@ -1779,7 +1779,7 @@
       "username": "missnipery"
     },
     "8694892873": {
-      "balance": 6.0,
+      "balance": 0.0,
       "done_tasks": [
         "38",
         "41",
@@ -1787,9 +1787,9 @@
       ],
       "pending_tasks": [],
       "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": "amount",
-      "withdraw_to": "@GmpEarnBot",
+      "withdraw_pending": true,
+      "withdraw_step": null,
+      "withdraw_to": null,
       "last_bonus": 1782918041,
       "completed_tasks": 4,
       "total_earned": 7.4,
@@ -2288,7 +2288,20 @@
   },
   "required_tasks": [],
   "submits": {},
-  "withdraws": {},
+  "withdraws": {
+    "140": {
+      "user_id": 8694892873,
+      "username": "Grade_top",
+      "to": "@GmpEarnBot",
+      "amount": 6.0,
+      "status": "wait",
+      "time": 1782921448,
+      "source_message_id": 12705,
+      "admin_sent": true,
+      "admin_sent_time": 1782921448,
+      "admin_message_id": "sending"
+    }
+  },
   "withdraw_blocks": {},
   "promocodes": {},
   "processed_requests": {
@@ -4581,6 +4594,10 @@
       "139": {
         "message_id": 12542,
         "time": 1782918109
+      },
+      "140": {
+        "message_id": "sending",
+        "time": 1782921448
       }
     }
   },
@@ -6681,13 +6698,22 @@
       "new": 6.0,
       "reason": "task_approved",
       "request_id": "341"
+    },
+    {
+      "time": 1782921448,
+      "user_id": "8694892873",
+      "old": 6.0,
+      "amount": -6.0,
+      "new": 0.0,
+      "reason": "withdraw_created",
+      "request_id": "140"
     }
   ],
   "total_paid": 26.6,
   "total_withdrawals": 10,
   "last_task_id": 66,
   "last_submit_id": 341,
-  "last_withdraw_id": 139,
+  "last_withdraw_id": 140,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "withdraw_disabled_by_admin": false,
   "withdraw_enabled": true
