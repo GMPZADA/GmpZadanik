@@ -79,7 +79,7 @@
       "banned": false,
       "ban_reason": "",
       "created_at": 1782836891,
-      "updated_at": 1782881070,
+      "updated_at": 1782881035,
       "user_id": 7837011810,
       "first_name": "Артем",
       "last_name": "",
@@ -108,7 +108,6 @@
       "done_tasks": [
         "41",
         "59",
-        "52",
         "57",
         "55"
       ],
@@ -155,7 +154,6 @@
       "done_tasks": [
         "41",
         "54",
-        "52",
         "38",
         "53",
         "44",
@@ -269,7 +267,6 @@
       "balance": 0.2,
       "done_tasks": [
         "41",
-        "52",
         "43",
         "57"
       ],
@@ -503,7 +500,6 @@
         "50",
         "49",
         "57",
-        "52",
         "55",
         "42",
         "64",
@@ -620,7 +616,6 @@
     "8258106768": {
       "balance": 6.0,
       "done_tasks": [
-        "52",
         "42",
         "49",
         "44",
@@ -663,7 +658,6 @@
         "59",
         "57",
         "55",
-        "52",
         "44",
         "64"
       ],
@@ -727,7 +721,6 @@
         "44",
         "49",
         "53",
-        "52",
         "51",
         "38",
         "48",
@@ -862,7 +855,7 @@
       "balance": 0.2,
       "done_tasks": [],
       "pending_tasks": [],
-      "waiting_task": "52",
+      "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
@@ -1019,7 +1012,6 @@
       "balance": 0.2,
       "done_tasks": [
         "41",
-        "52",
         "48",
         "53"
       ],
@@ -1081,9 +1073,7 @@
     },
     "8007798988": {
       "balance": 1.0,
-      "done_tasks": [
-        "52"
-      ],
+      "done_tasks": [],
       "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
@@ -1209,7 +1199,6 @@
     "7970947663": {
       "balance": 14.0,
       "done_tasks": [
-        "52",
         "42",
         "44",
         "57",
@@ -1749,8 +1738,7 @@
       "done_tasks": [
         "44",
         "48",
-        "38",
-        "52"
+        "38"
       ],
       "pending_tasks": [],
       "waiting_task": null,
@@ -1857,9 +1845,7 @@
     },
     "8949642102": {
       "balance": 0.0,
-      "done_tasks": [
-        "52"
-      ],
+      "done_tasks": [],
       "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
@@ -2036,13 +2022,6 @@
       "active": true,
       "required": false
     },
-    "52": {
-      "text": "Зайти в бота, подписаться на спонсоров и отправить скриншот выполнения",
-      "link": "https://t.me/slots_giftsbot?start=U5tgQ7EtvpLLyK",
-      "reward": 1.0,
-      "active": true,
-      "required": false
-    },
     "53": {
       "text": "Зайти в бота, выполнить 3 задания и отправить скриншот выполнения",
       "link": "https://t.me/SnakeeEarn_Bot?start=suxt81gy",
@@ -2096,6 +2075,11 @@
       "time": 1782844216,
       "by": 7837011810,
       "text": "Зайти в бота подписаться на спонсоров\nПосле спонсоров выполнить 3 задания"
+    },
+    "52": {
+      "time": 1782881122,
+      "by": 7837011810,
+      "text": "Зайти в бота, подписаться на спонсоров и отправить скриншот выполнения"
     }
   },
   "required_tasks": [],
