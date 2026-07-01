@@ -37,6 +37,90 @@ DATA_LOCK = RLock()
 WITHDRAW_CREATE_LOCK = RLock()
 SUBMIT_CREATE_LOCK = RLock()
 
+# Быстрый кэш: бот не читает data.json/GitHub заново на каждый клик
+DATA_CACHE = None
+REQUESTS_CACHE = None
+CACHE_LOCK = RLock()
+
+# GitHub сохраняем в фоне, чтобы пользователь не ждал 3-5 секунд ответа
+GITHUB_SAVE_LOCK = RLock()
+GITHUB_REQUESTS_SAVE_LOCK = RLock()
+
+
+def clone_json(obj):
+    """Быстрая безопасная копия dict/list, чтобы разные обработчики не портили один объект."""
+    return json.loads(json.dumps(obj, ensure_ascii=False))
+
+
+def save_json_atomic(filename, obj):
+    tmp_file = filename + ".tmp"
+    with open(tmp_file, "w", encoding="utf-8") as f:
+        json.dump(obj, f, ensure_ascii=False, indent=2)
+    os.replace(tmp_file, filename)
+
+
+def upload_json_to_github(filename, obj, message):
+    """Медленная отправка в GitHub. Запускается в отдельном потоке."""
+    if not (GITHUB_TOKEN and GITHUB_REPO):
+        print(f"GitHub save skipped for {filename}: проверь GITHUB_TOKEN и GITHUB_REPO в Render")
+        return
+
+    lock = GITHUB_REQUESTS_SAVE_LOCK if filename == GITHUB_REQUESTS_FILE else GITHUB_SAVE_LOCK
+
+    with lock:
+        try:
+            sha = None
+            r = requests.get(
+                github_url(filename),
+                headers=github_headers(),
+                params={"ref": GITHUB_BRANCH},
+                timeout=10
+            )
+            if r.status_code == 200:
+                sha = r.json().get("sha")
+
+            content = json.dumps(obj, ensure_ascii=False, indent=2)
+            payload = {
+                "message": message,
+                "content": base64.b64encode(content.encode("utf-8")).decode("utf-8"),
+                "branch": GITHUB_BRANCH
+            }
+            if sha:
+                payload["sha"] = sha
+
+            pr = requests.put(github_url(filename), headers=github_headers(), json=payload, timeout=10)
+
+            if pr.status_code == 409:
+                r2 = requests.get(
+                    github_url(filename),
+                    headers=github_headers(),
+                    params={"ref": GITHUB_BRANCH},
+                    timeout=10
+                )
+                if r2.status_code == 200:
+                    payload["sha"] = r2.json().get("sha")
+                    pr = requests.put(github_url(filename), headers=github_headers(), json=payload, timeout=10)
+
+            if pr.status_code not in (200, 201):
+                print(f"GitHub save error {filename}:", pr.status_code, pr.text)
+            else:
+                print(f"GitHub save OK {filename}")
+        except Exception as e:
+            print(f"GitHub save exception {filename}:", e)
+
+
+def save_to_github_background(filename, obj, message):
+    """Не тормозит ответ бота: GitHub обновится в фоне."""
+    try:
+        threading.Thread(
+            target=upload_json_to_github,
+            args=(filename, clone_json(obj), message),
+            daemon=True
+        ).start()
+    except Exception as e:
+        print("GitHub background thread error:", e)
+
+
 
 @app.route("/")
 def home():
@@ -434,10 +518,20 @@ def merge_requests(primary, secondary):
 
 
 def load_requests():
+    global REQUESTS_CACHE
+
+    with CACHE_LOCK:
+        if REQUESTS_CACHE is not None:
+            return clone_json(REQUESTS_CACHE)
+
     local_req = read_local_requests_raw()
     github_req = read_github_requests_raw()
-    return merge_requests(local_req, github_req)
+    req = merge_requests(local_req, github_req)
 
+    with CACHE_LOCK:
+        REQUESTS_CACHE = clone_json(req)
+
+    return clone_json(req)
 
 def attach_requests_to_data(data):
     """Подклеивает временные заявки из requests.json к data, чтобы остальной bot.py работал как раньше."""
@@ -478,46 +572,19 @@ def split_requests_from_data(data):
 
 
 def save_requests(req):
+    global REQUESTS_CACHE
+
     req = fix_requests(req)
+
+    with CACHE_LOCK:
+        REQUESTS_CACHE = clone_json(req)
+
     try:
-        tmp_file = LOCAL_REQUESTS_FILE + ".tmp"
-        with open(tmp_file, "w", encoding="utf-8") as f:
-            json.dump(req, f, ensure_ascii=False, indent=2)
-        os.replace(tmp_file, LOCAL_REQUESTS_FILE)
+        save_json_atomic(LOCAL_REQUESTS_FILE, req)
     except Exception as e:
         print("Local requests save exception:", e)
 
-    if GITHUB_TOKEN and GITHUB_REPO:
-        try:
-            sha = None
-            r = requests.get(
-                github_url(GITHUB_REQUESTS_FILE),
-                headers=github_headers(),
-                params={"ref": GITHUB_BRANCH},
-                timeout=10
-            )
-            if r.status_code == 200:
-                sha = r.json().get("sha")
-            content = json.dumps(req, ensure_ascii=False, indent=2)
-            payload = {
-                "message": "update bot requests",
-                "content": base64.b64encode(content.encode("utf-8")).decode("utf-8"),
-                "branch": GITHUB_BRANCH
-            }
-            if sha:
-                payload["sha"] = sha
-            pr = requests.put(github_url(GITHUB_REQUESTS_FILE), headers=github_headers(), json=payload, timeout=10)
-            if pr.status_code == 409:
-                r2 = requests.get(github_url(GITHUB_REQUESTS_FILE), headers=github_headers(), params={"ref": GITHUB_BRANCH}, timeout=10)
-                if r2.status_code == 200:
-                    payload["sha"] = r2.json().get("sha")
-                    pr = requests.put(github_url(GITHUB_REQUESTS_FILE), headers=github_headers(), json=payload, timeout=10)
-            if pr.status_code not in (200, 201):
-                print("GitHub requests save error:", pr.status_code, pr.text)
-            else:
-                print("GitHub requests save OK")
-        except Exception as e:
-            print("GitHub requests save exception:", e)
+    save_to_github_background(GITHUB_REQUESTS_FILE, req, "update bot requests")
 
 
 def read_local_data_raw():
@@ -686,14 +753,20 @@ def merge_data(primary, secondary):
 
 
 def load_data():
-    # Читаем и локальный файл, и GitHub, потом склеиваем.
-    # Так старый локальный файл больше не сможет стереть пользователей из GitHub,
-    # а старый GitHub не сможет стереть пользователей из локального файла.
+    global DATA_CACHE
+
+    # После первого запуска берём данные из памяти.
+    # Так бот не читает data.json и GitHub заново на каждое сообщение/кнопку.
+    with CACHE_LOCK:
+        if DATA_CACHE is not None:
+            return attach_requests_to_data(clone_json(DATA_CACHE))
+
+    # Первый запуск: читаем локальный файл и GitHub, потом склеиваем.
     local_data = read_local_data_raw()
     github_data = read_github_data_raw()
 
     if local_data is not None and github_data is not None:
-        data = merge_data(local_data, github_data)  # локальные свежие изменения важнее, но пользователей берём из обоих файлов
+        data = merge_data(local_data, github_data)
     elif local_data is not None:
         data = local_data
     elif github_data is not None:
@@ -701,15 +774,18 @@ def load_data():
     else:
         data = empty_data()
 
+    data = strip_legacy_requests_from_data(fix_data(data))
+
     # Обновляем локальный кэш уже склеенной базой.
     try:
-        with open(LOCAL_DATA_FILE, "w", encoding="utf-8") as f:
-            json.dump(data, f, ensure_ascii=False, indent=2)
+        save_json_atomic(LOCAL_DATA_FILE, data)
     except Exception as e:
         print("Local cache save after load error:", e)
 
-    return attach_requests_to_data(data)
+    with CACHE_LOCK:
+        DATA_CACHE = clone_json(data)
 
+    return attach_requests_to_data(clone_json(data))
 
 def load_data_from_github_only():
     """
@@ -1107,21 +1183,21 @@ def compact_data_for_save(data):
     return clean
 
 def save_data(data):
+    global DATA_CACHE
+
     data = fix_data(data)
 
-    # Перед сохранением склеиваем текущие данные с тем, что уже есть локально и на GitHub.
-    # Это главная защита от падения счётчика пользователей 88 -> 87 -> 85.
+    # Защита от потери пользователей без медленного чтения GitHub на каждый клик:
+    # склеиваем с тем, что уже лежит в памяти.
     try:
-        local_old = read_local_data_raw()
-        github_old = read_github_data_raw()
-
-        old_all = empty_data()
-        if github_old is not None:
-            old_all = merge_data(github_old, old_all)
-        if local_old is not None:
-            old_all = merge_data(local_old, old_all)
-
-        data = merge_data(data, old_all)  # новые изменения важнее, но отсутствующие пользователи не удаляются
+        with CACHE_LOCK:
+            cached = clone_json(DATA_CACHE) if DATA_CACHE is not None else None
+        if cached is not None:
+            data = merge_data(data, cached)
+        else:
+            local_old = read_local_data_raw()
+            if local_old is not None:
+                data = merge_data(data, local_old)
     except Exception as e:
         print("Merge before save error:", e)
 
@@ -1133,66 +1209,18 @@ def save_data(data):
     # Перед сохранением убираем пустые временные поля из data.json.
     data = compact_data_for_save(data)
 
-    # Сначала сохраняем локально атомарно, чтобы файл не ломался при перезапуске/ошибке.
+    with CACHE_LOCK:
+        DATA_CACHE = clone_json(data)
+
+    # Быстро сохраняем локально.
     try:
-        tmp_file = LOCAL_DATA_FILE + ".tmp"
-        with open(tmp_file, "w", encoding="utf-8") as f:
-            json.dump(data, f, ensure_ascii=False, indent=2)
-        os.replace(tmp_file, LOCAL_DATA_FILE)
+        save_json_atomic(LOCAL_DATA_FILE, data)
     except Exception as e:
         print("Local save exception:", e)
 
-    if not GITHUB_TOKEN or not GITHUB_REPO:
-        print("GitHub save skipped: проверь GITHUB_TOKEN и GITHUB_REPO в Render")
+    # Медленный GitHub — в фоне, чтобы бот быстрее отвечал пользователю.
+    save_to_github_background(GITHUB_FILE, data, "update bot data")
 
-    if GITHUB_TOKEN and GITHUB_REPO:
-        try:
-            sha = None
-
-            r = requests.get(
-                github_url(),
-                headers=github_headers(),
-                params={"ref": GITHUB_BRANCH},
-                timeout=10
-            )
-
-            if r.status_code == 200:
-                sha = r.json().get("sha")
-
-            content = json.dumps(data, ensure_ascii=False, indent=2)
-            payload = {
-                "message": "update bot data",
-                "content": base64.b64encode(content.encode("utf-8")).decode("utf-8"),
-                "branch": GITHUB_BRANCH
-            }
-
-            if sha:
-                payload["sha"] = sha
-
-            pr = requests.put(github_url(), headers=github_headers(), json=payload, timeout=10)
-
-            # Если GitHub вернул 409, значит SHA устарел: перечитываем SHA и пробуем ещё раз.
-            if pr.status_code == 409:
-                try:
-                    r2 = requests.get(
-                        github_url(),
-                        headers=github_headers(),
-                        params={"ref": GITHUB_BRANCH},
-                        timeout=10
-                    )
-                    if r2.status_code == 200:
-                        payload["sha"] = r2.json().get("sha")
-                        pr = requests.put(github_url(), headers=github_headers(), json=payload, timeout=10)
-                except Exception as e:
-                    print("GitHub retry after 409 exception:", e)
-
-            if pr.status_code not in (200, 201):
-                print("GitHub save error:", pr.status_code, pr.text)
-            else:
-                print("GitHub save OK")
-
-        except Exception as e:
-            print("GitHub save exception:", e)
 
 
 def get_user(data, user_id):
