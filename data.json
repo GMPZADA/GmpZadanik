@@ -2143,16 +2143,18 @@
       "language_code": "ru"
     },
     "8853924649": {
-      "balance": 0,
-      "done_tasks": [],
+      "balance": 2.0,
+      "done_tasks": [
+        "46"
+      ],
       "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 0,
-      "completed_tasks": 0,
-      "total_earned": 0,
+      "completed_tasks": 1,
+      "total_earned": 2.0,
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
@@ -3401,6 +3403,13 @@
         "user_id": "8853924649",
         "note": "task #50",
         "time": 1782929667
+      },
+      "345": {
+        "status": "approved",
+        "admin_id": 7837011810,
+        "user_id": "8853924649",
+        "note": "task #46",
+        "time": 1782929893
       }
     },
     "withdraws": {
@@ -5957,6 +5966,15 @@
       "new": 0.0,
       "reason": "withdraw_created",
       "request_id": "140"
+    },
+    {
+      "time": 1782929893,
+      "user_id": "8853924649",
+      "old": 0.0,
+      "amount": 2.0,
+      "new": 2.0,
+      "reason": "task_approved",
+      "request_id": "345"
     }
   ],
   "total_paid": 32.6,
