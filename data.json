@@ -1007,8 +1007,8 @@
       "last_bonus": 0,
       "completed_tasks": 7,
       "total_earned": 18.0,
-      "withdraw_count": 2,
-      "withdrawn_total": 18.0,
+      "withdraw_count": 1,
+      "withdrawn_total": 14.0,
       "fines_total": 0,
       "username": "xx_xxts",
       "banned": false,
@@ -1785,7 +1785,13 @@
       "fines_total": 0,
       "banned": false,
       "ban_reason": "",
-      "username": "Grade_top"
+      "username": "Grade_top",
+      "created_at": 1782918026,
+      "updated_at": 1782918026,
+      "user_id": 8694892873,
+      "first_name": "grade top 💯😈😈",
+      "last_name": "",
+      "language_code": "ru"
     },
     "8922956948": {
       "balance": 0,
