@@ -59,12 +59,11 @@
       "banned": false,
       "ban_reason": "",
       "created_at": 1782836891,
-      "updated_at": 1782932913,
+      "updated_at": 1782932914,
       "user_id": 7837011810,
       "first_name": "Артем",
       "last_name": "",
-      "language_code": "ru",
-      "withdraw_step": "username"
+      "language_code": "ru"
     },
     "8380620424": {
       "balance": 0.0,
@@ -3372,15 +3371,6 @@
   },
   "balance_logs": [
     {
-      "time": 1782049654,
-      "user_id": "8804288474",
-      "old": 0.2,
-      "amount": 3.0,
-      "new": 3.2,
-      "reason": "task_approved",
-      "request_id": "290"
-    },
-    {
       "time": 1782049688,
       "user_id": "8804288474",
       "old": 3.2,
@@ -4270,6 +4260,15 @@
       "new": 1.2,
       "reason": "task_approved",
       "request_id": "289"
+    },
+    {
+      "time": 1782049647,
+      "user_id": "8031026603",
+      "old": 1.2,
+      "amount": 0.2,
+      "new": 1.4,
+      "reason": "add",
+      "request_id": ""
     }
   ],
   "total_paid": 34.6,
