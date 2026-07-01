@@ -43,7 +43,7 @@
       "ban_reason": ""
     },
     "7837011810": {
-      "balance": 0.0,
+      "balance": 1.0,
       "done_tasks": [
         "44",
         "38",
@@ -51,7 +51,7 @@
       ],
       "last_bonus": 1781671031,
       "completed_tasks": 4,
-      "total_earned": 0,
+      "total_earned": 1.0,
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
@@ -1821,9 +1821,11 @@
   "promocodes": {
     "GMPSTART": {
       "amount": 1.0,
-      "left": 10,
+      "left": 9,
       "created_by": 7837011810,
-      "used_by": [],
+      "used_by": [
+        "7837011810"
+      ],
       "time": 1782933971
     }
   },
@@ -3400,15 +3402,6 @@
   },
   "balance_logs": [
     {
-      "time": 1781893801,
-      "user_id": "8258106768",
-      "old": 0.4,
-      "amount": 4.0,
-      "new": 4.4,
-      "reason": "task_approved",
-      "request_id": "232"
-    },
-    {
       "time": 1781893998,
       "user_id": "8258106768",
       "old": 4.4,
@@ -4298,6 +4291,15 @@
       "new": 5.0,
       "reason": "task_approved",
       "request_id": "230"
+    },
+    {
+      "time": 1782934152,
+      "user_id": "7837011810",
+      "old": 0.0,
+      "amount": 1.0,
+      "new": 1.0,
+      "reason": "add",
+      "request_id": ""
     }
   ],
   "total_paid": 34.6,
