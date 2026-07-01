@@ -5,11 +5,6 @@
       "done_tasks": [
         "38"
       ],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
-      "pending_tasks": [],
       "last_bonus": 0,
       "completed_tasks": 2,
       "total_earned": 0,
@@ -24,11 +19,6 @@
       "done_tasks": [
         "38"
       ],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
-      "pending_tasks": [],
       "last_bonus": 0,
       "completed_tasks": 2,
       "total_earned": 0,
@@ -43,11 +33,6 @@
       "done_tasks": [
         "38"
       ],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 0,
       "completed_tasks": 2,
       "total_earned": 0,
@@ -64,11 +49,6 @@
         "38",
         "41"
       ],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1781671031,
       "completed_tasks": 4,
       "total_earned": 0,
@@ -79,7 +59,7 @@
       "banned": false,
       "ban_reason": "",
       "created_at": 1782836891,
-      "updated_at": 1782931739,
+      "updated_at": 1782932896,
       "user_id": 7837011810,
       "first_name": "Артем",
       "last_name": "",
@@ -88,11 +68,6 @@
     "8380620424": {
       "balance": 0.0,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 0,
       "completed_tasks": 1,
       "total_earned": 2.0,
@@ -110,11 +85,6 @@
         "59",
         "57"
       ],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 0,
       "completed_tasks": 7,
       "total_earned": 11.0,
@@ -133,11 +103,6 @@
         "48",
         "59"
       ],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 0,
       "completed_tasks": 6,
       "total_earned": 13.0,
@@ -161,11 +126,6 @@
         "45",
         "43"
       ],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1781929723,
       "completed_tasks": 11,
       "total_earned": 28.8,
@@ -179,11 +139,6 @@
     "8618896377": {
       "balance": 0.2,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1781530687,
       "completed_tasks": 0,
       "total_earned": 0.2,
@@ -197,11 +152,6 @@
     "7906360316": {
       "balance": 0.2,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1781549370,
       "completed_tasks": 0,
       "total_earned": 0.2,
@@ -214,11 +164,6 @@
     "8263746591": {
       "balance": 0.2,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1781549381,
       "completed_tasks": 0,
       "total_earned": 0.2,
@@ -245,11 +190,6 @@
         "42",
         "59"
       ],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1781931622,
       "completed_tasks": 17,
       "total_earned": 28.4,
@@ -267,11 +207,6 @@
         "43",
         "57"
       ],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1782046422,
       "completed_tasks": 4,
       "total_earned": 5.8,
@@ -285,11 +220,6 @@
     "6950605094": {
       "balance": 0,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 0,
       "completed_tasks": 0,
       "total_earned": 0,
@@ -305,11 +235,6 @@
         "46",
         "43"
       ],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1781565908,
       "completed_tasks": 2,
       "total_earned": 4.2,
@@ -324,11 +249,6 @@
       "done_tasks": [
         "43"
       ],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1781552516,
       "completed_tasks": 1,
       "total_earned": 2.2,
@@ -347,11 +267,6 @@
         "51",
         "44"
       ],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1781766455,
       "completed_tasks": 5,
       "total_earned": 7.4,
@@ -369,11 +284,6 @@
         "43",
         "53"
       ],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1781685154,
       "completed_tasks": 4,
       "total_earned": 0.4,
@@ -391,11 +301,6 @@
         "49",
         "50"
       ],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 0,
       "completed_tasks": 4,
       "total_earned": 12.0,
@@ -409,11 +314,6 @@
     "8534240629": {
       "balance": 3.4,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1781854616,
       "completed_tasks": 1,
       "total_earned": 3.4,
@@ -427,11 +327,6 @@
     "8136040149": {
       "balance": 0,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 0,
       "completed_tasks": 0,
       "total_earned": 0,
@@ -461,11 +356,6 @@
         "51",
         "59"
       ],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1781725099,
       "completed_tasks": 9,
       "total_earned": 11.4,
@@ -479,11 +369,6 @@
     "1795980648": {
       "balance": 0,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 0,
       "completed_tasks": 0,
       "total_earned": 0,
@@ -507,11 +392,6 @@
         "64",
         "51"
       ],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1782462636,
       "completed_tasks": 11,
       "total_earned": 15.0,
@@ -531,11 +411,6 @@
     "5356400377": {
       "balance": 0.2,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1781635530,
       "completed_tasks": 0,
       "total_earned": 0.2,
@@ -548,11 +423,6 @@
     "8342695961": {
       "balance": 0.2,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1781615268,
       "completed_tasks": 0,
       "total_earned": 0.2,
@@ -565,11 +435,6 @@
     "7741910780": {
       "balance": 0.2,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1781615308,
       "completed_tasks": 0,
       "total_earned": 0.2,
@@ -584,11 +449,6 @@
       "done_tasks": [
         "38"
       ],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 0,
       "completed_tasks": 1,
       "total_earned": 1.0,
@@ -601,11 +461,6 @@
     "8799497858": {
       "balance": 0,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 0,
       "completed_tasks": 0,
       "total_earned": 0,
@@ -631,11 +486,6 @@
         "41",
         "54"
       ],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1782285548,
       "completed_tasks": 15,
       "total_earned": 26.0,
@@ -667,11 +517,6 @@
         "44",
         "64"
       ],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1782299133,
       "completed_tasks": 16,
       "total_earned": 29.2,
@@ -691,11 +536,6 @@
     "7581133015": {
       "balance": 0.4,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1782920074,
       "completed_tasks": 0,
       "total_earned": 0.4,
@@ -715,11 +555,6 @@
     "5728227541": {
       "balance": 0.4,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1782020982,
       "completed_tasks": 0,
       "total_earned": 0.4,
@@ -745,11 +580,6 @@
         "48",
         "50"
       ],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1781636015,
       "completed_tasks": 13,
       "total_earned": 0,
@@ -762,11 +592,6 @@
     "7569588474": {
       "balance": 0.2,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1781669957,
       "completed_tasks": 0,
       "total_earned": 0.2,
@@ -784,11 +609,6 @@
         "44",
         "48"
       ],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1782383477,
       "completed_tasks": 3,
       "total_earned": 12.4,
@@ -802,11 +622,6 @@
     "5040999888": {
       "balance": 0,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 0,
       "completed_tasks": 0,
       "total_earned": 0,
@@ -833,11 +648,6 @@
         "43",
         "54"
       ],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1781976529,
       "completed_tasks": 14,
       "total_earned": 10.4,
@@ -854,11 +664,6 @@
         "38",
         "42"
       ],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1781721198,
       "completed_tasks": 2,
       "total_earned": 5.2,
@@ -872,11 +677,6 @@
     "6473626145": {
       "balance": 0.2,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1781679626,
       "completed_tasks": 0,
       "total_earned": 0.2,
@@ -895,11 +695,6 @@
         "51",
         "50"
       ],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1782095701,
       "completed_tasks": 7,
       "total_earned": 20.8,
@@ -913,11 +708,6 @@
     "6580659021": {
       "balance": 0,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 0,
       "completed_tasks": 0,
       "total_earned": 0,
@@ -930,11 +720,6 @@
     "8547212549": {
       "balance": 0,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 0,
       "completed_tasks": 0,
       "total_earned": 0,
@@ -947,11 +732,6 @@
     "8259138498": {
       "balance": 0.2,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1781697175,
       "completed_tasks": 0,
       "total_earned": 0.2,
@@ -966,11 +746,6 @@
       "done_tasks": [
         "38"
       ],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 0,
       "completed_tasks": 1,
       "total_earned": 1.0,
@@ -983,11 +758,6 @@
     "1253151803": {
       "balance": 0.0,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 0,
       "completed_tasks": 0,
       "total_earned": 1.0,
@@ -1010,11 +780,6 @@
         "43",
         "46"
       ],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 0,
       "completed_tasks": 7,
       "total_earned": 18.0,
@@ -1038,11 +803,6 @@
         "48",
         "53"
       ],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1781725687,
       "completed_tasks": 4,
       "total_earned": 7.2,
@@ -1058,11 +818,6 @@
       "done_tasks": [
         "41"
       ],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 0,
       "completed_tasks": 1,
       "total_earned": 2.0,
@@ -1079,11 +834,6 @@
         "59",
         "51"
       ],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1781788751,
       "completed_tasks": 3,
       "total_earned": 7.2,
@@ -1097,11 +847,6 @@
     "8007798988": {
       "balance": 1.0,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 0,
       "completed_tasks": 1,
       "total_earned": 1.0,
@@ -1115,11 +860,6 @@
     "5821212213": {
       "balance": 0,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 0,
       "completed_tasks": 0,
       "total_earned": 0,
@@ -1133,11 +873,6 @@
     "8304580675": {
       "balance": 0.0,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1781807785,
       "completed_tasks": 0,
       "total_earned": 1.2,
@@ -1151,11 +886,6 @@
     "8609456758": {
       "balance": 0,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 0,
       "completed_tasks": 0,
       "total_earned": 0,
@@ -1169,11 +899,6 @@
     "1773886389": {
       "balance": 0,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 0,
       "completed_tasks": 0,
       "total_earned": 0,
@@ -1187,11 +912,6 @@
     "5442222049": {
       "balance": 0.2,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1781815601,
       "completed_tasks": 0,
       "total_earned": 0.2,
@@ -1205,11 +925,6 @@
     "6058498905": {
       "balance": 0,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 0,
       "completed_tasks": 0,
       "total_earned": 0,
@@ -1228,11 +943,6 @@
         "45",
         "46"
       ],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1781816161,
       "completed_tasks": 6,
       "total_earned": 19.2,
@@ -1254,11 +964,6 @@
         "43",
         "64"
       ],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1782031557,
       "completed_tasks": 8,
       "total_earned": 21.4,
@@ -1275,11 +980,6 @@
         "38",
         "54"
       ],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 0,
       "completed_tasks": 2,
       "total_earned": 2.0,
@@ -1293,11 +993,6 @@
     "6161029024": {
       "balance": 0.2,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1781818320,
       "completed_tasks": 0,
       "total_earned": 0.2,
@@ -1311,11 +1006,6 @@
     "8510497310": {
       "balance": 0,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 0,
       "completed_tasks": 0,
       "total_earned": 0,
@@ -1329,11 +1019,6 @@
     "8031414696": {
       "balance": 0,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 0,
       "completed_tasks": 0,
       "total_earned": 0,
@@ -1350,11 +1035,6 @@
         "44",
         "51"
       ],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1782052661,
       "completed_tasks": 3,
       "total_earned": 8.4,
@@ -1371,11 +1051,6 @@
         "53",
         "57"
       ],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1781966646,
       "completed_tasks": 2,
       "total_earned": 3.4,
@@ -1389,11 +1064,6 @@
     "6324214210": {
       "balance": 0.2,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1782020986,
       "completed_tasks": 0,
       "total_earned": 0.2,
@@ -1407,11 +1077,6 @@
     "7853702709": {
       "balance": 0.2,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1781859281,
       "completed_tasks": 0,
       "total_earned": 0.2,
@@ -1425,11 +1090,6 @@
     "8806429831": {
       "balance": 0.2,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1781859295,
       "completed_tasks": 0,
       "total_earned": 0.2,
@@ -1443,11 +1103,6 @@
     "8478884644": {
       "balance": 0,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 0,
       "completed_tasks": 0,
       "total_earned": 0,
@@ -1461,11 +1116,6 @@
     "5379263036": {
       "balance": 0.2,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1781863877,
       "completed_tasks": 0,
       "total_earned": 0.2,
@@ -1482,11 +1132,6 @@
         "42",
         "50"
       ],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1781864103,
       "completed_tasks": 2,
       "total_earned": 7.2,
@@ -1500,11 +1145,6 @@
     "7578157415": {
       "balance": 0.2,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1781864183,
       "completed_tasks": 0,
       "total_earned": 0.2,
@@ -1520,11 +1160,6 @@
       "done_tasks": [
         "38"
       ],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1782049647,
       "completed_tasks": 1,
       "total_earned": 1.4,
@@ -1538,11 +1173,6 @@
     "8850526851": {
       "balance": 0,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 0,
       "completed_tasks": 0,
       "total_earned": 0,
@@ -1556,11 +1186,6 @@
     "7827244299": {
       "balance": 0.2,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1781946018,
       "completed_tasks": 0,
       "total_earned": 0.2,
@@ -1574,11 +1199,6 @@
     "8175217947": {
       "balance": 0.2,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1781946056,
       "completed_tasks": 0,
       "total_earned": 0.2,
@@ -1592,11 +1212,6 @@
     "8721133146": {
       "balance": 0.2,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1781952130,
       "completed_tasks": 0,
       "total_earned": 0.2,
@@ -1610,11 +1225,6 @@
     "8118631172": {
       "balance": 0,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 0,
       "completed_tasks": 0,
       "total_earned": 0,
@@ -1628,11 +1238,6 @@
     "6732439279": {
       "balance": 0,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 0,
       "completed_tasks": 0,
       "total_earned": 0,
@@ -1646,11 +1251,6 @@
     "8823804307": {
       "balance": 0,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 0,
       "completed_tasks": 0,
       "total_earned": 0,
@@ -1667,11 +1267,6 @@
         "42",
         "44"
       ],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 0,
       "completed_tasks": 2,
       "total_earned": 6.0,
@@ -1691,11 +1286,6 @@
         "46",
         "59"
       ],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1782049836,
       "completed_tasks": 5,
       "total_earned": 12.2,
@@ -1717,11 +1307,6 @@
         "53",
         "46"
       ],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1782394274,
       "completed_tasks": 7,
       "total_earned": 15.4,
@@ -1741,11 +1326,6 @@
     "547991053": {
       "balance": 0.2,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1782055566,
       "completed_tasks": 0,
       "total_earned": 0.2,
@@ -1763,11 +1343,6 @@
         "48",
         "38"
       ],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 0,
       "completed_tasks": 4,
       "total_earned": 16.0,
@@ -1785,11 +1360,6 @@
         "41",
         "43"
       ],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1782918041,
       "completed_tasks": 4,
       "total_earned": 7.4,
@@ -1809,11 +1379,6 @@
     "8922956948": {
       "balance": 0,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 0,
       "completed_tasks": 0,
       "total_earned": 0,
@@ -1827,11 +1392,6 @@
     "8862491905": {
       "balance": 0.0,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 0,
       "completed_tasks": 2,
       "total_earned": 5.0,
@@ -1853,11 +1413,6 @@
       "done_tasks": [
         "45"
       ],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1782840087,
       "completed_tasks": 2,
       "total_earned": 4.2,
@@ -1877,11 +1432,6 @@
     "8949642102": {
       "balance": 0.0,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 0,
       "completed_tasks": 1,
       "total_earned": 1.0,
@@ -1903,11 +1453,6 @@
       "done_tasks": [
         "43"
       ],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 0,
       "completed_tasks": 1,
       "total_earned": 2.0,
@@ -1929,11 +1474,6 @@
       "done_tasks": [
         "64"
       ],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1782847770,
       "completed_tasks": 1,
       "total_earned": 1.2,
@@ -1953,11 +1493,6 @@
     "8805045324": {
       "balance": 0,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 0,
       "completed_tasks": 0,
       "total_earned": 0,
@@ -1977,11 +1512,6 @@
     "8785643307": {
       "balance": 0,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 0,
       "completed_tasks": 0,
       "total_earned": 0,
@@ -2001,11 +1531,6 @@
     "8333791809": {
       "balance": 0,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 0,
       "completed_tasks": 0,
       "total_earned": 0,
@@ -2025,11 +1550,6 @@
     "8654965986": {
       "balance": 0.2,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1782895627,
       "completed_tasks": 0,
       "total_earned": 0.2,
@@ -2049,11 +1569,6 @@
     "8138693744": {
       "balance": 0.2,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 1782914886,
       "completed_tasks": 0,
       "total_earned": 0.2,
@@ -2073,11 +1588,6 @@
     "8999626537": {
       "balance": 0,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 0,
       "completed_tasks": 0,
       "total_earned": 0,
@@ -2097,11 +1607,6 @@
     "8533057804": {
       "balance": 0.0,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 0,
       "completed_tasks": 1,
       "total_earned": 2.0,
@@ -2121,11 +1626,6 @@
     "8961146885": {
       "balance": 0,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 0,
       "completed_tasks": 0,
       "total_earned": 0,
@@ -2147,11 +1647,6 @@
       "done_tasks": [
         "46"
       ],
-      "pending_tasks": [],
-      "waiting_task": null,
-      "withdraw_pending": false,
-      "withdraw_step": null,
-      "withdraw_to": null,
       "last_bonus": 0,
       "completed_tasks": 1,
       "total_earned": 2.0,
@@ -3875,1248 +3370,6 @@
     "withdraws": {}
   },
   "balance_logs": [
-    {
-      "time": 1781847338,
-      "user_id": "8431020779",
-      "old": 1.0,
-      "amount": -1.0,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "81"
-    },
-    {
-      "time": 1781847358,
-      "user_id": "8431020779",
-      "old": 0.0,
-      "amount": 1.0,
-      "new": 1.0,
-      "reason": "task_approved",
-      "request_id": "205"
-    },
-    {
-      "time": 1781847371,
-      "user_id": "8431020779",
-      "old": 1.0,
-      "amount": -1.0,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "82"
-    },
-    {
-      "time": 1781847878,
-      "user_id": "8431020779",
-      "old": 0.0,
-      "amount": 4.0,
-      "new": 4.0,
-      "reason": "task_approved",
-      "request_id": "207"
-    },
-    {
-      "time": 1781848082,
-      "user_id": "8431020779",
-      "old": 4.0,
-      "amount": 2.0,
-      "new": 6.0,
-      "reason": "task_approved",
-      "request_id": "209"
-    },
-    {
-      "time": 1781848085,
-      "user_id": "8431020779",
-      "old": 6.0,
-      "amount": 4.0,
-      "new": 10.0,
-      "reason": "task_approved",
-      "request_id": "208"
-    },
-    {
-      "time": 1781848160,
-      "user_id": "8431020779",
-      "old": 10.0,
-      "amount": -1.0,
-      "new": 9.0,
-      "reason": "withdraw_created",
-      "request_id": "83"
-    },
-    {
-      "time": 1781848937,
-      "user_id": "8431020779",
-      "old": 9.0,
-      "amount": -1.0,
-      "new": 8.0,
-      "reason": "withdraw_created",
-      "request_id": "84"
-    },
-    {
-      "time": 1781848945,
-      "user_id": "8431020779",
-      "old": 8.0,
-      "amount": -1.0,
-      "new": 7.0,
-      "reason": "withdraw_created",
-      "request_id": "85"
-    },
-    {
-      "time": 1781849754,
-      "user_id": "1631337389",
-      "old": 0.0,
-      "amount": 0.2,
-      "new": 0.2,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1781849954,
-      "user_id": "1631337389",
-      "old": 0.2,
-      "amount": 2.0,
-      "new": 2.2,
-      "reason": "task_approved",
-      "request_id": "211"
-    },
-    {
-      "time": 1781850100,
-      "user_id": "1631337389",
-      "old": 2.2,
-      "amount": -2.0,
-      "new": 0.2,
-      "reason": "withdraw_created",
-      "request_id": "86"
-    },
-    {
-      "time": 1781850252,
-      "user_id": "8431020779",
-      "old": 7.0,
-      "amount": -7.0,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "87"
-    },
-    {
-      "time": 1781850759,
-      "user_id": "7811863751",
-      "old": 0.0,
-      "amount": 4.0,
-      "new": 4.0,
-      "reason": "task_approved",
-      "request_id": "212"
-    },
-    {
-      "time": 1781850966,
-      "user_id": "7811863751",
-      "old": 4.0,
-      "amount": 4.0,
-      "new": 8.0,
-      "reason": "task_approved",
-      "request_id": "213"
-    },
-    {
-      "time": 1781851285,
-      "user_id": "7811863751",
-      "old": 8.0,
-      "amount": 2.0,
-      "new": 10.0,
-      "reason": "task_approved",
-      "request_id": "214"
-    },
-    {
-      "time": 1781851753,
-      "user_id": "7811863751",
-      "old": 10.0,
-      "amount": 2.0,
-      "new": 12.0,
-      "reason": "task_approved",
-      "request_id": "215"
-    },
-    {
-      "time": 1781851771,
-      "user_id": "7970947663",
-      "old": 8.0,
-      "amount": 2.0,
-      "new": 10.0,
-      "reason": "task_approved",
-      "request_id": "202"
-    },
-    {
-      "time": 1781851778,
-      "user_id": "8431020779",
-      "old": 0.0,
-      "amount": 2.0,
-      "new": 2.0,
-      "reason": "task_approved",
-      "request_id": "203"
-    },
-    {
-      "time": 1781851783,
-      "user_id": "8431020779",
-      "old": 2.0,
-      "amount": 2.0,
-      "new": 4.0,
-      "reason": "task_approved",
-      "request_id": "206"
-    },
-    {
-      "time": 1781851792,
-      "user_id": "1631337389",
-      "old": 0.2,
-      "amount": 2.0,
-      "new": 2.2,
-      "reason": "task_approved",
-      "request_id": "210"
-    },
-    {
-      "time": 1781851800,
-      "user_id": "7970947663",
-      "old": 10.0,
-      "amount": 4.0,
-      "new": 14.0,
-      "reason": "withdraw_rejected_return",
-      "request_id": "80"
-    },
-    {
-      "time": 1781851813,
-      "user_id": "7811863751",
-      "old": 12.0,
-      "amount": -12.0,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "88"
-    },
-    {
-      "time": 1781852126,
-      "user_id": "8431020779",
-      "old": 4.0,
-      "amount": 2.0,
-      "new": 6.0,
-      "reason": "task_approved",
-      "request_id": "216"
-    },
-    {
-      "time": 1781854112,
-      "user_id": "5224773359",
-      "old": 1.0,
-      "amount": -1.0,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "89"
-    },
-    {
-      "time": 1781854616,
-      "user_id": "8534240629",
-      "old": 1.2,
-      "amount": 0.2,
-      "new": 1.4,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1781855232,
-      "user_id": "8823804307",
-      "old": 0.0,
-      "amount": 2.0,
-      "new": 2.0,
-      "reason": "task_approved",
-      "request_id": "217"
-    },
-    {
-      "time": 1781855377,
-      "user_id": "8823804307",
-      "old": 2.0,
-      "amount": -2.0,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "90"
-    },
-    {
-      "time": 1781856767,
-      "user_id": "1253151803",
-      "old": -1.0,
-      "amount": 1.0,
-      "new": 0.0,
-      "reason": "admin_give",
-      "request_id": "manual"
-    },
-    {
-      "time": 1781859082,
-      "user_id": "1631337389",
-      "old": 2.2,
-      "amount": -2.2,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "91"
-    },
-    {
-      "time": 1781859100,
-      "user_id": "8804288474",
-      "old": 0.0,
-      "amount": 0.2,
-      "new": 0.2,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1781859281,
-      "user_id": "7853702709",
-      "old": 0.0,
-      "amount": 0.2,
-      "new": 0.2,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1781859295,
-      "user_id": "8806429831",
-      "old": 0.0,
-      "amount": 0.2,
-      "new": 0.2,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1781859371,
-      "user_id": "8341360449",
-      "old": 0.0,
-      "amount": 0.2,
-      "new": 0.2,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1781859524,
-      "user_id": "8804288474",
-      "old": 0.2,
-      "amount": 2.0,
-      "new": 2.2,
-      "reason": "task_approved",
-      "request_id": "220"
-    },
-    {
-      "time": 1781859719,
-      "user_id": "8341360449",
-      "old": 0.2,
-      "amount": 1.0,
-      "new": 1.2,
-      "reason": "task_approved",
-      "request_id": "222"
-    },
-    {
-      "time": 1781861040,
-      "user_id": "8322172966",
-      "old": 4.4,
-      "amount": -4.4,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "92"
-    },
-    {
-      "time": 1781861526,
-      "user_id": "8322172966",
-      "old": 0.0,
-      "amount": 4.4,
-      "new": 4.4,
-      "reason": "withdraw_rejected_return",
-      "request_id": "92"
-    },
-    {
-      "time": 1781861687,
-      "user_id": "8322172966",
-      "old": 4.4,
-      "amount": -4.4,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "93"
-    },
-    {
-      "time": 1781861955,
-      "user_id": "7811863751",
-      "old": 0.0,
-      "amount": 2.0,
-      "new": 2.0,
-      "reason": "task_approved",
-      "request_id": "223"
-    },
-    {
-      "time": 1781861990,
-      "user_id": "7811863751",
-      "old": 2.0,
-      "amount": -2.0,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "94"
-    },
-    {
-      "time": 1781863464,
-      "user_id": "8823804307",
-      "old": 0.0,
-      "amount": 0.5,
-      "new": 0.5,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1781863877,
-      "user_id": "5379263036",
-      "old": 0.0,
-      "amount": 0.2,
-      "new": 0.2,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1781864103,
-      "user_id": "7463485005",
-      "old": 0.0,
-      "amount": 0.2,
-      "new": 0.2,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1781864168,
-      "user_id": "7463485005",
-      "old": 0.2,
-      "amount": 4.0,
-      "new": 4.2,
-      "reason": "task_approved",
-      "request_id": "225"
-    },
-    {
-      "time": 1781864183,
-      "user_id": "7578157415",
-      "old": 0.0,
-      "amount": 0.2,
-      "new": 0.2,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1781864226,
-      "user_id": "7463485005",
-      "old": 4.2,
-      "amount": 3.0,
-      "new": 7.2,
-      "reason": "task_approved",
-      "request_id": "226"
-    },
-    {
-      "time": 1781864242,
-      "user_id": "8341360449",
-      "old": 1.2,
-      "amount": 2.0,
-      "new": 3.2,
-      "reason": "task_approved",
-      "request_id": "227"
-    },
-    {
-      "time": 1781864543,
-      "user_id": "8341360449",
-      "old": 3.2,
-      "amount": -3.2,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "95"
-    },
-    {
-      "time": 1781892511,
-      "user_id": "7106223662",
-      "old": 2.0,
-      "amount": -2.0,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "96"
-    },
-    {
-      "time": 1781892677,
-      "user_id": "6976874613",
-      "old": 2.0,
-      "amount": 3.0,
-      "new": 5.0,
-      "reason": "task_approved",
-      "request_id": "230"
-    },
-    {
-      "time": 1781892702,
-      "user_id": "6976874613",
-      "old": 5.0,
-      "amount": -5.0,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "97"
-    },
-    {
-      "time": 1781893627,
-      "user_id": "7106223662",
-      "old": 0.0,
-      "amount": 3.0,
-      "new": 3.0,
-      "reason": "task_approved",
-      "request_id": "231"
-    },
-    {
-      "time": 1781893665,
-      "user_id": "8258106768",
-      "old": 0.2,
-      "amount": 0.2,
-      "new": 0.4,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1781893801,
-      "user_id": "8258106768",
-      "old": 0.4,
-      "amount": 4.0,
-      "new": 4.4,
-      "reason": "task_approved",
-      "request_id": "232"
-    },
-    {
-      "time": 1781893998,
-      "user_id": "8258106768",
-      "old": 4.4,
-      "amount": 3.0,
-      "new": 7.4,
-      "reason": "task_approved",
-      "request_id": "233"
-    },
-    {
-      "time": 1781894093,
-      "user_id": "7106223662",
-      "old": 3.0,
-      "amount": -3.0,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "98"
-    },
-    {
-      "time": 1781894192,
-      "user_id": "8258106768",
-      "old": 7.4,
-      "amount": 3.0,
-      "new": 10.4,
-      "reason": "task_approved",
-      "request_id": "234"
-    },
-    {
-      "time": 1781894308,
-      "user_id": "8258106768",
-      "old": 10.4,
-      "amount": -10.0,
-      "new": 0.4,
-      "reason": "withdraw_created",
-      "request_id": "99"
-    },
-    {
-      "time": 1781894478,
-      "user_id": "6276600731",
-      "old": 0.2,
-      "amount": 0.2,
-      "new": 0.4,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1781894574,
-      "user_id": "6276600731",
-      "old": 0.4,
-      "amount": 3.0,
-      "new": 3.4,
-      "reason": "task_approved",
-      "request_id": "235"
-    },
-    {
-      "time": 1781894951,
-      "user_id": "6276600731",
-      "old": 3.4,
-      "amount": 3.0,
-      "new": 6.4,
-      "reason": "task_approved",
-      "request_id": "236"
-    },
-    {
-      "time": 1781894970,
-      "user_id": "6276600731",
-      "old": 6.4,
-      "amount": -6.4,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "100"
-    },
-    {
-      "time": 1781895136,
-      "user_id": "7106223662",
-      "old": 0.0,
-      "amount": 0.2,
-      "new": 0.2,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1781895171,
-      "user_id": "6276600731",
-      "old": 0.0,
-      "amount": 2.0,
-      "new": 2.0,
-      "reason": "task_approved",
-      "request_id": "239"
-    },
-    {
-      "time": 1781895192,
-      "user_id": "7106223662",
-      "old": 0.2,
-      "amount": 3.0,
-      "new": 3.2,
-      "reason": "task_approved",
-      "request_id": "238"
-    },
-    {
-      "time": 1781895341,
-      "user_id": "6276600731",
-      "old": 2.0,
-      "amount": 2.0,
-      "new": 4.0,
-      "reason": "task_approved",
-      "request_id": "240"
-    },
-    {
-      "time": 1781895554,
-      "user_id": "6276600731",
-      "old": 4.0,
-      "amount": 2.0,
-      "new": 6.0,
-      "reason": "task_approved",
-      "request_id": "242"
-    },
-    {
-      "time": 1781895587,
-      "user_id": "6276600731",
-      "old": 6.0,
-      "amount": 2.0,
-      "new": 8.0,
-      "reason": "task_approved",
-      "request_id": "241"
-    },
-    {
-      "time": 1781895814,
-      "user_id": "6276600731",
-      "old": 8.0,
-      "amount": 2.0,
-      "new": 10.0,
-      "reason": "task_approved",
-      "request_id": "243"
-    },
-    {
-      "time": 1781896102,
-      "user_id": "6276600731",
-      "old": 10.0,
-      "amount": -10.0,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "101"
-    },
-    {
-      "time": 1781896471,
-      "user_id": "6276600731",
-      "old": 0.0,
-      "amount": 2.0,
-      "new": 2.0,
-      "reason": "admin_give",
-      "request_id": "manual"
-    },
-    {
-      "time": 1781896923,
-      "user_id": "6276600731",
-      "old": 2.0,
-      "amount": -2.0,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "102"
-    },
-    {
-      "time": 1781897430,
-      "user_id": "6276600731",
-      "old": 0.0,
-      "amount": 2.0,
-      "new": 2.0,
-      "reason": "task_approved",
-      "request_id": "245"
-    },
-    {
-      "time": 1781898007,
-      "user_id": "6276600731",
-      "old": 2.0,
-      "amount": 2.0,
-      "new": 4.0,
-      "reason": "task_approved",
-      "request_id": "247"
-    },
-    {
-      "time": 1781898106,
-      "user_id": "8258106768",
-      "old": 0.4,
-      "amount": 2.0,
-      "new": 2.4,
-      "reason": "task_approved",
-      "request_id": "248"
-    },
-    {
-      "time": 1781898228,
-      "user_id": "6276600731",
-      "old": 4.0,
-      "amount": 1.0,
-      "new": 5.0,
-      "reason": "task_approved",
-      "request_id": "249"
-    },
-    {
-      "time": 1781898256,
-      "user_id": "6276600731",
-      "old": 5.0,
-      "amount": -5.0,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "103"
-    },
-    {
-      "time": 1781898274,
-      "user_id": "8258106768",
-      "old": 2.4,
-      "amount": -2.0,
-      "new": 0.4,
-      "reason": "withdraw_created",
-      "request_id": "104"
-    },
-    {
-      "time": 1781899635,
-      "user_id": "8031026603",
-      "old": 0.0,
-      "amount": 0.2,
-      "new": 0.2,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1781900408,
-      "user_id": "7106223662",
-      "old": 3.2,
-      "amount": -3.0,
-      "new": 0.2,
-      "reason": "withdraw_created",
-      "request_id": "105"
-    },
-    {
-      "time": 1781922567,
-      "user_id": "5224773359",
-      "old": 0.0,
-      "amount": 2.0,
-      "new": 2.0,
-      "reason": "task_approved",
-      "request_id": "251"
-    },
-    {
-      "time": 1781922591,
-      "user_id": "5224773359",
-      "old": 2.0,
-      "amount": 2.0,
-      "new": 4.0,
-      "reason": "task_approved",
-      "request_id": "252"
-    },
-    {
-      "time": 1781922706,
-      "user_id": "8258106768",
-      "old": 0.4,
-      "amount": 2.0,
-      "new": 2.4,
-      "reason": "task_approved",
-      "request_id": "250"
-    },
-    {
-      "time": 1781929723,
-      "user_id": "8431020779",
-      "old": 6.0,
-      "amount": 0.2,
-      "new": 6.2,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1781931252,
-      "user_id": "8431020779",
-      "old": 6.2,
-      "amount": -6.2,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "106"
-    },
-    {
-      "time": 1781931260,
-      "user_id": "8431020779",
-      "old": 0.0,
-      "amount": 6.2,
-      "new": 6.2,
-      "reason": "withdraw_rejected_return",
-      "request_id": "106"
-    },
-    {
-      "time": 1781931560,
-      "user_id": "5224773359",
-      "old": 4.0,
-      "amount": -4.0,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "107"
-    },
-    {
-      "time": 1781931622,
-      "user_id": "5224773359",
-      "old": 0.0,
-      "amount": 0.2,
-      "new": 0.2,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1781932137,
-      "user_id": "5224773359",
-      "old": 0.2,
-      "amount": 4.0,
-      "new": 4.2,
-      "reason": "withdraw_rejected_return",
-      "request_id": "107"
-    },
-    {
-      "time": 1781932265,
-      "user_id": "8534240629",
-      "old": 1.4,
-      "amount": 2.0,
-      "new": 3.4,
-      "reason": "task_approved",
-      "request_id": "253"
-    },
-    {
-      "time": 1781939245,
-      "user_id": "7130773702",
-      "old": 1.4,
-      "amount": 0.2,
-      "new": 1.6,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1781946018,
-      "user_id": "7827244299",
-      "old": 0.0,
-      "amount": 0.2,
-      "new": 0.2,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1781946056,
-      "user_id": "8175217947",
-      "old": 0.0,
-      "amount": 0.2,
-      "new": 0.2,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1781952130,
-      "user_id": "8721133146",
-      "old": 0.0,
-      "amount": 0.2,
-      "new": 0.2,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1781966646,
-      "user_id": "8341360449",
-      "old": 0.0,
-      "amount": 0.2,
-      "new": 0.2,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1781976529,
-      "user_id": "6744639669",
-      "old": 0.2,
-      "amount": 0.2,
-      "new": 0.4,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1781976599,
-      "user_id": "6744639669",
-      "old": 0.4,
-      "amount": 2.0,
-      "new": 2.4,
-      "reason": "task_approved",
-      "request_id": "254"
-    },
-    {
-      "time": 1781976794,
-      "user_id": "6744639669",
-      "old": 2.4,
-      "amount": 1.0,
-      "new": 3.4,
-      "reason": "task_approved",
-      "request_id": "255"
-    },
-    {
-      "time": 1781976905,
-      "user_id": "6744639669",
-      "old": 3.4,
-      "amount": 2.0,
-      "new": 5.4,
-      "reason": "task_approved",
-      "request_id": "256"
-    },
-    {
-      "time": 1782016578,
-      "user_id": "6744639669",
-      "old": 5.4,
-      "amount": -5.0,
-      "new": 0.4,
-      "reason": "withdraw_created",
-      "request_id": "108"
-    },
-    {
-      "time": 1782020982,
-      "user_id": "5728227541",
-      "old": 0.2,
-      "amount": 0.2,
-      "new": 0.4,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1782020986,
-      "user_id": "6324214210",
-      "old": 0.0,
-      "amount": 0.2,
-      "new": 0.2,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1782021540,
-      "user_id": "8258106768",
-      "old": 2.4,
-      "amount": 0.2,
-      "new": 2.6,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1782021614,
-      "user_id": "6276600731",
-      "old": 0.0,
-      "amount": 0.2,
-      "new": 0.2,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1782021623,
-      "user_id": "8258106768",
-      "old": 2.6,
-      "amount": 2.0,
-      "new": 4.6,
-      "reason": "task_approved",
-      "request_id": "257"
-    },
-    {
-      "time": 1782021707,
-      "user_id": "8258106768",
-      "old": 4.6,
-      "amount": -4.0,
-      "new": 0.6,
-      "reason": "withdraw_created",
-      "request_id": "109"
-    },
-    {
-      "time": 1782024411,
-      "user_id": "5609899938",
-      "old": 4.0,
-      "amount": 2.0,
-      "new": 6.0,
-      "reason": "task_approved",
-      "request_id": "258"
-    },
-    {
-      "time": 1782024458,
-      "user_id": "5609899938",
-      "old": 6.0,
-      "amount": 2.0,
-      "new": 8.0,
-      "reason": "task_approved",
-      "request_id": "259"
-    },
-    {
-      "time": 1782024473,
-      "user_id": "5609899938",
-      "old": 8.0,
-      "amount": -8.0,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "110"
-    },
-    {
-      "time": 1782024754,
-      "user_id": "8317326202",
-      "old": 0.0,
-      "amount": 2.0,
-      "new": 2.0,
-      "reason": "task_approved",
-      "request_id": "261"
-    },
-    {
-      "time": 1782024883,
-      "user_id": "8317326202",
-      "old": 2.0,
-      "amount": 2.0,
-      "new": 4.0,
-      "reason": "task_approved",
-      "request_id": "262"
-    },
-    {
-      "time": 1782024952,
-      "user_id": "8317326202",
-      "old": 4.0,
-      "amount": 1.0,
-      "new": 5.0,
-      "reason": "task_approved",
-      "request_id": "264"
-    },
-    {
-      "time": 1782025096,
-      "user_id": "8317326202",
-      "old": 5.0,
-      "amount": -5.0,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "111"
-    },
-    {
-      "time": 1782025243,
-      "user_id": "5224773359",
-      "old": 4.2,
-      "amount": -4.2,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "112"
-    },
-    {
-      "time": 1782025362,
-      "user_id": "5609899938",
-      "old": 0.0,
-      "amount": 3.0,
-      "new": 3.0,
-      "reason": "task_approved",
-      "request_id": "265"
-    },
-    {
-      "time": 1782025571,
-      "user_id": "5609899938",
-      "old": 3.0,
-      "amount": 2.0,
-      "new": 5.0,
-      "reason": "task_approved",
-      "request_id": "266"
-    },
-    {
-      "time": 1782025592,
-      "user_id": "5609899938",
-      "old": 5.0,
-      "amount": -5.0,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "113"
-    },
-    {
-      "time": 1782025869,
-      "user_id": "8317326202",
-      "old": 0.0,
-      "amount": 2.0,
-      "new": 2.0,
-      "reason": "task_approved",
-      "request_id": "267"
-    },
-    {
-      "time": 1782025998,
-      "user_id": "8317326202",
-      "old": 2.0,
-      "amount": 2.0,
-      "new": 4.0,
-      "reason": "task_approved",
-      "request_id": "268"
-    },
-    {
-      "time": 1782026065,
-      "user_id": "8317326202",
-      "old": 4.0,
-      "amount": 2.0,
-      "new": 6.0,
-      "reason": "task_approved",
-      "request_id": "269"
-    },
-    {
-      "time": 1782026081,
-      "user_id": "8317326202",
-      "old": 6.0,
-      "amount": -6.0,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "114"
-    },
-    {
-      "time": 1782031557,
-      "user_id": "7811863751",
-      "old": 0.0,
-      "amount": 0.2,
-      "new": 0.2,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1782036649,
-      "user_id": "6276600731",
-      "old": 0.2,
-      "amount": 3.0,
-      "new": 3.2,
-      "reason": "task_approved",
-      "request_id": "273"
-    },
-    {
-      "time": 1782036749,
-      "user_id": "6276600731",
-      "old": 3.2,
-      "amount": -3.2,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "115"
-    },
-    {
-      "time": 1782037036,
-      "user_id": "8258106768",
-      "old": 0.6,
-      "amount": 3.0,
-      "new": 3.6,
-      "reason": "task_approved",
-      "request_id": "274"
-    },
-    {
-      "time": 1782040204,
-      "user_id": "6276600731",
-      "old": 0.0,
-      "amount": 1.0,
-      "new": 1.0,
-      "reason": "task_approved",
-      "request_id": "277"
-    },
-    {
-      "time": 1782040231,
-      "user_id": "8258106768",
-      "old": 3.6,
-      "amount": 1.0,
-      "new": 4.6,
-      "reason": "task_approved",
-      "request_id": "278"
-    },
-    {
-      "time": 1782040378,
-      "user_id": "6276600731",
-      "old": 1.0,
-      "amount": -1.0,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "116"
-    },
-    {
-      "time": 1782040403,
-      "user_id": "8258106768",
-      "old": 4.6,
-      "amount": -4.0,
-      "new": 0.6,
-      "reason": "withdraw_created",
-      "request_id": "117"
-    },
-    {
-      "time": 1782042342,
-      "user_id": "8380620424",
-      "old": 0.0,
-      "amount": 2.0,
-      "new": 2.0,
-      "reason": "task_approved",
-      "request_id": "280"
-    },
-    {
-      "time": 1782042392,
-      "user_id": "8380620424",
-      "old": 2.0,
-      "amount": -2.0,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "118"
-    },
-    {
-      "time": 1782044501,
-      "user_id": "1401650206",
-      "old": 0.0,
-      "amount": 2.0,
-      "new": 2.0,
-      "reason": "task_approved",
-      "request_id": "281"
-    },
-    {
-      "time": 1782044608,
-      "user_id": "1401650206",
-      "old": 2.0,
-      "amount": 3.0,
-      "new": 5.0,
-      "reason": "task_approved",
-      "request_id": "282"
-    },
-    {
-      "time": 1782044785,
-      "user_id": "7811863751",
-      "old": 0.2,
-      "amount": 1.0,
-      "new": 1.2,
-      "reason": "task_approved",
-      "request_id": "283"
-    },
-    {
-      "time": 1782045000,
-      "user_id": "1401650206",
-      "old": 5.0,
-      "amount": 3.0,
-      "new": 8.0,
-      "reason": "task_approved",
-      "request_id": "286"
-    },
-    {
-      "time": 1782045177,
-      "user_id": "1401650206",
-      "old": 8.0,
-      "amount": -8.0,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "119"
-    },
-    {
-      "time": 1782046192,
-      "user_id": "7937166836",
-      "old": 0.0,
-      "amount": 3.0,
-      "new": 3.0,
-      "reason": "task_approved",
-      "request_id": "287"
-    },
     {
       "time": 1782046366,
       "user_id": "7937166836",
