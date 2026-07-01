@@ -974,7 +974,7 @@
       "banned": false,
       "ban_reason": "",
       "created_at": 1782933817,
-      "updated_at": 1782933826,
+      "updated_at": 1782933823,
       "user_id": 7811863751,
       "first_name": "16:58 passed out",
       "last_name": "",
@@ -1468,7 +1468,7 @@
       "banned": false,
       "ban_reason": "",
       "created_at": 1782845579,
-      "updated_at": 1782846366,
+      "updated_at": 1782933826,
       "user_id": 7779046668,
       "username": "Redwinso",
       "first_name": "Redwinso #drl #mmq",
@@ -3384,15 +3384,6 @@
   },
   "balance_logs": [
     {
-      "time": 1781863877,
-      "user_id": "5379263036",
-      "old": 0.0,
-      "amount": 0.2,
-      "new": 0.2,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
       "time": 1781864103,
       "user_id": "7463485005",
       "old": 0.0,
@@ -4282,6 +4273,15 @@
       "new": 0.0,
       "reason": "withdraw_created",
       "request_id": "94"
+    },
+    {
+      "time": 1781863464,
+      "user_id": "8823804307",
+      "old": 0.0,
+      "amount": 0.5,
+      "new": 0.5,
+      "reason": "add",
+      "request_id": ""
     }
   ],
   "total_paid": 34.6,
