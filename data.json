@@ -1817,7 +1817,15 @@
   "submits": {},
   "withdraws": {},
   "withdraw_blocks": {},
-  "promocodes": {},
+  "promocodes": {
+    "GMPSTART": {
+      "amount": 1.0,
+      "left": 10,
+      "created_by": 7837011810,
+      "used_by": [],
+      "time": 1782933971
+    }
+  },
   "processed_requests": {
     "submits": {
       "183": {
