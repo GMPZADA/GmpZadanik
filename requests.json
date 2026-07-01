@@ -1,8 +1,26 @@
 {
-  "submits": {},
+  "submits": {
+    "348": {
+      "user_id": 8258106768,
+      "username": "trqLemon4ik",
+      "task_id": "66",
+      "reward": 1.0,
+      "status": "wait",
+      "photo_file_id": "AgACAgIAAxkBAAIzsGpFcEcVlpTy8F1qrBD_7RnVsY62AALfHWsbfb0oSstZXLM1-Z3dAQADAgADdwADPAQ",
+      "time": 1782935635,
+      "admin_sent": true,
+      "admin_sent_time": 1782935635,
+      "admin_message_id": "sending"
+    }
+  },
   "withdraws": {},
   "admin_sent": {
-    "submits": {},
+    "submits": {
+      "348": {
+        "message_id": "sending",
+        "time": 1782935635
+      }
+    },
     "withdraws": {}
   },
   "user_states": {},
