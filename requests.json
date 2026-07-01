@@ -1,27 +1,9 @@
 {
   "submits": {},
-  "withdraws": {
-    "142": {
-      "user_id": 8853924649,
-      "username": "djdjdjfjccj",
-      "to": "@djdjrjdjdcj",
-      "amount": 2.0,
-      "status": "wait",
-      "time": 1782930227,
-      "source_message_id": 12785,
-      "admin_sent": true,
-      "admin_sent_time": 1782930232,
-      "admin_message_id": 12787
-    }
-  },
+  "withdraws": {},
   "admin_sent": {
     "submits": {},
-    "withdraws": {
-      "142": {
-        "message_id": 12787,
-        "time": 1782930232
-      }
-    }
+    "withdraws": {}
   },
   "user_states": {},
   "withdraw_requests": {},
