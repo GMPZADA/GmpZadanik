@@ -1,8 +1,26 @@
 {
-  "submits": {},
+  "submits": {
+    "347": {
+      "user_id": 7779046668,
+      "username": "Redwinso",
+      "task_id": "66",
+      "reward": 1.0,
+      "status": "wait",
+      "photo_file_id": "AgACAgIAAxkBAAIydGpFaVOEr5EHxaEFYoQy3F_yT2xQAAKYFWsbqE4wSkMjfe5eJSRAAQADAgADeQADPAQ",
+      "time": 1782933863,
+      "admin_sent": true,
+      "admin_sent_time": 1782933863,
+      "admin_message_id": "sending"
+    }
+  },
   "withdraws": {},
   "admin_sent": {
-    "submits": {},
+    "submits": {
+      "347": {
+        "message_id": "sending",
+        "time": 1782933863
+      }
+    },
     "withdraws": {}
   },
   "user_states": {},
