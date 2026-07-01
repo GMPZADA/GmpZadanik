@@ -485,7 +485,7 @@
       "ban_reason": ""
     },
     "8258106768": {
-      "balance": 6.0,
+      "balance": 6.2,
       "done_tasks": [
         "42",
         "49",
@@ -500,9 +500,9 @@
         "41",
         "54"
       ],
-      "last_bonus": 1782285548,
+      "last_bonus": 1782935402,
       "completed_tasks": 15,
-      "total_earned": 26.0,
+      "total_earned": 26.2,
       "withdraw_count": 4,
       "withdrawn_total": 20.0,
       "fines_total": 0,
@@ -3423,15 +3423,6 @@
   },
   "balance_logs": [
     {
-      "time": 1781898228,
-      "user_id": "6276600731",
-      "old": 4.0,
-      "amount": 1.0,
-      "new": 5.0,
-      "reason": "task_approved",
-      "request_id": "249"
-    },
-    {
       "time": 1781898256,
       "user_id": "6276600731",
       "old": 5.0,
@@ -4321,6 +4312,15 @@
       "new": 4.0,
       "reason": "task_approved",
       "request_id": "247"
+    },
+    {
+      "time": 1782935402,
+      "user_id": "8258106768",
+      "old": 6.0,
+      "amount": 0.2,
+      "new": 6.2,
+      "reason": "add",
+      "request_id": ""
     }
   ],
   "total_paid": 34.6,
