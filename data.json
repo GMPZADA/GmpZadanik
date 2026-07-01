@@ -242,7 +242,14 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "banned": false,
-      "ban_reason": ""
+      "ban_reason": "",
+      "created_at": 1782934750,
+      "updated_at": 1782934750,
+      "user_id": 7441149510,
+      "username": "Rognogor",
+      "first_name": "Злой",
+      "last_name": "",
+      "language_code": "ru"
     },
     "7979994199": {
       "balance": 2.2,
