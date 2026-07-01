@@ -1461,20 +1461,20 @@
       "language_code": "ru"
     },
     "7779046668": {
-      "balance": 0.2,
+      "balance": 0.0,
       "done_tasks": [
         "43"
       ],
-      "last_bonus": 1782934345,
+      "last_bonus": 0,
       "completed_tasks": 1,
-      "total_earned": 2.2,
+      "total_earned": 2.0,
       "withdraw_count": 1,
       "withdrawn_total": 2.0,
       "fines_total": 0,
       "banned": false,
       "ban_reason": "",
       "created_at": 1782845579,
-      "updated_at": 1782934345,
+      "updated_at": 1782934346,
       "user_id": 7779046668,
       "username": "Redwinso",
       "first_name": "Redwinso #drl #mmq",
@@ -3408,24 +3408,6 @@
   },
   "balance_logs": [
     {
-      "time": 1781894308,
-      "user_id": "8258106768",
-      "old": 10.4,
-      "amount": -10.0,
-      "new": 0.4,
-      "reason": "withdraw_created",
-      "request_id": "99"
-    },
-    {
-      "time": 1781894478,
-      "user_id": "6276600731",
-      "old": 0.2,
-      "amount": 0.2,
-      "new": 0.4,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
       "time": 1781894574,
       "user_id": "6276600731",
       "old": 0.4,
@@ -4306,6 +4288,24 @@
       "new": 0.2,
       "reason": "add",
       "request_id": ""
+    },
+    {
+      "time": 1781894093,
+      "user_id": "7106223662",
+      "old": 3.0,
+      "amount": -3.0,
+      "new": 0.0,
+      "reason": "withdraw_created",
+      "request_id": "98"
+    },
+    {
+      "time": 1781894192,
+      "user_id": "8258106768",
+      "old": 7.4,
+      "amount": 3.0,
+      "new": 10.4,
+      "reason": "task_approved",
+      "request_id": "234"
     }
   ],
   "total_paid": 34.6,
