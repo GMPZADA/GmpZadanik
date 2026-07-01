@@ -951,7 +951,13 @@
       "fines_total": 0,
       "username": "neevspominay",
       "banned": false,
-      "ban_reason": ""
+      "ban_reason": "",
+      "created_at": 1782934304,
+      "updated_at": 1782934304,
+      "user_id": 7970947663,
+      "first_name": "shogenv",
+      "last_name": "",
+      "language_code": "ru"
     },
     "7811863751": {
       "balance": 1.4,
