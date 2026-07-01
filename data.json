@@ -2077,18 +2077,6 @@
   },
   "required_tasks": [],
   "submits": {
-    "333": {
-      "user_id": 7130773702,
-      "username": "kurokcek",
-      "task_id": "59",
-      "reward": 2.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIvp2pEGj_xl4MZGR5dUNIl68dfDZtbAAK3IWsbn5UhSt3L1LN_VgEgAQADAgADeQADPAQ",
-      "time": 1782848075,
-      "admin_sent": true,
-      "admin_sent_time": 1782875349,
-      "admin_message_id": 12223
-    },
     "334": {
       "user_id": 7130773702,
       "username": "kurokcek",
@@ -3114,6 +3102,13 @@
         "user_id": "6978702813",
         "note": "task #64",
         "time": 1782875359
+      },
+      "333": {
+        "status": "rejected",
+        "admin_id": 7837011810,
+        "user_id": "7130773702",
+        "note": "task #59",
+        "time": 1782875367
       }
     },
     "withdraws": {
