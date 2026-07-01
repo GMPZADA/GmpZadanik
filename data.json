@@ -1778,9 +1778,7 @@
       "done_tasks": [
         "38"
       ],
-      "pending_tasks": [
-        "50"
-      ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
@@ -2255,20 +2253,7 @@
     }
   },
   "required_tasks": [],
-  "submits": {
-    "337": {
-      "user_id": 8694892873,
-      "username": "Grade_top",
-      "task_id": "50",
-      "reward": 3.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIxGGpFLnStxls1l8RW1MxhV4DefC4TAAJxG2sba4YpSrd-GyIFdyl6AQADAgADeQADPAQ",
-      "time": 1782918774,
-      "admin_sent": true,
-      "admin_sent_time": 1782918777,
-      "admin_message_id": 12570
-    }
-  },
+  "submits": {},
   "withdraws": {},
   "withdraw_blocks": {},
   "promocodes": {},
@@ -3309,6 +3294,13 @@
         "user_id": "8694892873",
         "note": "task #41",
         "time": 1782918634
+      },
+      "337": {
+        "status": "rejected",
+        "admin_id": 7837011810,
+        "user_id": "8694892873",
+        "note": "task #50",
+        "time": 1782918829
       }
     },
     "withdraws": {
@@ -4285,10 +4277,6 @@
       "335": {
         "message_id": 12392,
         "time": 1782915916
-      },
-      "337": {
-        "message_id": 12570,
-        "time": 1782918777
       }
     },
     "withdraws": {
