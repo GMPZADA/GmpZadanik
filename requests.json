@@ -9,16 +9,16 @@
       "photo_file_id": "AgACAgIAAxkBAAIzsGpFcEcVlpTy8F1qrBD_7RnVsY62AALfHWsbfb0oSstZXLM1-Z3dAQADAgADdwADPAQ",
       "time": 1782935635,
       "admin_sent": true,
-      "admin_sent_time": 1782935635,
-      "admin_message_id": "sending"
+      "admin_sent_time": 1782935637,
+      "admin_message_id": 13234
     }
   },
   "withdraws": {},
   "admin_sent": {
     "submits": {
       "348": {
-        "message_id": "sending",
-        "time": 1782935635
+        "message_id": 13234,
+        "time": 1782935637
       }
     },
     "withdraws": {}
