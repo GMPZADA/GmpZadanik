@@ -1793,8 +1793,10 @@
         "38",
         "41"
       ],
-      "pending_tasks": [],
-      "waiting_task": "42",
+      "pending_tasks": [
+        "42"
+      ],
+      "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
@@ -2275,7 +2277,20 @@
     }
   },
   "required_tasks": [],
-  "submits": {},
+  "submits": {
+    "339": {
+      "user_id": 8694892873,
+      "username": "Grade_top",
+      "task_id": "42",
+      "reward": 3.0,
+      "status": "wait",
+      "photo_file_id": "AgACAgIAAxkBAAIxYWpFNchlhbezfKgleMHPeAXpBzM-AAKRG2sba4YpStsWDYFyLY00AQADAgADeQADPAQ",
+      "time": 1782920651,
+      "admin_sent": true,
+      "admin_sent_time": 1782920651,
+      "admin_message_id": "sending"
+    }
+  },
   "withdraws": {},
   "withdraw_blocks": {},
   "promocodes": {},
@@ -4306,6 +4321,10 @@
       "335": {
         "message_id": 12392,
         "time": 1782915916
+      },
+      "339": {
+        "message_id": "sending",
+        "time": 1782920651
       }
     },
     "withdraws": {
@@ -6635,7 +6654,7 @@
   "total_paid": 26.6,
   "total_withdrawals": 10,
   "last_task_id": 66,
-  "last_submit_id": 338,
+  "last_submit_id": 339,
   "last_withdraw_id": 139,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "withdraw_disabled_by_admin": false,
