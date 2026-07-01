@@ -368,6 +368,22 @@ def fix_requests(req):
     return req
 
 
+def strip_legacy_requests_from_data(data):
+    """
+    ВАЖНО: data.json больше НЕ является источником заявок.
+    Старые submits/withdraws/admin_sent из data.json очищаются при чтении,
+    чтобы requests.json не подтягивал старый мусор из data.json.
+    Активные заявки теперь живут только в requests.json.
+    """
+    data = fix_data(data or empty_data())
+    data["submits"] = {}
+    data["withdraws"] = {}
+    data.setdefault("admin_sent", {"submits": {}, "withdraws": {}})
+    data["admin_sent"]["submits"] = {}
+    data["admin_sent"]["withdraws"] = {}
+    return data
+
+
 def read_local_requests_raw():
     if not os.path.exists(LOCAL_REQUESTS_FILE):
         return empty_requests()
@@ -510,7 +526,7 @@ def read_local_data_raw():
         return None
     try:
         with open(LOCAL_DATA_FILE, "r", encoding="utf-8") as f:
-            return fix_data(json.load(f))
+            return strip_legacy_requests_from_data(json.load(f))
     except Exception as e:
         print("Read local raw error:", e)
         backup_bad_data_file()
@@ -534,7 +550,7 @@ def read_github_data_raw():
             return None
         content = r.json()["content"]
         file_text = base64.b64decode(content).decode("utf-8")
-        return fix_data(json.loads(file_text))
+        return strip_legacy_requests_from_data(json.loads(file_text))
     except Exception as e:
         print("Read GitHub raw exception:", e)
         return None
@@ -585,25 +601,41 @@ def merge_data(primary, secondary):
     processed_submits = {str(x).strip().replace("#", "") for x in primary.get("processed_requests", {}).get("submits", {}).keys()} | {str(x).strip().replace("#", "") for x in result.get("processed_requests", {}).get("submits", {}).keys()}
     processed_withdraws = {str(x).strip().replace("#", "") for x in primary.get("processed_requests", {}).get("withdraws", {}).keys()} | {str(x).strip().replace("#", "") for x in result.get("processed_requests", {}).get("withdraws", {}).keys()}
 
-    for key in ["submits", "withdraws", "withdraw_blocks", "promocodes"]:
+    # Постоянные словари объединяем как раньше.
+    for key in ["withdraw_blocks", "promocodes"]:
         result.setdefault(key, {})
         for k, v in primary.get(key, {}).items():
-            clean_k = str(k).strip().replace("#", "")
-            if key == "submits" and clean_k in processed_submits:
-                result[key].pop(str(k), None)
-                continue
-            if key == "withdraws" and clean_k in processed_withdraws:
-                result[key].pop(str(k), None)
-                continue
             result[key][str(k)] = v
 
-    for section in ["processed_requests", "admin_sent"]:
-        result.setdefault(section, {})
-        for kind, values in primary.get(section, {}).items():
-            result[section].setdefault(kind, {})
-            if isinstance(values, dict):
-                for k, v in values.items():
-                    result[section][kind][str(k)] = v
+    # ВАЖНО: data.json больше НЕ источник заявок.
+    # Старые submits/withdraws из secondary/data.json не переносим.
+    # Оставляем только свежие активные заявки из primary, которые появились в текущей работе бота.
+    result["submits"] = {}
+    for k, v in primary.get("submits", {}).items():
+        clean_k = str(k).strip().replace("#", "")
+        if isinstance(v, dict) and v.get("status") == "wait" and clean_k not in processed_submits:
+            result["submits"][str(k)] = v
+
+    result["withdraws"] = {}
+    for k, v in primary.get("withdraws", {}).items():
+        clean_k = str(k).strip().replace("#", "")
+        if isinstance(v, dict) and v.get("status") == "wait" and clean_k not in processed_withdraws:
+            result["withdraws"][str(k)] = v
+
+    # processed_requests — постоянная защита от повторной обработки.
+    result.setdefault("processed_requests", {})
+    for kind, values in primary.get("processed_requests", {}).items():
+        result["processed_requests"].setdefault(kind, {})
+        if isinstance(values, dict):
+            for k, v in values.items():
+                result["processed_requests"][kind][str(k)] = v
+
+    # admin_sent — временное, берём только из текущей памяти, старый data.json не подтягиваем.
+    result["admin_sent"] = {"submits": {}, "withdraws": {}}
+    for kind, values in primary.get("admin_sent", {}).items():
+        if isinstance(values, dict):
+            for k, v in values.items():
+                result["admin_sent"].setdefault(kind, {})[str(k)] = v
 
     # Обязательные задания: объединяем и оставляем только существующие.
     req = [str(x) for x in result.get("required_tasks", [])] + [str(x) for x in primary.get("required_tasks", [])]
@@ -702,7 +734,7 @@ def load_data_from_github_only():
 
         content = r.json()["content"]
         file_text = base64.b64decode(content).decode("utf-8")
-        return attach_requests_to_data(json.loads(file_text))
+        return attach_requests_to_data(strip_legacy_requests_from_data(json.loads(file_text)))
     except Exception as e:
         print("GitHub fresh load exception:", e)
         return None
