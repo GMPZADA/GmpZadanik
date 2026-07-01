@@ -1768,7 +1768,7 @@
       "username": "missnipery"
     },
     "8694892873": {
-      "balance": 1.2,
+      "balance": 1.4,
       "done_tasks": [
         "38"
       ],
@@ -1777,9 +1777,9 @@
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
-      "last_bonus": 1782115713,
+      "last_bonus": 1782918034,
       "completed_tasks": 1,
-      "total_earned": 1.2,
+      "total_earned": 1.4,
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
@@ -6516,6 +6516,15 @@
       "new": 0.0,
       "reason": "withdraw_created",
       "request_id": "138"
+    },
+    {
+      "time": 1782918034,
+      "user_id": "8694892873",
+      "old": 1.2,
+      "amount": 0.2,
+      "new": 1.4,
+      "reason": "add",
+      "request_id": ""
     }
   ],
   "total_paid": 25.2,
