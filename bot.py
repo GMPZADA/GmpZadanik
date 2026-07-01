@@ -20,8 +20,10 @@ GITHUB_TOKEN = (os.getenv("GITHUB_TOKEN") or "").strip()
 GITHUB_REPO = (os.getenv("GITHUB_REPO") or "").strip()  # пример: GMPZADA/GmpZadanik
 GITHUB_BRANCH = (os.getenv("GITHUB_BRANCH") or "main").strip()
 GITHUB_FILE = "data.json"
+GITHUB_REQUESTS_FILE = "requests.json"
 
 LOCAL_DATA_FILE = "data.json"
+LOCAL_REQUESTS_FILE = "requests.json"
 BONUS_AMOUNT = 0.2
 BONUS_COOLDOWN = 24 * 60 * 60
 
@@ -330,8 +332,176 @@ def github_headers():
     }
 
 
-def github_url():
-    return f"https://api.github.com/repos/{GITHUB_REPO}/contents/{GITHUB_FILE}"
+def github_url(file_name=GITHUB_FILE):
+    return f"https://api.github.com/repos/{GITHUB_REPO}/contents/{file_name}"
+
+
+def empty_requests():
+    """Временный файл: тут живут только активные заявки и состояния."""
+    return {
+        "submits": {},
+        "withdraws": {},
+        "admin_sent": {"submits": {}, "withdraws": {}},
+        "user_states": {},
+        # старые названия оставлены для понятности, бот ими не пользуется напрямую
+        "withdraw_requests": {},
+        "photo_requests": {},
+        "pending_tasks": {}
+    }
+
+
+def fix_requests(req):
+    base = empty_requests()
+    if not isinstance(req, dict):
+        req = {}
+    for key, value in base.items():
+        if key not in req:
+            req[key] = value
+    if not isinstance(req.get("submits"), dict):
+        req["submits"] = {}
+    if not isinstance(req.get("withdraws"), dict):
+        req["withdraws"] = {}
+    if not isinstance(req.get("admin_sent"), dict):
+        req["admin_sent"] = {"submits": {}, "withdraws": {}}
+    req["admin_sent"].setdefault("submits", {})
+    req["admin_sent"].setdefault("withdraws", {})
+    return req
+
+
+def read_local_requests_raw():
+    if not os.path.exists(LOCAL_REQUESTS_FILE):
+        return empty_requests()
+    try:
+        with open(LOCAL_REQUESTS_FILE, "r", encoding="utf-8") as f:
+            return fix_requests(json.load(f))
+    except Exception as e:
+        print("Read local requests error:", e)
+        return empty_requests()
+
+
+def read_github_requests_raw():
+    if not (GITHUB_TOKEN and GITHUB_REPO):
+        return empty_requests()
+    try:
+        r = requests.get(
+            github_url(GITHUB_REQUESTS_FILE),
+            headers=github_headers(),
+            params={"ref": GITHUB_BRANCH},
+            timeout=10
+        )
+        if r.status_code != 200:
+            if r.status_code != 404:
+                print("Read GitHub requests error:", r.status_code, r.text)
+            return empty_requests()
+        content = r.json()["content"]
+        file_text = base64.b64decode(content).decode("utf-8")
+        return fix_requests(json.loads(file_text))
+    except Exception as e:
+        print("Read GitHub requests exception:", e)
+        return empty_requests()
+
+
+def merge_requests(primary, secondary):
+    primary = fix_requests(primary or empty_requests())
+    secondary = fix_requests(secondary or empty_requests())
+    result = fix_requests(json.loads(json.dumps(secondary, ensure_ascii=False)))
+    for key in ["submits", "withdraws"]:
+        result.setdefault(key, {})
+        for rid, value in primary.get(key, {}).items():
+            result[key][str(rid)] = value
+    result.setdefault("admin_sent", {"submits": {}, "withdraws": {}})
+    for kind in ["submits", "withdraws"]:
+        result["admin_sent"].setdefault(kind, {})
+        for rid, value in primary.get("admin_sent", {}).get(kind, {}).items():
+            result["admin_sent"][kind][str(rid)] = value
+    return fix_requests(result)
+
+
+def load_requests():
+    local_req = read_local_requests_raw()
+    github_req = read_github_requests_raw()
+    return merge_requests(local_req, github_req)
+
+
+def attach_requests_to_data(data):
+    """Подклеивает временные заявки из requests.json к data, чтобы остальной bot.py работал как раньше."""
+    data = fix_data(data or empty_data())
+    req = load_requests()
+    data["submits"] = req.get("submits", {})
+    data["withdraws"] = req.get("withdraws", {})
+    data.setdefault("admin_sent", {"submits": {}, "withdraws": {}})
+    for kind in ["submits", "withdraws"]:
+        data["admin_sent"].setdefault(kind, {})
+        data["admin_sent"][kind].update(req.get("admin_sent", {}).get(kind, {}))
+    cleanup_closed_requests(data)
+    return fix_data(data)
+
+
+def split_requests_from_data(data):
+    """Достаёт активные заявки в requests.json, а data.json оставляет чистым."""
+    data = fix_data(data or empty_data())
+    req = empty_requests()
+    req["submits"] = {
+        str(k): v for k, v in data.get("submits", {}).items()
+        if isinstance(v, dict) and v.get("status") == "wait"
+    }
+    req["withdraws"] = {
+        str(k): v for k, v in data.get("withdraws", {}).items()
+        if isinstance(v, dict) and v.get("status") == "wait"
+    }
+    req["admin_sent"] = data.get("admin_sent", {"submits": {}, "withdraws": {}})
+    req = fix_requests(req)
+
+    clean = json.loads(json.dumps(data, ensure_ascii=False))
+    clean["submits"] = {}
+    clean["withdraws"] = {}
+    clean.setdefault("admin_sent", {"submits": {}, "withdraws": {}})
+    clean["admin_sent"]["submits"] = {}
+    clean["admin_sent"]["withdraws"] = {}
+    return clean, req
+
+
+def save_requests(req):
+    req = fix_requests(req)
+    try:
+        tmp_file = LOCAL_REQUESTS_FILE + ".tmp"
+        with open(tmp_file, "w", encoding="utf-8") as f:
+            json.dump(req, f, ensure_ascii=False, indent=2)
+        os.replace(tmp_file, LOCAL_REQUESTS_FILE)
+    except Exception as e:
+        print("Local requests save exception:", e)
+
+    if GITHUB_TOKEN and GITHUB_REPO:
+        try:
+            sha = None
+            r = requests.get(
+                github_url(GITHUB_REQUESTS_FILE),
+                headers=github_headers(),
+                params={"ref": GITHUB_BRANCH},
+                timeout=10
+            )
+            if r.status_code == 200:
+                sha = r.json().get("sha")
+            content = json.dumps(req, ensure_ascii=False, indent=2)
+            payload = {
+                "message": "update bot requests",
+                "content": base64.b64encode(content.encode("utf-8")).decode("utf-8"),
+                "branch": GITHUB_BRANCH
+            }
+            if sha:
+                payload["sha"] = sha
+            pr = requests.put(github_url(GITHUB_REQUESTS_FILE), headers=github_headers(), json=payload, timeout=10)
+            if pr.status_code == 409:
+                r2 = requests.get(github_url(GITHUB_REQUESTS_FILE), headers=github_headers(), params={"ref": GITHUB_BRANCH}, timeout=10)
+                if r2.status_code == 200:
+                    payload["sha"] = r2.json().get("sha")
+                    pr = requests.put(github_url(GITHUB_REQUESTS_FILE), headers=github_headers(), json=payload, timeout=10)
+            if pr.status_code not in (200, 201):
+                print("GitHub requests save error:", pr.status_code, pr.text)
+            else:
+                print("GitHub requests save OK")
+        except Exception as e:
+            print("GitHub requests save exception:", e)
 
 
 def read_local_data_raw():
@@ -506,7 +676,7 @@ def load_data():
     except Exception as e:
         print("Local cache save after load error:", e)
 
-    return fix_data(data)
+    return attach_requests_to_data(data)
 
 
 def load_data_from_github_only():
@@ -532,7 +702,7 @@ def load_data_from_github_only():
 
         content = r.json()["content"]
         file_text = base64.b64decode(content).decode("utf-8")
-        return fix_data(json.loads(file_text))
+        return attach_requests_to_data(json.loads(file_text))
     except Exception as e:
         print("GitHub fresh load exception:", e)
         return None
@@ -562,7 +732,7 @@ def load_data_for_admin_action():
     except Exception as e:
         print("fresh cache save error:", e)
 
-    return fix_data(data)
+    return attach_requests_to_data(data)
 
 
 def find_request_by_id(requests_dict, request_id):
@@ -881,6 +1051,11 @@ def save_data(data):
         data = merge_data(data, old_all)  # новые изменения важнее, но отсутствующие пользователи не удаляются
     except Exception as e:
         print("Merge before save error:", e)
+
+    # Активные заявки сохраняем отдельно в requests.json,
+    # а data.json оставляем только для важных постоянных данных.
+    data, req_to_save = split_requests_from_data(data)
+    save_requests(req_to_save)
 
     # Сначала сохраняем локально атомарно, чтобы файл не ломался при перезапуске/ошибке.
     try:
