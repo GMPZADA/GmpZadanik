@@ -517,7 +517,7 @@
       "language_code": "ru"
     },
     "6276600731": {
-      "balance": 1.6,
+      "balance": 2.6,
       "done_tasks": [
         "38",
         "41",
@@ -533,7 +533,7 @@
       ],
       "last_bonus": 1782299133,
       "completed_tasks": 16,
-      "total_earned": 29.2,
+      "total_earned": 30.2,
       "withdraw_count": 6,
       "withdrawn_total": 27.6,
       "fines_total": 0,
@@ -1841,11 +1841,12 @@
   "promocodes": {
     "GMPSTART": {
       "amount": 1.0,
-      "left": 8,
+      "left": 7,
       "created_by": 7837011810,
       "used_by": [
         "7837011810",
-        "7441149510"
+        "7441149510",
+        "6276600731"
       ],
       "time": 1782933971
     }
@@ -3423,15 +3424,6 @@
   },
   "balance_logs": [
     {
-      "time": 1781898256,
-      "user_id": "6276600731",
-      "old": 5.0,
-      "amount": -5.0,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "103"
-    },
-    {
       "time": 1781898274,
       "user_id": "8258106768",
       "old": 2.4,
@@ -4319,6 +4311,15 @@
       "old": 6.0,
       "amount": 0.2,
       "new": 6.2,
+      "reason": "add",
+      "request_id": ""
+    },
+    {
+      "time": 1782935441,
+      "user_id": "6276600731",
+      "old": 1.6,
+      "amount": 1.0,
+      "new": 2.6,
       "reason": "add",
       "request_id": ""
     }
