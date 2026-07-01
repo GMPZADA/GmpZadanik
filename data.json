@@ -1795,7 +1795,7 @@
         "43"
       ],
       "pending_tasks": [],
-      "waiting_task": "55",
+      "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
@@ -1809,7 +1809,7 @@
       "ban_reason": "",
       "username": "Grade_top",
       "created_at": 1782918026,
-      "updated_at": 1782921165,
+      "updated_at": 1782921168,
       "user_id": 8694892873,
       "first_name": "grade top 💯😈😈",
       "last_name": "",
