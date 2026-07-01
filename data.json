@@ -2064,18 +2064,18 @@
       "language_code": "ru"
     },
     "8533057804": {
-      "balance": 0,
-      "done_tasks": [],
-      "pending_tasks": [
+      "balance": 2.0,
+      "done_tasks": [
         "55"
       ],
+      "pending_tasks": [],
       "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 0,
-      "completed_tasks": 0,
-      "total_earned": 0,
+      "completed_tasks": 1,
+      "total_earned": 2.0,
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
@@ -2229,20 +2229,7 @@
     }
   },
   "required_tasks": [],
-  "submits": {
-    "335": {
-      "user_id": 8533057804,
-      "username": "sweedej",
-      "task_id": "55",
-      "reward": 2.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgEAAxkBAAIwgGpFKVDRpp5Ccn0RTDf2luvX6waXAALQC2sbxUIpRmEmMBbR4p8sAQADAgADeQADPAQ",
-      "time": 1782917464,
-      "admin_sent": true,
-      "admin_sent_time": 1782917468,
-      "admin_message_id": 12418
-    }
-  },
+  "submits": {},
   "withdraws": {},
   "withdraw_blocks": {},
   "promocodes": {},
@@ -3269,6 +3256,13 @@
         "user_id": "7130773702",
         "note": "task #51",
         "time": 1782875389
+      },
+      "335": {
+        "status": "approved",
+        "admin_id": 7837011810,
+        "user_id": "8533057804",
+        "note": "task #55",
+        "time": 1782917490
       }
     },
     "withdraws": {
@@ -4220,10 +4214,6 @@
       "334": {
         "message_id": 12224,
         "time": 1782875354
-      },
-      "335": {
-        "message_id": 12418,
-        "time": 1782917468
       }
     },
     "withdraws": {
@@ -6455,6 +6445,15 @@
       "new": 0.2,
       "reason": "add",
       "request_id": ""
+    },
+    {
+      "time": 1782917490,
+      "user_id": "8533057804",
+      "old": 0.0,
+      "amount": 2.0,
+      "new": 2.0,
+      "reason": "task_approved",
+      "request_id": "335"
     }
   ],
   "total_paid": 19.2,
