@@ -954,7 +954,7 @@
       "ban_reason": ""
     },
     "7811863751": {
-      "balance": 1.4,
+      "balance": 1.2,
       "done_tasks": [
         "51",
         "49",
@@ -964,9 +964,9 @@
         "43",
         "64"
       ],
-      "last_bonus": 1782933823,
+      "last_bonus": 1782031557,
       "completed_tasks": 8,
-      "total_earned": 21.6,
+      "total_earned": 21.4,
       "withdraw_count": 3,
       "withdrawn_total": 20.2,
       "fines_total": 0,
@@ -974,7 +974,7 @@
       "banned": false,
       "ban_reason": "",
       "created_at": 1782933817,
-      "updated_at": 1782933823,
+      "updated_at": 1782933817,
       "user_id": 7811863751,
       "first_name": "16:58 passed out",
       "last_name": "",
@@ -1468,7 +1468,7 @@
       "banned": false,
       "ban_reason": "",
       "created_at": 1782845579,
-      "updated_at": 1782846366,
+      "updated_at": 1782933824,
       "user_id": 7779046668,
       "username": "Redwinso",
       "first_name": "Redwinso #drl #mmq",
@@ -3384,15 +3384,6 @@
   },
   "balance_logs": [
     {
-      "time": 1781861990,
-      "user_id": "7811863751",
-      "old": 2.0,
-      "amount": -2.0,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "94"
-    },
-    {
       "time": 1781863464,
       "user_id": "8823804307",
       "old": 0.0,
@@ -4282,6 +4273,15 @@
       "new": 1.4,
       "reason": "add",
       "request_id": ""
+    },
+    {
+      "time": 1781861955,
+      "user_id": "7811863751",
+      "old": 0.0,
+      "amount": 2.0,
+      "new": 2.0,
+      "reason": "task_approved",
+      "request_id": "223"
     }
   ],
   "total_paid": 34.6,
