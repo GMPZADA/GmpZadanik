@@ -1455,13 +1455,13 @@
       "language_code": "ru"
     },
     "7779046668": {
-      "balance": 0.0,
+      "balance": 0.2,
       "done_tasks": [
         "43"
       ],
-      "last_bonus": 0,
+      "last_bonus": 1782933893,
       "completed_tasks": 1,
-      "total_earned": 2.0,
+      "total_earned": 2.2,
       "withdraw_count": 1,
       "withdrawn_total": 2.0,
       "fines_total": 0,
@@ -3391,15 +3391,6 @@
   },
   "balance_logs": [
     {
-      "time": 1781864242,
-      "user_id": "8341360449",
-      "old": 1.2,
-      "amount": 2.0,
-      "new": 3.2,
-      "reason": "task_approved",
-      "request_id": "227"
-    },
-    {
       "time": 1781864543,
       "user_id": "8341360449",
       "old": 3.2,
@@ -4289,6 +4280,15 @@
       "new": 4.2,
       "reason": "task_approved",
       "request_id": "225"
+    },
+    {
+      "time": 1782933893,
+      "user_id": "7779046668",
+      "old": 0.0,
+      "amount": 0.2,
+      "new": 0.2,
+      "reason": "add",
+      "request_id": ""
     }
   ],
   "total_paid": 34.6,
