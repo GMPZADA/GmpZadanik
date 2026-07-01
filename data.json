@@ -1912,7 +1912,6 @@
       "balance": 0.2,
       "done_tasks": [],
       "pending_tasks": [
-        "42",
         "64"
       ],
       "waiting_task": null,
@@ -2078,18 +2077,6 @@
   },
   "required_tasks": [],
   "submits": {
-    "331": {
-      "user_id": 6978702813,
-      "username": "qwntwq",
-      "task_id": "42",
-      "reward": 3.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAIvhmpEF6qeO1gj2QxIB-SlmUTt0ivmAALgImsbNtAhSgLJM7TV5ZUhAQADAgADeQADPAQ",
-      "time": 1782847406,
-      "admin_sent": true,
-      "admin_sent_time": 1782875345,
-      "admin_message_id": 12221
-    },
     "332": {
       "user_id": 6978702813,
       "username": "qwntwq",
@@ -3125,6 +3112,13 @@
         "user_id": "7779046668",
         "note": "task #64",
         "time": 1782846435
+      },
+      "331": {
+        "status": "rejected",
+        "admin_id": 7837011810,
+        "user_id": "6978702813",
+        "note": "task #42",
+        "time": 1782875351
       }
     },
     "withdraws": {
