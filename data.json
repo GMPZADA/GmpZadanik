@@ -2042,8 +2042,10 @@
     "8999626537": {
       "balance": 0,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": "38",
+      "pending_tasks": [
+        "38"
+      ],
+      "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
@@ -2203,7 +2205,20 @@
     }
   },
   "required_tasks": [],
-  "submits": {},
+  "submits": {
+    "335": {
+      "user_id": 8999626537,
+      "username": "Sego338",
+      "task_id": "38",
+      "reward": 1.0,
+      "status": "wait",
+      "photo_file_id": "AgACAgIAAxkBAAIwY2pFI0TdCO-eVaYYJucAARJ6q2izjgACVhlrGyiGMUqCAfkEu1DECQEAAwIAA3kAAzwE",
+      "time": 1782915912,
+      "admin_sent": true,
+      "admin_sent_time": 1782915912,
+      "admin_message_id": "sending"
+    }
+  },
   "withdraws": {},
   "withdraw_blocks": {},
   "promocodes": {},
@@ -4181,6 +4196,10 @@
       "334": {
         "message_id": 12224,
         "time": 1782875354
+      },
+      "335": {
+        "message_id": "sending",
+        "time": 1782915912
       }
     },
     "withdraws": {
@@ -6417,7 +6436,7 @@
   "total_paid": 19.2,
   "total_withdrawals": 7,
   "last_task_id": 65,
-  "last_submit_id": 334,
+  "last_submit_id": 335,
   "last_withdraw_id": 136,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "withdraw_disabled_by_admin": false,
