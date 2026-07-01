@@ -517,7 +517,7 @@
       "language_code": "ru"
     },
     "6276600731": {
-      "balance": 1.8,
+      "balance": 0.8,
       "done_tasks": [
         "38",
         "41",
@@ -546,8 +546,7 @@
       "first_name": "ριⳋr (ⳝ𐔖𐔏 ᥒυ𐔏ρ𐔖ⲃ)",
       "last_name": "",
       "language_code": "ru",
-      "withdraw_step": "amount",
-      "withdraw_to": "@trqLemon4ik"
+      "withdraw_pending": true
     },
     "7581133015": {
       "balance": 0.4,
@@ -3425,15 +3424,6 @@
   },
   "balance_logs": [
     {
-      "time": 1781929723,
-      "user_id": "8431020779",
-      "old": 6.0,
-      "amount": 0.2,
-      "new": 6.2,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
       "time": 1781931252,
       "user_id": "8431020779",
       "old": 6.2,
@@ -4323,13 +4313,22 @@
       "new": 0.2,
       "reason": "add",
       "request_id": ""
+    },
+    {
+      "time": 1782935703,
+      "user_id": "6276600731",
+      "old": 1.8,
+      "amount": -1.0,
+      "new": 0.8,
+      "reason": "withdraw_created",
+      "request_id": "143"
     }
   ],
   "total_paid": 34.6,
   "total_withdrawals": 12,
   "last_task_id": 66,
   "last_submit_id": 348,
-  "last_withdraw_id": 142,
+  "last_withdraw_id": 143,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "withdraw_disabled_by_admin": false,
   "withdraw_enabled": true
