@@ -2066,8 +2066,10 @@
     "8533057804": {
       "balance": 0,
       "done_tasks": [],
-      "pending_tasks": [],
-      "waiting_task": "55",
+      "pending_tasks": [
+        "55"
+      ],
+      "waiting_task": null,
       "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
@@ -2227,7 +2229,20 @@
     }
   },
   "required_tasks": [],
-  "submits": {},
+  "submits": {
+    "335": {
+      "user_id": 8533057804,
+      "username": "sweedej",
+      "task_id": "55",
+      "reward": 2.0,
+      "status": "wait",
+      "photo_file_id": "AgACAgEAAxkBAAIwgGpFKVDRpp5Ccn0RTDf2luvX6waXAALQC2sbxUIpRmEmMBbR4p8sAQADAgADeQADPAQ",
+      "time": 1782917464,
+      "admin_sent": true,
+      "admin_sent_time": 1782917464,
+      "admin_message_id": "sending"
+    }
+  },
   "withdraws": {},
   "withdraw_blocks": {},
   "promocodes": {},
@@ -4207,8 +4222,8 @@
         "time": 1782875354
       },
       "335": {
-        "message_id": 12392,
-        "time": 1782915916
+        "message_id": "sending",
+        "time": 1782917464
       }
     },
     "withdraws": {
@@ -6445,7 +6460,7 @@
   "total_paid": 19.2,
   "total_withdrawals": 7,
   "last_task_id": 65,
-  "last_submit_id": 334,
+  "last_submit_id": 335,
   "last_withdraw_id": 136,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "withdraw_disabled_by_admin": false,
