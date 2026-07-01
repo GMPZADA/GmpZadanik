@@ -425,7 +425,8 @@
       "username": "hjklgf1",
       "first_name": "Тимофей",
       "last_name": "Рыбаков",
-      "language_code": "ru"
+      "language_code": "ru",
+      "withdraw_step": "username"
     },
     "8342695961": {
       "balance": 0.2,
