@@ -545,8 +545,7 @@
       "user_id": 6276600731,
       "first_name": "ριⳋr (ⳝ𐔖𐔏 ᥒυ𐔏ρ𐔖ⲃ)",
       "last_name": "",
-      "language_code": "ru",
-      "withdraw_pending": true
+      "language_code": "ru"
     },
     "7581133015": {
       "balance": 0.4,
@@ -1606,7 +1605,7 @@
       "banned": false,
       "ban_reason": "",
       "created_at": 1782914873,
-      "updated_at": 1782914931,
+      "updated_at": 1782942192,
       "user_id": 8138693744,
       "username": "VIPSVAGA",
       "first_name": "༒︎Цезарь༒︎",
