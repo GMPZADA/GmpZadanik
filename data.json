@@ -517,7 +517,7 @@
       "language_code": "ru"
     },
     "6276600731": {
-      "balance": 2.6,
+      "balance": 1.6,
       "done_tasks": [
         "38",
         "41",
@@ -533,7 +533,7 @@
       ],
       "last_bonus": 1782299133,
       "completed_tasks": 16,
-      "total_earned": 30.2,
+      "total_earned": 29.2,
       "withdraw_count": 6,
       "withdrawn_total": 27.6,
       "fines_total": 0,
@@ -541,7 +541,7 @@
       "ban_reason": "",
       "username": "BOG_PIGR",
       "created_at": 1782918157,
-      "updated_at": 1782918160,
+      "updated_at": 1782935443,
       "user_id": 6276600731,
       "first_name": "ριⳋr (ⳝ𐔖𐔏 ᥒυ𐔏ρ𐔖ⲃ)",
       "last_name": "",
@@ -1841,12 +1841,11 @@
   "promocodes": {
     "GMPSTART": {
       "amount": 1.0,
-      "left": 7,
+      "left": 8,
       "created_by": 7837011810,
       "used_by": [
         "7837011810",
-        "7441149510",
-        "6276600731"
+        "7441149510"
       ],
       "time": 1782933971
     }
@@ -3424,15 +3423,6 @@
   },
   "balance_logs": [
     {
-      "time": 1781898274,
-      "user_id": "8258106768",
-      "old": 2.4,
-      "amount": -2.0,
-      "new": 0.4,
-      "reason": "withdraw_created",
-      "request_id": "104"
-    },
-    {
       "time": 1781899635,
       "user_id": "8031026603",
       "old": 0.0,
@@ -4322,6 +4312,15 @@
       "new": 2.6,
       "reason": "add",
       "request_id": ""
+    },
+    {
+      "time": 1781898256,
+      "user_id": "6276600731",
+      "old": 5.0,
+      "amount": -5.0,
+      "new": 0.0,
+      "reason": "withdraw_created",
+      "request_id": "103"
     }
   ],
   "total_paid": 34.6,
