@@ -1774,14 +1774,14 @@
       ],
       "pending_tasks": [],
       "waiting_task": null,
-      "withdraw_pending": true,
+      "withdraw_pending": false,
       "withdraw_step": null,
       "withdraw_to": null,
       "last_bonus": 1782918041,
       "completed_tasks": 1,
       "total_earned": 1.4,
-      "withdraw_count": 0,
-      "withdrawn_total": 0,
+      "withdraw_count": 1,
+      "withdrawn_total": 1.4,
       "fines_total": 0,
       "banned": false,
       "ban_reason": "",
@@ -2248,20 +2248,7 @@
   },
   "required_tasks": [],
   "submits": {},
-  "withdraws": {
-    "139": {
-      "user_id": 8694892873,
-      "username": "Grade_top",
-      "to": "@Grade_top",
-      "amount": 1.4,
-      "status": "wait",
-      "time": 1782918104,
-      "source_message_id": 12537,
-      "admin_sent": true,
-      "admin_sent_time": 1782918109,
-      "admin_message_id": 12542
-    }
-  },
+  "withdraws": {},
   "withdraw_blocks": {},
   "promocodes": {},
   "processed_requests": {
@@ -3723,6 +3710,13 @@
         "user_id": "8590322435",
         "note": "amount 4.0",
         "time": 1782918001
+      },
+      "139": {
+        "status": "paid",
+        "admin_id": 7837011810,
+        "user_id": "8694892873",
+        "note": "amount 1.4",
+        "time": 1782918140
       }
     }
   },
@@ -6562,8 +6556,8 @@
       "request_id": "139"
     }
   ],
-  "total_paid": 25.2,
-  "total_withdrawals": 9,
+  "total_paid": 26.6,
+  "total_withdrawals": 10,
   "last_task_id": 65,
   "last_submit_id": 335,
   "last_withdraw_id": 139,
