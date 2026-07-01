@@ -710,7 +710,14 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "banned": false,
-      "ban_reason": ""
+      "ban_reason": "",
+      "created_at": 1782920056,
+      "updated_at": 1782920056,
+      "user_id": 7581133015,
+      "username": "dev_akim",
+      "first_name": "[dev] Акимчик #PRIME",
+      "last_name": "",
+      "language_code": "ru"
     },
     "5728227541": {
       "balance": 0.4,
