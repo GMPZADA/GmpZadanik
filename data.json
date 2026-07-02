@@ -1765,12 +1765,13 @@
       "banned": false,
       "ban_reason": "",
       "created_at": 1782980677,
-      "updated_at": 1783013186,
+      "updated_at": 1783013208,
       "user_id": 5241714648,
       "username": "Likuem7",
       "first_name": ".",
       "last_name": "",
-      "language_code": "ru"
+      "language_code": "ru",
+      "last_open_task": "46"
     },
     "7645526903": {
       "balance": 0,
