@@ -1328,7 +1328,8 @@
       "first_name": "Bro",
       "last_name": "",
       "language_code": "ru",
-      "last_open_task": "48"
+      "last_open_task": "48",
+      "withdraw_step": "username"
     },
     "6909264712": {
       "balance": 2.4,
