@@ -1,27 +1,8 @@
 {
-  "submits": {
-    "371": {
-      "user_id": 5241714648,
-      "username": "Likuem7",
-      "task_id": "53",
-      "reward": 1.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAI2fWpGoBF54E9YWprn5ml34veVXa_KAAJGG2sbTpwxSs09rrsXEDSwAQADAgADeQADPAQ",
-      "file_type": "photo",
-      "time": 1783013394,
-      "admin_sent": true,
-      "admin_sent_time": 1783013396,
-      "admin_message_id": 13951
-    }
-  },
+  "submits": {},
   "withdraws": {},
   "admin_sent": {
-    "submits": {
-      "371": {
-        "message_id": 13951,
-        "time": 1783013396
-      }
-    },
+    "submits": {},
     "withdraws": {}
   },
   "user_states": {},
