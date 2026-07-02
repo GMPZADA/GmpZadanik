@@ -230,7 +230,7 @@
       "ban_reason": ""
     },
     "7441149510": {
-      "balance": 5.2,
+      "balance": 0.0,
       "done_tasks": [
         "46",
         "43"
@@ -244,14 +244,13 @@
       "banned": false,
       "ban_reason": "",
       "created_at": 1782934750,
-      "updated_at": 1783003661,
+      "updated_at": 1783003668,
       "user_id": 7441149510,
       "username": "Rognogor",
       "first_name": "Злой",
       "last_name": "",
       "language_code": "ru",
-      "withdraw_step": "amount",
-      "withdraw_to": "@Rognogor"
+      "withdraw_pending": true
     },
     "7979994199": {
       "balance": 2.2,
@@ -3604,15 +3603,6 @@
   },
   "balance_logs": [
     {
-      "time": 1782021614,
-      "user_id": "6276600731",
-      "old": 0.0,
-      "amount": 0.2,
-      "new": 0.2,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
       "time": 1782021623,
       "user_id": "8258106768",
       "old": 2.6,
@@ -4502,13 +4492,22 @@
       "new": 0.0,
       "reason": "withdraw_created",
       "request_id": "146"
+    },
+    {
+      "time": 1783003668,
+      "user_id": "7441149510",
+      "old": 5.2,
+      "amount": -5.2,
+      "new": 0.0,
+      "reason": "withdraw_created",
+      "request_id": "147"
     }
   ],
   "total_paid": 46.6,
   "total_withdrawals": 15,
   "last_task_id": 66,
   "last_submit_id": 362,
-  "last_withdraw_id": 146,
+  "last_withdraw_id": 147,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "withdraw_disabled_by_admin": false,
   "withdraw_enabled": true
