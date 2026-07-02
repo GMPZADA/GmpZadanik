@@ -1762,7 +1762,8 @@
       "first_name": ".",
       "last_name": "",
       "language_code": "ru",
-      "withdraw_step": "username"
+      "withdraw_step": "amount",
+      "withdraw_to": "@Likuem7"
     }
   },
   "tasks": {
