@@ -64,7 +64,8 @@
       "first_name": "Артем",
       "last_name": "",
       "language_code": "ru",
-      "withdraw_step": "username"
+      "withdraw_step": "amount",
+      "withdraw_to": "@Artemwesh"
     },
     "8380620424": {
       "balance": 0.0,
