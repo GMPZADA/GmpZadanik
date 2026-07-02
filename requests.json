@@ -1,9 +1,27 @@
 {
   "submits": {},
-  "withdraws": {},
+  "withdraws": {
+    "146": {
+      "user_id": 7837011810,
+      "username": "Artemwesh",
+      "to": "@Artemwesh",
+      "amount": 1.0,
+      "status": "wait",
+      "time": 1782988719,
+      "source_message_id": 13580,
+      "admin_sent": true,
+      "admin_sent_time": 1782988719,
+      "admin_message_id": "sending"
+    }
+  },
   "admin_sent": {
     "submits": {},
-    "withdraws": {}
+    "withdraws": {
+      "146": {
+        "message_id": "sending",
+        "time": 1782988719
+      }
+    }
   },
   "user_states": {},
   "withdraw_requests": {},
