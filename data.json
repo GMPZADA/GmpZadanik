@@ -1751,15 +1751,14 @@
       "banned": false,
       "ban_reason": "",
       "created_at": 1782980677,
-      "updated_at": 1782980797,
+      "updated_at": 1782980800,
       "user_id": 5241714648,
       "username": "Likuem7",
       "first_name": ".",
       "last_name": "",
       "language_code": "ru",
       "withdraw_step": "amount",
-      "withdraw_to": "Likuem7",
-      "last_open_task": "44"
+      "withdraw_to": "Likuem7"
     }
   },
   "tasks": {
