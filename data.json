@@ -1721,7 +1721,7 @@
     "8500884361": {
       "balance": 0.2,
       "done_tasks": [],
-      "last_bonus": 1782979136,
+      "last_bonus": 1782979133,
       "completed_tasks": 0,
       "total_earned": 0.2,
       "withdraw_count": 0,
@@ -1730,7 +1730,7 @@
       "banned": false,
       "ban_reason": "",
       "created_at": 1782979130,
-      "updated_at": 1782979134,
+      "updated_at": 1782979140,
       "user_id": 8500884361,
       "username": "Last_emperator",
       "first_name": "Last emperator",
@@ -3499,15 +3499,6 @@
   },
   "balance_logs": [
     {
-      "time": 1781932137,
-      "user_id": "5224773359",
-      "old": 0.2,
-      "amount": 4.0,
-      "new": 4.2,
-      "reason": "withdraw_rejected_return",
-      "request_id": "107"
-    },
-    {
       "time": 1781932265,
       "user_id": "8534240629",
       "old": 1.4,
@@ -4391,6 +4382,15 @@
     },
     {
       "time": 1782979136,
+      "user_id": "8500884361",
+      "old": 0.0,
+      "amount": 0.2,
+      "new": 0.2,
+      "reason": "add",
+      "request_id": ""
+    },
+    {
+      "time": 1782979133,
       "user_id": "8500884361",
       "old": 0.0,
       "amount": 0.2,
