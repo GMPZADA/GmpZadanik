@@ -1762,6 +1762,25 @@
       "first_name": ".",
       "last_name": "",
       "language_code": "ru"
+    },
+    "7645526903": {
+      "balance": 0,
+      "done_tasks": [],
+      "last_bonus": 0,
+      "completed_tasks": 0,
+      "total_earned": 0,
+      "withdraw_count": 0,
+      "withdrawn_total": 0,
+      "fines_total": 0,
+      "banned": false,
+      "ban_reason": "",
+      "created_at": 1782989642,
+      "updated_at": 1782989642,
+      "user_id": 7645526903,
+      "username": "asrayyev",
+      "first_name": "Asrayyev",
+      "last_name": "",
+      "language_code": "ru"
     }
   },
   "tasks": {
