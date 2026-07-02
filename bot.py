@@ -24,8 +24,9 @@ GITHUB_REQUESTS_FILE = "requests.json"
 
 LOCAL_DATA_FILE = "data.json"
 LOCAL_REQUESTS_FILE = "requests.json"
-BONUS_AMOUNT = 0.2
+BONUS_AMOUNT = 0.5
 BONUS_COOLDOWN = 24 * 60 * 60
+BONUS_REQUIRED_BIO = "@GmpEarnBot лучший бот для заработка GMP"
 
 # Keep Alive: пингует сайт каждые 5 минут
 KEEPALIVE_URL = os.getenv("KEEPALIVE_URL", "https://gmpzadanik.onrender.com/")
@@ -1873,7 +1874,7 @@ def help_message(message):
         "3. Нажми ✅ Я выполнил\n"
         "4. Отправь скрин\n"
         "5. После проверки получишь GMP\n\n"
-        "🎉 Бонус можно получать 1 раз в 24 часа.\n"
+        "🎉 Бонус 0.5 GMP можно получать 1 раз в 24 часа, если в био стоит нужная надпись.\n"
         "💸 Для вывода нажми «Вывод», укажи куда вывести и сумму."
     )
 
@@ -1984,6 +1985,17 @@ def admin_profile(message):
     bot.send_message(message.chat.id, build_profile_text(found_id, user, username=username, admin_view=True, data=data))
 
 
+def user_has_required_bonus_bio(user_id):
+    """Проверяет био пользователя. В data.json не пишет лишнюю историю бонусов."""
+    try:
+        chat = bot.get_chat(user_id)
+        bio = (getattr(chat, "bio", "") or getattr(chat, "description", "") or "").strip()
+        return BONUS_REQUIRED_BIO.lower() in bio.lower(), bio
+    except Exception as e:
+        print("bonus bio check error:", e)
+        return False, ""
+
+
 @bot.message_handler(func=lambda m: m.text == "🎉 Бонус")
 def daily_bonus(message):
     if is_banned_user(message):
@@ -1991,6 +2003,18 @@ def daily_bonus(message):
 
     data = load_data()
     user = get_user(data, message.from_user.id)
+
+    ok_bio, _bio = user_has_required_bonus_bio(message.from_user.id)
+    if not ok_bio:
+        save_data(data)
+        return bot.send_message(
+            message.chat.id,
+            "🎉 <b>Ежедневный бонус 0.5 GMP</b>\n\n"
+            "Чтобы получать бонус, поставь в Telegram в био/о себе эту надпись:\n"
+            f"<code>{BONUS_REQUIRED_BIO}</code>\n\n"
+            "После этого снова нажми кнопку 🎉 Бонус.\n"
+            "Если уберёшь эту надпись — бонус снова не будет выдаваться."
+        )
 
     now = int(time.time())
     last_bonus = int(user.get("last_bonus", 0))
@@ -2005,15 +2029,19 @@ def daily_bonus(message):
             f"⏳ Бонус уже получен.\nПриходи через: <b>{hours}ч {minutes}м</b>"
         )
 
-    add_balance_to_user(data, message.from_user.id, BONUS_AMOUNT)
+    old_balance = round(float(user.get("balance", 0)), 2)
+    new_balance = round(old_balance + BONUS_AMOUNT, 2)
+    user["balance"] = new_balance
+    user["total_earned"] = round(float(user.get("total_earned", 0)) + BONUS_AMOUNT, 2)
     user["last_bonus"] = now
+    user["updated_at"] = now
     save_data(data)
 
     bot.send_message(
         message.chat.id,
-        f"🎉 <b>Ежедневный бонус получен!</b>\n\n"
-        f"💰 Начислено: <b>{BONUS_AMOUNT} GMP</b>\n"
-        f"💎 Баланс: <b>{format_gmp(user['balance'])} GMP</b>"
+        "🎉 <b>Ежедневный бонус получен!</b>\n\n"
+        f"💰 Начислено: <b>{format_gmp(BONUS_AMOUNT)} GMP</b>\n"
+        f"💎 Баланс: <b>{format_gmp(old_balance)} → {format_gmp(new_balance)} GMP</b>"
     )
 
 
