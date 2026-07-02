@@ -1147,6 +1147,7 @@ def find_active_submit_by_photo(data, user_id, task_id, photo_file_id):
 # если они пустые. При загрузке bot.py сам создаст их обратно через fix_data().
 TEMP_USER_KEYS_DEFAULTS = {
     "waiting_task": None,
+    "last_open_task": None,
     "withdraw_pending": False,
     "withdraw_step": None,
     "withdraw_to": None,
@@ -1231,6 +1232,7 @@ def get_user(data, user_id):
             "done_tasks": [],
             "pending_tasks": [],
             "waiting_task": None,
+            "last_open_task": None,
             "withdraw_pending": False,
             "withdraw_step": None,
             "withdraw_to": None,
@@ -1256,6 +1258,7 @@ def get_user(data, user_id):
     user.setdefault("done_tasks", [])
     user.setdefault("pending_tasks", [])
     user.setdefault("waiting_task", None)
+    user.setdefault("last_open_task", None)
     user.setdefault("withdraw_pending", False)
     user.setdefault("withdraw_step", None)
     user.setdefault("withdraw_to", None)
@@ -1276,7 +1279,8 @@ def get_user(data, user_id):
 
 
 def cancel_user_states(user):
-    user["waiting_task"] = None
+    # waiting_task НЕ сбрасываем: пользователь может нажать /start/Меню и потом отправить скрин.
+    # Сбрасываем только вывод, чтобы не мешать заявке на задание.
     user["withdraw_step"] = None
     user["withdraw_to"] = None
 
@@ -2066,6 +2070,11 @@ def open_task(call):
     if not task or not task.get("active", True):
         return bot.answer_callback_query(call.id, "Задание не найдено.")
 
+    # Запоминаем последнее открытое задание. Если Telegram/меню сбросит waiting_task,
+    # скрин всё равно привяжется к последнему открытому заданию.
+    user["last_open_task"] = task_id
+    save_data(data)
+
     kb = types.InlineKeyboardMarkup()
     kb.add(types.InlineKeyboardButton("🔗 Перейти", url=task["link"]))
     kb.add(types.InlineKeyboardButton("✅ Я выполнил", callback_data=f"done_{task_id}"))
@@ -2103,6 +2112,7 @@ def done_task(call):
         return bot.answer_callback_query(call.id, "Задание не найдено.")
 
     user["waiting_task"] = task_id
+    user["last_open_task"] = task_id
     user["withdraw_step"] = None
     user["withdraw_to"] = None
     save_data(data)
@@ -2144,13 +2154,27 @@ def photo(message):
         user = get_user(data, message.from_user.id)
 
         task_id = user.get("waiting_task")
+
+        # Если waiting_task почему-то сбросился, берём последнее открытое задание.
+        # Это исправляет баг, когда после нажатия «✅ Я выполнил» скрин приходит,
+        # а бот пишет «Сначала выбери задание».
         if not task_id:
-            return bot.send_message(message.chat.id, "❌ Сначала выбери задание и нажми ✅ Я выполнил.")
+            last_task_id = str(user.get("last_open_task") or "")
+            task_exists = last_task_id in data.get("tasks", {}) and data["tasks"].get(last_task_id, {}).get("active", True)
+            already_done = last_task_id in user.get("done_tasks", [])
+            already_pending = last_task_id in user.get("pending_tasks", []) or has_active_submit(data, message.from_user.id, last_task_id)
+            if last_task_id and task_exists and not already_done and not already_pending:
+                task_id = last_task_id
+                user["waiting_task"] = task_id
+            else:
+                return bot.send_message(message.chat.id, "❌ Сначала выбери задание и нажми ✅ Я выполнил.")
 
         task_id = str(task_id)
 
         if task_id in user.get("done_tasks", []):
             user["waiting_task"] = None
+            if str(user.get("last_open_task")) == str(task_id):
+                user["last_open_task"] = None
             save_data(data)
             return bot.send_message(message.chat.id, "✅ Ты уже выполнил это задание.")
 
@@ -2170,6 +2194,8 @@ def photo(message):
         task = data.get("tasks", {}).get(task_id)
         if not task:
             user["waiting_task"] = None
+            if str(user.get("last_open_task")) == str(task_id):
+                user["last_open_task"] = None
             save_data(data)
             return bot.send_message(message.chat.id, "❌ Задание не найдено.")
 
@@ -2177,6 +2203,7 @@ def photo(message):
         sid = str(data["last_submit_id"])
 
         user["waiting_task"] = None
+        user["last_open_task"] = None
         user.setdefault("pending_tasks", []).append(task_id)
 
         data.setdefault("submits", {})[sid] = {
