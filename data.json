@@ -1504,14 +1504,14 @@
       "banned": false,
       "ban_reason": "",
       "created_at": 1782845579,
-      "updated_at": 1783003773,
+      "updated_at": 1783003780,
       "user_id": 7779046668,
       "username": "Redwinso",
       "first_name": "Redwinso #drl #mmq",
       "last_name": "",
       "language_code": "uk",
       "withdraw_step": "amount",
-      "withdraw_to": "@redwinso"
+      "withdraw_to": "Все"
     },
     "6978702813": {
       "balance": 0.0,
