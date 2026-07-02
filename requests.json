@@ -1,27 +1,9 @@
 {
   "submits": {},
-  "withdraws": {
-    "145": {
-      "user_id": 5241714648,
-      "username": "Likuem7",
-      "to": "@Likuem7",
-      "amount": 7.0,
-      "status": "wait",
-      "time": 1782982396,
-      "source_message_id": 13556,
-      "admin_sent": true,
-      "admin_sent_time": 1782982397,
-      "admin_message_id": 13558
-    }
-  },
+  "withdraws": {},
   "admin_sent": {
     "submits": {},
-    "withdraws": {
-      "145": {
-        "message_id": 13558,
-        "time": 1782982397
-      }
-    }
+    "withdraws": {}
   },
   "user_states": {},
   "withdraw_requests": {},
