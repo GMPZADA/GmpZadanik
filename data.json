@@ -1690,6 +1690,25 @@
       "first_name": "Непонятный",
       "last_name": "",
       "language_code": "ru"
+    },
+    "8341988288": {
+      "balance": 0,
+      "done_tasks": [],
+      "last_bonus": 0,
+      "completed_tasks": 0,
+      "total_earned": 0,
+      "withdraw_count": 0,
+      "withdrawn_total": 0,
+      "fines_total": 0,
+      "banned": false,
+      "ban_reason": "",
+      "created_at": 1782969488,
+      "updated_at": 1782969488,
+      "user_id": 8341988288,
+      "username": "Bibizan33",
+      "first_name": "Бь",
+      "last_name": "(Бибизян) #snr",
+      "language_code": "ru"
     }
   },
   "tasks": {
