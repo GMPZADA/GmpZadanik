@@ -1329,7 +1329,8 @@
       "last_name": "",
       "language_code": "ru",
       "last_open_task": "48",
-      "withdraw_step": "username"
+      "withdraw_step": "amount",
+      "withdraw_to": "@Bratan7014"
     },
     "6909264712": {
       "balance": 2.4,
