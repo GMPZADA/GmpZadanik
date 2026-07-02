@@ -1738,25 +1738,6 @@
       "language_code": "ru",
       "last_open_task": "42",
       "waiting_task": "42"
-    },
-    "5241714648": {
-      "balance": 0,
-      "done_tasks": [],
-      "last_bonus": 0,
-      "completed_tasks": 0,
-      "total_earned": 0,
-      "withdraw_count": 0,
-      "withdrawn_total": 0,
-      "fines_total": 0,
-      "banned": false,
-      "ban_reason": "",
-      "created_at": 1782980671,
-      "updated_at": 1782980671,
-      "user_id": 5241714648,
-      "username": "Likuem7",
-      "first_name": ".",
-      "last_name": "",
-      "language_code": "ru"
     }
   },
   "tasks": {
