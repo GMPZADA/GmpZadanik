@@ -1,9 +1,27 @@
 {
   "submits": {},
-  "withdraws": {},
+  "withdraws": {
+    "144": {
+      "user_id": 8651016638,
+      "username": "Bratan7014",
+      "to": "@Bratan7014",
+      "amount": 4.0,
+      "status": "wait",
+      "time": 1782973040,
+      "source_message_id": 13438,
+      "admin_sent": true,
+      "admin_sent_time": 1782973040,
+      "admin_message_id": "sending"
+    }
+  },
   "admin_sent": {
     "submits": {},
-    "withdraws": {}
+    "withdraws": {
+      "144": {
+        "message_id": "sending",
+        "time": 1782973040
+      }
+    }
   },
   "user_states": {},
   "withdraw_requests": {},
