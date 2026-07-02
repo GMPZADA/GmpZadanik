@@ -1740,26 +1740,28 @@
       "waiting_task": "42"
     },
     "5241714648": {
-      "balance": 3.2,
+      "balance": 6.2,
       "done_tasks": [
         "38",
-        "45"
+        "45",
+        "49"
       ],
       "last_bonus": 1782980678,
-      "completed_tasks": 2,
-      "total_earned": 3.2,
+      "completed_tasks": 3,
+      "total_earned": 6.2,
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
       "banned": false,
       "ban_reason": "",
       "created_at": 1782980677,
-      "updated_at": 1782982041,
+      "updated_at": 1782982005,
       "user_id": 5241714648,
       "username": "Likuem7",
       "first_name": ".",
       "last_name": "",
-      "language_code": "ru"
+      "language_code": "ru",
+      "last_open_task": "49"
     }
   },
   "tasks": {
@@ -3071,6 +3073,13 @@
         "user_id": "5241714648",
         "note": "task #45",
         "time": 1782981798
+      },
+      "361": {
+        "status": "approved",
+        "admin_id": 7837011810,
+        "user_id": "5241714648",
+        "note": "task #49",
+        "time": 1782982070
       }
     },
     "withdraws": {
@@ -3543,15 +3552,6 @@
     "withdraws": {}
   },
   "balance_logs": [
-    {
-      "time": 1781976794,
-      "user_id": "6744639669",
-      "old": 2.4,
-      "amount": 1.0,
-      "new": 3.4,
-      "reason": "task_approved",
-      "request_id": "255"
-    },
     {
       "time": 1781976905,
       "user_id": "6744639669",
@@ -4442,6 +4442,15 @@
       "new": 3.2,
       "reason": "task_approved",
       "request_id": "359"
+    },
+    {
+      "time": 1782982070,
+      "user_id": "5241714648",
+      "old": 3.2,
+      "amount": 3.0,
+      "new": 6.2,
+      "reason": "task_approved",
+      "request_id": "361"
     }
   ],
   "total_paid": 38.6,
