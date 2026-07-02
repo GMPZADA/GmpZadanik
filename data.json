@@ -1753,12 +1753,14 @@
       "banned": false,
       "ban_reason": "",
       "created_at": 1782980677,
-      "updated_at": 1782981023,
+      "updated_at": 1782981016,
       "user_id": 5241714648,
       "username": "Likuem7",
       "first_name": ".",
       "last_name": "",
-      "language_code": "ru"
+      "language_code": "ru",
+      "waiting_task": "41",
+      "last_open_task": "41"
     }
   },
   "tasks": {
