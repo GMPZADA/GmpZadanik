@@ -1785,7 +1785,8 @@ def safe_send(user_id, text):
     try:
         bot.send_message(user_id, text)
         return True
-    except Exception:
+    except Exception as e:
+        print(f"safe_send error to {user_id}:", e)
         return False
 
 
@@ -2197,41 +2198,184 @@ def daily_bonus(message):
     )
 
 
+
+def get_available_task_ids(data, user):
+    """Задания, которые пользователь ещё может выполнить. Одобренные/ожидающие/удалённые скрываются."""
+    done = {str(x) for x in user.get("done_tasks", [])}
+    pending = {str(x) for x in user.get("pending_tasks", [])}
+    waiting = str(user.get("waiting_task") or "")
+
+    def sort_key(tid):
+        try:
+            return int(tid)
+        except Exception:
+            return 10**12
+
+    ids = []
+    for task_id, task in data.get("tasks", {}).items():
+        task_id = str(task_id)
+        if not isinstance(task, dict):
+            continue
+        if not task.get("active", True):
+            continue
+        if task_id in done or task_id in pending or task_id == waiting:
+            continue
+        ids.append(task_id)
+    return sorted(ids, key=sort_key)
+
+
+def task_screen_keyboard(task_id, index, total, task):
+    kb = types.InlineKeyboardMarkup()
+    link = str(task.get("link", "")).strip()
+    if link:
+        kb.add(types.InlineKeyboardButton("🔗 Выполнить", url=link))
+    kb.add(types.InlineKeyboardButton("📸 Отправить скрин", callback_data=f"tasksubmit_{task_id}"))
+
+    nav = []
+    nav.append(types.InlineKeyboardButton("⬅️ Назад", callback_data=f"taskprev_{index}"))
+    if index < total - 1:
+        nav.append(types.InlineKeyboardButton("➡️ Далее", callback_data=f"tasknext_{index}"))
+    kb.row(*nav)
+    kb.add(types.InlineKeyboardButton("🏠 Главное меню", callback_data="taskhome"))
+    return kb
+
+
+def task_screen_text(task_id, task, index, total):
+    return (
+        f"📋 <b>Задание #{h(task_id)} из {total}</b>\n\n"
+        f"💎 Награда: <b>{format_gmp(task.get('reward', 0))} GMP</b>\n\n"
+        f"📝 {h(task.get('text', 'Описание задания'))}\n\n"
+        "⚠️ После полного выполнения отправь скриншот."
+    )
+
+
+def show_task_screen(chat_id, user_id, index=0, call=None):
+    data = load_data()
+    user = get_user(data, user_id)
+    task_ids = get_available_task_ids(data, user)
+
+    if not task_ids:
+        text = (
+            "✅ <b>Новых заданий сейчас нет.</b>\n\n"
+            "Ты уже выполнил доступные задания или они сейчас на проверке."
+        )
+        if call:
+            try:
+                bot.edit_message_text(text, call.message.chat.id, call.message.message_id)
+            except Exception:
+                bot.send_message(chat_id, text, reply_markup=main_menu())
+        else:
+            bot.send_message(chat_id, text, reply_markup=main_menu())
+        return
+
+    if index < 0:
+        index = 0
+    if index >= len(task_ids):
+        index = len(task_ids) - 1
+
+    task_id = task_ids[index]
+    task = data.get("tasks", {}).get(task_id, {})
+    user["last_open_task"] = task_id
+    save_data(data)
+
+    text = task_screen_text(task_id, task, index + 1, len(task_ids))
+    kb = task_screen_keyboard(task_id, index, len(task_ids), task)
+
+    if call:
+        try:
+            bot.edit_message_text(text, call.message.chat.id, call.message.message_id, reply_markup=kb)
+            return
+        except Exception as e:
+            print("edit task screen error:", e)
+    bot.send_message(chat_id, text, reply_markup=kb)
+
+
 @bot.message_handler(func=lambda m: m.text == "📋 Задания")
 def tasks(message):
     if is_banned_user(message):
         return
+    show_task_screen(message.chat.id, message.from_user.id, 0)
+
+
+@bot.callback_query_handler(func=lambda c: c.data.startswith("tasknext_") or c.data.startswith("taskprev_"))
+def task_navigation(call):
+    if is_banned_call(call):
+        return
+
+    try:
+        action, idx_text = call.data.split("_", 1)
+        index = int(idx_text)
+    except Exception:
+        index = 0
 
     data = load_data()
-    user = get_user(data, message.from_user.id)
+    user = get_user(data, call.from_user.id)
+    total = len(get_available_task_ids(data, user))
 
-    kb = types.InlineKeyboardMarkup()
-    found = False
+    if action == "taskprev":
+        if index <= 0:
+            return safe_answer_callback(call, "Это первое задание.")
+        new_index = index - 1
+    else:
+        if index >= total - 1:
+            return safe_answer_callback(call, "Это последнее задание.")
+        new_index = index + 1
 
-    for task_id, task in data["tasks"].items():
-        if not task.get("active", True):
-            continue
-        if task_id in user["done_tasks"]:
-            continue
-        if task_id in user["pending_tasks"]:
-            continue
-        if str(user.get("waiting_task")) == str(task_id):
-            continue
+    safe_answer_callback(call)
+    show_task_screen(call.message.chat.id, call.from_user.id, new_index, call=call)
 
-        found = True
-        kb.add(types.InlineKeyboardButton(
-            f"{'🔥 Обязательное' if task.get('required') else '✅ Задание'} #{task_id} — {format_gmp(task['reward'])} GMP",
-            callback_data=f"task_{task_id}"
-        ))
 
+@bot.callback_query_handler(func=lambda c: c.data == "taskhome")
+def task_home(call):
+    if is_banned_call(call):
+        return
+    safe_answer_callback(call)
+    try:
+        bot.delete_message(call.message.chat.id, call.message.message_id)
+    except Exception:
+        pass
+    bot.send_message(call.message.chat.id, "🏠 Главное меню", reply_markup=main_menu())
+
+
+@bot.callback_query_handler(func=lambda c: c.data.startswith("tasksubmit_"))
+def task_submit_from_screen(call):
+    if is_banned_call(call):
+        return
+
+    data = load_data()
+    user = get_user(data, call.from_user.id)
+    task_id = call.data.split("_", 1)[1]
+
+    if task_id in user.get("done_tasks", []):
+        return safe_answer_callback(call, "Ты уже сделал это задание.", show_alert=True)
+
+    old_sid = has_active_submit(data, call.from_user.id, task_id)
+    if task_id in user.get("pending_tasks", []) or old_sid:
+        if old_sid and task_id not in user.get("pending_tasks", []):
+            user.setdefault("pending_tasks", []).append(task_id)
+            save_data(data)
+        return safe_answer_callback(call, "Задание уже на проверке.", show_alert=True)
+
+    task = data.get("tasks", {}).get(task_id)
+    if not task or not task.get("active", True):
+        return safe_answer_callback(call, "Задание удалено или недоступно.", show_alert=True)
+
+    user["waiting_task"] = task_id
+    user["last_open_task"] = task_id
+    user["withdraw_step"] = None
+    user["withdraw_to"] = None
     save_data(data)
 
-    if not found:
-        return bot.send_message(message.chat.id, "✅ Сейчас нет новых заданий.")
+    safe_answer_callback(call, "Отправь скриншот.")
+    bot.send_message(
+        call.message.chat.id,
+        f"📸 <b>Отправьте скриншот выполнения задания #{task_id}.</b>\n\n"
+        "После проверки задание пропадёт из раздела заданий навсегда, если админ одобрит заявку."
+    )
 
-    bot.send_message(message.chat.id, "📋 <b>Доступные задания:</b>", reply_markup=kb)
 
-
+# Старые callback-кнопки оставлены для заявок/старых сообщений: task_ и done_ больше не используются в новом интерфейсе,
+# но если у кого-то осталось старое сообщение, оно всё равно откроется.
 @bot.callback_query_handler(func=lambda c: c.data.startswith("task_"))
 def open_task(call):
     if is_banned_call(call):
@@ -2241,35 +2385,11 @@ def open_task(call):
     user = get_user(data, call.from_user.id)
     task_id = call.data.split("_")[1]
 
-    if task_id in user["done_tasks"]:
-        return bot.answer_callback_query(call.id, "Ты уже сделал это задание.")
+    task_ids = get_available_task_ids(data, user)
+    if task_id in task_ids:
+        return show_task_screen(call.message.chat.id, call.from_user.id, task_ids.index(task_id), call=call)
 
-    if task_id in user["pending_tasks"]:
-        return bot.answer_callback_query(call.id, "Задание уже на проверке.")
-    if str(user.get("waiting_task")) == str(task_id):
-        return bot.answer_callback_query(call.id, "Сначала отправь скрин по этому заданию.")
-
-    task = data["tasks"].get(task_id)
-    if not task or not task.get("active", True):
-        return bot.answer_callback_query(call.id, "Задание не найдено.")
-
-    # Запоминаем последнее открытое задание. Если Telegram/меню сбросит waiting_task,
-    # скрин всё равно привяжется к последнему открытому заданию.
-    user["last_open_task"] = task_id
-    save_data(data)
-
-    kb = types.InlineKeyboardMarkup()
-    kb.add(types.InlineKeyboardButton("🔗 Перейти", url=task["link"]))
-    kb.add(types.InlineKeyboardButton("✅ Я выполнил", callback_data=f"done_{task_id}"))
-
-    bot.send_message(
-        call.message.chat.id,
-        f"✅ <b>Задание #{task_id}</b>\n\n"
-        f"{task['text']}\n\n"
-        f"💰 Награда: <b>{format_gmp(task['reward'])} GMP</b>\n\n"
-        f"После выполнения нажми ✅ Я выполнил и отправь скрин.",
-        reply_markup=kb
-    )
+    return safe_answer_callback(call, "Задание уже выполнено, на проверке или удалено.", show_alert=True)
 
 
 @bot.callback_query_handler(func=lambda c: c.data.startswith("done_"))
@@ -2277,22 +2397,23 @@ def done_task(call):
     if is_banned_call(call):
         return
 
+    # Поддержка старой кнопки ✅ Я выполнил
     data = load_data()
     user = get_user(data, call.from_user.id)
     task_id = call.data.split("_")[1]
 
-    if task_id in user["done_tasks"]:
-        return bot.answer_callback_query(call.id, "Ты уже сделал это задание.")
+    if task_id in user.get("done_tasks", []):
+        return safe_answer_callback(call, "Ты уже сделал это задание.", show_alert=True)
 
     old_sid = has_active_submit(data, call.from_user.id, task_id)
-    if task_id in user["pending_tasks"] or old_sid:
+    if task_id in user.get("pending_tasks", []) or old_sid:
         if old_sid and task_id not in user.get("pending_tasks", []):
             user.setdefault("pending_tasks", []).append(task_id)
             save_data(data)
-        return bot.answer_callback_query(call.id, "Задание уже на проверке.")
+        return safe_answer_callback(call, "Задание уже на проверке.", show_alert=True)
 
-    if task_id not in data["tasks"]:
-        return bot.answer_callback_query(call.id, "Задание не найдено.")
+    if task_id not in data.get("tasks", {}):
+        return safe_answer_callback(call, "Задание не найдено.", show_alert=True)
 
     user["waiting_task"] = task_id
     user["last_open_task"] = task_id
@@ -2300,7 +2421,8 @@ def done_task(call):
     user["withdraw_to"] = None
     save_data(data)
 
-    bot.send_message(call.message.chat.id, "📸 Отправь скриншот выполнения задания.")
+    safe_answer_callback(call, "Отправь скриншот.")
+    bot.send_message(call.message.chat.id, f"📸 Отправь скриншот выполнения задания #{task_id}.")
 
 
 @bot.message_handler(content_types=["photo", "document"])
