@@ -2786,6 +2786,197 @@ def pay_check(call):
         print("withdraw callback error:", e)
         safe_edit_admin_message(call, "❌ Ошибка обработки выплаты. Проверь логи Render.")
 
+
+
+def get_request_from_admin_reply(message):
+    """
+    Берёт номер заявки именно из сообщения, на которое админ ответил.
+    Так не важно, если 2 человека отправили одно и то же задание:
+    /ok в ответ на нужную заявку обработает именно её.
+    """
+    if not getattr(message, "reply_to_message", None):
+        return None, None
+
+    replied = message.reply_to_message
+    text = (getattr(replied, "caption", None) or getattr(replied, "text", None) or "")
+
+    # Заявка на задание/фото
+    m = re.search(r"(?:Новая заявка|Заявка на задание)\s*#(\d+)", text, re.IGNORECASE)
+    if m:
+        return "submits", m.group(1)
+
+    # Заявка на вывод
+    m = re.search(r"(?:Новая заявка на вывод|Заявка на вывод)\s*#(\d+)", text, re.IGNORECASE)
+    if m:
+        return "withdraws", m.group(1)
+
+    return None, None
+
+
+def remove_replied_buttons(message):
+    """Пробуем убрать кнопки под заявкой, на которую ответил админ."""
+    try:
+        if getattr(message, "reply_to_message", None):
+            bot.edit_message_reply_markup(
+                chat_id=message.chat.id,
+                message_id=message.reply_to_message.message_id,
+                reply_markup=None
+            )
+    except Exception as e:
+        print("remove replied buttons error:", e)
+
+
+def admin_reply_submit_action(message, sid, action):
+    """Обработка заявки на задание через ответ командой /ok, /no, /delreq."""
+    sid = str(sid).strip().replace("#", "")
+    reason = message.text.split(maxsplit=1)[1].strip() if action == "reject" and len(message.text.split(maxsplit=1)) > 1 else ""
+
+    with DATA_LOCK:
+        data = load_data_for_admin_action()
+
+        processed = data.setdefault("processed_requests", {}).setdefault("submits", {}).get(sid)
+        if processed:
+            return bot.reply_to(message, f"⚠️ Заявка #{sid} уже обработана. Повторное действие заблокировано.")
+
+        real_sid, submit = find_request_by_id(data.get("submits", {}), sid)
+        if not submit or submit.get("status") != "wait":
+            return bot.reply_to(message, f"⚠️ Заявка #{sid} не найдена или уже закрыта.")
+
+        real_sid = str(real_sid or sid)
+        submit["status"] = "processing"
+        user_id = str(submit.get("user_id"))
+        task_id = str(submit.get("task_id"))
+        reward = float(submit.get("reward", 0) or 0)
+        user = get_user(data, user_id)
+
+        if task_id in user.get("pending_tasks", []):
+            user["pending_tasks"].remove(task_id)
+        if str(user.get("waiting_task")) == task_id:
+            user["waiting_task"] = None
+
+        credited = 0
+        new_balance = float(user.get("balance", 0) or 0)
+
+        if action == "approve":
+            if task_id not in user.get("done_tasks", []):
+                add_balance_to_user(data, user_id, reward, reason="task_approved", request_id=real_sid)
+                user["completed_tasks"] = int(user.get("completed_tasks", len(user.get("done_tasks", [])))) + 1
+                user["done_tasks"].append(task_id)
+                credited = reward
+            new_balance = float(user.get("balance", 0) or 0)
+            status = "approved"
+        elif action == "reject":
+            status = "rejected"
+        else:
+            status = "deleted"
+
+        remove_submit_from_data(data, real_sid, user_id, task_id)
+        if real_sid != sid:
+            remove_submit_from_data(data, sid, user_id, task_id)
+        mark_request_processed(data, "submits", real_sid, status, message.from_user.id, user_id, f"task #{task_id}")
+        if real_sid != sid:
+            mark_request_processed(data, "submits", sid, status, message.from_user.id, user_id, f"task #{task_id}")
+        save_data(data)
+
+    remove_replied_buttons(message)
+
+    if action == "approve":
+        if credited > 0:
+            safe_send(user_id, f"🎉 <b>Задание #{task_id} одобрено!</b>\n\n💰 Начислено: <b>{format_gmp(credited)} GMP</b>\n💎 Баланс: <b>{format_gmp(new_balance)} GMP</b>")
+        else:
+            safe_send(user_id, f"✅ <b>Задание #{task_id} уже было засчитано ранее.</b>\n\n💎 Баланс: <b>{format_gmp(new_balance)} GMP</b>")
+        return bot.reply_to(message, f"✅ Заявка #{real_sid} одобрена. Начислено: {format_gmp(credited)} GMP")
+
+    if action == "reject":
+        extra = f"\n\nПричина: {h(reason)}" if reason else ""
+        safe_send(user_id, f"❌ <b>Задание #{task_id} отклонено</b>{extra}\n\nМожно попробовать снова ✅")
+        return bot.reply_to(message, f"❌ Заявка #{real_sid} отклонена.")
+
+    safe_send(user_id, f"🗑 <b>Ваша заявка по заданию #{task_id} удалена администратором.</b>\n\nМожно отправить новый скриншот, если задание выполнено правильно.")
+    return bot.reply_to(message, f"🗑 Заявка #{real_sid} удалена.")
+
+
+def admin_reply_withdraw_action(message, wid, action):
+    """Обработка вывода через ответ командой /ok, /no, /delreq."""
+    wid = str(wid).strip().replace("#", "")
+
+    with DATA_LOCK:
+        data = load_data_for_admin_action()
+
+        processed = data.setdefault("processed_requests", {}).setdefault("withdraws", {}).get(wid)
+        if processed:
+            return bot.reply_to(message, f"⚠️ Вывод #{wid} уже обработан. Повторное действие заблокировано.")
+
+        real_wid, w = find_request_by_id(data.get("withdraws", {}), wid)
+        if not w or w.get("status") != "wait":
+            return bot.reply_to(message, f"⚠️ Вывод #{wid} не найден или уже закрыт.")
+
+        real_wid = str(real_wid or wid)
+        w["status"] = "processing"
+        user_id = str(w.get("user_id"))
+        amount = float(w.get("amount", 0) or 0)
+        user = get_user(data, user_id)
+
+        if action == "approve":
+            user["withdraw_count"] = int(user.get("withdraw_count", 0)) + 1
+            user["withdrawn_total"] = round(float(user.get("withdrawn_total", 0)) + amount, 2)
+            data["total_paid"] = round(float(data.get("total_paid", 0)) + amount, 2)
+            data["total_withdrawals"] = int(data.get("total_withdrawals", 0)) + 1
+            status = "paid"
+        elif action == "reject":
+            add_balance_to_user(data, user_id, amount, reason="withdraw_rejected_return", request_id=real_wid)
+            status = "rejected"
+        else:
+            add_balance_to_user(data, user_id, amount, reason="withdraw_deleted_return", request_id=real_wid)
+            status = "deleted"
+
+        remove_withdraw_from_data(data, real_wid, user_id)
+        if real_wid != wid:
+            remove_withdraw_from_data(data, wid, user_id)
+        mark_request_processed(data, "withdraws", real_wid, status, message.from_user.id, user_id, f"amount {amount}")
+        if real_wid != wid:
+            mark_request_processed(data, "withdraws", wid, status, message.from_user.id, user_id, f"amount {amount}")
+        save_data(data)
+
+    remove_replied_buttons(message)
+
+    if action == "approve":
+        safe_send(user_id, f"✅ <b>Заказ #{real_wid} выполнен!</b>\n\n💎 GMP успешно выданы 💜")
+        return bot.reply_to(message, f"✅ Вывод #{real_wid} отмечен как выплаченный.")
+
+    if action == "reject":
+        safe_send(user_id, f"❌ <b>Заявка на вывод #{real_wid} отклонена.</b>\n\n💰 <b>{format_gmp(amount)} GMP</b> возвращены на баланс.")
+        return bot.reply_to(message, f"❌ Вывод #{real_wid} отклонён, GMP возвращены.")
+
+    safe_send(user_id, f"🗑 <b>Заявка на вывод #{real_wid} удалена.</b>\n\n💰 <b>{format_gmp(amount)} GMP</b> возвращены на баланс.")
+    return bot.reply_to(message, f"🗑 Вывод #{real_wid} удалён, GMP возвращены.")
+
+
+@bot.message_handler(commands=["ok", "no", "delreq"])
+def admin_reply_request_commands(message):
+    if message.from_user.id != ADMIN_ID:
+        return bot.send_message(message.chat.id, "❌ Нет доступа.")
+
+    cmd = message.text.split()[0].lower().replace("/", "").split("@", 1)[0]
+    kind, request_id = get_request_from_admin_reply(message)
+
+    if not kind or not request_id:
+        return bot.reply_to(
+            message,
+            "❌ Нужно ответить командой на сообщение заявки.\n\n"
+            "Пример:\n"
+            "1) Открой заявку админа\n"
+            "2) Нажми Ответить\n"
+            "3) Напиши /ok или /no или /delreq"
+        )
+
+    action = "approve" if cmd == "ok" else ("reject" if cmd == "no" else "delete")
+
+    if kind == "submits":
+        return admin_reply_submit_action(message, request_id, action)
+    return admin_reply_withdraw_action(message, request_id, action)
+
+
 @bot.message_handler(commands=["addtask"])
 def add_task(message):
     if message.from_user.id != ADMIN_ID:
