@@ -1684,15 +1684,12 @@
       "banned": false,
       "ban_reason": "",
       "created_at": 1782925739,
-      "updated_at": 1782972365,
+      "updated_at": 1782972457,
       "user_id": 8853924649,
       "username": "djdjdjfjccj",
       "first_name": "Непонятный",
       "last_name": "",
-      "language_code": "ru",
-      "pending_tasks": [
-        "59"
-      ]
+      "language_code": "ru"
     },
     "8341988288": {
       "balance": 0.2,
