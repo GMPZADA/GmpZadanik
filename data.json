@@ -52,8 +52,8 @@
       "last_bonus": 1781671031,
       "completed_tasks": 4,
       "total_earned": 1.0,
-      "withdraw_count": 0,
-      "withdrawn_total": 0,
+      "withdraw_count": 1,
+      "withdrawn_total": 1.0,
       "fines_total": 0,
       "username": "Artemwesh",
       "banned": false,
@@ -63,8 +63,7 @@
       "user_id": 7837011810,
       "first_name": "Артем",
       "last_name": "",
-      "language_code": "ru",
-      "withdraw_pending": true
+      "language_code": "ru"
     },
     "8380620424": {
       "balance": 0.0,
@@ -3559,6 +3558,13 @@
         "user_id": "5241714648",
         "note": "amount 7.0",
         "time": 1782982438
+      },
+      "146": {
+        "status": "paid",
+        "admin_id": 7837011810,
+        "user_id": "7837011810",
+        "note": "amount 1.0",
+        "time": 1782988745
       }
     }
   },
@@ -4468,8 +4474,8 @@
       "request_id": "146"
     }
   ],
-  "total_paid": 45.6,
-  "total_withdrawals": 14,
+  "total_paid": 46.6,
+  "total_withdrawals": 15,
   "last_task_id": 66,
   "last_submit_id": 362,
   "last_withdraw_id": 146,
