@@ -249,7 +249,8 @@
       "username": "Rognogor",
       "first_name": "Злой",
       "last_name": "",
-      "language_code": "ru"
+      "language_code": "ru",
+      "withdraw_step": "username"
     },
     "7979994199": {
       "balance": 2.2,
