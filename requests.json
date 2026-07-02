@@ -1,27 +1,9 @@
 {
   "submits": {},
-  "withdraws": {
-    "147": {
-      "user_id": 7441149510,
-      "username": "Rognogor",
-      "to": "@Rognogor",
-      "amount": 5.2,
-      "status": "wait",
-      "time": 1783003668,
-      "source_message_id": 13785,
-      "admin_sent": true,
-      "admin_sent_time": 1783003670,
-      "admin_message_id": 13787
-    }
-  },
+  "withdraws": {},
   "admin_sent": {
     "submits": {},
-    "withdraws": {
-      "147": {
-        "message_id": 13787,
-        "time": 1783003670
-      }
-    }
+    "withdraws": {}
   },
   "user_states": {},
   "withdraw_requests": {},
