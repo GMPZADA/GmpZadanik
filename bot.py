@@ -2110,7 +2110,7 @@ def done_task(call):
     bot.send_message(call.message.chat.id, "📸 Отправь скриншот выполнения задания.")
 
 
-@bot.message_handler(content_types=["photo"])
+@bot.message_handler(content_types=["photo", "document"])
 def photo(message):
     if is_banned_user(message):
         return
@@ -2118,10 +2118,26 @@ def photo(message):
     """
     Железная логика заявки на задание:
     - один пользователь + одно задание = только одна активная заявка;
+    - можно отправить скрин как фото или как файл-картинку;
     - если Telegram/интернет прислал фото повторно — новый номер не создаётся;
     - /requests не будет повторно кидать админу одно и то же фото.
     """
-    photo_file_id = message.photo[-1].file_id if message.photo else ""
+    is_document_image = False
+
+    if message.content_type == "photo":
+        photo_file_id = message.photo[-1].file_id if message.photo else ""
+    elif message.content_type == "document":
+        mime_type = (getattr(message.document, "mime_type", "") or "").lower()
+        file_name = (getattr(message.document, "file_name", "") or "").lower()
+        image_ext = file_name.endswith((".jpg", ".jpeg", ".png", ".webp", ".heic", ".heif"))
+
+        if not (mime_type.startswith("image/") or image_ext):
+            return bot.send_message(message.chat.id, "📸 Отправь именно скриншот: фото или файл-картинку.")
+
+        is_document_image = True
+        photo_file_id = message.document.file_id
+    else:
+        return
 
     with SUBMIT_CREATE_LOCK:
         data = load_data()
@@ -2170,6 +2186,7 @@ def photo(message):
             "reward": float(task.get("reward", 0)),
             "status": "wait",
             "photo_file_id": photo_file_id,
+            "file_type": "document" if is_document_image else "photo",
             "time": int(time.time())
         }
 
@@ -2186,18 +2203,28 @@ def photo(message):
     bot.send_message(message.chat.id, "✅ Скрин отправлен админу на проверку.\n⏳ Задание временно скрыто из списка.")
 
     try:
-        admin_msg = bot.send_photo(
-            ADMIN_ID,
-            photo_file_id,
-            caption=(
-                f"📨 <b>Новая заявка #{sid}</b>\n\n"
-                f"✅ Задание: #{task_id}\n"
-                f"💰 Награда: {format_gmp(task.get('reward', 0))} GMP\n"
-                f"👤 Пользователь: @{safe_username(message.from_user.username)}\n"
-                f"🆔 ID: <code>{message.from_user.id}</code>"
-            ),
-            reply_markup=kb
+        caption = (
+            f"📨 <b>Новая заявка #{sid}</b>\n\n"
+            f"✅ Задание: #{task_id}\n"
+            f"💰 Награда: {format_gmp(task.get('reward', 0))} GMP\n"
+            f"👤 Пользователь: @{safe_username(message.from_user.username)}\n"
+            f"🆔 ID: <code>{message.from_user.id}</code>"
         )
+
+        if is_document_image:
+            admin_msg = bot.send_document(
+                ADMIN_ID,
+                photo_file_id,
+                caption=caption,
+                reply_markup=kb
+            )
+        else:
+            admin_msg = bot.send_photo(
+                ADMIN_ID,
+                photo_file_id,
+                caption=caption,
+                reply_markup=kb
+            )
 
         with DATA_LOCK:
             data = load_data()
