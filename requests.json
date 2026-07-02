@@ -11,14 +11,14 @@
       "time": 1782972365,
       "admin_sent": true,
       "admin_sent_time": 1782972365,
-      "admin_message_id": "sending"
+      "admin_message_id": 13375
     }
   },
   "withdraws": {},
   "admin_sent": {
     "submits": {
       "352": {
-        "message_id": "sending",
+        "message_id": 13375,
         "time": 1782972365
       }
     },
