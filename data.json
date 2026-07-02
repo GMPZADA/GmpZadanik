@@ -1719,18 +1719,18 @@
       "language_code": "ru"
     },
     "8500884361": {
-      "balance": 0,
+      "balance": 0.2,
       "done_tasks": [],
-      "last_bonus": 0,
+      "last_bonus": 1782979133,
       "completed_tasks": 0,
-      "total_earned": 0,
+      "total_earned": 0.2,
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
       "banned": false,
       "ban_reason": "",
       "created_at": 1782979130,
-      "updated_at": 1782979145,
+      "updated_at": 1782979152,
       "user_id": 8500884361,
       "username": "Last_emperator",
       "first_name": "Last emperator",
@@ -3499,24 +3499,6 @@
   },
   "balance_logs": [
     {
-      "time": 1781946056,
-      "user_id": "8175217947",
-      "old": 0.0,
-      "amount": 0.2,
-      "new": 0.2,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1781952130,
-      "user_id": "8721133146",
-      "old": 0.0,
-      "amount": 0.2,
-      "new": 0.2,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
       "time": 1781966646,
       "user_id": "8341360449",
       "old": 0.0,
@@ -4397,6 +4379,24 @@
       "new": 3.4,
       "reason": "task_approved",
       "request_id": "253"
+    },
+    {
+      "time": 1781939245,
+      "user_id": "7130773702",
+      "old": 1.4,
+      "amount": 0.2,
+      "new": 1.6,
+      "reason": "add",
+      "request_id": ""
+    },
+    {
+      "time": 1781946018,
+      "user_id": "7827244299",
+      "old": 0.0,
+      "amount": 0.2,
+      "new": 0.2,
+      "reason": "add",
+      "request_id": ""
     }
   ],
   "total_paid": 38.6,
