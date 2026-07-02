@@ -841,7 +841,13 @@
       "fines_total": 0,
       "username": "virtatacka",
       "banned": false,
-      "ban_reason": ""
+      "ban_reason": "",
+      "created_at": 1783003218,
+      "updated_at": 1783003218,
+      "user_id": 7923376014,
+      "first_name": "︎ ᅠ ︎ virtatacka(нуя|тапок невы)",
+      "last_name": "︎",
+      "language_code": "ru"
     },
     "6976874613": {
       "balance": 0.0,
