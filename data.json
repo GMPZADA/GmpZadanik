@@ -43,15 +43,15 @@
       "ban_reason": ""
     },
     "7837011810": {
-      "balance": 0.0,
+      "balance": 0.5,
       "done_tasks": [
         "44",
         "38",
         "41"
       ],
-      "last_bonus": 1781671031,
+      "last_bonus": 1783003092,
       "completed_tasks": 4,
-      "total_earned": 1.0,
+      "total_earned": 1.5,
       "withdraw_count": 1,
       "withdrawn_total": 1.0,
       "fines_total": 0,
@@ -59,7 +59,7 @@
       "banned": false,
       "ban_reason": "",
       "created_at": 1782836891,
-      "updated_at": 1783003091,
+      "updated_at": 1783003092,
       "user_id": 7837011810,
       "first_name": "Артем",
       "last_name": "",
