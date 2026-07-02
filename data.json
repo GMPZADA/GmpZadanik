@@ -10,9 +10,7 @@
       "total_earned": 0,
       "withdraw_count": 0,
       "withdrawn_total": 0,
-      "fines_total": 0,
-      "banned": false,
-      "ban_reason": ""
+      "fines_total": 0
     },
     "8919178002": {
       "balance": 0,
@@ -24,9 +22,7 @@
       "total_earned": 0,
       "withdraw_count": 0,
       "withdrawn_total": 0,
-      "fines_total": 0,
-      "banned": false,
-      "ban_reason": ""
+      "fines_total": 0
     },
     "8690277278": {
       "balance": 0,
@@ -38,9 +34,7 @@
       "total_earned": 0,
       "withdraw_count": 0,
       "withdrawn_total": 0,
-      "fines_total": 0,
-      "banned": false,
-      "ban_reason": ""
+      "fines_total": 0
     },
     "7837011810": {
       "balance": 0.5,
@@ -56,8 +50,6 @@
       "withdrawn_total": 1.0,
       "fines_total": 0,
       "username": "Artemwesh",
-      "banned": false,
-      "ban_reason": "",
       "created_at": 1782836891,
       "updated_at": 1783014027,
       "user_id": 7837011810,
@@ -74,8 +66,6 @@
       "withdraw_count": 1,
       "withdrawn_total": 2.0,
       "fines_total": 0,
-      "banned": false,
-      "ban_reason": "",
       "username": "offormit2"
     },
     "8317326202": {
@@ -91,8 +81,6 @@
       "withdraw_count": 2,
       "withdrawn_total": 11.0,
       "fines_total": 0,
-      "banned": false,
-      "ban_reason": "",
       "username": "KPOCOTKO"
     },
     "5609899938": {
@@ -109,8 +97,6 @@
       "withdraw_count": 2,
       "withdrawn_total": 13.0,
       "fines_total": 0,
-      "banned": false,
-      "ban_reason": "",
       "username": "KPACOTKAA"
     },
     "8431020779": {
@@ -132,9 +118,7 @@
       "withdraw_count": 9,
       "withdrawn_total": 16.4,
       "fines_total": 0,
-      "username": "sksksskskmsdm",
-      "banned": false,
-      "ban_reason": ""
+      "username": "sksksskskmsdm"
     },
     "8618896377": {
       "balance": 0.2,
@@ -145,9 +129,7 @@
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
-      "username": "",
-      "banned": false,
-      "ban_reason": ""
+      "username": ""
     },
     "7906360316": {
       "balance": 0.2,
@@ -157,9 +139,7 @@
       "total_earned": 0.2,
       "withdraw_count": 0,
       "withdrawn_total": 0,
-      "fines_total": 0,
-      "banned": false,
-      "ban_reason": ""
+      "fines_total": 0
     },
     "8263746591": {
       "balance": 0.2,
@@ -169,9 +149,7 @@
       "total_earned": 0.2,
       "withdraw_count": 0,
       "withdrawn_total": 0,
-      "fines_total": 0,
-      "banned": false,
-      "ban_reason": ""
+      "fines_total": 0
     },
     "5224773359": {
       "balance": 0.0,
@@ -196,9 +174,7 @@
       "withdraw_count": 9,
       "withdrawn_total": 23.4,
       "fines_total": 1.0,
-      "username": "xux_xuxx",
-      "banned": false,
-      "ban_reason": ""
+      "username": "xux_xuxx"
     },
     "1631337389": {
       "balance": 0.2,
@@ -213,9 +189,7 @@
       "withdraw_count": 3,
       "withdrawn_total": 5.6,
       "fines_total": 0,
-      "username": "sugaringnn",
-      "banned": false,
-      "ban_reason": ""
+      "username": "sugaringnn"
     },
     "6950605094": {
       "balance": 0,
@@ -225,9 +199,7 @@
       "total_earned": 0,
       "withdraw_count": 0,
       "withdrawn_total": 0,
-      "fines_total": 0,
-      "banned": false,
-      "ban_reason": ""
+      "fines_total": 0
     },
     "7441149510": {
       "balance": 0.0,
@@ -241,8 +213,6 @@
       "withdraw_count": 1,
       "withdrawn_total": 5.2,
       "fines_total": 0,
-      "banned": false,
-      "ban_reason": "",
       "created_at": 1782934750,
       "updated_at": 1783003753,
       "user_id": 7441149510,
@@ -262,9 +232,7 @@
       "total_earned": 2.2,
       "withdraw_count": 0,
       "withdrawn_total": 0,
-      "fines_total": 0,
-      "banned": false,
-      "ban_reason": ""
+      "fines_total": 0
     },
     "8516313611": {
       "balance": 0.0,
@@ -281,9 +249,7 @@
       "withdraw_count": 1,
       "withdrawn_total": 7.4,
       "fines_total": 0,
-      "username": "kiril2230",
-      "banned": false,
-      "ban_reason": ""
+      "username": "kiril2230"
     },
     "8507291495": {
       "balance": 0.4,
@@ -297,9 +263,7 @@
       "total_earned": 0.4,
       "withdraw_count": 0,
       "withdrawn_total": 0,
-      "fines_total": 0,
-      "banned": false,
-      "ban_reason": ""
+      "fines_total": 0
     },
     "1401650206": {
       "balance": 0.0,
@@ -315,9 +279,7 @@
       "withdraw_count": 2,
       "withdrawn_total": 12.0,
       "fines_total": 0,
-      "username": "kiril6789",
-      "banned": false,
-      "ban_reason": ""
+      "username": "kiril6789"
     },
     "8534240629": {
       "balance": 3.4,
@@ -328,9 +290,7 @@
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
-      "username": "smdkdkdjd",
-      "banned": false,
-      "ban_reason": ""
+      "username": "smdkdkdjd"
     },
     "8136040149": {
       "balance": 0,
@@ -341,8 +301,6 @@
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
-      "banned": false,
-      "ban_reason": "",
       "created_at": 1782919407,
       "updated_at": 1782926443,
       "user_id": 8136040149,
@@ -370,9 +328,7 @@
       "withdraw_count": 1,
       "withdrawn_total": 11.0,
       "fines_total": 0,
-      "username": "kronixxd",
-      "banned": false,
-      "ban_reason": ""
+      "username": "kronixxd"
     },
     "1795980648": {
       "balance": 0,
@@ -383,9 +339,7 @@
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
-      "username": "zhenya_uukr",
-      "banned": false,
-      "ban_reason": ""
+      "username": "zhenya_uukr"
     },
     "7130773702": {
       "balance": 0.0,
@@ -407,8 +361,6 @@
       "withdrawn_total": 15.0,
       "fines_total": 0,
       "username": "kurokcek",
-      "banned": false,
-      "ban_reason": "",
       "created_at": 1782848000,
       "updated_at": 1783003886,
       "user_id": 7130773702,
@@ -425,8 +377,6 @@
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
-      "banned": false,
-      "ban_reason": "",
       "created_at": 1782934390,
       "updated_at": 1783003871,
       "user_id": 5356400377,
@@ -443,9 +393,7 @@
       "total_earned": 0.2,
       "withdraw_count": 0,
       "withdrawn_total": 0,
-      "fines_total": 0,
-      "banned": false,
-      "ban_reason": ""
+      "fines_total": 0
     },
     "7741910780": {
       "balance": 0.2,
@@ -455,9 +403,7 @@
       "total_earned": 0.2,
       "withdraw_count": 0,
       "withdrawn_total": 0,
-      "fines_total": 0,
-      "banned": false,
-      "ban_reason": ""
+      "fines_total": 0
     },
     "6676859873": {
       "balance": 1.0,
@@ -469,9 +415,7 @@
       "total_earned": 1.0,
       "withdraw_count": 0,
       "withdrawn_total": 0,
-      "fines_total": 0,
-      "banned": false,
-      "ban_reason": ""
+      "fines_total": 0
     },
     "8799497858": {
       "balance": 0,
@@ -481,9 +425,7 @@
       "total_earned": 0,
       "withdraw_count": 0,
       "withdrawn_total": 0,
-      "fines_total": 0,
-      "banned": false,
-      "ban_reason": ""
+      "fines_total": 0
     },
     "8258106768": {
       "balance": 6.2,
@@ -507,8 +449,6 @@
       "withdraw_count": 4,
       "withdrawn_total": 20.0,
       "fines_total": 0,
-      "banned": false,
-      "ban_reason": "",
       "username": "trqLemon4ik",
       "created_at": 1782917856,
       "updated_at": 1783003624,
@@ -539,8 +479,6 @@
       "withdraw_count": 6,
       "withdrawn_total": 27.6,
       "fines_total": 0,
-      "banned": false,
-      "ban_reason": "",
       "username": "BOG_PIGR",
       "created_at": 1782918157,
       "updated_at": 1782967818,
@@ -558,8 +496,6 @@
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
-      "banned": false,
-      "ban_reason": "",
       "created_at": 1782920056,
       "updated_at": 1782920079,
       "user_id": 7581133015,
@@ -576,9 +512,7 @@
       "total_earned": 0.4,
       "withdraw_count": 0,
       "withdrawn_total": 0,
-      "fines_total": 0,
-      "banned": false,
-      "ban_reason": ""
+      "fines_total": 0
     },
     "8919895425": {
       "balance": 0.0,
@@ -601,9 +535,7 @@
       "total_earned": 0,
       "withdraw_count": 0,
       "withdrawn_total": 0,
-      "fines_total": 0,
-      "banned": false,
-      "ban_reason": ""
+      "fines_total": 0
     },
     "7569588474": {
       "balance": 0.2,
@@ -614,8 +546,6 @@
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
-      "banned": false,
-      "ban_reason": "",
       "username": "kr1k0n1"
     },
     "8322172966": {
@@ -631,9 +561,7 @@
       "withdraw_count": 1,
       "withdrawn_total": 4.4,
       "fines_total": 0,
-      "username": "Als1win",
-      "banned": false,
-      "ban_reason": ""
+      "username": "Als1win"
     },
     "5040999888": {
       "balance": 0,
@@ -643,9 +571,7 @@
       "total_earned": 0,
       "withdraw_count": 0,
       "withdrawn_total": 0,
-      "fines_total": 0,
-      "banned": false,
-      "ban_reason": ""
+      "fines_total": 0
     },
     "6744639669": {
       "balance": 0.4,
@@ -670,9 +596,7 @@
       "withdraw_count": 3,
       "withdrawn_total": 10.0,
       "fines_total": 0,
-      "username": "Defak97",
-      "banned": false,
-      "ban_reason": ""
+      "username": "Defak97"
     },
     "8591913757": {
       "balance": 0.2,
@@ -686,9 +610,7 @@
       "withdraw_count": 1,
       "withdrawn_total": 5.0,
       "fines_total": 0,
-      "username": "Sjdjkdo",
-      "banned": false,
-      "ban_reason": ""
+      "username": "Sjdjkdo"
     },
     "6473626145": {
       "balance": 0.2,
@@ -698,9 +620,7 @@
       "total_earned": 0.2,
       "withdraw_count": 0,
       "withdrawn_total": 0,
-      "fines_total": 0,
-      "banned": false,
-      "ban_reason": ""
+      "fines_total": 0
     },
     "7106223662": {
       "balance": 0.4,
@@ -717,9 +637,7 @@
       "withdraw_count": 5,
       "withdrawn_total": 20.4,
       "fines_total": 0,
-      "username": "EbyV0",
-      "banned": false,
-      "ban_reason": ""
+      "username": "EbyV0"
     },
     "6580659021": {
       "balance": 0,
@@ -729,9 +647,7 @@
       "total_earned": 0,
       "withdraw_count": 0,
       "withdrawn_total": 0,
-      "fines_total": 0,
-      "banned": false,
-      "ban_reason": ""
+      "fines_total": 0
     },
     "8547212549": {
       "balance": 0,
@@ -741,9 +657,7 @@
       "total_earned": 0,
       "withdraw_count": 0,
       "withdrawn_total": 0,
-      "fines_total": 0,
-      "banned": false,
-      "ban_reason": ""
+      "fines_total": 0
     },
     "8259138498": {
       "balance": 0.2,
@@ -753,9 +667,7 @@
       "total_earned": 0.2,
       "withdraw_count": 0,
       "withdrawn_total": 0,
-      "fines_total": 0,
-      "banned": false,
-      "ban_reason": ""
+      "fines_total": 0
     },
     "8509640926": {
       "balance": 1.0,
@@ -767,9 +679,7 @@
       "total_earned": 1.0,
       "withdraw_count": 0,
       "withdrawn_total": 0,
-      "fines_total": 0,
-      "banned": false,
-      "ban_reason": ""
+      "fines_total": 0
     },
     "1253151803": {
       "balance": 0.0,
@@ -781,9 +691,7 @@
       "withdrawn_total": 0,
       "fines_total": 1.0,
       "username": "SHORA_1",
-      "debt_paid_total": 1.0,
-      "banned": false,
-      "ban_reason": ""
+      "debt_paid_total": 1.0
     },
     "8590322435": {
       "balance": 0.0,
@@ -803,8 +711,6 @@
       "withdrawn_total": 14.0,
       "fines_total": 0,
       "username": "xx_xxts",
-      "banned": false,
-      "ban_reason": "",
       "created_at": 1782917853,
       "updated_at": 1782917940,
       "user_id": 8590322435,
@@ -825,9 +731,7 @@
       "withdraw_count": 2,
       "withdrawn_total": 7.0,
       "fines_total": 0,
-      "username": "Forka134",
-      "banned": false,
-      "ban_reason": ""
+      "username": "Forka134"
     },
     "7923376014": {
       "balance": 0.0,
@@ -841,8 +745,6 @@
       "withdrawn_total": 2.0,
       "fines_total": 0,
       "username": "virtatacka",
-      "banned": false,
-      "ban_reason": "",
       "created_at": 1783003218,
       "updated_at": 1783003262,
       "user_id": 7923376014,
@@ -863,9 +765,7 @@
       "withdraw_count": 2,
       "withdrawn_total": 7.2,
       "fines_total": 0,
-      "username": "Gffffah",
-      "banned": false,
-      "ban_reason": ""
+      "username": "Gffffah"
     },
     "8007798988": {
       "balance": 1.0,
@@ -876,9 +776,7 @@
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
-      "username": "Salatic_moops",
-      "banned": false,
-      "ban_reason": ""
+      "username": "Salatic_moops"
     },
     "5821212213": {
       "balance": 0,
@@ -889,9 +787,7 @@
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
-      "username": "Ktoto6688",
-      "banned": false,
-      "ban_reason": ""
+      "username": "Ktoto6688"
     },
     "8304580675": {
       "balance": 0.0,
@@ -902,9 +798,7 @@
       "withdraw_count": 1,
       "withdrawn_total": 1.2,
       "fines_total": 0,
-      "username": "l1near",
-      "banned": false,
-      "ban_reason": ""
+      "username": "l1near"
     },
     "8609456758": {
       "balance": 0,
@@ -915,9 +809,7 @@
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
-      "username": "NIKE67BROS",
-      "banned": false,
-      "ban_reason": ""
+      "username": "NIKE67BROS"
     },
     "1773886389": {
       "balance": 0,
@@ -928,9 +820,7 @@
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
-      "username": "rentabl3",
-      "banned": false,
-      "ban_reason": ""
+      "username": "rentabl3"
     },
     "5442222049": {
       "balance": 0.2,
@@ -941,9 +831,7 @@
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
-      "username": "KoshakkoW",
-      "banned": false,
-      "ban_reason": ""
+      "username": "KoshakkoW"
     },
     "6058498905": {
       "balance": 0,
@@ -953,9 +841,7 @@
       "total_earned": 0,
       "withdraw_count": 0,
       "withdrawn_total": 0,
-      "fines_total": 0,
-      "banned": false,
-      "ban_reason": ""
+      "fines_total": 0
     },
     "7970947663": {
       "balance": 14.0,
@@ -973,8 +859,6 @@
       "withdrawn_total": 1.2,
       "fines_total": 0,
       "username": "neevspominay",
-      "banned": false,
-      "ban_reason": "",
       "created_at": 1782934304,
       "updated_at": 1783003925,
       "user_id": 7970947663,
@@ -1000,8 +884,6 @@
       "withdrawn_total": 20.2,
       "fines_total": 0,
       "username": "grimReapersing",
-      "banned": false,
-      "ban_reason": "",
       "created_at": 1782933817,
       "updated_at": 1782933823,
       "user_id": 7811863751,
@@ -1021,9 +903,7 @@
       "withdraw_count": 1,
       "withdrawn_total": 1.0,
       "fines_total": 0,
-      "username": "MINIPEKKA993",
-      "banned": false,
-      "ban_reason": ""
+      "username": "MINIPEKKA993"
     },
     "6161029024": {
       "balance": 0.2,
@@ -1034,9 +914,7 @@
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
-      "username": "Sasiska1223",
-      "banned": false,
-      "ban_reason": ""
+      "username": "Sasiska1223"
     },
     "8510497310": {
       "balance": 0,
@@ -1047,9 +925,7 @@
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
-      "username": "lm_Divine",
-      "banned": false,
-      "ban_reason": ""
+      "username": "lm_Divine"
     },
     "8031414696": {
       "balance": 0,
@@ -1060,9 +936,7 @@
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
-      "username": "",
-      "banned": false,
-      "ban_reason": ""
+      "username": ""
     },
     "8804288474": {
       "balance": 0.2,
@@ -1076,9 +950,7 @@
       "withdraw_count": 3,
       "withdrawn_total": 8.2,
       "fines_total": 0,
-      "username": "Gangsters_95",
-      "banned": false,
-      "ban_reason": ""
+      "username": "Gangsters_95"
     },
     "8341360449": {
       "balance": 0.2,
@@ -1092,9 +964,7 @@
       "withdraw_count": 1,
       "withdrawn_total": 3.2,
       "fines_total": 0,
-      "username": "chrevoygodied",
-      "banned": false,
-      "ban_reason": ""
+      "username": "chrevoygodied"
     },
     "6324214210": {
       "balance": 0.2,
@@ -1105,8 +975,6 @@
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
-      "banned": false,
-      "ban_reason": "",
       "username": "belinov_Team"
     },
     "7853702709": {
@@ -1118,9 +986,7 @@
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
-      "username": "Esjsjss",
-      "banned": false,
-      "ban_reason": ""
+      "username": "Esjsjss"
     },
     "8806429831": {
       "balance": 0.2,
@@ -1131,9 +997,7 @@
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
-      "username": "men4chik",
-      "banned": false,
-      "ban_reason": ""
+      "username": "men4chik"
     },
     "8478884644": {
       "balance": 0,
@@ -1144,9 +1008,7 @@
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
-      "username": "debashev",
-      "banned": false,
-      "ban_reason": ""
+      "username": "debashev"
     },
     "5379263036": {
       "balance": 0.2,
@@ -1157,9 +1019,7 @@
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
-      "username": "BLAG542",
-      "banned": false,
-      "ban_reason": ""
+      "username": "BLAG542"
     },
     "7463485005": {
       "balance": 7.2,
@@ -1173,9 +1033,7 @@
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
-      "username": "nurr_b077",
-      "banned": false,
-      "ban_reason": ""
+      "username": "nurr_b077"
     },
     "7578157415": {
       "balance": 0.2,
@@ -1186,9 +1044,7 @@
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
-      "username": "Adonis_tg",
-      "banned": false,
-      "ban_reason": ""
+      "username": "Adonis_tg"
     },
     "8031026603": {
       "balance": 1.4,
@@ -1201,8 +1057,6 @@
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
-      "banned": false,
-      "ban_reason": "",
       "username": "Your3GuardianAngel"
     },
     "8850526851": {
@@ -1214,8 +1068,6 @@
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
-      "banned": false,
-      "ban_reason": "",
       "username": "Alexx07987"
     },
     "7827244299": {
@@ -1227,8 +1079,6 @@
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
-      "banned": false,
-      "ban_reason": "",
       "username": "Mr_Apelsin"
     },
     "8175217947": {
@@ -1240,8 +1090,6 @@
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
-      "banned": false,
-      "ban_reason": "",
       "username": "qikifa"
     },
     "8721133146": {
@@ -1253,8 +1101,6 @@
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
-      "banned": false,
-      "ban_reason": "",
       "username": "artgmp33"
     },
     "8118631172": {
@@ -1266,8 +1112,6 @@
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
-      "banned": false,
-      "ban_reason": "",
       "username": "Mister_ykt"
     },
     "6732439279": {
@@ -1279,8 +1123,6 @@
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
-      "banned": false,
-      "ban_reason": "",
       "username": "LoveMoney64"
     },
     "8823804307": {
@@ -1292,8 +1134,6 @@
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
-      "banned": false,
-      "ban_reason": "",
       "username": "loridjedje"
     },
     "7937166836": {
@@ -1308,8 +1148,6 @@
       "withdraw_count": 1,
       "withdrawn_total": 6.0,
       "fines_total": 0,
-      "banned": false,
-      "ban_reason": "",
       "username": "prostoIlyamu"
     },
     "8651016638": {
@@ -1327,8 +1165,6 @@
       "withdraw_count": 4,
       "withdrawn_total": 12.2,
       "fines_total": 0,
-      "banned": false,
-      "ban_reason": "",
       "username": "Bratan7014",
       "created_at": 1782972886,
       "updated_at": 1783004715,
@@ -1355,8 +1191,6 @@
       "withdraw_count": 2,
       "withdrawn_total": 13.0,
       "fines_total": 0,
-      "banned": false,
-      "ban_reason": "",
       "username": "dipeniks",
       "created_at": 1782836266,
       "updated_at": 1783004241,
@@ -1374,8 +1208,6 @@
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
-      "banned": false,
-      "ban_reason": "",
       "username": "DIMITEY92"
     },
     "7476447439": {
@@ -1391,8 +1223,6 @@
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
-      "banned": false,
-      "ban_reason": "",
       "username": "missnipery"
     },
     "8694892873": {
@@ -1408,8 +1238,6 @@
       "withdraw_count": 2,
       "withdrawn_total": 7.4,
       "fines_total": 0,
-      "banned": false,
-      "ban_reason": "",
       "username": "Grade_top",
       "created_at": 1782918026,
       "updated_at": 1782921443,
@@ -1427,8 +1255,6 @@
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
-      "banned": false,
-      "ban_reason": "",
       "username": "drfggjjbh"
     },
     "8862491905": {
@@ -1440,8 +1266,6 @@
       "withdraw_count": 1,
       "withdrawn_total": 5.0,
       "fines_total": 0,
-      "banned": false,
-      "ban_reason": "",
       "created_at": 1782836762,
       "updated_at": 1782837353,
       "user_id": 8862491905,
@@ -1461,8 +1285,6 @@
       "withdraw_count": 2,
       "withdrawn_total": 4.0,
       "fines_total": 0,
-      "banned": false,
-      "ban_reason": "",
       "created_at": 1782839975,
       "updated_at": 1783003344,
       "user_id": 8930802649,
@@ -1480,8 +1302,6 @@
       "withdraw_count": 1,
       "withdrawn_total": 1.0,
       "fines_total": 0,
-      "banned": false,
-      "ban_reason": "",
       "created_at": 1782844314,
       "updated_at": 1782844612,
       "user_id": 8949642102,
@@ -1501,8 +1321,6 @@
       "withdraw_count": 1,
       "withdrawn_total": 2.0,
       "fines_total": 0,
-      "banned": false,
-      "ban_reason": "",
       "created_at": 1782845579,
       "updated_at": 1783003798,
       "user_id": 7779046668,
@@ -1524,8 +1342,6 @@
       "withdraw_count": 1,
       "withdrawn_total": 1.2,
       "fines_total": 0,
-      "banned": false,
-      "ban_reason": "",
       "created_at": 1782847241,
       "updated_at": 1782886460,
       "user_id": 6978702813,
@@ -1543,8 +1359,6 @@
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
-      "banned": false,
-      "ban_reason": "",
       "created_at": 1782880164,
       "updated_at": 1782880164,
       "user_id": 8805045324,
@@ -1562,8 +1376,6 @@
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
-      "banned": false,
-      "ban_reason": "",
       "created_at": 1782890219,
       "updated_at": 1782890221,
       "user_id": 8785643307,
@@ -1581,8 +1393,6 @@
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
-      "banned": false,
-      "ban_reason": "",
       "created_at": 1782895507,
       "updated_at": 1782978038,
       "user_id": 8333791809,
@@ -1600,8 +1410,6 @@
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
-      "banned": false,
-      "ban_reason": "",
       "created_at": 1782895522,
       "updated_at": 1782895647,
       "user_id": 8654965986,
@@ -1619,8 +1427,6 @@
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
-      "banned": false,
-      "ban_reason": "",
       "created_at": 1782914873,
       "updated_at": 1782942192,
       "user_id": 8138693744,
@@ -1638,8 +1444,6 @@
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
-      "banned": false,
-      "ban_reason": "",
       "created_at": 1782915867,
       "updated_at": 1782915967,
       "user_id": 8999626537,
@@ -1657,8 +1461,6 @@
       "withdraw_count": 1,
       "withdrawn_total": 2.0,
       "fines_total": 0,
-      "banned": false,
-      "ban_reason": "",
       "created_at": 1782917380,
       "updated_at": 1782920206,
       "user_id": 8533057804,
@@ -1676,8 +1478,6 @@
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
-      "banned": false,
-      "ban_reason": "",
       "created_at": 1782921273,
       "updated_at": 1782921319,
       "user_id": 8961146885,
@@ -1697,8 +1497,6 @@
       "withdraw_count": 1,
       "withdrawn_total": 2.0,
       "fines_total": 0,
-      "banned": false,
-      "ban_reason": "",
       "created_at": 1782925739,
       "updated_at": 1782972831,
       "user_id": 8853924649,
@@ -1717,8 +1515,6 @@
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
-      "banned": false,
-      "ban_reason": "",
       "created_at": 1782969488,
       "updated_at": 1782969536,
       "user_id": 8341988288,
@@ -1736,8 +1532,6 @@
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
-      "banned": false,
-      "ban_reason": "",
       "created_at": 1782979130,
       "updated_at": 1782979187,
       "user_id": 8500884361,
@@ -1781,8 +1575,6 @@
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
-      "banned": false,
-      "ban_reason": "",
       "created_at": 1782989642,
       "updated_at": 1782989675,
       "user_id": 7645526903,
