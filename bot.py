@@ -584,7 +584,10 @@ def save_requests(req):
     except Exception as e:
         print("Local requests save exception:", e)
 
-    save_to_github_background(GITHUB_REQUESTS_FILE, req, "update bot requests")
+    # ВАЖНО: requests.json сохраняем НЕ в фоне, а сразу.
+    # Иначе старый пустой поток мог позже перезаписать файл,
+    # поэтому админ видел заявку, а на GitHub requests.json оставался пустой.
+    upload_json_to_github(GITHUB_REQUESTS_FILE, req, "update bot requests")
 
 
 def read_local_data_raw():
