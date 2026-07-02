@@ -1305,7 +1305,7 @@
       "username": "prostoIlyamu"
     },
     "8651016638": {
-      "balance": 4.2,
+      "balance": 4.0,
       "done_tasks": [
         "50",
         "44",
@@ -1313,9 +1313,9 @@
         "46",
         "59"
       ],
-      "last_bonus": 1782972887,
+      "last_bonus": 1782049836,
       "completed_tasks": 5,
-      "total_earned": 12.4,
+      "total_earned": 12.2,
       "withdraw_count": 3,
       "withdrawn_total": 8.2,
       "fines_total": 0,
@@ -1323,7 +1323,7 @@
       "ban_reason": "",
       "username": "Bratan7014",
       "created_at": 1782972886,
-      "updated_at": 1782972886,
+      "updated_at": 1782972888,
       "user_id": 8651016638,
       "first_name": "Bro",
       "last_name": "",
@@ -3472,6 +3472,15 @@
   },
   "balance_logs": [
     {
+      "time": 1781931560,
+      "user_id": "5224773359",
+      "old": 4.0,
+      "amount": -4.0,
+      "new": 0.0,
+      "reason": "withdraw_created",
+      "request_id": "107"
+    },
+    {
       "time": 1781931622,
       "user_id": "5224773359",
       "old": 0.0,
@@ -4359,15 +4368,6 @@
       "old": 0.0,
       "amount": 0.2,
       "new": 0.2,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1782972887,
-      "user_id": "8651016638",
-      "old": 4.0,
-      "amount": 0.2,
-      "new": 4.2,
       "reason": "add",
       "request_id": ""
     }
