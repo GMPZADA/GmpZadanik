@@ -1196,6 +1196,11 @@ TEMP_USER_KEYS_DEFAULTS = {
     "withdraw_step": None,
     "withdraw_to": None,
     "pending_tasks": [],
+    # Чтобы data.json не раздувался: у незаблокированных эти поля не храним.
+    "banned": False,
+    "ban_reason": "",
+    "ban_until": 0,
+    "ban_created": 0,
 }
 
 def compact_data_for_save(data):
@@ -1231,6 +1236,7 @@ def save_data(data):
     global DATA_CACHE
 
     data = fix_data(data)
+    cleanup_expired_account_bans(data, save=False)
 
     # Защита от потери пользователей без медленного чтения GitHub на каждый клик:
     # склеиваем с тем, что уже лежит в памяти.
@@ -1319,6 +1325,10 @@ def get_user(data, user_id):
     user.setdefault("first_name", "")
     user.setdefault("last_name", "")
     user.setdefault("language_code", "")
+    user.setdefault("banned", False)
+    user.setdefault("ban_reason", "")
+    user.setdefault("ban_until", 0)
+    user.setdefault("ban_created", 0)
     return user
 
 
@@ -1386,6 +1396,108 @@ def parse_withdraw_block_until(text):
     except Exception:
         return None
 
+
+
+
+def parse_account_ban_until(text):
+    """Срок бана аккаунта: 30m, 2h, 1d или дата 03.07.2026 20:36."""
+    return parse_withdraw_block_until(text)
+
+
+def cleanup_expired_account_bans(data=None, save=True):
+    """
+    Снимает просроченные баны и удаляет лишние поля, чтобы data.json не засорялся.
+    Возвращает список ID, у которых бан закончился.
+    """
+    own_data = data is None
+    if own_data:
+        data = load_data()
+
+    now = int(time.time())
+    expired = []
+    for uid, user in list(data.get("users", {}).items()):
+        if not isinstance(user, dict):
+            continue
+
+        until = int(user.get("ban_until", 0) or 0)
+        if bool(user.get("banned", False)) and until and until <= now:
+            user["banned"] = False
+            user["ban_reason"] = ""
+            user["ban_until"] = 0
+            user["ban_created"] = 0
+            expired.append(str(uid))
+
+        # Старые пустые значения тоже чистим при сохранении через compact_data_for_save.
+        if not bool(user.get("banned", False)):
+            user["ban_reason"] = ""
+            user["ban_until"] = 0
+            user["ban_created"] = 0
+
+    if expired and save:
+        save_data(data)
+    return expired
+
+
+def get_active_account_ban(data, user_id):
+    user = get_user(data, user_id)
+    if not bool(user.get("banned", False)):
+        return None
+
+    until = int(user.get("ban_until", 0) or 0)
+    if until and until <= int(time.time()):
+        user["banned"] = False
+        user["ban_reason"] = ""
+        user["ban_until"] = 0
+        user["ban_created"] = 0
+        save_data(data)
+        return None
+
+    return {
+        "reason": user.get("ban_reason") or "не указана",
+        "until": until,
+    }
+
+
+def account_ban_user_text(ban):
+    reason = ban.get("reason") or "не указана"
+    until = int(ban.get("until", 0) or 0)
+    until_text = format_block_time(until) if until else "навсегда"
+    return (
+        "⛔ <b>Ваш аккаунт заблокирован</b>\n\n"
+        f"⏳ До: <b>{until_text}</b>\n"
+        f"📌 Причина: {h(reason)}\n\n"
+        "Для уточнения обратитесь к администрации."
+    )
+
+
+def format_banned_users_report(data, limit=40):
+    cleanup_expired_account_bans(data, save=False)
+    rows = []
+    for uid, user in data.get("users", {}).items():
+        if not isinstance(user, dict) or not bool(user.get("banned", False)):
+            continue
+        username = safe_username(user.get("username"))
+        reason = user.get("ban_reason") or "не указана"
+        until = int(user.get("ban_until", 0) or 0)
+        until_text = format_block_time(until) if until else "навсегда"
+        rows.append((until or 9999999999, str(uid), username, reason, until_text))
+
+    rows.sort(key=lambda x: x[0])
+    total = len(rows)
+    if total == 0:
+        return "✅ <b>Заблокированных пользователей нет.</b>\n\n🧹 Просроченные баны очищаются автоматически."
+
+    lines = [f"🚫 <b>Заблокированные пользователи:</b> {total}\n"]
+    for _, uid, username, reason, until_text in rows[:limit]:
+        lines.append(
+            f"\n🆔 <code>{uid}</code> | @{h(username)}\n"
+            f"⏳ До: <b>{h(until_text)}</b>\n"
+            f"📌 {h(short_text(reason, 160))}"
+        )
+    if total > limit:
+        lines.append(f"\n\n…и ещё {total - limit} пользователей.")
+    lines.append("\n\nКоманды: <code>/unban ID</code> или <code>/profile ID</code>")
+    return "".join(lines)
 
 def get_active_withdraw_block(data, user_id):
     blocks = data.setdefault("withdraw_blocks", {})
@@ -3845,35 +3957,57 @@ def ban_user(message):
     if message.from_user.id != ADMIN_ID:
         return bot.send_message(message.chat.id, "❌ Нет доступа.")
 
-    parts = message.text.split(maxsplit=2)
-    if len(parts) < 3:
+    parts = (message.text or "").split(maxsplit=3)
+    if len(parts) < 4:
         return bot.send_message(
             message.chat.id,
-            "❌ Формат:\n<code>/ban user_id причина</code>\n\nПример:\n<code>/ban 8823804307 Тест</code>"
+            "❌ Формат:\n"
+            "<code>/ban ID 1d причина</code>\n"
+            "<code>/ban @username 2h причина</code>\n\n"
+            "Пример:\n"
+            "<code>/ban 5241714648 1d Не ознакомились с условиями задания</code>\n\n"
+            "Сроки: <b>30m</b>, <b>2h</b>, <b>1d</b>, <b>7d</b>."
         )
 
-    user_id = parts[1].strip().replace("@", "")
-    reason = parts[2].strip()
+    target = parts[1].strip()
+    until_raw = parts[2].strip()
+    reason = parts[3].strip() or "не указана"
+    until_ts = parse_account_ban_until(until_raw)
+
+    if not until_ts:
+        return bot.send_message(message.chat.id, "❌ Не понял срок. Пример: <code>1d</code>, <code>2h</code>, <code>30m</code>.")
+    if until_ts <= int(time.time()):
+        return bot.send_message(message.chat.id, "❌ Это время уже прошло. Укажи будущий срок.")
 
     with DATA_LOCK:
         data = load_fresh_data_for_ban_check()
+        user_id, err = resolve_user_id(data, target)
+        if err:
+            return bot.send_message(message.chat.id, f"❌ {err}")
+
         user = get_user(data, user_id)
         user["banned"] = True
+        user["ban_until"] = int(until_ts)
         user["ban_reason"] = reason
+        user["ban_created"] = int(time.time())
+        user["withdraw_step"] = None
+        user["withdraw_to"] = None
         save_data(data)
 
+    until_text = format_block_time(until_ts)
     bot.send_message(
         message.chat.id,
-        f"✅ Пользователь заблокирован\n\n"
+        f"✅ <b>Пользователь заблокирован</b>\n\n"
         f"🆔 ID: <code>{user_id}</code>\n"
+        f"⏳ До: <b>{until_text}</b>\n"
         f"📌 Причина: {h(reason)}"
     )
 
     safe_send(
         user_id,
-        f"⛔ <b>Ваш аккаунт заблокирован</b>\n\n"
-        f"📌 Причина: {reason}\n\n"
-        "Для уточнения обратитесь к администрации."
+        f"⛔ <b>Ваш аккаунт заблокирован до {until_text}</b>\n\n"
+        f"📌 Причина: {h(reason)}\n\n"
+        "После окончания срока блокировка снимется автоматически."
     )
 
 
@@ -4014,15 +4148,21 @@ def unban_user(message):
             "❌ Формат:\n<code>/unban user_id</code>\n\nПример:\n<code>/unban 8823804307</code>"
         )
 
-    user_id = parts[1].strip().replace("@", "")
+    target = parts[1].strip()
 
     with DATA_LOCK:
         data = load_fresh_data_for_ban_check()
+        user_id, err = resolve_user_id(data, target)
+        if err:
+            return bot.send_message(message.chat.id, f"❌ {err}")
+
         user = get_user(data, user_id)
         was_banned = bool(user.get("banned", False))
 
         user["banned"] = False
         user["ban_reason"] = ""
+        user["ban_until"] = 0
+        user["ban_created"] = 0
 
         save_data(data)
 
@@ -4120,6 +4260,29 @@ def githubstatus_command(message):
         f"📄 GITHUB_FILE: <code>{h(GITHUB_FILE)}</code>\n"
         f"⚠️ {h(gh_error)}"
     )
+
+
+
+@bot.message_handler(commands=["banned", "bans", "blocked"])
+def banned_users_command(message):
+    if message.from_user.id != ADMIN_ID:
+        return bot.send_message(message.chat.id, "❌ Нет доступа.")
+    with DATA_LOCK:
+        data = load_fresh_data_for_ban_check()
+        expired = cleanup_expired_account_bans(data, save=False)
+        if expired:
+            save_data(data)
+    bot.send_message(message.chat.id, format_banned_users_report(data))
+
+
+@bot.message_handler(func=lambda m: (m.from_user.id == ADMIN_ID and (m.text or "").strip().lower() in ["заблокированные", "заблокированые", "заблокируваные", "заблокированные люди", "баны"]))
+def banned_users_text(message):
+    with DATA_LOCK:
+        data = load_fresh_data_for_ban_check()
+        expired = cleanup_expired_account_bans(data, save=False)
+        if expired:
+            save_data(data)
+    bot.send_message(message.chat.id, format_banned_users_report(data))
 
 
 @bot.message_handler(commands=["forceaddme"])
