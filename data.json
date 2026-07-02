@@ -1735,7 +1735,8 @@
       "username": "Last_emperator",
       "first_name": "Last emperator",
       "last_name": "",
-      "language_code": "ru"
+      "language_code": "ru",
+      "last_open_task": "42"
     }
   },
   "tasks": {
