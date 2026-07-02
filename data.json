@@ -43,7 +43,7 @@
       "ban_reason": ""
     },
     "7837011810": {
-      "balance": 1.0,
+      "balance": 0.0,
       "done_tasks": [
         "44",
         "38",
@@ -64,8 +64,7 @@
       "first_name": "Артем",
       "last_name": "",
       "language_code": "ru",
-      "withdraw_step": "amount",
-      "withdraw_to": "@Artemwesh"
+      "withdraw_pending": true
     },
     "8380620424": {
       "balance": 0.0,
@@ -3569,15 +3568,6 @@
   },
   "balance_logs": [
     {
-      "time": 1782021540,
-      "user_id": "8258106768",
-      "old": 2.4,
-      "amount": 0.2,
-      "new": 2.6,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
       "time": 1782021614,
       "user_id": "6276600731",
       "old": 0.0,
@@ -4467,13 +4457,22 @@
       "new": 0.4,
       "reason": "withdraw_created",
       "request_id": "108"
+    },
+    {
+      "time": 1782988719,
+      "user_id": "7837011810",
+      "old": 1.0,
+      "amount": -1.0,
+      "new": 0.0,
+      "reason": "withdraw_created",
+      "request_id": "146"
     }
   ],
   "total_paid": 45.6,
   "total_withdrawals": 14,
   "last_task_id": 66,
   "last_submit_id": 362,
-  "last_withdraw_id": 145,
+  "last_withdraw_id": 146,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "withdraw_disabled_by_admin": false,
   "withdraw_enabled": true
