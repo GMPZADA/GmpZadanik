@@ -47,6 +47,12 @@ CACHE_LOCK = RLock()
 GITHUB_SAVE_LOCK = RLock()
 GITHUB_REQUESTS_SAVE_LOCK = RLock()
 
+# Быстрое сохранение без лагов:
+# в GitHub отправляется только последняя версия файла, старые фоновые потоки пропускаются.
+GITHUB_SAVE_VERSION = {}
+GITHUB_LAST_HASH = {}
+GITHUB_VERSION_LOCK = RLock()
+
 
 def clone_json(obj):
     """Быстрая безопасная копия dict/list, чтобы разные обработчики не портили один объект."""
@@ -54,21 +60,46 @@ def clone_json(obj):
 
 
 def save_json_atomic(filename, obj):
+    """
+    Быстро и безопасно сохраняет JSON.
+    Если файл не изменился — не перезаписывает его, чтобы не грузить диск/Render.
+    """
+    content = json.dumps(obj, ensure_ascii=False, indent=2)
+    try:
+        if os.path.exists(filename):
+            with open(filename, "r", encoding="utf-8") as old_f:
+                if old_f.read() == content:
+                    return
+    except Exception:
+        pass
+
     tmp_file = filename + ".tmp"
     with open(tmp_file, "w", encoding="utf-8") as f:
-        json.dump(obj, f, ensure_ascii=False, indent=2)
+        f.write(content)
     os.replace(tmp_file, filename)
 
 
-def upload_json_to_github(filename, obj, message):
-    """Медленная отправка в GitHub. Запускается в отдельном потоке."""
+def upload_json_to_github(filename, obj, message, save_version=None):
+    """Медленная отправка в GitHub. Запускается в фоне и не тормозит пользователя."""
     if not (GITHUB_TOKEN and GITHUB_REPO):
         print(f"GitHub save skipped for {filename}: проверь GITHUB_TOKEN и GITHUB_REPO в Render")
         return
 
+    content = json.dumps(obj, ensure_ascii=False, indent=2)
+    content_hash = str(hash(content))
+
+    with GITHUB_VERSION_LOCK:
+        if save_version is not None and GITHUB_SAVE_VERSION.get(filename) != save_version:
+            return
+        if GITHUB_LAST_HASH.get(filename) == content_hash:
+            return
+
     lock = GITHUB_REQUESTS_SAVE_LOCK if filename == GITHUB_REQUESTS_FILE else GITHUB_SAVE_LOCK
 
     with lock:
+        with GITHUB_VERSION_LOCK:
+            if save_version is not None and GITHUB_SAVE_VERSION.get(filename) != save_version:
+                return
         try:
             sha = None
             r = requests.get(
@@ -80,7 +111,6 @@ def upload_json_to_github(filename, obj, message):
             if r.status_code == 200:
                 sha = r.json().get("sha")
 
-            content = json.dumps(obj, ensure_ascii=False, indent=2)
             payload = {
                 "message": message,
                 "content": base64.b64encode(content.encode("utf-8")).decode("utf-8"),
@@ -105,17 +135,27 @@ def upload_json_to_github(filename, obj, message):
             if pr.status_code not in (200, 201):
                 print(f"GitHub save error {filename}:", pr.status_code, pr.text)
             else:
+                with GITHUB_VERSION_LOCK:
+                    GITHUB_LAST_HASH[filename] = content_hash
                 print(f"GitHub save OK {filename}")
         except Exception as e:
             print(f"GitHub save exception {filename}:", e)
 
 
 def save_to_github_background(filename, obj, message):
-    """Не тормозит ответ бота: GitHub обновится в фоне."""
+    """
+    Не тормозит ответ бота: GitHub обновится в фоне.
+    Если за секунду было несколько изменений — старые фоновые сохранения сами пропустятся,
+    и в GitHub уйдёт только самая свежая версия.
+    """
     try:
+        with GITHUB_VERSION_LOCK:
+            version = GITHUB_SAVE_VERSION.get(filename, 0) + 1
+            GITHUB_SAVE_VERSION[filename] = version
+
         threading.Thread(
             target=upload_json_to_github,
-            args=(filename, clone_json(obj), message),
+            args=(filename, clone_json(obj), message, version),
             daemon=True
         ).start()
     except Exception as e:
