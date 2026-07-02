@@ -1757,8 +1757,8 @@
       "first_name": ".",
       "last_name": "",
       "language_code": "ru",
-      "withdraw_step": "amount",
-      "withdraw_to": "Likuem7"
+      "waiting_task": "38",
+      "last_open_task": "38"
     }
   },
   "tasks": {
