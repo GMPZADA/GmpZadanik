@@ -1692,11 +1692,11 @@
       "language_code": "ru"
     },
     "8341988288": {
-      "balance": 0,
+      "balance": 0.2,
       "done_tasks": [],
-      "last_bonus": 0,
+      "last_bonus": 1782969492,
       "completed_tasks": 0,
-      "total_earned": 0,
+      "total_earned": 0.2,
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
@@ -3444,15 +3444,6 @@
   },
   "balance_logs": [
     {
-      "time": 1781931260,
-      "user_id": "8431020779",
-      "old": 0.0,
-      "amount": 6.2,
-      "new": 6.2,
-      "reason": "withdraw_rejected_return",
-      "request_id": "106"
-    },
-    {
       "time": 1781931560,
       "user_id": "5224773359",
       "old": 4.0,
@@ -4340,6 +4331,15 @@
       "old": 0.2,
       "amount": 1.0,
       "new": 1.2,
+      "reason": "add",
+      "request_id": ""
+    },
+    {
+      "time": 1782969492,
+      "user_id": "8341988288",
+      "old": 0.0,
+      "amount": 0.2,
+      "new": 0.2,
       "reason": "add",
       "request_id": ""
     }
