@@ -2242,10 +2242,12 @@ def task_screen_keyboard(task_id, index, total, task):
 
 def task_screen_text(task_id, task, index, total):
     return (
-        f"📋 <b>Задание #{h(task_id)} из {total}</b>\n\n"
+        f"📋 <b>Задание {index + 1} из {total}</b>\n\n"
+        f"🆔 ID задания: <b>#{h(task_id)}</b>\n"
         f"💎 Награда: <b>{format_gmp(task.get('reward', 0))} GMP</b>\n\n"
         f"📝 {h(task.get('text', 'Описание задания'))}\n\n"
-        "⚠️ После полного выполнения отправь скриншот."
+        "━━━━━━━━━━━━━━━━━━\n\n"
+        "⚠️ После полного выполнения нажмите «📸 Отправить скрин»."
     )
 
 
