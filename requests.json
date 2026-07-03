@@ -1,27 +1,8 @@
 {
-  "submits": {
-    "380": {
-      "user_id": 7378277039,
-      "username": "G1nfor111",
-      "task_id": "41",
-      "reward": 2.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAI3TmpHPxfeEbxBtor-uXCwQRUON5LwAAKaFGsbY-c4Skzt1nBqG53HAQADAgADeQADPAQ",
-      "file_type": "photo",
-      "time": 1783054105,
-      "admin_sent": true,
-      "admin_sent_time": 1783054107,
-      "admin_message_id": 14160
-    }
-  },
+  "submits": {},
   "withdraws": {},
   "admin_sent": {
-    "submits": {
-      "380": {
-        "message_id": 14160,
-        "time": 1783054107
-      }
-    },
+    "submits": {},
     "withdraws": {}
   },
   "user_states": {},
