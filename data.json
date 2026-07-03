@@ -1514,7 +1514,8 @@
       "first_name": "Непонятный",
       "last_name": "",
       "language_code": "ru",
-      "last_open_task": "38"
+      "last_open_task": "38",
+      "waiting_task": "38"
     },
     "8341988288": {
       "balance": 0.2,
