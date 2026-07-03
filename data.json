@@ -224,7 +224,7 @@
       "last_open_task": "42"
     },
     "7979994199": {
-      "balance": 0.2,
+      "balance": 2.2,
       "done_tasks": [
         "43"
       ],
@@ -235,14 +235,15 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1783084694,
-      "updated_at": 1783096675,
+      "updated_at": 1783096660,
       "user_id": 7979994199,
       "username": "bubuzan11",
       "first_name": "Бибизян",
       "last_name": "",
       "language_code": "ru",
       "last_open_task": "41",
-      "withdraw_pending": true
+      "withdraw_pending": true,
+      "withdraw_step": "username"
     },
     "8516313611": {
       "balance": 0.0,
@@ -3625,15 +3626,6 @@
   },
   "balance_logs": [
     {
-      "time": 1782026065,
-      "user_id": "8317326202",
-      "old": 4.0,
-      "amount": 2.0,
-      "new": 6.0,
-      "reason": "task_approved",
-      "request_id": "269"
-    },
-    {
       "time": 1782026081,
       "user_id": "8317326202",
       "old": 6.0,
@@ -4523,6 +4515,15 @@
       "new": 0.2,
       "reason": "withdraw_created",
       "request_id": "152"
+    },
+    {
+      "time": 1782025998,
+      "user_id": "8317326202",
+      "old": 2.0,
+      "amount": 2.0,
+      "new": 4.0,
+      "reason": "task_approved",
+      "request_id": "268"
     }
   ],
   "total_paid": 339.4,
