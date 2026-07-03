@@ -513,8 +513,9 @@
       "first_name": "[dev] Акимчик #PRIME",
       "last_name": "",
       "language_code": "ru",
-      "last_open_task": "41",
-      "waiting_task": "41"
+      "pending_tasks": [
+        "41"
+      ]
     },
     "5728227541": {
       "balance": 0.4,
@@ -4480,7 +4481,7 @@
   "total_paid": 339.4,
   "total_withdrawals": 91,
   "last_task_id": 69,
-  "last_submit_id": 387,
+  "last_submit_id": 388,
   "last_withdraw_id": 151,
   "start_text": "💎 <b>Добро пожаловать в GMP от Artemwe!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "withdraw_disabled_by_admin": false,
