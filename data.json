@@ -1623,7 +1623,7 @@
       "last_open_task": "66"
     },
     "7378277039": {
-      "balance": 3.0,
+      "balance": 0.0,
       "done_tasks": [
         "38",
         "41"
@@ -1635,15 +1635,13 @@
       "withdrawn_total": 1.0,
       "fines_total": 0,
       "created_at": 1783053571,
-      "updated_at": 1783054613,
+      "updated_at": 1783054618,
       "user_id": 7378277039,
       "username": "G1nfor111",
       "first_name": "#везение#удача",
       "last_name": "",
       "language_code": "ru",
-      "last_open_task": "41",
-      "withdraw_step": "amount",
-      "withdraw_to": "@G1nfor111"
+      "last_open_task": "41"
     },
     "8628470348": {
       "balance": 0,
@@ -3509,15 +3507,6 @@
   },
   "balance_logs": [
     {
-      "time": 1782024883,
-      "user_id": "8317326202",
-      "old": 2.0,
-      "amount": 2.0,
-      "new": 4.0,
-      "reason": "task_approved",
-      "request_id": "262"
-    },
-    {
       "time": 1782024952,
       "user_id": "8317326202",
       "old": 4.0,
@@ -4407,13 +4396,22 @@
       "new": 0.0,
       "reason": "withdraw_created",
       "request_id": "110"
+    },
+    {
+      "time": 1783054618,
+      "user_id": "7378277039",
+      "old": 3.0,
+      "amount": -3.0,
+      "new": 0.0,
+      "reason": "withdraw_created",
+      "request_id": "148"
     }
   ],
   "total_paid": 52.8,
   "total_withdrawals": 17,
   "last_task_id": 66,
   "last_submit_id": 380,
-  "last_withdraw_id": 147,
+  "last_withdraw_id": 148,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "withdraw_disabled_by_admin": false,
   "withdraw_enabled": true
