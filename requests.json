@@ -1,8 +1,27 @@
 {
-  "submits": {},
+  "submits": {
+    "389": {
+      "user_id": 518062118,
+      "username": "rottengrace",
+      "task_id": "38",
+      "reward": 1.0,
+      "status": "wait",
+      "photo_file_id": "AgACAgQAAxkBAAI4wmpHxmByy6fJ8QONE29yJGZYeVuIAALXD2sbDpZAUqrsz3oLyf9CAQADAgADeQADPAQ",
+      "file_type": "photo",
+      "time": 1783088736,
+      "admin_sent": true,
+      "admin_sent_time": 1783088736,
+      "admin_message_id": "sending"
+    }
+  },
   "withdraws": {},
   "admin_sent": {
-    "submits": {},
+    "submits": {
+      "389": {
+        "message_id": "sending",
+        "time": 1783088736
+      }
+    },
     "withdraws": {}
   },
   "user_states": {},
