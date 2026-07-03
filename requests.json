@@ -1,29 +1,12 @@
 {
   "submits": {},
-  "withdraws": {
-    "151": {
-      "user_id": 8258106768,
-      "username": "trqLemon4ik",
-      "to": "все",
-      "amount": 6.0,
-      "status": "wait",
-      "time": 1783082945,
-      "source_message_id": 14366,
-      "admin_sent": true,
-      "admin_sent_time": 1783082945,
-      "admin_message_id": "sending"
-    }
-  },
+  "withdraws": {},
   "admin_sent": {
     "submits": {},
     "withdraws": {
-      "150": {
-        "message_id": 14368,
-        "time": 1783082945
-      },
       "151": {
-        "message_id": "sending",
-        "time": 1783082945
+        "message_id": 14372,
+        "time": 1783082948
       }
     }
   },
