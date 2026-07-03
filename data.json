@@ -1814,6 +1814,13 @@
       "reward": 1.0,
       "active": true,
       "required": false
+    },
+    "67": {
+      "text": "Зайти в бота, подписаться на спонсоров и отправить скриншот выполнения",
+      "link": "https://t.me/StepStars_bot?start=7837011810",
+      "reward": 1.0,
+      "active": true,
+      "required": false
     }
   },
   "deleted_tasks": {
@@ -4456,7 +4463,7 @@
   ],
   "total_paid": 339.4,
   "total_withdrawals": 91,
-  "last_task_id": 66,
+  "last_task_id": 67,
   "last_submit_id": 387,
   "last_withdraw_id": 151,
   "start_text": "💎 <b>Добро пожаловать в GMP от Artemwe!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
