@@ -1639,7 +1639,8 @@
       "username": "G1nfor111",
       "first_name": "#везение#удача",
       "last_name": "",
-      "language_code": "ru"
+      "language_code": "ru",
+      "last_open_task": "41"
     },
     "8628470348": {
       "balance": 0,
@@ -2990,6 +2991,13 @@
         "user_id": "7378277039",
         "note": "task #38",
         "time": 1783053684
+      },
+      "379": {
+        "status": "rejected",
+        "admin_id": 7837011810,
+        "user_id": "7378277039",
+        "note": "task #41",
+        "time": 1783054045
       }
     },
     "withdraws": {
