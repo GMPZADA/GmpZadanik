@@ -28,6 +28,17 @@ BONUS_AMOUNT = 0.5
 BONUS_COOLDOWN = 24 * 60 * 60
 BONUS_REQUIRED_BIO = "@GmpEarnBot лучший бот для заработка GMP"
 
+DEFAULT_START_TEXT = (
+    "💎 <b>Добро пожаловать в GMP от Artemwe!</b>\n\n"
+    "📋 Выполняй задания\n"
+    "📸 Проходи проверку\n"
+    "💰 Зарабатывай GMP\n\n"
+    "🔥 Выплачено более 500 000+ GMP\n"
+    "⚡ Быстрые проверки\n"
+    "🛡 Безопасные выплаты\n\n"
+    "👇 Выбери действие:"
+)
+
 # Keep Alive: пингует сайт каждые 5 минут
 KEEPALIVE_URL = os.getenv("KEEPALIVE_URL", "https://gmpzadanik.onrender.com/")
 KEEPALIVE_INTERVAL = 5 * 60
@@ -249,16 +260,7 @@ def empty_data():
         "last_task_id": 37,
         "last_submit_id": 0,
         "last_withdraw_id": 0,
-        "start_text": (
-            "💎 <b>Добро пожаловать в GMP от Artemwe!</b>\n\n"
-            "📋 Выполняй задания\n"
-            "📸 Проходи проверку\n"
-            "💰 Зарабатывай GMP\n\n"
-            "🔥 Выплачено более 500 000+ GMP\n"
-            "⚡ Быстрые проверки\n"
-            "🛡 Безопасные выплаты\n\n"
-            "👇 Выбери действие:"
-        )
+        "start_text": DEFAULT_START_TEXT
     }
 
 
@@ -267,6 +269,11 @@ def fix_data(data):
     for key, value in base.items():
         if key not in data:
             data[key] = value
+
+    # Если в старом data.json остался старый бренд, меняем только его на новый.
+    # /setstart всё ещё может поставить свой текст, если он не старый.
+    if "Заработок GMP" in str(data.get("start_text", "")) or "GMP Earn" in str(data.get("start_text", "")):
+        data["start_text"] = DEFAULT_START_TEXT
 
     # Глобальное включение/выключение выплат.
     # Защита: старые/битые data.json иногда хранили withdraw_enabled=false без признака,
@@ -2297,7 +2304,7 @@ def show_task_screen(chat_id, user_id, index=0, call=None):
     user["last_open_task"] = task_id
     save_data(data)
 
-    text = task_screen_text(task_id, task, index + 1, len(task_ids))
+    text = task_screen_text(task_id, task, index, len(task_ids))
     kb = task_screen_keyboard(task_id, index, len(task_ids), task)
 
     if call:
@@ -2491,7 +2498,7 @@ def photo(message):
                 task_id = last_task_id
                 user["waiting_task"] = task_id
             else:
-                return bot.send_message(message.chat.id, "❌ Сначала выбери задание и нажми ✅ Я выполнил.")
+                return bot.send_message(message.chat.id, "❌ Сначала выбери задание и нажми «📸 Отправить скрин».")
 
         task_id = str(task_id)
 
@@ -2918,7 +2925,7 @@ def parse_admin_submit_message(message):
     sid_m = re.search(r"(?:Новая заявка|Заявка на задание)\s*#(\d+)", text, re.IGNORECASE)
     task_m = re.search(r"Задание:\s*#?(\d+)", text, re.IGNORECASE)
     reward_m = re.search(r"(?:Награда|Начислено):\s*([0-9]+(?:[\.,][0-9]+)?)", text, re.IGNORECASE)
-    user_m = re.search(r"ID:\s*<?code>?\s*(\d+)", text, re.IGNORECASE)
+    user_m = re.search(r"ID:\s*(?:<code>)?\s*(\d+)\s*(?:</code>)?", text, re.IGNORECASE)
     username_m = re.search(r"Пользователь:\s*@?([A-Za-z0-9_]+)", text, re.IGNORECASE)
     if not (sid_m and task_m and user_m):
         return None, None
@@ -2947,7 +2954,7 @@ def parse_admin_withdraw_message(message):
     """
     text = (getattr(message, "caption", None) or getattr(message, "text", None) or "")
     wid_m = re.search(r"(?:Новая заявка на вывод|Заявка на вывод)\s*#(\d+)", text, re.IGNORECASE)
-    user_m = re.search(r"ID:\s*<?code>?\s*(\d+)", text, re.IGNORECASE)
+    user_m = re.search(r"ID:\s*(?:<code>)?\s*(\d+)\s*(?:</code>)?", text, re.IGNORECASE)
     amount_m = re.search(r"Сумма:\s*([0-9]+(?:[\.,][0-9]+)?)", text, re.IGNORECASE)
     to_m = re.search(r"Куда вывести:\s*([^\n]+)", text, re.IGNORECASE)
     username_m = re.search(r"Пользователь:\s*@?([A-Za-z0-9_]+)", text, re.IGNORECASE)
@@ -3156,7 +3163,11 @@ def admin_reply_submit_action(message, sid, action):
 
         real_sid, submit = find_request_by_id(data.get("submits", {}), sid)
         if not submit or submit.get("status") != "wait":
-            return bot.reply_to(message, f"⚠️ Заявка #{sid} не найдена или уже закрыта.")
+            fb_sid, fb_submit = parse_admin_submit_message(message.reply_to_message)
+            if fb_sid and str(fb_sid).strip().replace("#", "") == sid:
+                real_sid, submit = fb_sid, fb_submit
+            else:
+                return bot.reply_to(message, f"⚠️ Заявка #{sid} не найдена или уже закрыта.")
 
         real_sid = str(real_sid or sid)
         submit["status"] = "processing"
@@ -3225,7 +3236,11 @@ def admin_reply_withdraw_action(message, wid, action):
 
         real_wid, w = find_request_by_id(data.get("withdraws", {}), wid)
         if not w or w.get("status") != "wait":
-            return bot.reply_to(message, f"⚠️ Вывод #{wid} не найден или уже закрыт.")
+            fb_wid, fb_w = parse_admin_withdraw_message(message.reply_to_message)
+            if fb_wid and str(fb_wid).strip().replace("#", "") == wid:
+                real_wid, w = fb_wid, fb_w
+            else:
+                return bot.reply_to(message, f"⚠️ Вывод #{wid} не найден или уже закрыт.")
 
         real_wid = str(real_wid or wid)
         w["status"] = "processing"
@@ -3295,6 +3310,69 @@ def admin_reply_request_commands(message):
     if kind == "submits":
         return admin_reply_submit_action(message, request_id, action)
     return admin_reply_withdraw_action(message, request_id, action)
+
+
+
+
+@bot.message_handler(commands=["repair", "clean"])
+def repair_command(message):
+    if message.from_user.id != ADMIN_ID:
+        return bot.send_message(message.chat.id, "❌ Нет доступа.")
+
+    with DATA_LOCK:
+        data = load_data_for_admin_action()
+
+        before_submits = len(data.get("submits", {}))
+        before_withdraws = len(data.get("withdraws", {}))
+        before_processed_submits = len(data.get("processed_requests", {}).get("submits", {}))
+        before_processed_withdraws = len(data.get("processed_requests", {}).get("withdraws", {}))
+
+        expired_bans = cleanup_expired_account_bans(data, save=False)
+
+        # Удаляем заявки, которые уже обработаны или не ждут проверки.
+        cleanup_processed_requests(data)
+
+        active_task_ids = {str(tid) for tid, t in data.get("tasks", {}).items() if isinstance(t, dict) and t.get("active", True)}
+        active_submit_tasks = {str(s.get("task_id")) for s in data.get("submits", {}).values() if isinstance(s, dict) and s.get("status") == "wait"}
+        active_withdraw_users = {str(w.get("user_id")) for w in data.get("withdraws", {}).values() if isinstance(w, dict) and w.get("status") == "wait"}
+
+        cleaned_users = 0
+        for uid, user in data.get("users", {}).items():
+            if not isinstance(user, dict):
+                continue
+            old_pending = list(user.get("pending_tasks", []))
+            user["pending_tasks"] = [str(tid) for tid in old_pending if str(tid) in active_task_ids and str(tid) in active_submit_tasks]
+            if str(user.get("waiting_task") or "") not in active_task_ids:
+                user["waiting_task"] = None
+            if str(user.get("last_open_task") or "") not in active_task_ids:
+                user["last_open_task"] = None
+            user["withdraw_pending"] = str(uid) in active_withdraw_users
+            if old_pending != user.get("pending_tasks", []):
+                cleaned_users += 1
+
+        # Чистим список обязательных заданий от удалённых.
+        old_required = list(data.get("required_tasks", []))
+        data["required_tasks"] = [str(tid) for tid in old_required if str(tid) in active_task_ids]
+
+        sync_withdraw_stats(data)
+        data["start_text"] = DEFAULT_START_TEXT
+        save_data(data)
+
+        after_submits = len(data.get("submits", {}))
+        after_withdraws = len(data.get("withdraws", {}))
+        after_processed_submits = len(data.get("processed_requests", {}).get("submits", {}))
+        after_processed_withdraws = len(data.get("processed_requests", {}).get("withdraws", {}))
+
+    bot.send_message(
+        message.chat.id,
+        "🛠 <b>Проверка завершена</b>\n\n"
+        f"🗑 Заявки на задания: {before_submits} → {after_submits}\n"
+        f"💸 Заявки на вывод: {before_withdraws} → {after_withdraws}\n"
+        f"🚫 Просроченных банов снято: {len(expired_bans)}\n"
+        f"👤 Профилей очищено: {cleaned_users}\n"
+        f"📌 Метки обработанных заявок: {before_processed_submits + before_processed_withdraws} → {after_processed_submits + after_processed_withdraws}\n"
+        "✅ data.json и requests.json очищены от лишнего."
+    )
 
 
 @bot.message_handler(commands=["addtask"])
