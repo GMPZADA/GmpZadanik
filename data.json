@@ -224,7 +224,7 @@
       "last_open_task": "42"
     },
     "7979994199": {
-      "balance": 2.2,
+      "balance": 0.2,
       "done_tasks": [
         "43"
       ],
@@ -241,9 +241,8 @@
       "first_name": "Бибизян",
       "last_name": "",
       "language_code": "ru",
-      "withdraw_step": "amount",
-      "withdraw_to": "@bubuzan11",
-      "last_open_task": "41"
+      "last_open_task": "41",
+      "withdraw_pending": true
     },
     "8516313611": {
       "balance": 0.0,
@@ -3626,15 +3625,6 @@
   },
   "balance_logs": [
     {
-      "time": 1782025998,
-      "user_id": "8317326202",
-      "old": 2.0,
-      "amount": 2.0,
-      "new": 4.0,
-      "reason": "task_approved",
-      "request_id": "268"
-    },
-    {
       "time": 1782026065,
       "user_id": "8317326202",
       "old": 4.0,
@@ -4524,13 +4514,22 @@
       "new": 0.0,
       "reason": "withdraw_created",
       "request_id": "113"
+    },
+    {
+      "time": 1783096676,
+      "user_id": "7979994199",
+      "old": 2.2,
+      "amount": -2.0,
+      "new": 0.2,
+      "reason": "withdraw_created",
+      "request_id": "152"
     }
   ],
   "total_paid": 339.4,
   "total_withdrawals": 91,
   "last_task_id": 70,
   "last_submit_id": 389,
-  "last_withdraw_id": 151,
+  "last_withdraw_id": 152,
   "start_text": "💎 <b>Добро пожаловать в GMP от Artemwe!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "withdraw_disabled_by_admin": false,
   "withdraw_enabled": true
