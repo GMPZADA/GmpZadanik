@@ -1,27 +1,8 @@
 {
-  "submits": {
-    "387": {
-      "user_id": 5945123617,
-      "username": "Chuvash_21CYETA",
-      "task_id": "42",
-      "reward": 3.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAI4MGpHsAXYzx0uoOhVsvLAMX5jmMqqAAKGMGsbo89BSkD52MPo39IFAQADAgADeQADPAQ",
-      "file_type": "photo",
-      "time": 1783083015,
-      "admin_sent": true,
-      "admin_sent_time": 1783083017,
-      "admin_message_id": 14387
-    }
-  },
+  "submits": {},
   "withdraws": {},
   "admin_sent": {
-    "submits": {
-      "387": {
-        "message_id": 14387,
-        "time": 1783083017
-      }
-    },
+    "submits": {},
     "withdraws": {}
   },
   "user_states": {},
