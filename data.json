@@ -457,8 +457,9 @@
       "first_name": "Lemon4ik",
       "last_name": "",
       "language_code": "ru",
-      "withdraw_step": "username",
-      "last_open_task": "45"
+      "withdraw_step": "amount",
+      "last_open_task": "45",
+      "withdraw_to": "все"
     },
     "6276600731": {
       "balance": 0.8,
