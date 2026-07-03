@@ -2662,45 +2662,60 @@ def delete_submit_request(call):
     safe_answer_callback(call, "⏳ Удаляю заявку...")
 
     try:
-        data = load_data_for_admin_action()
         sid = call.data.split("_", 1)[1].strip().replace("#", "")
-        real_sid, submit = find_request_by_id(data.get("submits", {}), sid)
-        sid = str(real_sid or sid)
+        user_id = None
+        task_id = None
+        real_sid = sid
+        already_text = None
 
-        if request_already_processed(data, "submits", sid):
-            return safe_answer_callback(call, f"⚠️ Заявка #{sid} уже была обработана ранее.", show_alert=True)
+        with DATA_LOCK:
+            data = load_data_for_admin_action()
+            if request_already_processed(data, "submits", sid):
+                already_text = f"⚠️ Заявка #{sid} уже обработана."
+            else:
+                real_sid, submit = find_request_by_id(data.get("submits", {}), sid)
+                if not submit or submit.get("status") != "wait":
+                    fb_sid, fb_submit = parse_admin_submit_message(call.message)
+                    if fb_sid and str(fb_sid) == str(sid):
+                        real_sid, submit = fb_sid, fb_submit
+                    else:
+                        already_text = f"⚠️ Заявка #{sid} уже обработана или не найдена."
 
-        if not submit or submit.get("status") != "wait":
-            return safe_answer_callback(call, f"⚠️ Заявка #{sid} уже обработана или не найдена.", show_alert=True)
+                if not already_text:
+                    real_sid = str(real_sid or sid)
+                    submit["status"] = "processing"
+                    user_id = str(submit.get("user_id"))
+                    task_id = str(submit.get("task_id"))
+                    user = get_user(data, user_id)
+                    if task_id in user.get("pending_tasks", []):
+                        user["pending_tasks"].remove(task_id)
+                    if str(user.get("waiting_task")) == task_id:
+                        user["waiting_task"] = None
+                    remove_submit_from_data(data, real_sid, user_id, task_id)
+                    if real_sid != sid:
+                        remove_submit_from_data(data, sid, user_id, task_id)
+                    mark_request_processed(data, "submits", real_sid, "deleted", call.from_user.id, user_id, f"task #{task_id}")
+                    if real_sid != sid:
+                        mark_request_processed(data, "submits", sid, "deleted", call.from_user.id, user_id, f"task #{task_id}")
+                    save_data(data)
 
-        user_id = str(submit.get("user_id"))
-        task_id = str(submit.get("task_id"))
-        user = get_user(data, user_id)
+        if already_text:
+            safe_answer_callback(call, "⚠️ Уже обработано.", show_alert=True)
+            safe_close_old_buttons(call, "⚠️ Уже обработано")
+            return
 
-        if task_id in user.get("pending_tasks", []):
-            user["pending_tasks"].remove(task_id)
-
-        if str(user.get("waiting_task")) == task_id:
-            user["waiting_task"] = None
-
-        remove_submit_from_data(data, sid, user_id, task_id)
-        mark_request_processed(data, "submits", sid, "deleted", call.from_user.id, user_id, f"task #{task_id}")
-        save_data(data)
-
-        try:
-            bot.send_message(
-                user_id,
-                f"🗑 <b>Ваша заявка по заданию #{task_id} удалена администратором.</b>\n\n"
-                "Вы можете отправить новый скриншот, если задание выполнено правильно."
-            )
-        except Exception as e:
-            print("send delete submit message error:", e)
-
+        sent_ok = safe_send(
+            user_id,
+            f"🗑 <b>Ваша заявка по заданию #{task_id} удалена администратором.</b>\n\n"
+            "Можно отправить новый скриншот, если задание выполнено правильно."
+        )
+        notify_line = "📩 Пользователю отправлено уведомление." if sent_ok else "⚠️ Telegram не дал отправить уведомление пользователю."
         safe_edit_admin_message(
             call,
-            f"🗑 <b>Заявка #{sid} удалена администратором.</b>\n\n"
+            f"🗑 <b>Заявка #{real_sid} удалена администратором.</b>\n\n"
             f"✅ Задание: #{task_id}\n"
-            f"🆔 ID: <code>{user_id}</code>"
+            f"🆔 ID: <code>{user_id}</code>\n"
+            f"{notify_line}"
         )
 
     except Exception as e:
@@ -2725,41 +2740,35 @@ def check_request(call):
         credited_amount = 0
         new_balance = None
         result_status = None
+        real_sid = sid
         already_text = None
 
-        # ЖЕЛЕЗНАЯ ЗОНА: всё изменение data.json делаем под одним lock.
-        # Если ты нажмёшь кнопку 2/10/50 раз, второй callback дождётся lock
-        # и увидит, что заявка уже обработана.
         with DATA_LOCK:
             data = load_data_for_admin_action()
-
             processed = data.setdefault("processed_requests", {}).setdefault("submits", {}).get(str(sid))
             if processed:
-                status = processed.get("status")
-                if status == "approved":
-                    already_text = f"✅ <b>Заявка #{sid} уже была одобрена.</b>\n\nПовторное начисление заблокировано."
-                elif status == "rejected":
-                    already_text = f"❌ <b>Заявка #{sid} уже была отклонена.</b>\n\nПовторное действие заблокировано."
-                else:
-                    already_text = f"⚠️ <b>Заявка #{sid} уже обработана.</b>\n\nПовторное действие заблокировано."
+                already_text = f"⚠️ <b>Заявка #{sid} уже обработана.</b>\n\nПовторное действие заблокировано."
             else:
                 real_sid, submit = find_request_by_id(data.get("submits", {}), sid)
 
+                # Запасной вариант: если requests.json лагнул/очистился, берём данные из сообщения с заявкой.
                 if not submit or submit.get("status") != "wait":
-                    already_text = f"⚠️ <b>Заявка #{sid} уже обработана или не найдена.</b>\n\nПовторное действие заблокировано."
-                else:
-                    real_sid = str(real_sid or sid)
-                    # Сразу ставим processing, чтобы даже при лаге кнопка не обработалась второй раз.
-                    submit["status"] = "processing"
+                    fb_sid, fb_submit = parse_admin_submit_message(call.message)
+                    if fb_sid and str(fb_sid) == str(sid):
+                        real_sid, submit = fb_sid, fb_submit
+                    else:
+                        already_text = f"⚠️ <b>Заявка #{sid} уже обработана или не найдена.</b>\n\nПовторное действие заблокировано."
 
+                if not already_text:
+                    real_sid = str(real_sid or sid)
+                    submit["status"] = "processing"
                     user_id = str(submit.get("user_id"))
                     task_id = str(submit.get("task_id"))
-                    reward = float(submit.get("reward", 0))
+                    reward = float(submit.get("reward", 0) or 0)
                     user = get_user(data, user_id)
 
                     if task_id in user.get("pending_tasks", []):
                         user["pending_tasks"].remove(task_id)
-
                     if str(user.get("waiting_task")) == task_id:
                         user["waiting_task"] = None
 
@@ -2771,31 +2780,22 @@ def check_request(call):
                             credited_amount = reward
                         else:
                             credited_amount = 0
-
                         new_balance = float(user.get("balance", 0))
                         result_status = "approved"
-                        remove_submit_from_data(data, real_sid, user_id, task_id)
-                        if real_sid != sid:
-                            remove_submit_from_data(data, sid, user_id, task_id)
-                        mark_request_processed(data, "submits", real_sid, "approved", call.from_user.id, user_id, f"task #{task_id}")
-                        if real_sid != sid:
-                            mark_request_processed(data, "submits", sid, "approved", call.from_user.id, user_id, f"task #{task_id}")
-
                     else:
                         result_status = "rejected"
-                        remove_submit_from_data(data, real_sid, user_id, task_id)
-                        if real_sid != sid:
-                            remove_submit_from_data(data, sid, user_id, task_id)
-                        mark_request_processed(data, "submits", real_sid, "rejected", call.from_user.id, user_id, f"task #{task_id}")
-                        if real_sid != sid:
-                            mark_request_processed(data, "submits", sid, "rejected", call.from_user.id, user_id, f"task #{task_id}")
 
+                    remove_submit_from_data(data, real_sid, user_id, task_id)
+                    if real_sid != sid:
+                        remove_submit_from_data(data, sid, user_id, task_id)
+                    mark_request_processed(data, "submits", real_sid, result_status, call.from_user.id, user_id, f"task #{task_id}")
+                    if real_sid != sid:
+                        mark_request_processed(data, "submits", sid, result_status, call.from_user.id, user_id, f"task #{task_id}")
                     save_data(data)
 
         if already_text:
-            # Не убираем кнопки, если бот не смог найти заявку из-за старого локального файла/лага.
-            # Иначе получается: кнопки пропали, а заявка не обработалась.
-            safe_answer_callback(call, "⚠️ Не получилось обработать. Нажми /requests и попробуй новую кнопку.", show_alert=True)
+            safe_answer_callback(call, "⚠️ Уже обработано.", show_alert=True)
+            safe_close_old_buttons(call, "⚠️ Уже обработано")
             return
 
         if result_status == "approved":
@@ -2813,36 +2813,39 @@ def check_request(call):
                 )
                 admin_credit_text = "⚠️ Повтор: GMP не начислялись второй раз\n"
 
-            safe_send(user_id, user_text)
-
+            sent_ok = safe_send(user_id, user_text)
+            notify_line = "📩 Пользователю отправлено уведомление." if sent_ok else "⚠️ Telegram не дал отправить уведомление пользователю."
             safe_edit_admin_message(
                 call,
-                f"✅ <b>Заявка #{sid} закрыта.</b>\n\n"
+                f"✅ <b>Заявка #{real_sid} одобрена.</b>\n\n"
                 f"✅ Задание: #{task_id}\n"
                 f"{admin_credit_text}"
-                f"🆔 ID: <code>{user_id}</code>"
+                f"🆔 ID: <code>{user_id}</code>\n"
+                f"{notify_line}"
             )
             return
 
         if result_status == "rejected":
-            safe_send(
+            sent_ok = safe_send(
                 user_id,
                 f"❌ <b>Задание #{task_id} отклонено</b>\n\n"
                 "Проверьте, что вы выполнили задание до конца и отправили правильный скриншот.\n\n"
-                "После проверки можете попробовать снова ✅"
+                "После исправления можно попробовать снова ✅"
             )
-
+            notify_line = "📩 Пользователю отправлено уведомление." if sent_ok else "⚠️ Telegram не дал отправить уведомление пользователю."
             safe_edit_admin_message(
                 call,
-                f"❌ <b>Заявка #{sid} отклонена.</b>\n\n"
+                f"❌ <b>Заявка #{real_sid} отклонена.</b>\n\n"
                 f"✅ Задание: #{task_id}\n"
-                f"🆔 ID: <code>{user_id}</code>"
+                f"🆔 ID: <code>{user_id}</code>\n"
+                f"{notify_line}"
             )
             return
 
     except Exception as e:
         print("task approve/reject callback error:", e)
         safe_edit_admin_message(call, "❌ Ошибка обработки заявки. Проверь логи Render.")
+
 
 @bot.message_handler(func=lambda m: m.text == "💸 Вывод")
 def withdraw(message):
@@ -2905,6 +2908,75 @@ def withdraw(message):
     )
 
 
+
+
+def parse_admin_submit_message(message):
+    """Берёт данные заявки на задание прямо из сообщения админа.
+    Нужен как запасной вариант, если requests.json/GitHub лагнул или уже почистился.
+    """
+    text = (getattr(message, "caption", None) or getattr(message, "text", None) or "")
+    sid_m = re.search(r"(?:Новая заявка|Заявка на задание)\s*#(\d+)", text, re.IGNORECASE)
+    task_m = re.search(r"Задание:\s*#?(\d+)", text, re.IGNORECASE)
+    reward_m = re.search(r"(?:Награда|Начислено):\s*([0-9]+(?:[\.,][0-9]+)?)", text, re.IGNORECASE)
+    user_m = re.search(r"ID:\s*<?code>?\s*(\d+)", text, re.IGNORECASE)
+    username_m = re.search(r"Пользователь:\s*@?([A-Za-z0-9_]+)", text, re.IGNORECASE)
+    if not (sid_m and task_m and user_m):
+        return None, None
+    reward = 0
+    if reward_m:
+        try:
+            reward = float(reward_m.group(1).replace(',', '.'))
+        except Exception:
+            reward = 0
+    sid = sid_m.group(1)
+    submit = {
+        "status": "wait",
+        "task_id": task_m.group(1),
+        "reward": reward,
+        "user_id": user_m.group(1),
+        "username": username_m.group(1) if username_m else "",
+        "time": int(time.time()),
+        "fallback_from_admin_message": True,
+    }
+    return sid, submit
+
+
+def parse_admin_withdraw_message(message):
+    """Берёт данные заявки на вывод прямо из сообщения админа.
+    Это спасает, если requests.json не успел сохраниться, но заявка в чате есть.
+    """
+    text = (getattr(message, "caption", None) or getattr(message, "text", None) or "")
+    wid_m = re.search(r"(?:Новая заявка на вывод|Заявка на вывод)\s*#(\d+)", text, re.IGNORECASE)
+    user_m = re.search(r"ID:\s*<?code>?\s*(\d+)", text, re.IGNORECASE)
+    amount_m = re.search(r"Сумма:\s*([0-9]+(?:[\.,][0-9]+)?)", text, re.IGNORECASE)
+    to_m = re.search(r"Куда вывести:\s*([^\n]+)", text, re.IGNORECASE)
+    username_m = re.search(r"Пользователь:\s*@?([A-Za-z0-9_]+)", text, re.IGNORECASE)
+    if not (wid_m and user_m and amount_m):
+        return None, None
+    try:
+        amount = float(amount_m.group(1).replace(',', '.'))
+    except Exception:
+        amount = 0
+    wid = wid_m.group(1)
+    withdraw = {
+        "status": "wait",
+        "user_id": user_m.group(1),
+        "username": username_m.group(1) if username_m else "",
+        "to": (to_m.group(1).strip() if to_m else "не указано"),
+        "amount": amount,
+        "time": int(time.time()),
+        "fallback_from_admin_message": True,
+    }
+    return wid, withdraw
+
+
+def status_time_text():
+    try:
+        return datetime.now(ZoneInfo("Europe/Kyiv")).strftime("%d.%m.%Y %H:%M")
+    except Exception:
+        return datetime.now().strftime("%d.%m.%Y %H:%M")
+
+
 @bot.callback_query_handler(func=lambda c: c.data.startswith("payyes_") or c.data.startswith("payno_") or c.data.startswith("paydel_"))
 def pay_check(call):
     if call.from_user.id != ADMIN_ID:
@@ -2919,100 +2991,74 @@ def pay_check(call):
         user_id = None
         amount = 0
         result_status = None
+        real_wid = wid
         already_text = None
 
-        # ЖЕЛЕЗНАЯ ЗОНА: повторное нажатие кнопки не сможет провести выплату/возврат дважды.
         with DATA_LOCK:
             data = load_data_for_admin_action()
-
             processed = data.setdefault("processed_requests", {}).setdefault("withdraws", {}).get(str(wid))
             if processed:
-                status = processed.get("status")
-                if status == "paid":
-                    already_text = f"✅ <b>Заявка на вывод #{wid} уже была выплачена.</b>\n\nПовторная выплата заблокирована."
-                elif status == "rejected":
-                    already_text = f"❌ <b>Заявка на вывод #{wid} уже была отклонена.</b>\n\nПовторный возврат заблокирован."
-                else:
-                    already_text = f"⚠️ <b>Заявка на вывод #{wid} уже обработана.</b>\n\nПовторное действие заблокировано."
+                already_text = f"⚠️ <b>Заявка на вывод #{wid} уже обработана.</b>\n\nПовторное действие заблокировано."
             else:
                 real_wid, w = find_request_by_id(data.get("withdraws", {}), wid)
 
+                # Если в requests.json заявки уже нет, но сообщение админа есть — берём данные из сообщения.
+                # Так кнопка всё равно сработает, пользователь получит смс, статистика обновится.
                 if not w or w.get("status") != "wait":
-                    already_text = f"⚠️ <b>Заявка на вывод #{wid} уже закрыта или не найдена.</b>\n\nПовторное действие заблокировано."
-                else:
+                    fb_wid, fb_w = parse_admin_withdraw_message(call.message)
+                    if fb_wid and str(fb_wid) == str(wid):
+                        real_wid, w = fb_wid, fb_w
+                    else:
+                        already_text = f"⚠️ <b>Заявка на вывод #{wid} уже закрыта или не найдена.</b>\n\nПовторное действие заблокировано."
+
+                if not already_text:
                     real_wid = str(real_wid or wid)
-
-                    # Сразу ставим processing, чтобы второй callback не прошёл.
                     w["status"] = "processing"
-
                     user_id = str(w.get("user_id"))
-                    amount = float(w.get("amount", 0))
+                    amount = float(w.get("amount", 0) or 0)
                     user = get_user(data, user_id)
 
                     if action == "payyes":
                         user["withdraw_count"] = int(user.get("withdraw_count", 0)) + 1
                         user["withdrawn_total"] = round(float(user.get("withdrawn_total", 0)) + amount, 2)
-
-                        # Общая статистика выплат отдельно в data.json.
-                        # Так она не откатится, даже если старый список users подтянется после перезапуска.
                         data["total_paid"] = round(float(data.get("total_paid", 0)) + amount, 2)
                         data["total_withdrawals"] = int(data.get("total_withdrawals", 0)) + 1
                         sync_withdraw_stats(data)
-
-                        remove_withdraw_from_data(data, real_wid, user_id)
-                        if real_wid != wid:
-                            remove_withdraw_from_data(data, wid, user_id)
-
                         result_status = "paid"
-                        mark_request_processed(data, "withdraws", real_wid, "paid", call.from_user.id, user_id, f"amount {amount}")
-                        if real_wid != wid:
-                            mark_request_processed(data, "withdraws", wid, "paid", call.from_user.id, user_id, f"amount {amount}")
-
                     elif action == "payno":
-                        # Отказ: возвращаем списанные GMP на баланс, но только один раз.
                         add_balance_to_user(data, user_id, amount, reason="withdraw_rejected_return", request_id=real_wid)
-
-                        remove_withdraw_from_data(data, real_wid, user_id)
-                        if real_wid != wid:
-                            remove_withdraw_from_data(data, wid, user_id)
-
                         result_status = "rejected"
-                        mark_request_processed(data, "withdraws", real_wid, "rejected", call.from_user.id, user_id, f"amount {amount}")
-                        if real_wid != wid:
-                            mark_request_processed(data, "withdraws", wid, "rejected", call.from_user.id, user_id, f"amount {amount}")
                     else:
-                        # Удалить: тоже возвращаем списанные GMP, но помечаем как deleted.
                         add_balance_to_user(data, user_id, amount, reason="withdraw_deleted_return", request_id=real_wid)
-
-                        remove_withdraw_from_data(data, real_wid, user_id)
-                        if real_wid != wid:
-                            remove_withdraw_from_data(data, wid, user_id)
-
                         result_status = "deleted"
-                        mark_request_processed(data, "withdraws", real_wid, "deleted", call.from_user.id, user_id, f"amount {amount}")
-                        if real_wid != wid:
-                            mark_request_processed(data, "withdraws", wid, "deleted", call.from_user.id, user_id, f"amount {amount}")
 
+                    remove_withdraw_from_data(data, real_wid, user_id)
+                    if real_wid != wid:
+                        remove_withdraw_from_data(data, wid, user_id)
+                    mark_request_processed(data, "withdraws", real_wid, result_status, call.from_user.id, user_id, f"amount {amount}")
+                    if real_wid != wid:
+                        mark_request_processed(data, "withdraws", wid, result_status, call.from_user.id, user_id, f"amount {amount}")
                     save_data(data)
 
         if already_text:
-            safe_answer_callback(call, "⚠️ Эта заявка уже закрыта.", show_alert=True)
-            safe_edit_admin_message(call, already_text)
+            safe_answer_callback(call, "⚠️ Уже обработано.", show_alert=True)
+            safe_close_old_buttons(call, "⚠️ Уже обработано")
             return
 
         if result_status == "paid":
             sent_ok = safe_send(
                 user_id,
-                f"✅ <b>Заказ #{wid} выполнен!</b>\n\n"
-                "💎 GMP успешно выданы 💜\n\n"
-                "Спасибо за использование «Заработок GMP» ✨"
+                f"✅ <b>Заявка на вывод #{real_wid} одобрена!</b>\n\n"
+                f"💎 Выплачено: <b>{format_gmp(amount)} GMP</b>\n\n"
+                "Спасибо за использование GMP от Artemwe 💜"
             )
-            notify_line = "📩 Пользователю отправлено уведомление." if sent_ok else "⚠️ Пользователю не удалось отправить уведомление, но выплата закрыта."
+            notify_line = "📩 Пользователю отправлено уведомление." if sent_ok else "⚠️ Telegram не дал отправить уведомление пользователю."
             safe_edit_admin_message(
                 call,
-                f"✅ <b>Выплата #{wid} подтверждена.</b>\n\n"
+                f"✅ <b>Выплата #{real_wid} подтверждена.</b>\n\n"
                 f"🆔 ID: <code>{user_id}</code>\n"
                 f"💰 Сумма: <b>{format_gmp(amount)} GMP</b>\n"
+                f"🕒 Обработано: <b>{status_time_text()}</b>\n"
                 f"{notify_line}\n"
                 f"📊 Статистика выплат обновлена."
             )
@@ -3021,15 +3067,16 @@ def pay_check(call):
         if result_status == "rejected":
             sent_ok = safe_send(
                 user_id,
-                f"❌ <b>Заявка на вывод #{wid} отклонена.</b>\n\n"
+                f"❌ <b>Заявка на вывод #{real_wid} отклонена.</b>\n\n"
                 f"💰 <b>{format_gmp(amount)} GMP</b> возвращены на баланс."
             )
-            notify_line = "📩 Пользователю отправлено уведомление." if sent_ok else "⚠️ Пользователю не удалось отправить уведомление, но заявка закрыта."
+            notify_line = "📩 Пользователю отправлено уведомление." if sent_ok else "⚠️ Telegram не дал отправить уведомление пользователю."
             safe_edit_admin_message(
                 call,
-                f"❌ <b>Выплата #{wid} отклонена.</b>\n\n"
+                f"❌ <b>Выплата #{real_wid} отклонена.</b>\n\n"
                 f"🆔 ID: <code>{user_id}</code>\n"
                 f"💰 Возвращено: <b>{format_gmp(amount)} GMP</b>\n"
+                f"🕒 Обработано: <b>{status_time_text()}</b>\n"
                 f"{notify_line}"
             )
             return
@@ -3037,15 +3084,16 @@ def pay_check(call):
         if result_status == "deleted":
             sent_ok = safe_send(
                 user_id,
-                f"🗑 <b>Заявка на вывод #{wid} удалена.</b>\n\n"
+                f"🗑 <b>Заявка на вывод #{real_wid} удалена администратором.</b>\n\n"
                 f"💰 <b>{format_gmp(amount)} GMP</b> возвращены на баланс."
             )
-            notify_line = "📩 Пользователю отправлено уведомление." if sent_ok else "⚠️ Пользователю не удалось отправить уведомление, но заявка закрыта."
+            notify_line = "📩 Пользователю отправлено уведомление." if sent_ok else "⚠️ Telegram не дал отправить уведомление пользователю."
             safe_edit_admin_message(
                 call,
-                f"🗑 <b>Выплата #{wid} удалена.</b>\n\n"
+                f"🗑 <b>Выплата #{real_wid} удалена.</b>\n\n"
                 f"🆔 ID: <code>{user_id}</code>\n"
                 f"💰 Возвращено: <b>{format_gmp(amount)} GMP</b>\n"
+                f"🕒 Обработано: <b>{status_time_text()}</b>\n"
                 f"{notify_line}"
             )
             return
