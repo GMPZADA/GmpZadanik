@@ -1591,7 +1591,9 @@
       "username": "asrayyev",
       "first_name": "Asrayyev",
       "last_name": "",
-      "language_code": "ru"
+      "language_code": "ru",
+      "waiting_task": "51",
+      "last_open_task": "51"
     },
     "1554869540": {
       "balance": 0,
