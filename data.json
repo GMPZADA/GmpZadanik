@@ -482,11 +482,12 @@
       "fines_total": 0,
       "username": "BOG_PIGR",
       "created_at": 1782918157,
-      "updated_at": 1783068028,
+      "updated_at": 1782967818,
       "user_id": 6276600731,
       "first_name": "ριⳋr (ⳝ𐔖𐔏 ᥒυ𐔏ρ𐔖ⲃ)",
       "last_name": "",
-      "language_code": "ru"
+      "language_code": "ru",
+      "last_open_task": "45"
     },
     "7581133015": {
       "balance": 0.4,
@@ -1508,12 +1509,14 @@
       "withdrawn_total": 2.0,
       "fines_total": 0,
       "created_at": 1782925739,
-      "updated_at": 1783068003,
+      "updated_at": 1783068028,
       "user_id": 8853924649,
       "username": "djdjdjfjccj",
       "first_name": "Непонятный",
       "last_name": "",
-      "language_code": "ru"
+      "language_code": "ru",
+      "waiting_task": "38",
+      "last_open_task": "38"
     },
     "8341988288": {
       "balance": 0.2,
