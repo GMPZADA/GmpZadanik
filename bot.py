@@ -913,6 +913,21 @@ def find_request_by_id(requests_dict, request_id):
 
 
 
+def sync_withdraw_stats(data):
+    """
+    Подстраховка для статистики выплат.
+    Если из-за лага/GitHub общий счётчик не обновился, считаем минимум по профилям пользователей.
+    """
+    try:
+        users_paid = round(sum(float(u.get("withdrawn_total", 0) or 0) for u in data.get("users", {}).values() if isinstance(u, dict)), 2)
+        users_count = sum(int(u.get("withdraw_count", 0) or 0) for u in data.get("users", {}).values() if isinstance(u, dict))
+        data["total_paid"] = round(max(float(data.get("total_paid", 0) or 0), users_paid), 2)
+        data["total_withdrawals"] = max(int(data.get("total_withdrawals", 0) or 0), users_count)
+    except Exception as e:
+        print("sync withdraw stats error:", e)
+    return data
+
+
 def request_already_processed(data, kind, request_id):
     rid = str(request_id).strip().replace("#", "")
     processed = data.setdefault("processed_requests", {}).setdefault(kind, {})
@@ -1251,6 +1266,8 @@ def save_data(data):
                 data = merge_data(data, local_old)
     except Exception as e:
         print("Merge before save error:", e)
+
+    sync_withdraw_stats(data)
 
     # Активные заявки сохраняем отдельно в requests.json,
     # а data.json оставляем только для важных постоянных данных.
@@ -2601,8 +2618,15 @@ def safe_edit_admin_message(call, text):
                 message_id=call.message.message_id,
                 reply_markup=None
             )
+        return True
     except Exception as e:
         print("edit admin message error:", e)
+        try:
+            bot.send_message(call.message.chat.id, text)
+            return True
+        except Exception as e2:
+            print("send admin fallback error:", e2)
+        return False
         try:
             bot.edit_message_reply_markup(call.message.chat.id, call.message.message_id, reply_markup=None)
         except Exception as e2:
@@ -2933,6 +2957,7 @@ def pay_check(call):
                         # Так она не откатится, даже если старый список users подтянется после перезапуска.
                         data["total_paid"] = round(float(data.get("total_paid", 0)) + amount, 2)
                         data["total_withdrawals"] = int(data.get("total_withdrawals", 0)) + 1
+                        sync_withdraw_stats(data)
 
                         remove_withdraw_from_data(data, real_wid, user_id)
                         if real_wid != wid:
@@ -2971,50 +2996,57 @@ def pay_check(call):
                     save_data(data)
 
         if already_text:
-            # Не убираем кнопки, если бот не смог найти выплату из-за старого локального файла/лага.
-            safe_answer_callback(call, "⚠️ Не получилось обработать. Нажми /requests и попробуй новую кнопку.", show_alert=True)
+            safe_answer_callback(call, "⚠️ Эта заявка уже закрыта.", show_alert=True)
+            safe_edit_admin_message(call, already_text)
             return
 
         if result_status == "paid":
-            safe_send(
+            sent_ok = safe_send(
                 user_id,
                 f"✅ <b>Заказ #{wid} выполнен!</b>\n\n"
                 "💎 GMP успешно выданы 💜\n\n"
                 "Спасибо за использование «Заработок GMP» ✨"
             )
+            notify_line = "📩 Пользователю отправлено уведомление." if sent_ok else "⚠️ Пользователю не удалось отправить уведомление, но выплата закрыта."
             safe_edit_admin_message(
                 call,
                 f"✅ <b>Выплата #{wid} подтверждена.</b>\n\n"
                 f"🆔 ID: <code>{user_id}</code>\n"
-                f"💰 Сумма: <b>{format_gmp(amount)} GMP</b>"
+                f"💰 Сумма: <b>{format_gmp(amount)} GMP</b>\n"
+                f"{notify_line}\n"
+                f"📊 Статистика выплат обновлена."
             )
             return
 
         if result_status == "rejected":
-            safe_send(
+            sent_ok = safe_send(
                 user_id,
                 f"❌ <b>Заявка на вывод #{wid} отклонена.</b>\n\n"
                 f"💰 <b>{format_gmp(amount)} GMP</b> возвращены на баланс."
             )
+            notify_line = "📩 Пользователю отправлено уведомление." if sent_ok else "⚠️ Пользователю не удалось отправить уведомление, но заявка закрыта."
             safe_edit_admin_message(
                 call,
                 f"❌ <b>Выплата #{wid} отклонена.</b>\n\n"
                 f"🆔 ID: <code>{user_id}</code>\n"
-                f"💰 Возвращено: <b>{format_gmp(amount)} GMP</b>"
+                f"💰 Возвращено: <b>{format_gmp(amount)} GMP</b>\n"
+                f"{notify_line}"
             )
             return
 
         if result_status == "deleted":
-            safe_send(
+            sent_ok = safe_send(
                 user_id,
                 f"🗑 <b>Заявка на вывод #{wid} удалена.</b>\n\n"
                 f"💰 <b>{format_gmp(amount)} GMP</b> возвращены на баланс."
             )
+            notify_line = "📩 Пользователю отправлено уведомление." if sent_ok else "⚠️ Пользователю не удалось отправить уведомление, но заявка закрыта."
             safe_edit_admin_message(
                 call,
                 f"🗑 <b>Выплата #{wid} удалена.</b>\n\n"
                 f"🆔 ID: <code>{user_id}</code>\n"
-                f"💰 Возвращено: <b>{format_gmp(amount)} GMP</b>"
+                f"💰 Возвращено: <b>{format_gmp(amount)} GMP</b>\n"
+                f"{notify_line}"
             )
             return
 
@@ -3158,6 +3190,7 @@ def admin_reply_withdraw_action(message, wid, action):
             user["withdrawn_total"] = round(float(user.get("withdrawn_total", 0)) + amount, 2)
             data["total_paid"] = round(float(data.get("total_paid", 0)) + amount, 2)
             data["total_withdrawals"] = int(data.get("total_withdrawals", 0)) + 1
+            sync_withdraw_stats(data)
             status = "paid"
         elif action == "reject":
             add_balance_to_user(data, user_id, amount, reason="withdraw_rejected_return", request_id=real_wid)
@@ -3177,15 +3210,18 @@ def admin_reply_withdraw_action(message, wid, action):
     remove_replied_buttons(message)
 
     if action == "approve":
-        safe_send(user_id, f"✅ <b>Заказ #{real_wid} выполнен!</b>\n\n💎 GMP успешно выданы 💜")
-        return bot.reply_to(message, f"✅ Вывод #{real_wid} отмечен как выплаченный.")
+        sent_ok = safe_send(user_id, f"✅ <b>Заказ #{real_wid} выполнен!</b>\n\n💎 GMP успешно выданы 💜")
+        notify_line = "Сообщение пользователю отправлено." if sent_ok else "Сообщение пользователю не отправилось, но вывод закрыт."
+        return bot.reply_to(message, f"✅ Вывод #{real_wid} отмечен как выплаченный. {notify_line}")
 
     if action == "reject":
-        safe_send(user_id, f"❌ <b>Заявка на вывод #{real_wid} отклонена.</b>\n\n💰 <b>{format_gmp(amount)} GMP</b> возвращены на баланс.")
-        return bot.reply_to(message, f"❌ Вывод #{real_wid} отклонён, GMP возвращены.")
+        sent_ok = safe_send(user_id, f"❌ <b>Заявка на вывод #{real_wid} отклонена.</b>\n\n💰 <b>{format_gmp(amount)} GMP</b> возвращены на баланс.")
+        notify_line = "Сообщение пользователю отправлено." if sent_ok else "Сообщение пользователю не отправилось, но вывод закрыт."
+        return bot.reply_to(message, f"❌ Вывод #{real_wid} отклонён, GMP возвращены. {notify_line}")
 
-    safe_send(user_id, f"🗑 <b>Заявка на вывод #{real_wid} удалена.</b>\n\n💰 <b>{format_gmp(amount)} GMP</b> возвращены на баланс.")
-    return bot.reply_to(message, f"🗑 Вывод #{real_wid} удалён, GMP возвращены.")
+    sent_ok = safe_send(user_id, f"🗑 <b>Заявка на вывод #{real_wid} удалена.</b>\n\n💰 <b>{format_gmp(amount)} GMP</b> возвращены на баланс.")
+    notify_line = "Сообщение пользователю отправлено." if sent_ok else "Сообщение пользователю не отправилось, но вывод закрыт."
+    return bot.reply_to(message, f"🗑 Вывод #{real_wid} удалён, GMP возвращены. {notify_line}")
 
 
 @bot.message_handler(commands=["ok", "no", "delreq"])
