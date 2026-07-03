@@ -429,7 +429,7 @@
       "fines_total": 0
     },
     "8258106768": {
-      "balance": 6.2,
+      "balance": 0.2,
       "done_tasks": [
         "42",
         "49",
@@ -457,9 +457,8 @@
       "first_name": "Lemon4ik",
       "last_name": "",
       "language_code": "ru",
-      "withdraw_step": "amount",
       "last_open_task": "45",
-      "withdraw_to": "все"
+      "withdraw_pending": true
     },
     "6276600731": {
       "balance": 0.8,
@@ -3548,15 +3547,6 @@
   },
   "balance_logs": [
     {
-      "time": 1782025362,
-      "user_id": "5609899938",
-      "old": 0.0,
-      "amount": 3.0,
-      "new": 3.0,
-      "reason": "task_approved",
-      "request_id": "265"
-    },
-    {
       "time": 1782025571,
       "user_id": "5609899938",
       "old": 3.0,
@@ -4446,13 +4436,22 @@
       "new": 0.2,
       "reason": "withdraw_created",
       "request_id": "149"
+    },
+    {
+      "time": 1783082942,
+      "user_id": "8258106768",
+      "old": 6.2,
+      "amount": -6.0,
+      "new": 0.2,
+      "reason": "withdraw_created",
+      "request_id": "150"
     }
   ],
   "total_paid": 339.4,
   "total_withdrawals": 91,
   "last_task_id": 66,
   "last_submit_id": 385,
-  "last_withdraw_id": 149,
+  "last_withdraw_id": 150,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "withdraw_disabled_by_admin": false,
   "withdraw_enabled": true
