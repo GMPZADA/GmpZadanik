@@ -1,27 +1,9 @@
 {
   "submits": {},
-  "withdraws": {
-    "149": {
-      "user_id": 8804288474,
-      "username": "Gangsters_95",
-      "to": "@Gangsters_95",
-      "amount": 2.0,
-      "status": "wait",
-      "time": 1783054913,
-      "source_message_id": 14216,
-      "admin_sent": true,
-      "admin_sent_time": 1783054915,
-      "admin_message_id": 14218
-    }
-  },
+  "withdraws": {},
   "admin_sent": {
     "submits": {},
-    "withdraws": {
-      "149": {
-        "message_id": 14218,
-        "time": 1783054915
-      }
-    }
+    "withdraws": {}
   },
   "user_states": {},
   "withdraw_requests": {},
