@@ -1630,8 +1630,8 @@
       "last_bonus": 0,
       "completed_tasks": 1,
       "total_earned": 1.0,
-      "withdraw_count": 0,
-      "withdrawn_total": 0,
+      "withdraw_count": 1,
+      "withdrawn_total": 1.0,
       "fines_total": 0,
       "created_at": 1783053571,
       "updated_at": 1783053941,
@@ -1640,8 +1640,6 @@
       "first_name": "#везение#удача",
       "last_name": "",
       "language_code": "ru",
-      "withdraw_step": "amount",
-      "withdraw_to": "@G1nfor111",
       "last_open_task": "41"
     },
     "8628470348": {
@@ -3478,6 +3476,13 @@
         "user_id": "7441149510",
         "note": "amount 5.2",
         "time": 1783003699
+      },
+      "148": {
+        "status": "paid",
+        "admin_id": 7837011810,
+        "user_id": "7378277039",
+        "note": "amount 1.0",
+        "time": 1783053984
       }
     }
   },
@@ -4387,8 +4392,8 @@
       "request_id": "377"
     }
   ],
-  "total_paid": 51.8,
-  "total_withdrawals": 16,
+  "total_paid": 52.8,
+  "total_withdrawals": 17,
   "last_task_id": 66,
   "last_submit_id": 377,
   "last_withdraw_id": 147,
