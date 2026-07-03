@@ -1635,7 +1635,7 @@
       "withdrawn_total": 1.0,
       "fines_total": 0,
       "created_at": 1783053571,
-      "updated_at": 1783054650,
+      "updated_at": 1783054675,
       "user_id": 7378277039,
       "username": "G1nfor111",
       "first_name": "#везение#удача",
@@ -3507,15 +3507,6 @@
   },
   "balance_logs": [
     {
-      "time": 1782024952,
-      "user_id": "8317326202",
-      "old": 4.0,
-      "amount": 1.0,
-      "new": 5.0,
-      "reason": "task_approved",
-      "request_id": "264"
-    },
-    {
       "time": 1782025096,
       "user_id": "8317326202",
       "old": 5.0,
@@ -4405,6 +4396,15 @@
       "new": 0.0,
       "reason": "withdraw_created",
       "request_id": "148"
+    },
+    {
+      "time": 1782024883,
+      "user_id": "8317326202",
+      "old": 2.0,
+      "amount": 2.0,
+      "new": 4.0,
+      "reason": "task_approved",
+      "request_id": "262"
     }
   ],
   "total_paid": 52.8,
