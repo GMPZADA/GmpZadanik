@@ -51,7 +51,7 @@
       "fines_total": 0,
       "username": "Artemwesh",
       "created_at": 1782836891,
-      "updated_at": 1783067336,
+      "updated_at": 1783067758,
       "user_id": 7837011810,
       "first_name": "Артем",
       "last_name": "",
@@ -4420,8 +4420,8 @@
       "request_id": "149"
     }
   ],
-  "total_paid": 52.8,
-  "total_withdrawals": 17,
+  "total_paid": 339.4,
+  "total_withdrawals": 91,
   "last_task_id": 66,
   "last_submit_id": 383,
   "last_withdraw_id": 149,
