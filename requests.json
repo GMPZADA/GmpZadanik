@@ -1,8 +1,27 @@
 {
-  "submits": {},
+  "submits": {
+    "382": {
+      "user_id": 7645526903,
+      "username": "asrayyev",
+      "task_id": "51",
+      "reward": 3.0,
+      "status": "wait",
+      "photo_file_id": "AgACAgIAAxkBAAI3jGpHTBua3V0HUQ-7gAk1Zesk9Ph2AAKpFGsbKvc5SgSF-iLBrPzQAQADAgADeQADPAQ",
+      "file_type": "photo",
+      "time": 1783057435,
+      "admin_sent": true,
+      "admin_sent_time": 1783057435,
+      "admin_message_id": "sending"
+    }
+  },
   "withdraws": {},
   "admin_sent": {
-    "submits": {},
+    "submits": {
+      "382": {
+        "message_id": "sending",
+        "time": 1783057435
+      }
+    },
     "withdraws": {}
   },
   "user_states": {},
