@@ -1678,7 +1678,7 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1783082874,
-      "updated_at": 1783082929,
+      "updated_at": 1783082959,
       "user_id": 5945123617,
       "username": "Chuvash_21CYETA",
       "first_name": "No name",
@@ -3546,6 +3546,15 @@
   },
   "balance_logs": [
     {
+      "time": 1782025592,
+      "user_id": "5609899938",
+      "old": 5.0,
+      "amount": -5.0,
+      "new": 0.0,
+      "reason": "withdraw_created",
+      "request_id": "113"
+    },
+    {
       "time": 1782025869,
       "user_id": "8317326202",
       "old": 0.0,
@@ -4426,15 +4435,6 @@
       "new": 0.2,
       "reason": "withdraw_created",
       "request_id": "150"
-    },
-    {
-      "time": 1782025362,
-      "user_id": "5609899938",
-      "old": 0.0,
-      "amount": 3.0,
-      "new": 3.0,
-      "reason": "task_approved",
-      "request_id": "265"
     },
     {
       "time": 1783082945,
