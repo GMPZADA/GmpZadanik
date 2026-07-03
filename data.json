@@ -1634,15 +1634,15 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1783053571,
-      "updated_at": 1783053918,
+      "updated_at": 1783053940,
       "user_id": 7378277039,
       "username": "G1nfor111",
       "first_name": "#везение#удача",
       "last_name": "",
       "language_code": "ru",
-      "last_open_task": "41",
       "withdraw_step": "amount",
-      "withdraw_to": "@G1nfor111"
+      "withdraw_to": "@G1nfor111",
+      "last_open_task": "41"
     },
     "8628470348": {
       "balance": 0,
