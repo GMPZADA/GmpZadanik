@@ -507,12 +507,13 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1782920056,
-      "updated_at": 1783088279,
+      "updated_at": 1783088287,
       "user_id": 7581133015,
       "username": "dev_akim",
       "first_name": "[dev] Акимчик #PRIME",
       "last_name": "",
-      "language_code": "ru"
+      "language_code": "ru",
+      "last_open_task": "42"
     },
     "5728227541": {
       "balance": 0.4,
@@ -3074,6 +3075,13 @@
         "user_id": "8853924649",
         "note": "task #38",
         "time": 1783068015
+      },
+      "388": {
+        "status": "approved",
+        "admin_id": 7837011810,
+        "user_id": "7581133015",
+        "note": "task #41",
+        "time": 1783088284
       }
     },
     "withdraws": {
@@ -3574,24 +3582,6 @@
     "withdraws": {}
   },
   "balance_logs": [
-    {
-      "time": 1782025592,
-      "user_id": "5609899938",
-      "old": 5.0,
-      "amount": -5.0,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "113"
-    },
-    {
-      "time": 1782025869,
-      "user_id": "8317326202",
-      "old": 0.0,
-      "amount": 2.0,
-      "new": 2.0,
-      "reason": "task_approved",
-      "request_id": "267"
-    },
     {
       "time": 1782025998,
       "user_id": "8317326202",
@@ -4473,6 +4463,24 @@
       "new": 0.2,
       "reason": "withdraw_created",
       "request_id": "151"
+    },
+    {
+      "time": 1783088284,
+      "user_id": "7581133015",
+      "old": 0.4,
+      "amount": 2.0,
+      "new": 2.4,
+      "reason": "task_approved",
+      "request_id": "388"
+    },
+    {
+      "time": 1782025592,
+      "user_id": "5609899938",
+      "old": 5.0,
+      "amount": -5.0,
+      "new": 0.0,
+      "reason": "withdraw_created",
+      "request_id": "113"
     }
   ],
   "total_paid": 339.4,
