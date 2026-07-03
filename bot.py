@@ -250,7 +250,7 @@ def empty_data():
         "last_submit_id": 0,
         "last_withdraw_id": 0,
         "start_text": (
-            "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n"
+            "💎 <b>Добро пожаловать в GMP от Artemwe!</b>\n\n"
             "📋 Выполняй задания\n"
             "📸 Проходи проверку\n"
             "💰 Зарабатывай GMP\n\n"
