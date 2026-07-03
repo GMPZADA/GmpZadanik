@@ -1,8 +1,27 @@
 {
-  "submits": {},
+  "submits": {
+    "384": {
+      "user_id": 8853924649,
+      "username": "djdjdjfjccj",
+      "task_id": "38",
+      "reward": 1.0,
+      "status": "wait",
+      "photo_file_id": "AgACAgUAAxkBAAI3tGpHdWNZTTQ2YDmRm_INRUC_x5knAAK_D2sbuWxAVpx58xVf6igoAQADAgADeQADPAQ",
+      "file_type": "photo",
+      "time": 1783068004,
+      "admin_sent": true,
+      "admin_sent_time": 1783068004,
+      "admin_message_id": "sending"
+    }
+  },
   "withdraws": {},
   "admin_sent": {
-    "submits": {},
+    "submits": {
+      "384": {
+        "message_id": "sending",
+        "time": 1783068004
+      }
+    },
     "withdraws": {}
   },
   "user_states": {},
