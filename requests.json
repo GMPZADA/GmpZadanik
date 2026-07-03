@@ -1,27 +1,8 @@
 {
-  "submits": {
-    "388": {
-      "user_id": 7581133015,
-      "username": "dev_akim",
-      "task_id": "41",
-      "reward": 2.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAI4rGpHxJe_KD7fY7T0sMUAAbJlETuA2AACcB5rG0LgQEoywVOEJCY6jwEAAwIAA3kAAzwE",
-      "file_type": "photo",
-      "time": 1783088279,
-      "admin_sent": true,
-      "admin_sent_time": 1783088281,
-      "admin_message_id": 14510
-    }
-  },
+  "submits": {},
   "withdraws": {},
   "admin_sent": {
-    "submits": {
-      "388": {
-        "message_id": 14510,
-        "time": 1783088281
-      }
-    },
+    "submits": {},
     "withdraws": {}
   },
   "user_states": {},
