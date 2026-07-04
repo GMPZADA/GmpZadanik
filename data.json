@@ -1841,7 +1841,8 @@
       "first_name": "𝔱𝔥𝔢_𝔨𝔥𝔞𝔪𝔯𝔞𝔟𝔞𝔢𝔳",
       "last_name": "",
       "language_code": "ru",
-      "last_open_task": "50"
+      "last_open_task": "50",
+      "withdraw_step": "username"
     },
     "8843261234": {
       "balance": 0,
