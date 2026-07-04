@@ -51,7 +51,7 @@
       "fines_total": 0,
       "username": "Artemwesh",
       "created_at": 1782836891,
-      "updated_at": 1783141011,
+      "updated_at": 1783141048,
       "user_id": 7837011810,
       "first_name": "Артем",
       "last_name": "",
@@ -1509,13 +1509,13 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1782921273,
-      "updated_at": 1783140974,
+      "updated_at": 1783140955,
       "user_id": 8961146885,
       "username": "seretper",
       "first_name": "Анатолик мажорик",
       "last_name": "",
       "language_code": "ru",
-      "last_open_task": "66"
+      "last_open_task": "69"
     },
     "8853924649": {
       "balance": 0.0,
