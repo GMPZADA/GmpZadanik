@@ -1893,12 +1893,13 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1783163543,
-      "updated_at": 1783164016,
+      "updated_at": 1783164063,
       "user_id": 6596003965,
       "username": "xwxw9505",
       "first_name": "(-_-)",
       "last_name": "",
-      "language_code": "ru"
+      "language_code": "ru",
+      "last_open_task": "43"
     }
   },
   "tasks": {
@@ -3982,15 +3983,6 @@
   },
   "balance_logs": [
     {
-      "time": 1781861990,
-      "user_id": "7811863751",
-      "old": 2.0,
-      "amount": -2.0,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "94"
-    },
-    {
       "time": 1781863464,
       "user_id": "8823804307",
       "old": 0.0,
@@ -4880,6 +4872,15 @@
       "new": 2.0,
       "reason": "task_approved",
       "request_id": "410"
+    },
+    {
+      "time": 1781861955,
+      "user_id": "7811863751",
+      "old": 0.0,
+      "amount": 2.0,
+      "new": 2.0,
+      "reason": "task_approved",
+      "request_id": "223"
     }
   ],
   "total_paid": 354.9,
@@ -4889,6 +4890,5 @@
   "last_withdraw_id": 156,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "withdraw_disabled_by_admin": false,
-  "withdraw_enabled": true,
-  "action_history": []
+  "withdraw_enabled": true
 }
