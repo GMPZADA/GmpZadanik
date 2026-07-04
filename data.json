@@ -1516,7 +1516,8 @@
       "first_name": "Анатолик мажорик",
       "last_name": "",
       "language_code": "ru",
-      "last_open_task": "70"
+      "last_open_task": "70",
+      "waiting_task": "70"
     },
     "8853924649": {
       "balance": 0.0,
