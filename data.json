@@ -1832,7 +1832,7 @@
       "withdrawn_total": 1.0,
       "fines_total": 0,
       "created_at": 1783160164,
-      "updated_at": 1783161167,
+      "updated_at": 1783161118,
       "user_id": 8418394814,
       "username": "khamrabaev1",
       "first_name": "𝔱𝔥𝔢_𝔨𝔥𝔞𝔪𝔯𝔞𝔟𝔞𝔢𝔳",
@@ -3374,6 +3374,13 @@
         "user_id": "8418394814",
         "note": "task #42",
         "time": 1783161139
+      },
+      "404": {
+        "status": "rejected",
+        "admin_id": 7837011810,
+        "user_id": "8418394814",
+        "note": "task #42",
+        "time": 1783161168
       }
     },
     "withdraws": {
