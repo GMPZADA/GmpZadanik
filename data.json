@@ -1521,7 +1521,8 @@
       "first_name": "Анатолик мажорик",
       "last_name": "",
       "language_code": "ru",
-      "last_open_task": "70"
+      "last_open_task": "70",
+      "withdraw_step": "username"
     },
     "8853924649": {
       "balance": 0.0,
