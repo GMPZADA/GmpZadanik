@@ -1,8 +1,27 @@
 {
-  "submits": {},
+  "submits": {
+    "410": {
+      "user_id": 6596003965,
+      "username": "xwxw9505",
+      "task_id": "41",
+      "reward": 2.0,
+      "status": "wait",
+      "photo_file_id": "AgACAgIAAxkBAAI66WpI7HDwP2RydJl-uau71lEb5ch5AAIpGGsbub5ISotRZTeZBga4AQADAgADeQADPAQ",
+      "file_type": "photo",
+      "time": 1783164017,
+      "admin_sent": true,
+      "admin_sent_time": 1783164020,
+      "admin_message_id": 15083
+    }
+  },
   "withdraws": {},
   "admin_sent": {
-    "submits": {},
+    "submits": {
+      "410": {
+        "message_id": 15083,
+        "time": 1783164020
+      }
+    },
     "withdraws": {}
   },
   "user_states": {},
