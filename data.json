@@ -1839,7 +1839,9 @@
       "username": "khamrabaev1",
       "first_name": "𝔱𝔥𝔢_𝔨𝔥𝔞𝔪𝔯𝔞𝔟𝔞𝔢𝔳",
       "last_name": "",
-      "language_code": "ru"
+      "language_code": "ru",
+      "waiting_task": "41",
+      "last_open_task": "41"
     },
     "8843261234": {
       "balance": 0,
