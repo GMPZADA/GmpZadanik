@@ -1818,6 +1818,23 @@
       "last_name": "",
       "language_code": "ru",
       "last_open_task": "38"
+    },
+    "8418394814": {
+      "balance": 0,
+      "done_tasks": [],
+      "last_bonus": 0,
+      "completed_tasks": 0,
+      "total_earned": 0,
+      "withdraw_count": 0,
+      "withdrawn_total": 0,
+      "fines_total": 0,
+      "created_at": 1783160164,
+      "updated_at": 1783160164,
+      "user_id": 8418394814,
+      "username": "khamrabaev1",
+      "first_name": "𝔱𝔥𝔢_𝔨𝔥𝔞𝔪𝔯𝔞𝔟𝔞𝔢𝔳",
+      "last_name": "",
+      "language_code": "ru"
     }
   },
   "tasks": {
