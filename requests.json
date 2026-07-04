@@ -1,27 +1,8 @@
 {
-  "submits": {
-    "413": {
-      "user_id": 8961146885,
-      "username": "seretper",
-      "task_id": "46",
-      "reward": 2.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgEAAxkBAAI602pI6wiRrlW9SKbCAAEKyHH0IgKBRgACGwxrGyvCSEbzCsFnk9wQ9AEAAwIAA3kAAzwE",
-      "file_type": "photo",
-      "time": 1783164658,
-      "admin_sent": true,
-      "admin_sent_time": 1783164660,
-      "admin_message_id": 15099
-    }
-  },
+  "submits": {},
   "withdraws": {},
   "admin_sent": {
-    "submits": {
-      "413": {
-        "message_id": 15099,
-        "time": 1783164660
-      }
-    },
+    "submits": {},
     "withdraws": {}
   },
   "user_states": {},
