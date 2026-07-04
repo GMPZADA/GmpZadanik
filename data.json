@@ -1832,14 +1832,14 @@
       "withdrawn_total": 1.0,
       "fines_total": 0,
       "created_at": 1783160164,
-      "updated_at": 1783161109,
+      "updated_at": 1783161118,
       "user_id": 8418394814,
       "username": "khamrabaev1",
       "first_name": "𝔱𝔥𝔢_𝔨𝔥𝔞𝔪𝔯𝔞𝔟𝔞𝔢𝔳",
       "last_name": "",
       "language_code": "ru",
-      "last_open_task": "42",
-      "waiting_task": "42"
+      "waiting_task": "42",
+      "last_open_task": "42"
     },
     "8843261234": {
       "balance": 0,
@@ -4800,7 +4800,7 @@
   "total_paid": 348.9,
   "total_withdrawals": 95,
   "last_task_id": 70,
-  "last_submit_id": 402,
+  "last_submit_id": 403,
   "last_withdraw_id": 155,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "withdraw_disabled_by_admin": false,
