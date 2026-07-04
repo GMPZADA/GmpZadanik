@@ -1799,6 +1799,23 @@
       "first_name": "Batek",
       "last_name": "Batek",
       "language_code": "ro"
+    },
+    "8346625013": {
+      "balance": 0,
+      "done_tasks": [],
+      "last_bonus": 0,
+      "completed_tasks": 0,
+      "total_earned": 0,
+      "withdraw_count": 0,
+      "withdrawn_total": 0,
+      "fines_total": 0,
+      "created_at": 1783160106,
+      "updated_at": 1783160106,
+      "user_id": 8346625013,
+      "username": "chick_68",
+      "first_name": "Chick☘️",
+      "last_name": "",
+      "language_code": "ru"
     }
   },
   "tasks": {
