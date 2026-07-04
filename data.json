@@ -1519,7 +1519,7 @@
       "withdrawn_total": 6.5,
       "fines_total": 0,
       "created_at": 1782921273,
-      "updated_at": 1783164658,
+      "updated_at": 1783164717,
       "user_id": 8961146885,
       "username": "seretper",
       "first_name": "Анатолик мажорик",
@@ -3998,15 +3998,6 @@
   },
   "balance_logs": [
     {
-      "time": 1781864168,
-      "user_id": "7463485005",
-      "old": 0.2,
-      "amount": 4.0,
-      "new": 4.2,
-      "reason": "task_approved",
-      "request_id": "225"
-    },
-    {
       "time": 1782933893,
       "user_id": "7779046668",
       "old": 0.0,
@@ -4896,6 +4887,15 @@
       "new": 5.0,
       "reason": "task_approved",
       "request_id": "413"
+    },
+    {
+      "time": 1781864103,
+      "user_id": "7463485005",
+      "old": 0.0,
+      "amount": 0.2,
+      "new": 0.2,
+      "reason": "add",
+      "request_id": ""
     }
   ],
   "total_paid": 354.9,
