@@ -1511,8 +1511,8 @@
       "last_bonus": 0,
       "completed_tasks": 2,
       "total_earned": 3.0,
-      "withdraw_count": 0,
-      "withdrawn_total": 0,
+      "withdraw_count": 1,
+      "withdrawn_total": 3.0,
       "fines_total": 0,
       "created_at": 1782921273,
       "updated_at": 1783152258,
@@ -1521,8 +1521,7 @@
       "first_name": "Анатолик мажорик",
       "last_name": "",
       "language_code": "ru",
-      "last_open_task": "70",
-      "withdraw_pending": true
+      "last_open_task": "70"
     },
     "8853924649": {
       "balance": 0.0,
@@ -3730,6 +3729,13 @@
         "user_id": "7979994199",
         "note": "amount 2.0",
         "time": 1783097161
+      },
+      "153": {
+        "status": "paid",
+        "admin_id": 7837011810,
+        "user_id": "8961146885",
+        "note": "amount 3.0",
+        "time": 1783152306
       }
     }
   },
@@ -4639,8 +4645,8 @@
       "request_id": "153"
     }
   ],
-  "total_paid": 341.4,
-  "total_withdrawals": 92,
+  "total_paid": 344.4,
+  "total_withdrawals": 93,
   "last_task_id": 70,
   "last_submit_id": 396,
   "last_withdraw_id": 153,
