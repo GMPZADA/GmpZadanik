@@ -1,9 +1,27 @@
 {
   "submits": {},
-  "withdraws": {},
+  "withdraws": {
+    "155": {
+      "user_id": 8418394814,
+      "username": "khamrabaev1",
+      "to": "@khamrabaev1",
+      "amount": 1.0,
+      "status": "wait",
+      "time": 1783160950,
+      "source_message_id": 14958,
+      "admin_sent": true,
+      "admin_sent_time": 1783160950,
+      "admin_message_id": "sending"
+    }
+  },
   "admin_sent": {
     "submits": {},
-    "withdraws": {}
+    "withdraws": {
+      "155": {
+        "message_id": "sending",
+        "time": 1783160950
+      }
+    }
   },
   "user_states": {},
   "withdraw_requests": {},
