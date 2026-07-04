@@ -1522,8 +1522,7 @@
       "last_name": "",
       "language_code": "ru",
       "last_open_task": "44",
-      "withdraw_step": "amount",
-      "withdraw_to": "@Jsjdjddjdj"
+      "withdraw_step": "username"
     },
     "8853924649": {
       "balance": 0.0,
