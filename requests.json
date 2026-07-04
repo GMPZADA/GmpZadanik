@@ -1,27 +1,9 @@
 {
   "submits": {},
-  "withdraws": {
-    "154": {
-      "user_id": 8961146885,
-      "username": "seretper",
-      "to": "@Ksdkdkdkd",
-      "amount": 3.5,
-      "status": "wait",
-      "time": 1783158182,
-      "source_message_id": 14826,
-      "admin_sent": true,
-      "admin_sent_time": 1783158184,
-      "admin_message_id": 14828
-    }
-  },
+  "withdraws": {},
   "admin_sent": {
     "submits": {},
-    "withdraws": {
-      "154": {
-        "message_id": 14828,
-        "time": 1783158184
-      }
-    }
+    "withdraws": {}
   },
   "user_states": {},
   "withdraw_requests": {},
