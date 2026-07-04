@@ -2905,9 +2905,6 @@ def withdraw(message):
             f"❌ Вывод недоступен.\n\nУ тебя долг: <b>{format_gmp(abs(float(user['balance'])))} GMP</b>\nСначала погаси долг заданиями."
         )
 
-    if float(user["balance"]) <= 0:
-        return bot.send_message(message.chat.id, "❌ У тебя нет GMP для вывода.")
-
     missing_required = get_required_missing_tasks(data, user)
     if missing_required:
         user["withdraw_step"] = None
@@ -4652,20 +4649,16 @@ def text_router(message):
         return bot.send_message(
             message.chat.id,
             "💰 <b>Сколько GMP вывести?</b>\n\n"
-            "Напишите сумму GMP для вывода.\n"
-            "Можно написать <b>все</b>."
+            "Напишите сумму GMP для вывода."
         )
 
     if user.get("withdraw_step") == "amount":
         amount_text = text.lower()
 
-        if amount_text in ["все", "all", "всё"]:
-            amount = float(user["balance"])
-        else:
-            try:
-                amount = float(amount_text.replace(" ", "").replace(",", "."))
-            except Exception:
-                return bot.send_message(message.chat.id, "❌ Напиши число. Например: <code>10</code>")
+        try:
+            amount = float(amount_text.replace(" ", "").replace(",", "."))
+        except Exception:
+            return bot.send_message(message.chat.id, "❌ Напиши число. Например: <code>10</code>")
 
         if amount <= 0:
             return bot.send_message(message.chat.id, "❌ Сумма должна быть больше 0.")
@@ -4676,8 +4669,7 @@ def text_router(message):
         if amount > float(user["balance"]):
             return bot.send_message(
                 message.chat.id,
-                f"❌ Недостаточно GMP.\nТвой баланс: <b>{format_gmp(user['balance'])} GMP</b>\n\n"
-                "Можно вывести только сумму, которая сейчас есть на балансе."
+                f"❌ Недостаточно GMP.\nТвой баланс: <b>{format_gmp(user['balance'])} GMP</b>"
             )
 
         # Критическая зона: создание вывода.
