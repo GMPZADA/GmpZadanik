@@ -3318,6 +3318,13 @@
         "user_id": "8961146885",
         "note": "task #41",
         "time": 1783157198
+      },
+      "399": {
+        "status": "rejected",
+        "admin_id": 7837011810,
+        "user_id": "8843261234",
+        "note": "task #38",
+        "time": 1783160484
       }
     },
     "withdraws": {
