@@ -1847,13 +1847,14 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1783160348,
-      "updated_at": 1783160417,
+      "updated_at": 1783160419,
       "user_id": 8843261234,
       "username": "Dima4ka67",
       "first_name": "Limon4ik",
       "last_name": "",
       "language_code": "ru",
-      "withdraw_step": "username"
+      "withdraw_step": "username",
+      "last_open_task": "41"
     }
   },
   "tasks": {
