@@ -1832,7 +1832,7 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1783160164,
-      "updated_at": 1783160751,
+      "updated_at": 1783160878,
       "user_id": 8418394814,
       "username": "khamrabaev1",
       "first_name": "𝔱𝔥𝔢_𝔨𝔥𝔞𝔪𝔯𝔞𝔟𝔞𝔢𝔳",
@@ -3888,6 +3888,15 @@
   },
   "balance_logs": [
     {
+      "time": 1782044608,
+      "user_id": "1401650206",
+      "old": 2.0,
+      "amount": 3.0,
+      "new": 5.0,
+      "reason": "task_approved",
+      "request_id": "282"
+    },
+    {
       "time": 1782044785,
       "user_id": "7811863751",
       "old": 0.2,
@@ -4777,15 +4786,6 @@
       "new": 0.0,
       "reason": "withdraw_created",
       "request_id": "118"
-    },
-    {
-      "time": 1782044501,
-      "user_id": "1401650206",
-      "old": 0.0,
-      "amount": 2.0,
-      "new": 2.0,
-      "reason": "task_approved",
-      "request_id": "281"
     }
   ],
   "total_paid": 347.9,
