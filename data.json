@@ -1510,14 +1510,12 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1782921273,
-      "updated_at": 1783151668,
+      "updated_at": 1783151672,
       "user_id": 8961146885,
       "username": "seretper",
       "first_name": "Анатолик мажорик",
       "last_name": "",
-      "language_code": "ru",
-      "last_open_task": "70",
-      "waiting_task": "70"
+      "language_code": "ru"
     },
     "8853924649": {
       "balance": 0.0,
@@ -4609,7 +4607,7 @@
   "total_paid": 341.4,
   "total_withdrawals": 92,
   "last_task_id": 70,
-  "last_submit_id": 392,
+  "last_submit_id": 393,
   "last_withdraw_id": 152,
   "start_text": "💎 <b>Добро пожаловать в GMP от Artemwe!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "withdraw_disabled_by_admin": false,
