@@ -1822,15 +1822,16 @@
       "last_open_task": "38"
     },
     "8418394814": {
-      "balance": 0.0,
+      "balance": 3.0,
       "done_tasks": [
         "38",
         "42",
-        "43"
+        "43",
+        "48"
       ],
       "last_bonus": 0,
-      "completed_tasks": 3,
-      "total_earned": 6.0,
+      "completed_tasks": 4,
+      "total_earned": 9.0,
       "withdraw_count": 2,
       "withdrawn_total": 7.0,
       "fines_total": 0,
@@ -1841,7 +1842,6 @@
       "first_name": "𝔱𝔥𝔢_𝔨𝔥𝔞𝔪𝔯𝔞𝔟𝔞𝔢𝔳",
       "last_name": "",
       "language_code": "ru",
-      "waiting_task": "48",
       "last_open_task": "48"
     },
     "8843261234": {
@@ -3447,6 +3447,13 @@
         "user_id": "6596003965",
         "note": "task #41",
         "time": 1783164025
+      },
+      "412": {
+        "status": "approved",
+        "admin_id": 7837011810,
+        "user_id": "8418394814",
+        "note": "task #48",
+        "time": 1783164341
       }
     },
     "withdraws": {
@@ -3982,15 +3989,6 @@
     "withdraws": {}
   },
   "balance_logs": [
-    {
-      "time": 1782933890,
-      "user_id": "7779046668",
-      "old": 0.0,
-      "amount": 0.2,
-      "new": 0.2,
-      "reason": "add",
-      "request_id": ""
-    },
     {
       "time": 1781864103,
       "user_id": "7463485005",
@@ -4881,6 +4879,15 @@
       "new": 0.0,
       "reason": "withdraw_created",
       "request_id": "94"
+    },
+    {
+      "time": 1783164341,
+      "user_id": "8418394814",
+      "old": 0.0,
+      "amount": 3.0,
+      "new": 3.0,
+      "reason": "task_approved",
+      "request_id": "412"
     }
   ],
   "total_paid": 354.9,
