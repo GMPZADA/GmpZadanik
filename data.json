@@ -1503,7 +1503,7 @@
       "language_code": "ru"
     },
     "8961146885": {
-      "balance": 3.0,
+      "balance": 0.0,
       "done_tasks": [
         "70",
         "69"
@@ -1515,15 +1515,14 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1782921273,
-      "updated_at": 1783152250,
+      "updated_at": 1783152258,
       "user_id": 8961146885,
       "username": "seretper",
       "first_name": "Анатолик мажорик",
       "last_name": "",
       "language_code": "ru",
       "last_open_task": "70",
-      "withdraw_step": "amount",
-      "withdraw_to": "Все"
+      "withdraw_pending": true
     },
     "8853924649": {
       "balance": 0.0,
@@ -3740,15 +3739,6 @@
   },
   "balance_logs": [
     {
-      "time": 1782036749,
-      "user_id": "6276600731",
-      "old": 3.2,
-      "amount": -3.2,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "115"
-    },
-    {
       "time": 1782037036,
       "user_id": "8258106768",
       "old": 0.6,
@@ -4638,13 +4628,22 @@
       "new": 3.0,
       "reason": "task_approved",
       "request_id": "396"
+    },
+    {
+      "time": 1783152258,
+      "user_id": "8961146885",
+      "old": 3.0,
+      "amount": -3.0,
+      "new": 0.0,
+      "reason": "withdraw_created",
+      "request_id": "153"
     }
   ],
   "total_paid": 341.4,
   "total_withdrawals": 92,
   "last_task_id": 70,
   "last_submit_id": 396,
-  "last_withdraw_id": 152,
+  "last_withdraw_id": 153,
   "start_text": "💎 <b>Добро пожаловать в GMP от Artemwe!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "withdraw_disabled_by_admin": false,
   "withdraw_enabled": true
