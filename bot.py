@@ -21,9 +21,12 @@ GITHUB_REPO = (os.getenv("GITHUB_REPO") or "").strip()  # пример: GMPZADA/
 GITHUB_BRANCH = (os.getenv("GITHUB_BRANCH") or "main").strip()
 GITHUB_FILE = "data.json"
 GITHUB_REQUESTS_FILE = "requests.json"
+GITHUB_HISTORY_FILE = "history.json"
 
 LOCAL_DATA_FILE = "data.json"
 LOCAL_REQUESTS_FILE = "requests.json"
+LOCAL_HISTORY_FILE = "history.json"
+HISTORY_LIMIT = 1000
 BONUS_AMOUNT = 0.5
 BONUS_COOLDOWN = 24 * 60 * 60
 BONUS_REQUIRED_BIO = "@GmpEarnBot лучший бот для заработка GMP"
@@ -46,6 +49,7 @@ KEEPALIVE_INTERVAL = 5 * 60
 bot = TeleBot(TOKEN, parse_mode="HTML")
 app = Flask(__name__)
 DATA_LOCK = RLock()
+HISTORY_LOCK = RLock()
 WITHDRAW_CREATE_LOCK = RLock()
 SUBMIT_CREATE_LOCK = RLock()
 
@@ -985,9 +989,103 @@ def mark_request_processed(data, kind, request_id, status, admin_id=0, user_id=0
             processed.pop(k, None)
 
 
+def read_github_json_file(filename):
+    """Читает любой json-файл с GitHub. Если файла нет — возвращает None."""
+    if not (GITHUB_TOKEN and GITHUB_REPO):
+        return None
+    try:
+        r = requests.get(
+            github_url(filename),
+            headers=github_headers(),
+            params={"ref": GITHUB_BRANCH},
+            timeout=10
+        )
+        if r.status_code != 200:
+            return None
+        content = r.json().get("content", "")
+        return json.loads(base64.b64decode(content).decode("utf-8"))
+    except Exception as e:
+        print(f"Read GitHub json error {filename}:", e)
+        return None
+
+
+def normalize_history(obj):
+    """history.json хранит только последние HISTORY_LIMIT действий."""
+    if isinstance(obj, dict):
+        history = obj.get("history", [])
+    elif isinstance(obj, list):
+        history = obj
+    else:
+        history = []
+
+    if not isinstance(history, list):
+        history = []
+
+    good = []
+    for item in history:
+        if isinstance(item, dict) and item.get("type") == "task":
+            good.append(item)
+
+    good = sorted(good, key=lambda x: int(x.get("time", 0) or 0))[-HISTORY_LIMIT:]
+    return {"history": good}
+
+
+def load_task_history():
+    """История действий хранится отдельно от data.json, чтобы data.json не раздувался."""
+    with HISTORY_LOCK:
+        local_obj = None
+        if os.path.exists(LOCAL_HISTORY_FILE):
+            try:
+                with open(LOCAL_HISTORY_FILE, "r", encoding="utf-8") as f:
+                    local_obj = json.load(f)
+            except Exception as e:
+                print("Read local history error:", e)
+                local_obj = None
+
+        github_obj = read_github_json_file(GITHUB_HISTORY_FILE)
+
+        local_history = normalize_history(local_obj).get("history", []) if local_obj is not None else []
+        github_history = normalize_history(github_obj).get("history", []) if github_obj is not None else []
+
+        merged = []
+        seen = set()
+        for item in local_history + github_history:
+            key = (
+                str(item.get("type", "")),
+                str(item.get("user_id", "")),
+                str(item.get("task_id", "")),
+                str(item.get("status", "")),
+                str(item.get("request_id", "")),
+                str(item.get("time", "")),
+            )
+            if key in seen:
+                continue
+            seen.add(key)
+            merged.append(item)
+
+        obj = normalize_history({"history": merged})
+        try:
+            save_json_atomic(LOCAL_HISTORY_FILE, obj)
+        except Exception as e:
+            print("Save local history cache error:", e)
+        return obj
+
+
+def save_task_history(history_obj):
+    """Сохраняет history.json локально и в GitHub в фоне."""
+    obj = normalize_history(history_obj)
+    with HISTORY_LOCK:
+        try:
+            save_json_atomic(LOCAL_HISTORY_FILE, obj)
+        except Exception as e:
+            print("Save local history error:", e)
+        save_to_github_background(GITHUB_HISTORY_FILE, obj, "update bot history")
+
+
 def add_task_action_history(data, user_id, task_id, status, reward=0, balance=None, request_id="", admin_id=0, reason=""):
-    """Короткая история по заданиям для команды /history.
-    Храним только нужное и последние 500 записей, чтобы data.json не засорялся.
+    """Короткая история для /history.
+    ВАЖНО: пишется в отдельный history.json, а не в data.json.
+    Поэтому data.json не засоряется и бот не тормозит.
     """
     item = {
         "type": "task",
@@ -1001,11 +1099,15 @@ def add_task_action_history(data, user_id, task_id, status, reward=0, balance=No
         "reason": str(reason or "")[:200],
         "time": int(time.time())
     }
-    history = data.setdefault("action_history", [])
-    history.append(item)
-    if len(history) > 500:
-        data["action_history"] = history[-500:]
 
+    history_obj = load_task_history()
+    history = history_obj.setdefault("history", [])
+    history.append(item)
+    save_task_history({"history": history[-HISTORY_LIMIT:]})
+
+    # Совместимость: если в старом data.json был action_history, не добавляем туда новые записи.
+    # Так data.json не растёт.
+    return item
 
 def cleanup_processed_requests(data):
     """Совместимость для /repair: чистит закрытые заявки."""
@@ -1299,6 +1401,9 @@ def compact_data_for_save(data):
         for key, default_value in TEMP_USER_KEYS_DEFAULTS.items():
             if user.get(key) == default_value:
                 user.pop(key, None)
+
+    # История действий теперь хранится отдельно в history.json, в data.json она не нужна.
+    clean.pop("action_history", None)
 
     # Логи баланса сильно раздувают файл. Оставляем последние 100,
     # этого хватает для проверки последних действий. Балансы и статистику не трогаем.
@@ -3489,8 +3594,9 @@ def history_command(message):
         username = user.get("username") or "нет username"
         done = str(task_id) in [str(x) for x in user.get("done_tasks", [])]
 
+        history_obj = load_task_history()
         matches = [
-            x for x in data.get("action_history", [])
+            x for x in history_obj.get("history", [])
             if str(x.get("type")) == "task"
             and str(x.get("user_id")) == str(user_id)
             and str(x.get("task_id")) == str(task_id)
