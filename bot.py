@@ -3386,6 +3386,97 @@ def repair_command(message):
     )
 
 
+
+
+@bot.message_handler(commands=["hidetask", "donetask", "completetask"])
+def hide_task_for_user(message):
+    """Админ-команда: навсегда скрыть задание у конкретного пользователя.
+    Примеры:
+    /hidetask 41 @username
+    /hidetask @username 41
+    /hidetask 41 8418394814
+    """
+    if message.from_user.id != ADMIN_ID:
+        return bot.send_message(message.chat.id, "❌ Нет доступа.")
+
+    parts = (message.text or "").split()
+    if len(parts) != 3:
+        return bot.send_message(
+            message.chat.id,
+            "❌ Формат:\n"
+            "<code>/hidetask номер_задания @username</code>\n"
+            "<code>/hidetask @username номер_задания</code>\n\n"
+            "Пример:\n"
+            "<code>/hidetask 41 @username</code>"
+        )
+
+    a = parts[1].strip()
+    b = parts[2].strip()
+
+    if a.replace("#", "").isdigit():
+        task_id = a.replace("#", "")
+        user_query = b
+    elif b.replace("#", "").isdigit():
+        task_id = b.replace("#", "")
+        user_query = a
+    else:
+        return bot.send_message(message.chat.id, "❌ Укажи номер задания и ID/@username пользователя.")
+
+    with DATA_LOCK:
+        data = load_data_for_admin_action()
+        user_id, err = resolve_user_id(data, user_query)
+        if err:
+            return bot.send_message(message.chat.id, f"❌ {err}")
+
+        if task_id not in data.get("tasks", {}):
+            return bot.send_message(message.chat.id, f"❌ Задание #{task_id} не найдено.")
+
+        user = get_user(data, user_id)
+
+        # done_tasks — это уже существующее место, по нему бот скрывает задание навсегда.
+        done = [str(x) for x in user.get("done_tasks", [])]
+        already_done = task_id in done
+        if not already_done:
+            done.append(task_id)
+        user["done_tasks"] = list(dict.fromkeys(done))
+        user["completed_tasks"] = max(int(user.get("completed_tasks", 0) or 0), len(user["done_tasks"]))
+        user["updated_at"] = int(time.time())
+
+        # Чтобы data.json не засорялся: убираем активные заявки/ожидание по этому заданию у этого пользователя.
+        removed_submits = 0
+        for sid, submit in list(data.get("submits", {}).items()):
+            if str(submit.get("user_id")) == str(user_id) and str(submit.get("task_id")) == str(task_id):
+                data["submits"].pop(sid, None)
+                removed_submits += 1
+
+        user["pending_tasks"] = [str(x) for x in user.get("pending_tasks", []) if str(x) != task_id]
+        if str(user.get("waiting_task")) == task_id:
+            user["waiting_task"] = None
+        if str(user.get("last_open_task")) == task_id:
+            user["last_open_task"] = None
+
+        sent = data.setdefault("admin_sent", {}).setdefault("submits", {})
+        for sid, submit in list(sent.items()):
+            if isinstance(submit, dict):
+                if str(submit.get("user_id")) == str(user_id) and str(submit.get("task_id")) == str(task_id):
+                    sent.pop(sid, None)
+
+        cleanup_closed_requests(data)
+        save_data(data)
+
+    uname = get_user(data, user_id).get("username") or "нет username"
+    text = (
+        f"✅ Задание #{task_id} скрыто у пользователя навсегда.\n\n"
+        f"👤 Пользователь: @{h(uname)}\n"
+        f"🆔 ID: <code>{user_id}</code>\n"
+        f"🧹 Удалено активных заявок: {removed_submits}"
+    )
+    if already_done:
+        text += "\n\nℹ️ Оно уже было скрыто раньше."
+    bot.send_message(message.chat.id, text)
+
+
+
 @bot.message_handler(commands=["addtask"])
 def add_task(message):
     if message.from_user.id != ADMIN_ID:
