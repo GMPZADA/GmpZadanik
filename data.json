@@ -1501,16 +1501,16 @@
       "language_code": "ru"
     },
     "8961146885": {
-      "balance": 3.0,
+      "balance": 3.5,
       "done_tasks": [
         "70",
         "69",
         "38",
         "41"
       ],
-      "last_bonus": 0,
+      "last_bonus": 1783157282,
       "completed_tasks": 4,
-      "total_earned": 6.0,
+      "total_earned": 6.5,
       "withdraw_count": 1,
       "withdrawn_total": 3.0,
       "fines_total": 0,
