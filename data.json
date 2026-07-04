@@ -51,7 +51,7 @@
       "fines_total": 0,
       "username": "Artemwesh",
       "created_at": 1782836891,
-      "updated_at": 1783160650,
+      "updated_at": 1783160365,
       "user_id": 7837011810,
       "first_name": "Артем",
       "last_name": "",
@@ -1793,14 +1793,14 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1783160099,
-      "updated_at": 1783160602,
+      "updated_at": 1783160474,
       "user_id": 8040501293,
       "username": "Ghitrop999",
       "first_name": "Batek",
       "last_name": "Batek",
       "language_code": "ro",
       "last_open_task": "38",
-      "withdraw_step": "username"
+      "waiting_task": "38"
     },
     "8346625013": {
       "balance": 0,
@@ -1821,13 +1821,11 @@
       "last_open_task": "38"
     },
     "8418394814": {
-      "balance": 1.0,
-      "done_tasks": [
-        "38"
-      ],
+      "balance": 0,
+      "done_tasks": [],
       "last_bonus": 0,
-      "completed_tasks": 1,
-      "total_earned": 1.0,
+      "completed_tasks": 0,
+      "total_earned": 0,
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
@@ -1850,7 +1848,7 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1783160348,
-      "updated_at": 1783160571,
+      "updated_at": 1783160429,
       "user_id": 8843261234,
       "username": "Dima4ka67",
       "first_name": "Limon4ik",
@@ -1869,12 +1867,13 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1783160648,
-      "updated_at": 1783160648,
+      "updated_at": 1783160653,
       "user_id": 7531369327,
       "username": "zxcbond",
       "first_name": "ࣩࣩࣩࣩࣩࣩࣩࣩࣩࣩࣩࣩࣩࣩࣩࣩࣩࣩࣩࣩࣩࣩࣩࣩࣩࣩࣩࣩࣩࣩࣩࣩࣩࣩ️tripsize <3ࣩࣩࣩࣩࣩࣩࣩࣩࣩࣩࣩࣩࣩࣩࣩࣩࣩࣩ",
       "last_name": "💔",
-      "language_code": "ru"
+      "language_code": "ru",
+      "last_open_task": "38"
     }
   },
   "tasks": {
@@ -3874,15 +3873,6 @@
   },
   "balance_logs": [
     {
-      "time": 1782042392,
-      "user_id": "8380620424",
-      "old": 2.0,
-      "amount": -2.0,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "118"
-    },
-    {
       "time": 1782044501,
       "user_id": "1401650206",
       "old": 0.0,
@@ -4772,6 +4762,15 @@
       "new": 0.6,
       "reason": "withdraw_created",
       "request_id": "117"
+    },
+    {
+      "time": 1782042342,
+      "user_id": "8380620424",
+      "old": 0.0,
+      "amount": 2.0,
+      "new": 2.0,
+      "reason": "task_approved",
+      "request_id": "280"
     }
   ],
   "total_paid": 347.9,
