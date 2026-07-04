@@ -284,10 +284,10 @@ def fix_data(data):
         if key not in data:
             data[key] = value
 
-    # Если в старом data.json остался старый бренд, меняем только его на новый.
-    # /setstart всё ещё может поставить свой текст, если он не старый.
-    if "Заработок GMP" in str(data.get("start_text", "")) or "GMP Earn" in str(data.get("start_text", "")):
-        data["start_text"] = DEFAULT_START_TEXT
+    # Стартовый текст всегда держим новым.
+    # Раньше старый текст мог остаться в data.json через /setstart:
+    # "Добро пожаловать в GMP от Artemwe" — поэтому /start показывал старое название.
+    data["start_text"] = DEFAULT_START_TEXT
 
     # Глобальное включение/выключение выплат.
     # Защита: старые/битые data.json иногда хранили withdraw_enabled=false без признака,
