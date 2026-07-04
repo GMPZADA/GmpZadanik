@@ -1831,8 +1831,8 @@
       "last_bonus": 0,
       "completed_tasks": 3,
       "total_earned": 6.0,
-      "withdraw_count": 1,
-      "withdrawn_total": 1.0,
+      "withdraw_count": 2,
+      "withdrawn_total": 7.0,
       "fines_total": 0,
       "created_at": 1783160164,
       "updated_at": 1783163519,
@@ -1841,8 +1841,7 @@
       "first_name": "𝔱𝔥𝔢_𝔨𝔥𝔞𝔪𝔯𝔞𝔟𝔞𝔢𝔳",
       "last_name": "",
       "language_code": "ru",
-      "last_open_task": "50",
-      "withdraw_pending": true
+      "last_open_task": "50"
     },
     "8843261234": {
       "balance": 0,
@@ -3933,6 +3932,13 @@
         "user_id": "8418394814",
         "note": "amount 1.0",
         "time": 1783160972
+      },
+      "156": {
+        "status": "paid",
+        "admin_id": 7837011810,
+        "user_id": "8418394814",
+        "note": "amount 6.0",
+        "time": 1783163540
       }
     }
   },
@@ -4842,8 +4848,8 @@
       "request_id": "156"
     }
   ],
-  "total_paid": 348.9,
-  "total_withdrawals": 95,
+  "total_paid": 354.9,
+  "total_withdrawals": 96,
   "last_task_id": 70,
   "last_submit_id": 408,
   "last_withdraw_id": 156,
