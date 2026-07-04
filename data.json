@@ -1503,11 +1503,13 @@
       "language_code": "ru"
     },
     "8961146885": {
-      "balance": 0,
-      "done_tasks": [],
+      "balance": 1.0,
+      "done_tasks": [
+        "70"
+      ],
       "last_bonus": 0,
-      "completed_tasks": 0,
-      "total_earned": 0,
+      "completed_tasks": 1,
+      "total_earned": 1.0,
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
@@ -1517,7 +1519,8 @@
       "username": "seretper",
       "first_name": "Анатолик мажорик",
       "last_name": "",
-      "language_code": "ru"
+      "language_code": "ru",
+      "last_open_task": "70"
     },
     "8853924649": {
       "balance": 0.0,
@@ -3205,6 +3208,13 @@
         "user_id": "8961146885",
         "note": "task #70",
         "time": 1783151989
+      },
+      "394": {
+        "status": "approved",
+        "admin_id": 7837011810,
+        "user_id": "8961146885",
+        "note": "task #70",
+        "time": 1783152077
       }
     },
     "withdraws": {
@@ -3712,15 +3722,6 @@
     "withdraws": {}
   },
   "balance_logs": [
-    {
-      "time": 1782031557,
-      "user_id": "7811863751",
-      "old": 0.0,
-      "amount": 0.2,
-      "new": 0.2,
-      "reason": "add",
-      "request_id": ""
-    },
     {
       "time": 1782036649,
       "user_id": "6276600731",
@@ -4611,6 +4612,15 @@
       "new": 2.4,
       "reason": "task_approved",
       "request_id": "391"
+    },
+    {
+      "time": 1783152077,
+      "user_id": "8961146885",
+      "old": 0.0,
+      "amount": 1.0,
+      "new": 1.0,
+      "reason": "task_approved",
+      "request_id": "394"
     }
   ],
   "total_paid": 341.4,
