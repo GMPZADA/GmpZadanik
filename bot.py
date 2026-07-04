@@ -231,6 +231,20 @@ def safe_username(username):
     return username if username else "нет username"
 
 
+def is_valid_withdraw_to(value):
+    """Проверка, куда выводить GMP.
+    Не даём случайно записать "все"/"all" как получателя.
+    """
+    text = str(value or "").strip()
+    low = text.lower().replace("ё", "е")
+    if low in ["все", "all", "весь баланс", "баланс"]:
+        return False
+    # Telegram username: @ + 5-32 символа, буквы/цифры/подчёркивание
+    if re.fullmatch(r"@[A-Za-z0-9_]{5,32}", text):
+        return True
+    return False
+
+
 def backup_bad_data_file():
     """Если data.json сломался, сохраняем копию, чтобы не потерять данные полностью."""
     try:
@@ -4619,8 +4633,17 @@ def text_router(message):
     if user.get("withdraw_step") == "username":
         withdraw_to = text
 
-        if len(withdraw_to) < 3:
-            return bot.send_message(message.chat.id, "❌ Напиши нормальный username/ID для вывода.")
+        if not is_valid_withdraw_to(withdraw_to):
+            user["withdraw_step"] = "username"
+            user["withdraw_to"] = None
+            save_data(data)
+            return bot.send_message(
+                message.chat.id,
+                "❌ Сначала напиши, <b>куда вывести</b>.\n\n"
+                "Нужно написать Telegram username, например:\n"
+                "<code>@username</code>\n\n"
+                "Слово <b>все</b> можно писать только на следующем шаге, где бот спросит сумму."
+            )
 
         user["withdraw_to"] = withdraw_to
         user["withdraw_step"] = "amount"
@@ -4690,7 +4713,16 @@ def text_router(message):
                 save_data(data)
                 return bot.send_message(message.chat.id, required_tasks_block_text(missing_required))
 
-            withdraw_to = user.get("withdraw_to") or "не указано"
+            withdraw_to = user.get("withdraw_to") or ""
+            if not is_valid_withdraw_to(withdraw_to):
+                user["withdraw_step"] = "username"
+                user["withdraw_to"] = None
+                save_data(data)
+                return bot.send_message(
+                    message.chat.id,
+                    "❌ Куда выводить не указано правильно.\n\n"
+                    "Напиши username заново, например: <code>@username</code>"
+                )
 
             # Разрешаем много активных выводов, если хватает баланса.
             # Дублем считаем ТОЛЬКО повтор того же самого сообщения Telegram
