@@ -1,27 +1,8 @@
 {
-  "submits": {
-    "412": {
-      "user_id": 8418394814,
-      "username": "khamrabaev1",
-      "task_id": "48",
-      "reward": 3.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAI682pI7ZhZ7Ww-EohN2r7kaQfPX8K-AALOHWsbLjxJSrv4e0-cKN2HAQADAgADeQADPAQ",
-      "file_type": "photo",
-      "time": 1783164312,
-      "admin_sent": true,
-      "admin_sent_time": 1783164314,
-      "admin_message_id": 15093
-    }
-  },
+  "submits": {},
   "withdraws": {},
   "admin_sent": {
-    "submits": {
-      "412": {
-        "message_id": 15093,
-        "time": 1783164314
-      }
-    },
+    "submits": {},
     "withdraws": {}
   },
   "user_states": {},
