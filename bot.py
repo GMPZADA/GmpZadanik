@@ -269,6 +269,7 @@ def empty_data():
         "processed_requests": {"submits": {}, "withdraws": {}},
         "admin_sent": {"submits": {}, "withdraws": {}},
         "balance_logs": [],
+        "action_history": [],
         "total_paid": 0,
         "total_withdrawals": 0,
         "last_task_id": 37,
@@ -381,6 +382,13 @@ def fix_data(data):
     if not isinstance(data.get("balance_logs"), list):
         data["balance_logs"] = []
 
+    # Короткая история действий админа по заданиям.
+    # Это нужно для команды /history, но не раздувает data.json:
+    # храним только последние 500 действий.
+    data.setdefault("action_history", [])
+    if not isinstance(data.get("action_history"), list):
+        data["action_history"] = []
+
     # Промокоды
     data.setdefault("promocodes", {})
     if not isinstance(data.get("promocodes"), dict):
@@ -446,6 +454,10 @@ def fix_data(data):
     # Логи баланса оставляем последние 1000 записей.
     if len(data.get("balance_logs", [])) > 1000:
         data["balance_logs"] = data["balance_logs"][-1000:]
+
+    # Историю действий оставляем последние 500 записей.
+    if len(data.get("action_history", [])) > 500:
+        data["action_history"] = data["action_history"][-500:]
 
     # Удаляем старые зависшие заявки старше 7 дней и возвращаем GMP за старый вывод.
     for sid, submit in list(data.get("submits", {}).items()):
@@ -971,6 +983,33 @@ def mark_request_processed(data, kind, request_id, status, admin_id=0, user_id=0
         old_keys = sorted(processed.keys(), key=lambda k: processed[k].get("time", 0))[:-300]
         for k in old_keys:
             processed.pop(k, None)
+
+
+def add_task_action_history(data, user_id, task_id, status, reward=0, balance=None, request_id="", admin_id=0, reason=""):
+    """Короткая история по заданиям для команды /history.
+    Храним только нужное и последние 500 записей, чтобы data.json не засорялся.
+    """
+    item = {
+        "type": "task",
+        "user_id": str(user_id or ""),
+        "task_id": str(task_id or "").replace("#", ""),
+        "status": str(status or ""),
+        "reward": round(float(reward or 0), 2),
+        "balance": None if balance is None else round(float(balance or 0), 2),
+        "request_id": str(request_id or "").replace("#", ""),
+        "admin_id": int(admin_id or 0),
+        "reason": str(reason or "")[:200],
+        "time": int(time.time())
+    }
+    history = data.setdefault("action_history", [])
+    history.append(item)
+    if len(history) > 500:
+        data["action_history"] = history[-500:]
+
+
+def cleanup_processed_requests(data):
+    """Совместимость для /repair: чистит закрытые заявки."""
+    return cleanup_closed_requests(data)
 
 
 
@@ -2806,6 +2845,14 @@ def check_request(call):
                     else:
                         result_status = "rejected"
 
+                    add_task_action_history(
+                        data, user_id, task_id, result_status,
+                        reward=credited_amount if result_status == "approved" else 0,
+                        balance=new_balance,
+                        request_id=real_sid,
+                        admin_id=call.from_user.id
+                    )
+
                     remove_submit_from_data(data, real_sid, user_id, task_id)
                     if real_sid != sid:
                         remove_submit_from_data(data, sid, user_id, task_id)
@@ -3208,6 +3255,15 @@ def admin_reply_submit_action(message, sid, action):
         else:
             status = "deleted"
 
+        add_task_action_history(
+            data, user_id, task_id, status,
+            reward=credited if status == "approved" else 0,
+            balance=new_balance,
+            request_id=real_sid,
+            admin_id=message.from_user.id,
+            reason=reason if status == "rejected" else ""
+        )
+
         remove_submit_from_data(data, real_sid, user_id, task_id)
         if real_sid != sid:
             remove_submit_from_data(data, sid, user_id, task_id)
@@ -3388,6 +3444,106 @@ def repair_command(message):
 
 
 
+
+@bot.message_handler(commands=["history"])
+def history_command(message):
+    """Проверить историю по заданию и пользователю.
+    Формат:
+    /history 41 8418394814
+    /history 41 @username
+    /history @username 41
+    """
+    if message.from_user.id != ADMIN_ID:
+        return bot.send_message(message.chat.id, "❌ Нет доступа.")
+
+    parts = (message.text or "").split()
+    if len(parts) != 3:
+        return bot.send_message(
+            message.chat.id,
+            "❌ Формат:\n"
+            "<code>/history номер_задания ID</code>\n"
+            "<code>/history номер_задания @username</code>\n\n"
+            "Пример:\n"
+            "<code>/history 41 8418394814</code>"
+        )
+
+    a = parts[1].strip()
+    b = parts[2].strip()
+
+    if a.replace("#", "").isdigit():
+        task_id = a.replace("#", "")
+        user_query = b
+    elif b.replace("#", "").isdigit():
+        task_id = b.replace("#", "")
+        user_query = a
+    else:
+        return bot.send_message(message.chat.id, "❌ Укажи номер задания и ID/@username пользователя.")
+
+    with DATA_LOCK:
+        data = load_data()
+        user_id, err = resolve_user_id(data, user_query)
+        if err:
+            return bot.send_message(message.chat.id, f"❌ {err}")
+
+        user = get_user(data, user_id)
+        username = user.get("username") or "нет username"
+        done = str(task_id) in [str(x) for x in user.get("done_tasks", [])]
+
+        matches = [
+            x for x in data.get("action_history", [])
+            if str(x.get("type")) == "task"
+            and str(x.get("user_id")) == str(user_id)
+            and str(x.get("task_id")) == str(task_id)
+        ]
+        matches = sorted(matches, key=lambda x: int(x.get("time", 0) or 0), reverse=True)[:5]
+
+    status_names = {
+        "approved": "✅ одобрил",
+        "rejected": "❌ отклонил",
+        "deleted": "🗑 удалил",
+        "hidden": "👁 скрыл вручную",
+        "expired": "⌛ истекла"
+    }
+
+    lines = [
+        "📜 <b>История задания</b>",
+        "",
+        f"✅ Задание: <b>#{task_id}</b>",
+        f"👤 Пользователь: @{h(username)}",
+        f"🆔 ID: <code>{user_id}</code>",
+        f"👁 Сейчас скрыто у пользователя: {'да' if done else 'нет'}",
+        ""
+    ]
+
+    if not matches:
+        lines.append("⚠️ Истории по этому заданию и пользователю пока нет.")
+        lines.append("Если это старое действие было до обновления кода — бот не мог его записать.")
+        return bot.send_message(message.chat.id, "\n".join(lines))
+
+    lines.append("Последние действия:")
+    for item in matches:
+        status = str(item.get("status", ""))
+        when = datetime.fromtimestamp(int(item.get("time", 0) or 0), ZoneInfo("Europe/Kyiv")).strftime("%d.%m.%Y %H:%M")
+        reward = float(item.get("reward", 0) or 0)
+        balance = item.get("balance")
+        rid = str(item.get("request_id") or "")
+        reason = str(item.get("reason") or "")
+
+        line = f"• {when} — {status_names.get(status, status)}"
+        if rid:
+            line += f" заявку #{rid}"
+        if status == "approved":
+            line += f"\n  💰 Начислено: <b>{format_gmp(reward)} GMP</b>"
+            if balance is not None:
+                line += f"\n  💎 Баланс после: <b>{format_gmp(balance)} GMP</b>"
+        elif status == "rejected" and reason:
+            line += f"\n  Причина: {h(reason)}"
+        lines.append(line)
+
+    bot.send_message(message.chat.id, "\n".join(lines))
+
+
+
 @bot.message_handler(commands=["hidetask", "donetask", "completetask"])
 def hide_task_for_user(message):
     """Админ-команда: навсегда скрыть задание у конкретного пользователя.
@@ -3460,6 +3616,15 @@ def hide_task_for_user(message):
             if isinstance(submit, dict):
                 if str(submit.get("user_id")) == str(user_id) and str(submit.get("task_id")) == str(task_id):
                     sent.pop(sid, None)
+
+        add_task_action_history(
+            data, user_id, task_id, "hidden",
+            reward=0,
+            balance=float(user.get("balance", 0) or 0),
+            request_id="",
+            admin_id=message.from_user.id,
+            reason="manual_hidetask"
+        )
 
         cleanup_closed_requests(data)
         save_data(data)
