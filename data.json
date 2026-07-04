@@ -1839,7 +1839,8 @@
       "last_name": "",
       "language_code": "ru",
       "last_open_task": "41",
-      "withdraw_step": "username"
+      "withdraw_step": "amount",
+      "withdraw_to": "@khamrabaev1"
     },
     "8843261234": {
       "balance": 0,
