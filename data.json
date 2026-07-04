@@ -1507,22 +1507,22 @@
         "70",
         "69",
         "38",
-        "41"
+        "41",
+        "42"
       ],
       "last_bonus": 1783157282,
-      "completed_tasks": 4,
+      "completed_tasks": 5,
       "total_earned": 6.5,
       "withdraw_count": 2,
       "withdrawn_total": 6.5,
       "fines_total": 0,
       "created_at": 1782921273,
-      "updated_at": 1783162140,
+      "updated_at": 1783162167,
       "user_id": 8961146885,
       "username": "seretper",
       "first_name": "Анатолик мажорик",
       "last_name": "",
-      "language_code": "ru",
-      "last_open_task": "42"
+      "language_code": "ru"
     },
     "8853924649": {
       "balance": 0.0,
