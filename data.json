@@ -1835,12 +1835,14 @@
       "withdrawn_total": 7.0,
       "fines_total": 0,
       "created_at": 1783160164,
-      "updated_at": 1783164312,
+      "updated_at": 1783164306,
       "user_id": 8418394814,
       "username": "khamrabaev1",
       "first_name": "𝔱𝔥𝔢_𝔨𝔥𝔞𝔪𝔯𝔞𝔟𝔞𝔢𝔳",
       "last_name": "",
-      "language_code": "ru"
+      "language_code": "ru",
+      "waiting_task": "48",
+      "last_open_task": "48"
     },
     "8843261234": {
       "balance": 0,
@@ -1891,7 +1893,7 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1783163543,
-      "updated_at": 1783164296,
+      "updated_at": 1783164315,
       "user_id": 6596003965,
       "username": "xwxw9505",
       "first_name": "(-_-)",
