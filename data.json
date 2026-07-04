@@ -1799,7 +1799,8 @@
       "first_name": "Batek",
       "last_name": "Batek",
       "language_code": "ro",
-      "last_open_task": "38"
+      "last_open_task": "38",
+      "waiting_task": "38"
     },
     "8346625013": {
       "balance": 0,
