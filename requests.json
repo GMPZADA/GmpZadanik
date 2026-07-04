@@ -1,27 +1,8 @@
 {
-  "submits": {
-    "399": {
-      "user_id": 8843261234,
-      "username": "Dima4ka67",
-      "task_id": "38",
-      "reward": 1.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAI6L2pI3lCa2R3NgrClNXqCdJ9K60lwAALjGmsbP3JJSkGrtosKVGiqAQADAgADeQADPAQ",
-      "file_type": "photo",
-      "time": 1783160401,
-      "admin_sent": true,
-      "admin_sent_time": 1783160402,
-      "admin_message_id": 14897
-    }
-  },
+  "submits": {},
   "withdraws": {},
   "admin_sent": {
-    "submits": {
-      "399": {
-        "message_id": 14897,
-        "time": 1783160402
-      }
-    },
+    "submits": {},
     "withdraws": {}
   },
   "user_states": {},
