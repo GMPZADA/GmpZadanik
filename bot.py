@@ -3071,7 +3071,7 @@ def pay_check(call):
                 user_id,
                 f"✅ <b>Заявка на вывод #{real_wid} одобрена!</b>\n\n"
                 f"💎 Выплачено: <b>{format_gmp(amount)} GMP</b>\n\n"
-                "Спасибо за использование GMP от Artemwe 💜"
+                "Спасибо за использование Заработок GMP 💜"
             )
             notify_line = "📩 Пользователю отправлено уведомление." if sent_ok else "⚠️ Telegram не дал отправить уведомление пользователю."
             safe_edit_admin_message(
