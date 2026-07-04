@@ -3132,6 +3132,13 @@
         "user_id": "7811863751",
         "note": "task #66",
         "time": 1783138490
+      },
+      "390": {
+        "status": "rejected",
+        "admin_id": 7837011810,
+        "user_id": "7811863751",
+        "note": "task #57",
+        "time": 1783138508
       }
     },
     "withdraws": {
