@@ -1793,14 +1793,14 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1783160099,
-      "updated_at": 1783160564,
+      "updated_at": 1783160575,
       "user_id": 8040501293,
       "username": "Ghitrop999",
       "first_name": "Batek",
       "last_name": "Batek",
       "language_code": "ro",
       "last_open_task": "38",
-      "waiting_task": "38"
+      "withdraw_step": "username"
     },
     "8346625013": {
       "balance": 0,
@@ -1836,8 +1836,8 @@
       "first_name": "𝔱𝔥𝔢_𝔨𝔥𝔞𝔪𝔯𝔞𝔟𝔞𝔢𝔳",
       "last_name": "",
       "language_code": "ru",
-      "last_open_task": "38",
-      "waiting_task": "38"
+      "waiting_task": "38",
+      "last_open_task": "38"
     },
     "8843261234": {
       "balance": 0,
@@ -4752,7 +4752,7 @@
   "total_paid": 347.9,
   "total_withdrawals": 94,
   "last_task_id": 70,
-  "last_submit_id": 399,
+  "last_submit_id": 400,
   "last_withdraw_id": 154,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "withdraw_disabled_by_admin": false,
