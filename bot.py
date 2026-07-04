@@ -29,7 +29,7 @@ BONUS_COOLDOWN = 24 * 60 * 60
 BONUS_REQUIRED_BIO = "@GmpEarnBot лучший бот для заработка GMP"
 
 DEFAULT_START_TEXT = (
-    "💎 <b>Добро пожаловать в GMP от Artemwe!</b>\n\n"
+    "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n"
     "📋 Выполняй задания\n"
     "📸 Проходи проверку\n"
     "💰 Зарабатывай GMP\n\n"
