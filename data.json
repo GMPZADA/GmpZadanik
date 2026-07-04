@@ -371,11 +371,12 @@
       "fines_total": 0,
       "username": "kurokcek",
       "created_at": 1782848000,
-      "updated_at": 1783143149,
+      "updated_at": 1783143150,
       "user_id": 7130773702,
       "first_name": "sleepy",
       "last_name": "",
-      "language_code": "ru"
+      "language_code": "ru",
+      "last_open_task": "38"
     },
     "5356400377": {
       "balance": 0.4,
