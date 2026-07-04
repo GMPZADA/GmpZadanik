@@ -43,7 +43,7 @@ DEFAULT_START_TEXT = (
 )
 
 # Keep Alive: пингует сайт каждые 5 минут
-KEEPALIVE_URL = os.getenv("KEEPALIVE_URL", "https://gmpzadanik.onrender.com/")
+KEEPALIVE_URL = os.getenv("KEEPALIVE_URL", "https://gmpzadanik-nljw.onrender.com/")
 KEEPALIVE_INTERVAL = 5 * 60
 
 bot = TeleBot(TOKEN, parse_mode="HTML")
