@@ -1879,6 +1879,23 @@
       "last_name": "💔",
       "language_code": "ru",
       "last_open_task": "38"
+    },
+    "6596003965": {
+      "balance": 0,
+      "done_tasks": [],
+      "last_bonus": 0,
+      "completed_tasks": 0,
+      "total_earned": 0,
+      "withdraw_count": 0,
+      "withdrawn_total": 0,
+      "fines_total": 0,
+      "created_at": 1783163543,
+      "updated_at": 1783163543,
+      "user_id": 6596003965,
+      "username": "xwxw9505",
+      "first_name": "(-_-)",
+      "last_name": "",
+      "language_code": "ru"
     }
   },
   "tasks": {
