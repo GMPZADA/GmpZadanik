@@ -1839,8 +1839,7 @@
       "first_name": "𝔱𝔥𝔢_𝔨𝔥𝔞𝔪𝔯𝔞𝔟𝔞𝔢𝔳",
       "last_name": "",
       "language_code": "ru",
-      "last_open_task": "41",
-      "waiting_task": "41"
+      "last_open_task": "41"
     },
     "8843261234": {
       "balance": 0,
@@ -3390,6 +3389,13 @@
         "user_id": "8418394814",
         "note": "task #42",
         "time": 1783161428
+      },
+      "406": {
+        "status": "rejected",
+        "admin_id": 7837011810,
+        "user_id": "8418394814",
+        "note": "task #41",
+        "time": 1783161525
       }
     },
     "withdraws": {
@@ -3918,15 +3924,6 @@
     "withdraws": {}
   },
   "balance_logs": [
-    {
-      "time": 1782046192,
-      "user_id": "7937166836",
-      "old": 0.0,
-      "amount": 3.0,
-      "new": 3.0,
-      "reason": "task_approved",
-      "request_id": "287"
-    },
     {
       "time": 1782049688,
       "user_id": "8804288474",
@@ -4817,6 +4814,15 @@
       "new": 8.0,
       "reason": "task_approved",
       "request_id": "286"
+    },
+    {
+      "time": 1782045177,
+      "user_id": "1401650206",
+      "old": 8.0,
+      "amount": -8.0,
+      "new": 0.0,
+      "reason": "withdraw_created",
+      "request_id": "119"
     }
   ],
   "total_paid": 348.9,
