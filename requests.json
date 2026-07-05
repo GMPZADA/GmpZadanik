@@ -2,12 +2,7 @@
   "submits": {},
   "withdraws": {},
   "admin_sent": {
-    "submits": {
-      "421": {
-        "message_id": 15542,
-        "time": 1783243094
-      }
-    },
+    "submits": {},
     "withdraws": {}
   },
   "user_states": {},
