@@ -1384,7 +1384,7 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1782880164,
-      "updated_at": 1783235587,
+      "updated_at": 1782880164,
       "user_id": 8805045324,
       "username": "awesenko",
       "first_name": "Староста",
@@ -1512,13 +1512,13 @@
       "withdrawn_total": 11.5,
       "fines_total": 0,
       "created_at": 1782921273,
-      "updated_at": 1783235568,
+      "updated_at": 1783192062,
       "user_id": 8961146885,
       "username": "seretper",
       "first_name": "Анатолик мажорик",
       "last_name": "",
       "language_code": "ru",
-      "last_open_task": "45"
+      "last_open_task": "49"
     },
     "8853924649": {
       "balance": 0.0,
@@ -1923,7 +1923,7 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1783235362,
-      "updated_at": 1783235743,
+      "updated_at": 1783235478,
       "user_id": 8657475506,
       "username": "pokaufy1111",
       "first_name": "ponchik",
@@ -1936,7 +1936,7 @@
     "38": {
       "text": "Зайти в бота, подписаться на спонсоров и прислать скриншот выполнения",
       "link": "https://t.me/starfalll_tg_bot?start=MxdXVTrQ7SCVVk",
-      "reward": 2.0,
+      "reward": 1,
       "active": true,
       "required": false
     },
@@ -2013,7 +2013,7 @@
     "53": {
       "text": "Зайти в бота, выполнить 3 задания и отправить скриншот выполнения",
       "link": "https://t.me/SnakeeEarn_Bot?start=suxt81gy",
-      "reward": 1.0,
+      "reward": 2.0,
       "active": true,
       "required": false
     },
