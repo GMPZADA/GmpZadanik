@@ -1023,9 +1023,16 @@ def normalize_history(obj):
 
     good = []
     for item in history:
-        if isinstance(item, dict) and item.get("type") == "task":
+        if not isinstance(item, dict):
+            continue
+        # В history.json храним только короткие записи:
+        # task = история заданий, withdraw = история выводов.
+        # Остальной мусор автоматически не сохраняем.
+        if item.get("type") in ("task", "withdraw"):
             good.append(item)
 
+    # Автоочистка: оставляем только последние HISTORY_LIMIT записей.
+    # Старые записи удаляются сами, чтобы history.json не разрастался.
     good = sorted(good, key=lambda x: int(x.get("time", 0) or 0))[-HISTORY_LIMIT:]
     return {"history": good}
 
@@ -1054,6 +1061,7 @@ def load_task_history():
                 str(item.get("type", "")),
                 str(item.get("user_id", "")),
                 str(item.get("task_id", "")),
+                str(item.get("withdraw_id", "")),
                 str(item.get("status", "")),
                 str(item.get("request_id", "")),
                 str(item.get("time", "")),
@@ -1108,6 +1116,31 @@ def add_task_action_history(data, user_id, task_id, status, reward=0, balance=No
     # Совместимость: если в старом data.json был action_history, не добавляем туда новые записи.
     # Так data.json не растёт.
     return item
+
+
+def add_withdraw_action_history(data, user_id, withdraw_id, status, amount=0, balance=None, admin_id=0, reason=""):
+    """Короткая история выводов для /history.
+    Пишется в history.json, а не в data.json.
+    Автоочистка уже есть в normalize_history(): остаются только последние HISTORY_LIMIT записей.
+    """
+    item = {
+        "type": "withdraw",
+        "user_id": str(user_id or ""),
+        "withdraw_id": str(withdraw_id or "").replace("#", ""),
+        "status": str(status or ""),
+        "amount": round(float(amount or 0), 2),
+        "balance": None if balance is None else round(float(balance or 0), 2),
+        "admin_id": int(admin_id or 0),
+        "reason": str(reason or "")[:200],
+        "time": int(time.time())
+    }
+
+    history_obj = load_task_history()
+    history = history_obj.setdefault("history", [])
+    history.append(item)
+    save_task_history({"history": history[-HISTORY_LIMIT:]})
+    return item
+
 
 def cleanup_processed_requests(data):
     """Совместимость для /repair: чистит закрытые заявки."""
@@ -1916,7 +1949,9 @@ def build_admin_profile_text(data, user_id, user, username=None):
         "<code>/delpromo КОД</code> — удалить промокод\n"
         "<code>/addrequired Текст | ссылка | награда</code> — обязательное задание\n"
         "<code>/required номер</code> — сделать задание обязательным\n"
-        "<code>/unrequired номер</code> — убрать обязательность"
+        "<code>/unrequired номер</code> — убрать обязательность\n"
+        "<code>/history номер_задания ID</code> — история задания\n"
+        "<code>/history withdraw номер_вывода ID</code> — история вывода"
     )
 
 
@@ -3202,6 +3237,14 @@ def pay_check(call):
                         add_balance_to_user(data, user_id, amount, reason="withdraw_deleted_return", request_id=real_wid)
                         result_status = "deleted"
 
+                    add_withdraw_action_history(
+                        data, user_id, real_wid, result_status,
+                        amount=amount,
+                        balance=float(user.get("balance", 0) or 0),
+                        admin_id=call.from_user.id,
+                        reason=f"amount {format_gmp(amount)}"
+                    )
+
                     remove_withdraw_from_data(data, real_wid, user_id)
                     if real_wid != wid:
                         remove_withdraw_from_data(data, wid, user_id)
@@ -3434,6 +3477,14 @@ def admin_reply_withdraw_action(message, wid, action):
             add_balance_to_user(data, user_id, amount, reason="withdraw_deleted_return", request_id=real_wid)
             status = "deleted"
 
+        add_withdraw_action_history(
+            data, user_id, real_wid, status,
+            amount=amount,
+            balance=float(user.get("balance", 0) or 0),
+            admin_id=message.from_user.id,
+            reason=f"amount {format_gmp(amount)}"
+        )
+
         remove_withdraw_from_data(data, real_wid, user_id)
         if real_wid != wid:
             remove_withdraw_from_data(data, wid, user_id)
@@ -3552,37 +3603,58 @@ def repair_command(message):
 
 @bot.message_handler(commands=["history"])
 def history_command(message):
-    """Проверить историю по заданию и пользователю.
+    """Проверить историю задания или вывода.
     Формат:
-    /history 41 8418394814
-    /history 41 @username
-    /history @username 41
+    /history 41 8418394814          — история задания
+    /history 41 @username           — история задания
+    /history withdraw 161 8418394814 — история вывода
+    /history вывод 161 @username     — история вывода
     """
     if message.from_user.id != ADMIN_ID:
         return bot.send_message(message.chat.id, "❌ Нет доступа.")
 
     parts = (message.text or "").split()
-    if len(parts) != 3:
+    if len(parts) not in (3, 4):
         return bot.send_message(
             message.chat.id,
             "❌ Формат:\n"
             "<code>/history номер_задания ID</code>\n"
-            "<code>/history номер_задания @username</code>\n\n"
-            "Пример:\n"
-            "<code>/history 41 8418394814</code>"
+            "<code>/history номер_задания @username</code>\n"
+            "<code>/history withdraw номер_вывода ID</code>\n"
+            "<code>/history вывод номер_вывода @username</code>\n\n"
+            "Примеры:\n"
+            "<code>/history 41 8418394814</code>\n"
+            "<code>/history withdraw 161 8657475506</code>"
         )
 
-    a = parts[1].strip()
-    b = parts[2].strip()
-
-    if a.replace("#", "").isdigit():
-        task_id = a.replace("#", "")
-        user_query = b
-    elif b.replace("#", "").isdigit():
-        task_id = b.replace("#", "")
-        user_query = a
+    mode = "task"
+    if len(parts) == 4:
+        mode_word = parts[1].lower().strip()
+        if mode_word in ("withdraw", "withdraws", "вывод", "выводы", "w"):
+            mode = "withdraw"
+            num = parts[2].strip().replace("#", "")
+            user_query = parts[3].strip()
+        elif mode_word in ("task", "tasks", "задание", "задания", "t"):
+            mode = "task"
+            num = parts[2].strip().replace("#", "")
+            user_query = parts[3].strip()
+        else:
+            return bot.send_message(message.chat.id, "❌ После /history можно написать только task/задание или withdraw/вывод.")
     else:
-        return bot.send_message(message.chat.id, "❌ Укажи номер задания и ID/@username пользователя.")
+        a = parts[1].strip()
+        b = parts[2].strip()
+
+        if a.replace("#", "").isdigit():
+            num = a.replace("#", "")
+            user_query = b
+        elif b.replace("#", "").isdigit():
+            num = b.replace("#", "")
+            user_query = a
+        else:
+            return bot.send_message(message.chat.id, "❌ Укажи номер задания и ID/@username пользователя.")
+
+    if not str(num).isdigit():
+        return bot.send_message(message.chat.id, "❌ Номер должен быть числом.")
 
     with DATA_LOCK:
         data = load_data()
@@ -3592,16 +3664,79 @@ def history_command(message):
 
         user = get_user(data, user_id)
         username = user.get("username") or "нет username"
-        done = str(task_id) in [str(x) for x in user.get("done_tasks", [])]
 
         history_obj = load_task_history()
-        matches = [
-            x for x in history_obj.get("history", [])
-            if str(x.get("type")) == "task"
-            and str(x.get("user_id")) == str(user_id)
-            and str(x.get("task_id")) == str(task_id)
+
+        if mode == "withdraw":
+            pending_withdraws = [
+                w for w in data.get("withdraws", {}).values()
+                if str(w.get("user_id")) == str(user_id)
+                and str(w.get("status")) == "wait"
+                and str(w.get("id", "") or w.get("withdraw_id", "") or "").replace("#", "") == str(num)
+            ]
+
+            matches = [
+                x for x in history_obj.get("history", [])
+                if str(x.get("type")) == "withdraw"
+                and str(x.get("user_id")) == str(user_id)
+                and str(x.get("withdraw_id")) == str(num)
+            ]
+            matches = sorted(matches, key=lambda x: int(x.get("time", 0) or 0), reverse=True)[:5]
+        else:
+            task_id = str(num)
+            done = task_id in [str(x) for x in user.get("done_tasks", [])]
+            matches = [
+                x for x in history_obj.get("history", [])
+                if str(x.get("type")) == "task"
+                and str(x.get("user_id")) == str(user_id)
+                and str(x.get("task_id")) == str(task_id)
+            ]
+            matches = sorted(matches, key=lambda x: int(x.get("time", 0) or 0), reverse=True)[:5]
+
+    if mode == "withdraw":
+        status_names = {
+            "paid": "✅ выплачено",
+            "rejected": "❌ отказано",
+            "deleted": "🗑 удалено"
+        }
+
+        lines = [
+            "📜 <b>История вывода</b>",
+            "",
+            f"💸 Вывод: <b>#{num}</b>",
+            f"👤 Пользователь: @{h(username)}",
+            f"🆔 ID: <code>{user_id}</code>",
+            ""
         ]
-        matches = sorted(matches, key=lambda x: int(x.get("time", 0) or 0), reverse=True)[:5]
+
+        if pending_withdraws:
+            w = pending_withdraws[0]
+            lines.append("⏳ Сейчас этот вывод ещё <b>на проверке</b>.")
+            lines.append(f"💰 Сумма: <b>{format_gmp(float(w.get('amount', 0) or 0))} GMP</b>")
+            lines.append("")
+
+        if not matches:
+            lines.append("⚠️ Истории по этому выводу и пользователю пока нет.")
+            lines.append("Если вывод был создан до обновления кода — бот не мог его записать.")
+            return bot.send_message(message.chat.id, "\n".join(lines))
+
+        lines.append("Последние действия:")
+        for item in matches:
+            status = str(item.get("status", ""))
+            when = datetime.fromtimestamp(int(item.get("time", 0) or 0), ZoneInfo("Europe/Kyiv")).strftime("%d.%m.%Y %H:%M")
+            amount = float(item.get("amount", 0) or 0)
+            balance = item.get("balance")
+            reason = str(item.get("reason") or "")
+
+            line = f"• {when} — {status_names.get(status, status)}"
+            line += f"\n  💰 Сумма: <b>{format_gmp(amount)} GMP</b>"
+            if balance is not None:
+                line += f"\n  💎 Баланс после: <b>{format_gmp(balance)} GMP</b>"
+            if reason:
+                line += f"\n  ℹ️ {h(reason)}"
+            lines.append(line)
+
+        return bot.send_message(message.chat.id, "\n".join(lines))
 
     status_names = {
         "approved": "✅ одобрил",
@@ -3614,7 +3749,7 @@ def history_command(message):
     lines = [
         "📜 <b>История задания</b>",
         "",
-        f"✅ Задание: <b>#{task_id}</b>",
+        f"✅ Задание: <b>#{num}</b>",
         f"👤 Пользователь: @{h(username)}",
         f"🆔 ID: <code>{user_id}</code>",
         f"👁 Сейчас скрыто у пользователя: {'да' if done else 'нет'}",
@@ -3647,7 +3782,6 @@ def history_command(message):
         lines.append(line)
 
     bot.send_message(message.chat.id, "\n".join(lines))
-
 
 
 @bot.message_handler(commands=["hidetask", "donetask", "completetask"])
