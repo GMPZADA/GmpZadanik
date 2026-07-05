@@ -2039,6 +2039,13 @@
       "reward": 2.0,
       "active": true,
       "required": false
+    },
+    "71": {
+      "text": "Зайти в бота, подписаться на спонсоров и отправить скриншот выполнения",
+      "link": "https://t.me/AstryStars_bot?start=7837011810",
+      "reward": 1.0,
+      "active": true,
+      "required": false
     }
   },
   "deleted_tasks": {
@@ -4920,7 +4927,7 @@
   ],
   "total_paid": 362.9,
   "total_withdrawals": 98,
-  "last_task_id": 70,
+  "last_task_id": 71,
   "last_submit_id": 413,
   "last_withdraw_id": 158,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
