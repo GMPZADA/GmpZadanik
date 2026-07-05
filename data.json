@@ -1924,8 +1924,8 @@
       "last_bonus": 0,
       "completed_tasks": 1,
       "total_earned": 3.0,
-      "withdraw_count": 0,
-      "withdrawn_total": 0,
+      "withdraw_count": 1,
+      "withdrawn_total": 3.0,
       "fines_total": 0,
       "created_at": 1783235362,
       "updated_at": 1783236744,
@@ -1934,9 +1934,7 @@
       "first_name": "ponchik",
       "last_name": "",
       "language_code": "ru",
-      "last_open_task": "50",
-      "withdraw_step": "amount",
-      "withdraw_to": "@pokaufy1111"
+      "last_open_task": "50"
     }
   },
   "tasks": {
@@ -4077,6 +4075,13 @@
         "user_id": "8418394814",
         "note": "amount 3.0",
         "time": 1783165406
+      },
+      "159": {
+        "status": "paid",
+        "admin_id": 7837011810,
+        "user_id": "8657475506",
+        "note": "amount 3.0",
+        "time": 1783236790
       }
     }
   },
@@ -4085,24 +4090,6 @@
     "withdraws": {}
   },
   "balance_logs": [
-    {
-      "time": 1782934152,
-      "user_id": "7837011810",
-      "old": 0.0,
-      "amount": 1.0,
-      "new": 1.0,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
-      "time": 1782934342,
-      "user_id": "7779046668",
-      "old": 0.0,
-      "amount": 0.2,
-      "new": 0.2,
-      "reason": "add",
-      "request_id": ""
-    },
     {
       "time": 1781893998,
       "user_id": "8258106768",
@@ -4984,10 +4971,28 @@
       "new": 0.2,
       "reason": "withdraw_created",
       "request_id": "160"
+    },
+    {
+      "time": 1781892511,
+      "user_id": "7106223662",
+      "old": 2.0,
+      "amount": -2.0,
+      "new": 0.0,
+      "reason": "withdraw_created",
+      "request_id": "96"
+    },
+    {
+      "time": 1781892677,
+      "user_id": "6976874613",
+      "old": 2.0,
+      "amount": 3.0,
+      "new": 5.0,
+      "reason": "task_approved",
+      "request_id": "230"
     }
   ],
-  "total_paid": 362.9,
-  "total_withdrawals": 98,
+  "total_paid": 365.9,
+  "total_withdrawals": 99,
   "last_task_id": 72,
   "last_submit_id": 420,
   "last_withdraw_id": 160,
