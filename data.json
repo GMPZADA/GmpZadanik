@@ -2033,7 +2033,8 @@
       "username": "Artist93565",
       "first_name": "Artist93565",
       "last_name": "",
-      "language_code": "ru"
+      "language_code": "ru",
+      "last_open_task": "38"
     }
   },
   "tasks": {
@@ -3675,6 +3676,13 @@
         "user_id": "8657475506",
         "note": "task #38",
         "time": 1783279036
+      },
+      "427": {
+        "status": "rejected",
+        "admin_id": 7837011810,
+        "user_id": "7632037599",
+        "note": "task #38",
+        "time": 1783282392
       }
     },
     "withdraws": {
