@@ -973,13 +973,14 @@
       "fines_total": 0,
       "username": "Gangsters_95",
       "created_at": 1783054811,
-      "updated_at": 1783236726,
+      "updated_at": 1783236750,
       "user_id": 8804288474,
       "first_name": "Gangster",
       "last_name": "",
       "language_code": "ru",
       "last_open_task": "42",
-      "withdraw_step": "username"
+      "withdraw_step": "amount",
+      "withdraw_to": "@Gangsters_95"
     },
     "8341360449": {
       "balance": 0.2,
@@ -1928,7 +1929,7 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1783235362,
-      "updated_at": 1783236749,
+      "updated_at": 1783236744,
       "user_id": 8657475506,
       "username": "pokaufy1111",
       "first_name": "ponchik",
