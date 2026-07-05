@@ -67,7 +67,13 @@
       "withdraw_count": 1,
       "withdrawn_total": 2.0,
       "fines_total": 0,
-      "username": "offormit2"
+      "username": "offormit2",
+      "created_at": 1783237160,
+      "updated_at": 1783237160,
+      "user_id": 8380620424,
+      "first_name": "H5D2R",
+      "last_name": "",
+      "language_code": "ru"
     },
     "8317326202": {
       "balance": 0.0,
