@@ -1928,10 +1928,7 @@
       "username": "pokaufy1111",
       "first_name": "ponchik",
       "last_name": "",
-      "language_code": "ru",
-      "pending_tasks": [
-        "51"
-      ]
+      "language_code": "ru"
     }
   },
   "tasks": {
@@ -2050,7 +2047,7 @@
     "68": {
       "text": "Зайти в бота, подписаться на спонсоров и отправить скриншот выполнения",
       "link": "https://t.me/SpartanStars_bot?start=7837011810",
-      "reward": 1.0,
+      "reward": 2.0,
       "active": true,
       "required": false
     },
