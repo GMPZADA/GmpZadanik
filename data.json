@@ -1923,7 +1923,7 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1783235362,
-      "updated_at": 1783235478,
+      "updated_at": 1783235775,
       "user_id": 8657475506,
       "username": "pokaufy1111",
       "first_name": "ponchik",
@@ -2041,7 +2041,7 @@
     "67": {
       "text": "Зайти в бота, подписаться на спонсоров и отправить скриншот выполнения",
       "link": "https://t.me/StepStars_bot?start=7837011810",
-      "reward": 2.0,
+      "reward": 1.0,
       "active": true,
       "required": false
     },
