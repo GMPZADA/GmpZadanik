@@ -1767,8 +1767,7 @@
       "first_name": "S U P E R P R O P E R #grade",
       "last_name": "",
       "language_code": "ru",
-      "last_open_task": "43",
-      "waiting_task": "43"
+      "last_open_task": "43"
     },
     "8373274147": {
       "balance": 0,
@@ -3541,6 +3540,13 @@
         "user_id": "8804288474",
         "note": "task #41",
         "time": 1783236707
+      },
+      "421": {
+        "status": "rejected",
+        "admin_id": 7837011810,
+        "user_id": "7120011711",
+        "note": "task #43",
+        "time": 1783242986
       }
     },
     "withdraws": {
