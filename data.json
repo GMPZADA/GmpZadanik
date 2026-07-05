@@ -1979,7 +1979,8 @@
       "first_name": "Qwerty",
       "last_name": "",
       "language_code": "ru",
-      "last_open_task": "38"
+      "last_open_task": "38",
+      "withdraw_step": "username"
     },
     "8984967007": {
       "balance": 0,
