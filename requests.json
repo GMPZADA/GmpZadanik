@@ -1,27 +1,9 @@
 {
   "submits": {},
-  "withdraws": {
-    "162": {
-      "user_id": 8657475506,
-      "username": "pokaufy1111",
-      "to": "@pokaufy1111",
-      "amount": 2.0,
-      "status": "wait",
-      "time": 1783279320,
-      "source_message_id": 15740,
-      "admin_sent": true,
-      "admin_sent_time": 1783279321,
-      "admin_message_id": 15742
-    }
-  },
+  "withdraws": {},
   "admin_sent": {
     "submits": {},
-    "withdraws": {
-      "162": {
-        "message_id": 15742,
-        "time": 1783279321
-      }
-    }
+    "withdraws": {}
   },
   "user_states": {},
   "withdraw_requests": {},
