@@ -1991,12 +1991,13 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1783278741,
-      "updated_at": 1783278746,
+      "updated_at": 1783278749,
       "user_id": 8984967007,
       "username": "korol_min",
       "first_name": "ℑ𝔫𝔣𝔬_♐",
       "last_name": "",
-      "language_code": "ru"
+      "language_code": "ru",
+      "withdraw_step": "username"
     }
   },
   "tasks": {
