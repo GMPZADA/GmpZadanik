@@ -1672,7 +1672,7 @@
       "withdrawn_total": 1.0,
       "fines_total": 0,
       "created_at": 1783053571,
-      "updated_at": 1783245579,
+      "updated_at": 1783245587,
       "user_id": 7378277039,
       "username": "G1nfor111",
       "first_name": "#везение#удача",
@@ -3548,6 +3548,13 @@
         "user_id": "7120011711",
         "note": "task #43",
         "time": 1783242986
+      },
+      "422": {
+        "status": "rejected",
+        "admin_id": 7837011810,
+        "user_id": "7378277039",
+        "note": "task #43",
+        "time": 1783245587
       }
     },
     "withdraws": {
