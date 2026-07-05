@@ -973,7 +973,7 @@
       "fines_total": 0,
       "username": "Gangsters_95",
       "created_at": 1783054811,
-      "updated_at": 1783236637,
+      "updated_at": 1783236636,
       "user_id": 8804288474,
       "first_name": "Gangster",
       "last_name": "",
@@ -1916,11 +1916,13 @@
       "last_open_task": "68"
     },
     "8657475506": {
-      "balance": 0,
-      "done_tasks": [],
+      "balance": 3.0,
+      "done_tasks": [
+        "50"
+      ],
       "last_bonus": 0,
-      "completed_tasks": 0,
-      "total_earned": 0,
+      "completed_tasks": 1,
+      "total_earned": 3.0,
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
@@ -3517,6 +3519,13 @@
         "user_id": "8804288474",
         "note": "task #38",
         "time": 1783236609
+      },
+      "419": {
+        "status": "approved",
+        "admin_id": 7837011810,
+        "user_id": "8657475506",
+        "note": "task #50",
+        "time": 1783236639
       }
     },
     "withdraws": {
@@ -4066,15 +4075,6 @@
     "withdraws": {}
   },
   "balance_logs": [
-    {
-      "time": 1781864242,
-      "user_id": "8341360449",
-      "old": 1.2,
-      "amount": 2.0,
-      "new": 3.2,
-      "reason": "task_approved",
-      "request_id": "227"
-    },
     {
       "time": 1781864543,
       "user_id": "8341360449",
@@ -4965,6 +4965,15 @@
       "new": 2.2,
       "reason": "task_approved",
       "request_id": "417"
+    },
+    {
+      "time": 1783236639,
+      "user_id": "8657475506",
+      "old": 0.0,
+      "amount": 3.0,
+      "new": 3.0,
+      "reason": "task_approved",
+      "request_id": "419"
     }
   ],
   "total_paid": 362.9,
