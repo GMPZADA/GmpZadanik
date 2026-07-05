@@ -1926,7 +1926,7 @@
       "last_open_task": "68"
     },
     "8657475506": {
-      "balance": 2.0,
+      "balance": 0.0,
       "done_tasks": [
         "50",
         "38"
@@ -1938,15 +1938,14 @@
       "withdrawn_total": 6.0,
       "fines_total": 0,
       "created_at": 1783235362,
-      "updated_at": 1783279318,
+      "updated_at": 1783279320,
       "user_id": 8657475506,
       "username": "pokaufy1111",
       "first_name": "ponchik",
       "last_name": "",
       "language_code": "ru",
       "last_open_task": "51",
-      "withdraw_step": "amount",
-      "withdraw_to": "@pokaufy1111"
+      "withdraw_pending": true
     },
     "8201177106": {
       "balance": 0,
@@ -4213,15 +4212,6 @@
   },
   "balance_logs": [
     {
-      "time": 1781894308,
-      "user_id": "8258106768",
-      "old": 10.4,
-      "amount": -10.0,
-      "new": 0.4,
-      "reason": "withdraw_created",
-      "request_id": "99"
-    },
-    {
       "time": 1781894478,
       "user_id": "6276600731",
       "old": 0.2,
@@ -5111,13 +5101,22 @@
       "new": 10.4,
       "reason": "task_approved",
       "request_id": "234"
+    },
+    {
+      "time": 1783279320,
+      "user_id": "8657475506",
+      "old": 2.0,
+      "amount": -2.0,
+      "new": 0.0,
+      "reason": "withdraw_created",
+      "request_id": "162"
     }
   ],
   "total_paid": 370.9,
   "total_withdrawals": 101,
   "last_task_id": 72,
   "last_submit_id": 426,
-  "last_withdraw_id": 161,
+  "last_withdraw_id": 162,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "withdraw_disabled_by_admin": false,
   "withdraw_enabled": true
