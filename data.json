@@ -1936,7 +1936,7 @@
     "38": {
       "text": "Зайти в бота, подписаться на спонсоров и прислать скриншот выполнения",
       "link": "https://t.me/starfalll_tg_bot?start=MxdXVTrQ7SCVVk",
-      "reward": 1,
+      "reward": 2.0,
       "active": true,
       "required": false
     },
