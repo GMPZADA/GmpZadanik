@@ -1,8 +1,27 @@
 {
-  "submits": {},
+  "submits": {
+    "416": {
+      "user_id": 8657475506,
+      "username": "pokaufy1111",
+      "task_id": "51",
+      "reward": 3.0,
+      "status": "wait",
+      "photo_file_id": "AgACAgEAAxkBAAI7h2pKBL_nSAf7pXcbD4PxB99qD3vHAAJ1EGsbzupQRvpiyxzqTvq7AQADAgADdwADPAQ",
+      "file_type": "photo",
+      "time": 1783235780,
+      "admin_sent": true,
+      "admin_sent_time": 1783235780,
+      "admin_message_id": "sending"
+    }
+  },
   "withdraws": {},
   "admin_sent": {
-    "submits": {},
+    "submits": {
+      "416": {
+        "message_id": "sending",
+        "time": 1783235780
+      }
+    },
     "withdraws": {}
   },
   "user_states": {},
