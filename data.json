@@ -2069,7 +2069,7 @@
     "72": {
       "text": "Зайти в бота, выполнить 4 задания и отправить скриншот выполнения",
       "link": "https://t.me/StarsovComBot?start=gObD49DBY",
-      "reward": 1.0,
+      "reward": 2.0,
       "active": true,
       "required": false
     }
