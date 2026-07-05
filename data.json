@@ -1923,8 +1923,8 @@
       "last_bonus": 0,
       "completed_tasks": 1,
       "total_earned": 3.0,
-      "withdraw_count": 1,
-      "withdrawn_total": 3.0,
+      "withdraw_count": 2,
+      "withdrawn_total": 6.0,
       "fines_total": 0,
       "created_at": 1783235362,
       "updated_at": 1783236858,
@@ -1933,8 +1933,7 @@
       "first_name": "ponchik",
       "last_name": "",
       "language_code": "ru",
-      "last_open_task": "50",
-      "withdraw_pending": true
+      "last_open_task": "50"
     }
   },
   "tasks": {
@@ -4089,6 +4088,13 @@
         "user_id": "8804288474",
         "note": "amount 2.0",
         "time": 1783236806
+      },
+      "161": {
+        "status": "paid",
+        "admin_id": 7837011810,
+        "user_id": "8657475506",
+        "note": "amount 3.0",
+        "time": 1783236911
       }
     }
   },
@@ -4998,8 +5004,8 @@
       "request_id": "161"
     }
   ],
-  "total_paid": 367.9,
-  "total_withdrawals": 100,
+  "total_paid": 370.9,
+  "total_withdrawals": 101,
   "last_task_id": 72,
   "last_submit_id": 420,
   "last_withdraw_id": 161,
