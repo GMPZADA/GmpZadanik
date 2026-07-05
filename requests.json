@@ -1,27 +1,8 @@
 {
-  "submits": {
-    "427": {
-      "user_id": 7632037599,
-      "username": "Artist93565",
-      "task_id": "38",
-      "reward": 2.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAI9kmpKupsyqRwQW56oKUW0dRiGwSTKAAIYI2sbUqhZSo-nCdFyxDHBAQADAgADeQADPAQ",
-      "file_type": "photo",
-      "time": 1783282344,
-      "admin_sent": true,
-      "admin_sent_time": 1783282346,
-      "admin_message_id": 15764
-    }
-  },
+  "submits": {},
   "withdraws": {},
   "admin_sent": {
-    "submits": {
-      "427": {
-        "message_id": 15764,
-        "time": 1783282346
-      }
-    },
+    "submits": {},
     "withdraws": {}
   },
   "user_states": {},
