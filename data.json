@@ -1979,6 +1979,23 @@
       "first_name": "Qwerty",
       "last_name": "",
       "language_code": "ru"
+    },
+    "8984967007": {
+      "balance": 0,
+      "done_tasks": [],
+      "last_bonus": 0,
+      "completed_tasks": 0,
+      "total_earned": 0,
+      "withdraw_count": 0,
+      "withdrawn_total": 0,
+      "fines_total": 0,
+      "created_at": 1783278741,
+      "updated_at": 1783278741,
+      "user_id": 8984967007,
+      "username": "korol_min",
+      "first_name": "ℑ𝔫𝔣𝔬_♐",
+      "last_name": "",
+      "language_code": "ru"
     }
   },
   "tasks": {
