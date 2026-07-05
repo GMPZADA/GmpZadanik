@@ -1902,6 +1902,23 @@
       "last_name": "",
       "language_code": "ru",
       "last_open_task": "53"
+    },
+    "8894319263": {
+      "balance": 0,
+      "done_tasks": [],
+      "last_bonus": 0,
+      "completed_tasks": 0,
+      "total_earned": 0,
+      "withdraw_count": 0,
+      "withdrawn_total": 0,
+      "fines_total": 0,
+      "created_at": 1783225147,
+      "updated_at": 1783225147,
+      "user_id": 8894319263,
+      "username": "",
+      "first_name": "Валерянка",
+      "last_name": "4 Июля",
+      "language_code": "ru"
     }
   },
   "tasks": {
