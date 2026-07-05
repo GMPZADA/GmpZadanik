@@ -973,14 +973,13 @@
       "fines_total": 0,
       "username": "Gangsters_95",
       "created_at": 1783054811,
-      "updated_at": 1783236750,
+      "updated_at": 1783236726,
       "user_id": 8804288474,
       "first_name": "Gangster",
       "last_name": "",
       "language_code": "ru",
       "last_open_task": "42",
-      "withdraw_step": "amount",
-      "withdraw_to": "@Gangsters_95"
+      "withdraw_step": "username"
     },
     "8341360449": {
       "balance": 0.2,
@@ -1918,7 +1917,7 @@
       "last_open_task": "68"
     },
     "8657475506": {
-      "balance": 3.0,
+      "balance": 0.0,
       "done_tasks": [
         "50"
       ],
@@ -1929,15 +1928,14 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1783235362,
-      "updated_at": 1783236744,
+      "updated_at": 1783236750,
       "user_id": 8657475506,
       "username": "pokaufy1111",
       "first_name": "ponchik",
       "last_name": "",
       "language_code": "ru",
       "last_open_task": "50",
-      "withdraw_step": "amount",
-      "withdraw_to": "@pokaufy1111"
+      "withdraw_pending": true
     }
   },
   "tasks": {
@@ -4087,15 +4085,6 @@
   },
   "balance_logs": [
     {
-      "time": 1781864543,
-      "user_id": "8341360449",
-      "old": 3.2,
-      "amount": -3.2,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "95"
-    },
-    {
       "time": 1781892511,
       "user_id": "7106223662",
       "old": 2.0,
@@ -4985,13 +4974,22 @@
       "new": 3.0,
       "reason": "task_approved",
       "request_id": "419"
+    },
+    {
+      "time": 1783236751,
+      "user_id": "8657475506",
+      "old": 3.0,
+      "amount": -3.0,
+      "new": 0.0,
+      "reason": "withdraw_created",
+      "request_id": "159"
     }
   ],
   "total_paid": 362.9,
   "total_withdrawals": 98,
   "last_task_id": 72,
   "last_submit_id": 420,
-  "last_withdraw_id": 158,
+  "last_withdraw_id": 159,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "withdraw_disabled_by_admin": false,
   "withdraw_enabled": true
