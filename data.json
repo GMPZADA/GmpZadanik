@@ -1452,7 +1452,8 @@
       "last_name": "",
       "language_code": "ru",
       "last_open_task": "43",
-      "withdraw_step": "username"
+      "withdraw_step": "amount",
+      "withdraw_to": "@uasswaters"
     },
     "8138693744": {
       "balance": 1.2,
