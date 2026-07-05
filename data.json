@@ -1923,12 +1923,15 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1783235362,
-      "updated_at": 1783235775,
+      "updated_at": 1783235779,
       "user_id": 8657475506,
       "username": "pokaufy1111",
       "first_name": "ponchik",
       "last_name": "",
-      "language_code": "ru"
+      "language_code": "ru",
+      "pending_tasks": [
+        "51"
+      ]
     }
   },
   "tasks": {
@@ -2047,7 +2050,7 @@
     "68": {
       "text": "Зайти в бота, подписаться на спонсоров и отправить скриншот выполнения",
       "link": "https://t.me/SpartanStars_bot?start=7837011810",
-      "reward": 2.0,
+      "reward": 1.0,
       "active": true,
       "required": false
     },
@@ -4960,7 +4963,7 @@
   "total_paid": 362.9,
   "total_withdrawals": 98,
   "last_task_id": 72,
-  "last_submit_id": 415,
+  "last_submit_id": 416,
   "last_withdraw_id": 158,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "withdraw_disabled_by_admin": false,
