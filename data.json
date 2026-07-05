@@ -972,13 +972,11 @@
       "fines_total": 0,
       "username": "Gangsters_95",
       "created_at": 1783054811,
-      "updated_at": 1783236590,
+      "updated_at": 1783236594,
       "user_id": 8804288474,
       "first_name": "Gangster",
       "last_name": "",
-      "language_code": "ru",
-      "last_open_task": "38",
-      "waiting_task": "38"
+      "language_code": "ru"
     },
     "8341360449": {
       "balance": 0.2,
@@ -4963,7 +4961,7 @@
   "total_paid": 362.9,
   "total_withdrawals": 98,
   "last_task_id": 72,
-  "last_submit_id": 416,
+  "last_submit_id": 417,
   "last_withdraw_id": 158,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "withdraw_disabled_by_admin": false,
