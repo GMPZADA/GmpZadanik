@@ -1,8 +1,27 @@
 {
-  "submits": {},
+  "submits": {
+    "421": {
+      "user_id": 7120011711,
+      "username": "usertelegramm_s",
+      "task_id": "43",
+      "reward": 2.0,
+      "status": "wait",
+      "photo_file_id": "AgACAgIAAxkBAAI8rWpKINDEEjlusCcjX_pKV5PeY2pbAAJWHWsbgJpRSkw5Dnz-yoX-AQADAgADeQADPAQ",
+      "file_type": "photo",
+      "time": 1783242961,
+      "admin_sent": true,
+      "admin_sent_time": 1783242961,
+      "admin_message_id": "sending"
+    }
+  },
   "withdraws": {},
   "admin_sent": {
-    "submits": {},
+    "submits": {
+      "421": {
+        "message_id": "sending",
+        "time": 1783242961
+      }
+    },
     "withdraws": {}
   },
   "user_states": {},
