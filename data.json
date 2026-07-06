@@ -2053,7 +2053,8 @@
       "username": "Metrolaim",
       "first_name": "Wlemp #Red⚜️",
       "last_name": "",
-      "language_code": "ru"
+      "language_code": "ru",
+      "withdraw_step": "username"
     }
   },
   "tasks": {
