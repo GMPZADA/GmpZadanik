@@ -500,9 +500,7 @@
       "user_id": 6276600731,
       "first_name": "ριⳋr (ⳝ𐔖𐔏 ᥒυ𐔏ρ𐔖ⲃ)",
       "last_name": "",
-      "language_code": "ru",
-      "last_open_task": "71",
-      "waiting_task": "71"
+      "language_code": "ru"
     },
     "7581133015": {
       "balance": 0.4,
@@ -5213,7 +5211,7 @@
   "total_paid": 374.9,
   "total_withdrawals": 103,
   "last_task_id": 72,
-  "last_submit_id": 429,
+  "last_submit_id": 430,
   "last_withdraw_id": 163,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "withdraw_disabled_by_admin": false,
