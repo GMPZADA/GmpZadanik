@@ -2196,6 +2196,13 @@
       "reward": 2.0,
       "active": true,
       "required": false
+    },
+    "73": {
+      "text": "Зайти в бота, подписаться на спонсоров и выполнить 1 задание",
+      "link": "https://t.me/iceyes_bot?start=7837011810",
+      "reward": 1.0,
+      "active": true,
+      "required": false
     }
   },
   "deleted_tasks": {
@@ -5210,7 +5217,7 @@
   ],
   "total_paid": 374.9,
   "total_withdrawals": 103,
-  "last_task_id": 72,
+  "last_task_id": 73,
   "last_submit_id": 430,
   "last_withdraw_id": 163,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
