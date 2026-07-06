@@ -2037,6 +2037,23 @@
       "last_name": "",
       "language_code": "ru",
       "last_open_task": "38"
+    },
+    "7457168911": {
+      "balance": 0,
+      "done_tasks": [],
+      "last_bonus": 0,
+      "completed_tasks": 0,
+      "total_earned": 0,
+      "withdraw_count": 0,
+      "withdrawn_total": 0,
+      "fines_total": 0,
+      "created_at": 1783339842,
+      "updated_at": 1783339842,
+      "user_id": 7457168911,
+      "username": "Metrolaim",
+      "first_name": "Wlemp #Red⚜️",
+      "last_name": "",
+      "language_code": "ru"
     }
   },
   "tasks": {
