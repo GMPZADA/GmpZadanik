@@ -501,7 +501,7 @@
       "first_name": "ριⳋr (ⳝ𐔖𐔏 ᥒυ𐔏ρ𐔖ⲃ)",
       "last_name": "",
       "language_code": "ru",
-      "last_open_task": "72"
+      "last_open_task": "71"
     },
     "7581133015": {
       "balance": 0.4,
@@ -3717,6 +3717,13 @@
         "user_id": "6276600731",
         "note": "task #69",
         "time": 1783348102
+      },
+      "429": {
+        "status": "rejected",
+        "admin_id": 7837011810,
+        "user_id": "6276600731",
+        "note": "task #67",
+        "time": 1783348111
       }
     },
     "withdraws": {
