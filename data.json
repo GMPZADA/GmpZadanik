@@ -500,7 +500,8 @@
       "user_id": 6276600731,
       "first_name": "ριⳋr (ⳝ𐔖𐔏 ᥒυ𐔏ρ𐔖ⲃ)",
       "last_name": "",
-      "language_code": "ru"
+      "language_code": "ru",
+      "withdraw_step": "username"
     },
     "7581133015": {
       "balance": 0.4,
