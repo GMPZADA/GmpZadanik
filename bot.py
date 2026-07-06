@@ -13,6 +13,13 @@ import requests
 from flask import Flask
 from telebot import TeleBot, types
 
+# Подключение отдельного файла autoping.py, если он есть рядом с bot.py
+try:
+    import autoping
+except Exception as e:
+    autoping = None
+    print("autoping.py не подключился:", e)
+
 TOKEN = os.getenv("BOT_TOKEN")
 ADMIN_ID = int(os.getenv("ADMIN_ID", "0"))
 
@@ -42,9 +49,6 @@ DEFAULT_START_TEXT = (
     "👇 Выбери действие:"
 )
 
-# Keep Alive: пингует сайт каждые 5 минут
-KEEPALIVE_URL = os.getenv("KEEPALIVE_URL", "https://gmpzadanik-nljw.onrender.com/")
-KEEPALIVE_INTERVAL = 5 * 60
 
 bot = TeleBot(TOKEN, parse_mode="HTML")
 app = Flask(__name__)
@@ -187,17 +191,6 @@ def run_site():
     port = int(os.getenv("PORT", 10000))
     app.run(host="0.0.0.0", port=port)
 
-
-def auto_ping():
-    # Пинг сайта каждые 5 минут, чтобы Web Service был живой
-    time.sleep(30)
-    while True:
-        try:
-            r = requests.get(KEEPALIVE_URL, timeout=15)
-            print(f"KeepAlive ping: {r.status_code}")
-        except Exception as e:
-            print("KeepAlive error:", e)
-        time.sleep(KEEPALIVE_INTERVAL)
 
 def chat_button(message):
     kb = types.InlineKeyboardMarkup()
@@ -5310,13 +5303,30 @@ def text_router(message):
 
 
 
+def start_external_autoping():
+    """Запускает отдельный autoping.py, если в нём есть функция start_autoping()."""
+    if autoping is None:
+        print("ℹ️ autoping.py не найден — бот запущен без отдельного автопинга.")
+        return
+
+    try:
+        if hasattr(autoping, "start_autoping"):
+            autoping.start_autoping()
+            print("✅ autoping.py подключен и запущен")
+        else:
+            print("ℹ️ autoping.py подключен, но функции start_autoping() нет. Если файл сам запускает пинг при импорте — всё нормально.")
+    except Exception as e:
+        print("autoping.py start error:", e)
+
+
+
 if __name__ == "__main__":
     if not TOKEN:
         print("❌ BOT_TOKEN не найден.")
         exit()
 
     threading.Thread(target=run_site, daemon=True).start()
-    threading.Thread(target=auto_ping, daemon=True).start()
+    start_external_autoping()
     threading.Thread(target=auto_withdraw_unblock_loop, daemon=True).start()
     print("✅ Bot started")
 
