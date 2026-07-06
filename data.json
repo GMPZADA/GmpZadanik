@@ -500,8 +500,7 @@
       "user_id": 6276600731,
       "first_name": "ριⳋr (ⳝ𐔖𐔏 ᥒυ𐔏ρ𐔖ⲃ)",
       "last_name": "",
-      "language_code": "ru",
-      "withdraw_pending": true
+      "language_code": "ru"
     },
     "7581133015": {
       "balance": 0.4,
@@ -1523,7 +1522,7 @@
       "withdrawn_total": 11.5,
       "fines_total": 0,
       "created_at": 1782921273,
-      "updated_at": 1783348810,
+      "updated_at": 1783348973,
       "user_id": 8961146885,
       "username": "seretper",
       "first_name": "Анатолик мажорик",
