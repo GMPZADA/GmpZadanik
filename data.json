@@ -496,7 +496,7 @@
       "fines_total": 0,
       "username": "BOG_PIGR",
       "created_at": 1782918157,
-      "updated_at": 1783348116,
+      "updated_at": 1783348162,
       "user_id": 6276600731,
       "first_name": "ριⳋr (ⳝ𐔖𐔏 ᥒυ𐔏ρ𐔖ⲃ)",
       "last_name": "",
@@ -4309,15 +4309,6 @@
   },
   "balance_logs": [
     {
-      "time": 1781894970,
-      "user_id": "6276600731",
-      "old": 6.4,
-      "amount": -6.4,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "100"
-    },
-    {
       "time": 1781895136,
       "user_id": "7106223662",
       "old": 0.0,
@@ -5207,6 +5198,15 @@
       "new": 2.8,
       "reason": "task_approved",
       "request_id": "430"
+    },
+    {
+      "time": 1781894951,
+      "user_id": "6276600731",
+      "old": 3.4,
+      "amount": 3.0,
+      "new": 6.4,
+      "reason": "task_approved",
+      "request_id": "236"
     }
   ],
   "total_paid": 374.9,
