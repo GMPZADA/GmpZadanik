@@ -1,27 +1,8 @@
 {
-  "submits": {
-    "428": {
-      "user_id": 8804288474,
-      "username": "Gangsters_95",
-      "task_id": "53",
-      "reward": 2.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAI9sWpLjpjo6b04MkJbhWGy-4J0QghbAAKLGWsbSAABWEra4wU1V2LbyAEAAwIAA3kAAzwE",
-      "file_type": "photo",
-      "time": 1783336601,
-      "admin_sent": true,
-      "admin_sent_time": 1783336603,
-      "admin_message_id": 15795
-    }
-  },
+  "submits": {},
   "withdraws": {},
   "admin_sent": {
-    "submits": {
-      "428": {
-        "message_id": 15795,
-        "time": 1783336603
-      }
-    },
+    "submits": {},
     "withdraws": {}
   },
   "user_states": {},
