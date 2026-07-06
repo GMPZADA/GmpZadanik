@@ -13,13 +13,6 @@ import requests
 from flask import Flask
 from telebot import TeleBot, types
 
-# Подключение отдельного файла autoping.py, если он есть рядом с bot.py
-try:
-    import autoping
-except Exception as e:
-    autoping = None
-    print("autoping.py не подключился:", e)
-
 TOKEN = os.getenv("BOT_TOKEN")
 ADMIN_ID = int(os.getenv("ADMIN_ID", "0"))
 
@@ -49,6 +42,11 @@ DEFAULT_START_TEXT = (
     "👇 Выбери действие:"
 )
 
+# Keep Alive: пингует сайт каждые 5 минут
+# Можно изменить через переменную KEEPALIVE_URL в Render, но по умолчанию стоит твой сайт.
+KEEPALIVE_URL = os.getenv("KEEPALIVE_URL", "https://gmpzadanik-nljw.onrender.com/").strip()
+KEEPALIVE_INTERVAL = int(os.getenv("KEEPALIVE_INTERVAL", str(5 * 60)))
+KEEPALIVE_START_DELAY = int(os.getenv("KEEPALIVE_START_DELAY", "20"))
 
 bot = TeleBot(TOKEN, parse_mode="HTML")
 app = Flask(__name__)
@@ -191,6 +189,46 @@ def run_site():
     port = int(os.getenv("PORT", 10000))
     app.run(host="0.0.0.0", port=port)
 
+
+def auto_ping():
+    """
+    Авто-пинг Render сайта каждые 5 минут.
+    Если сайт долго отвечает или первый запрос упал — делает ещё 2 быстрые попытки.
+    Важно: если Render уже полностью усыпил сервис, разбудить его может только внешний запрос.
+    Этот пинг нужен, чтобы сервис не засыпал, пока бот работает.
+    """
+    time.sleep(KEEPALIVE_START_DELAY)
+
+    while True:
+        ok = False
+
+        for attempt in range(1, 4):
+            try:
+                r = requests.get(
+                    KEEPALIVE_URL,
+                    timeout=20,
+                    headers={
+                        "User-Agent": "GMPBot-KeepAlive/1.0",
+                        "Cache-Control": "no-cache"
+                    }
+                )
+
+                if 200 <= r.status_code < 500:
+                    print(f"✅ KeepAlive OK: {r.status_code} | попытка {attempt}")
+                    ok = True
+                    break
+
+                print(f"⚠️ KeepAlive status: {r.status_code} | попытка {attempt}")
+
+            except Exception as e:
+                print(f"⚠️ KeepAlive error | попытка {attempt}:", e)
+
+            time.sleep(10)
+
+        if not ok:
+            print("❌ KeepAlive: сайт не ответил после 3 попыток. Через 5 минут попробую снова.")
+
+        time.sleep(KEEPALIVE_INTERVAL)
 
 def chat_button(message):
     kb = types.InlineKeyboardMarkup()
@@ -5303,30 +5341,13 @@ def text_router(message):
 
 
 
-def start_external_autoping():
-    """Запускает отдельный autoping.py, если в нём есть функция start_autoping()."""
-    if autoping is None:
-        print("ℹ️ autoping.py не найден — бот запущен без отдельного автопинга.")
-        return
-
-    try:
-        if hasattr(autoping, "start_autoping"):
-            autoping.start_autoping()
-            print("✅ autoping.py подключен и запущен")
-        else:
-            print("ℹ️ autoping.py подключен, но функции start_autoping() нет. Если файл сам запускает пинг при импорте — всё нормально.")
-    except Exception as e:
-        print("autoping.py start error:", e)
-
-
-
 if __name__ == "__main__":
     if not TOKEN:
         print("❌ BOT_TOKEN не найден.")
         exit()
 
     threading.Thread(target=run_site, daemon=True).start()
-    start_external_autoping()
+    threading.Thread(target=auto_ping, daemon=True).start()
     threading.Thread(target=auto_withdraw_unblock_loop, daemon=True).start()
     print("✅ Bot started")
 
