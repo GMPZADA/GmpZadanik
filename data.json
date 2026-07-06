@@ -965,7 +965,7 @@
       "username": ""
     },
     "8804288474": {
-      "balance": 2.2,
+      "balance": 0.2,
       "done_tasks": [
         "44",
         "51",
@@ -981,14 +981,13 @@
       "fines_total": 0,
       "username": "Gangsters_95",
       "created_at": 1783054811,
-      "updated_at": 1783336744,
+      "updated_at": 1783336749,
       "user_id": 8804288474,
       "first_name": "Gangster",
       "last_name": "",
       "language_code": "ru",
-      "withdraw_step": "amount",
       "last_open_task": "53",
-      "withdraw_to": "@Gangsters_95"
+      "withdraw_pending": true
     },
     "8341360449": {
       "balance": 0.2,
@@ -4272,15 +4271,6 @@
   },
   "balance_logs": [
     {
-      "time": 1781894574,
-      "user_id": "6276600731",
-      "old": 0.4,
-      "amount": 3.0,
-      "new": 3.4,
-      "reason": "task_approved",
-      "request_id": "235"
-    },
-    {
       "time": 1781894951,
       "user_id": "6276600731",
       "old": 3.4,
@@ -5170,13 +5160,22 @@
       "new": 2.2,
       "reason": "task_approved",
       "request_id": "428"
+    },
+    {
+      "time": 1783336750,
+      "user_id": "8804288474",
+      "old": 2.2,
+      "amount": -2.0,
+      "new": 0.2,
+      "reason": "withdraw_created",
+      "request_id": "163"
     }
   ],
   "total_paid": 372.9,
   "total_withdrawals": 102,
   "last_task_id": 72,
   "last_submit_id": 428,
-  "last_withdraw_id": 162,
+  "last_withdraw_id": 163,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "withdraw_disabled_by_admin": false,
   "withdraw_enabled": true
