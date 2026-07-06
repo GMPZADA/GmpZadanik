@@ -976,8 +976,8 @@
       "last_bonus": 1782052661,
       "completed_tasks": 6,
       "total_earned": 14.4,
-      "withdraw_count": 4,
-      "withdrawn_total": 10.2,
+      "withdraw_count": 5,
+      "withdrawn_total": 12.2,
       "fines_total": 0,
       "username": "Gangsters_95",
       "created_at": 1783054811,
@@ -986,8 +986,7 @@
       "first_name": "Gangster",
       "last_name": "",
       "language_code": "ru",
-      "last_open_task": "53",
-      "withdraw_pending": true
+      "last_open_task": "53"
     },
     "8341360449": {
       "balance": 0.2,
@@ -4262,6 +4261,13 @@
         "user_id": "8657475506",
         "note": "amount 2.0",
         "time": 1783279342
+      },
+      "163": {
+        "status": "paid",
+        "admin_id": 7837011810,
+        "user_id": "8804288474",
+        "note": "amount 2.0",
+        "time": 1783336793
       }
     }
   },
@@ -5171,8 +5177,8 @@
       "request_id": "163"
     }
   ],
-  "total_paid": 372.9,
-  "total_withdrawals": 102,
+  "total_paid": 374.9,
+  "total_withdrawals": 103,
   "last_task_id": 72,
   "last_submit_id": 428,
   "last_withdraw_id": 163,
