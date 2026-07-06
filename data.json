@@ -986,8 +986,9 @@
       "first_name": "Gangster",
       "last_name": "",
       "language_code": "ru",
-      "withdraw_step": "username",
-      "last_open_task": "53"
+      "withdraw_step": "amount",
+      "last_open_task": "53",
+      "withdraw_to": "@Gangsters_95"
     },
     "8341360449": {
       "balance": 0.2,
