@@ -496,13 +496,12 @@
       "fines_total": 0,
       "username": "BOG_PIGR",
       "created_at": 1782918157,
-      "updated_at": 1783348904,
+      "updated_at": 1783348635,
       "user_id": 6276600731,
       "first_name": "ριⳋr (ⳝ𐔖𐔏 ᥒυ𐔏ρ𐔖ⲃ)",
       "last_name": "",
       "language_code": "ru",
-      "withdraw_step": "amount",
-      "withdraw_to": "@trqLemon4ik"
+      "withdraw_pending": true
     },
     "7581133015": {
       "balance": 0.4,
@@ -2165,7 +2164,7 @@
       "required": false
     },
     "67": {
-      "text": "Зайти в бота, подписаться на спонсоров и выполнить 1 задания отправить скриншот выполнения",
+      "text": "Зайти в бота, подписаться на спонсоров и отправить скриншот выполнения",
       "link": "https://t.me/StepStars_bot?start=7837011810",
       "reward": 2.0,
       "active": true,
