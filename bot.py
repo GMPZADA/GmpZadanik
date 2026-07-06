@@ -45,8 +45,8 @@ DEFAULT_START_TEXT = (
 # Keep Alive: пингует сайт каждые 5 минут
 # Можно изменить через переменную KEEPALIVE_URL в Render, но по умолчанию стоит твой сайт.
 KEEPALIVE_URL = os.getenv("KEEPALIVE_URL", "https://gmpzadanik-nljw.onrender.com/").strip()
-KEEPALIVE_INTERVAL = int(os.getenv("KEEPALIVE_INTERVAL", str(5 * 60)))
-KEEPALIVE_START_DELAY = int(os.getenv("KEEPALIVE_START_DELAY", "20"))
+KEEPALIVE_INTERVAL = int(os.getenv("KEEPALIVE_INTERVAL", "240"))
+KEEPALIVE_START_DELAY = int(os.getenv("KEEPALIVE_START_DELAY", "0"))
 
 bot = TeleBot(TOKEN, parse_mode="HTML")
 app = Flask(__name__)
