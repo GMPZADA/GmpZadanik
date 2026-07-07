@@ -2090,8 +2090,9 @@
       "first_name": "𝒮𝒽𝒶𝒽𝓏𝑜𝒹",
       "last_name": "",
       "language_code": "ru",
-      "last_open_task": "38",
-      "waiting_task": "38"
+      "pending_tasks": [
+        "38"
+      ]
     }
   },
   "tasks": {
@@ -5256,7 +5257,7 @@
   "total_paid": 374.9,
   "total_withdrawals": 103,
   "last_task_id": 73,
-  "last_submit_id": 430,
+  "last_submit_id": 431,
   "last_withdraw_id": 163,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "withdraw_disabled_by_admin": false,
