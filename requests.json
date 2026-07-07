@@ -1,27 +1,8 @@
 {
-  "submits": {
-    "431": {
-      "user_id": 388364601,
-      "username": "Shahzod_Blogmine",
-      "task_id": "38",
-      "reward": 2.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAI-u2pM4uvsbD8IsCe0YiLv0R0RIyWqAAJ0HGsbCINoSprbvnXcBu9aAQADAgADeQADPAQ",
-      "file_type": "photo",
-      "time": 1783423727,
-      "admin_sent": true,
-      "admin_sent_time": 1783423729,
-      "admin_message_id": 16061
-    }
-  },
+  "submits": {},
   "withdraws": {},
   "admin_sent": {
-    "submits": {
-      "431": {
-        "message_id": 16061,
-        "time": 1783423729
-      }
-    },
+    "submits": {},
     "withdraws": {}
   },
   "user_states": {},
