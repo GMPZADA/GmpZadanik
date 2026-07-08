@@ -2264,7 +2264,9 @@
       "first_name": "Баба",
       "last_name": "Зина",
       "language_code": "ru",
-      "last_open_task": "41"
+      "pending_tasks": [
+        "41"
+      ]
     }
   },
   "tasks": {
@@ -5590,7 +5592,7 @@
   "total_paid": 387.9,
   "total_withdrawals": 109,
   "last_task_id": 73,
-  "last_submit_id": 448,
+  "last_submit_id": 449,
   "last_withdraw_id": 169,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "withdraw_disabled_by_admin": false,
