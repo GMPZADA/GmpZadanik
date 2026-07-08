@@ -30,6 +30,8 @@ HISTORY_LIMIT = 1000
 BONUS_AMOUNT = 0.5
 BONUS_COOLDOWN = 24 * 60 * 60
 BONUS_REQUIRED_BIO = "@GmpEarnBot лучший бот для заработка GMP"
+PAYMENTS_CHANNEL = os.getenv("PAYMENTS_CHANNEL", "@GmpEarnPayments").strip()
+BOT_PUBLIC_USERNAME = os.getenv("BOT_PUBLIC_USERNAME", "@GmpEarnBot").strip()
 
 DEFAULT_START_TEXT = (
     "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n"
@@ -3213,6 +3215,25 @@ def status_time_text():
         return datetime.now().strftime("%d.%m.%Y %H:%M")
 
 
+def publish_payment_to_channel(wid, amount):
+    """Публикует успешную выплату в канал выплат. Ошибка канала не ломает вывод."""
+    if not PAYMENTS_CHANNEL:
+        return False
+    try:
+        bot.send_message(
+            PAYMENTS_CHANNEL,
+            f"✅ <b>Выплачено!</b>\n\n"
+            f"🧾 Заявка: <b>#{wid}</b>\n"
+            f"💰 Сумма: <b>{format_gmp(amount)} GMP</b>\n\n"
+            f"💎 Спасибо за использование «Заработок GMP»!\n\n"
+            f"🤖 {h(BOT_PUBLIC_USERNAME)}"
+        )
+        return True
+    except Exception as e:
+        print("publish payment channel error:", e)
+        return False
+
+
 @bot.callback_query_handler(func=lambda c: c.data.startswith("payyes_") or c.data.startswith("payno_") or c.data.startswith("paydel_"))
 def pay_check(call):
     if call.from_user.id != ADMIN_ID:
@@ -3226,6 +3247,7 @@ def pay_check(call):
 
         user_id = None
         amount = 0
+        withdraw_to = ""
         result_status = None
         real_wid = wid
         already_text = None
@@ -3252,6 +3274,7 @@ def pay_check(call):
                     w["status"] = "processing"
                     user_id = str(w.get("user_id"))
                     amount = float(w.get("amount", 0) or 0)
+                    withdraw_to = str(w.get("to") or "не указано")
                     user = get_user(data, user_id)
 
                     if action == "payyes":
@@ -3292,11 +3315,16 @@ def pay_check(call):
         if result_status == "paid":
             sent_ok = safe_send(
                 user_id,
-                f"✅ <b>Заявка на вывод #{real_wid} одобрена!</b>\n\n"
-                f"💎 Выплачено: <b>{format_gmp(amount)} GMP</b>\n\n"
-                "Спасибо за использование Заработок GMP 💜"
+                f"🎉 <b>Выплата успешно выполнена!</b>\n\n"
+                f"🧾 Заявка: <b>#{real_wid}</b>\n"
+                f"💰 Сумма: <b>{format_gmp(amount)} GMP</b>\n"
+                f"👤 Получатель: <b>{h(withdraw_to)}</b>\n\n"
+                f"✅ GMP успешно отправлены.\n\n"
+                f"Спасибо за использование «Заработок GMP»! 💎"
             )
+            channel_ok = publish_payment_to_channel(real_wid, amount)
             notify_line = "📩 Пользователю отправлено уведомление." if sent_ok else "⚠️ Telegram не дал отправить уведомление пользователю."
+            channel_line = "📢 Выплата опубликована в канале." if channel_ok else "⚠️ В канал выплат не отправилось. Проверь, что бот админ канала."
             safe_edit_admin_message(
                 call,
                 f"✅ <b>Выплата #{real_wid} подтверждена.</b>\n\n"
@@ -3304,6 +3332,7 @@ def pay_check(call):
                 f"💰 Сумма: <b>{format_gmp(amount)} GMP</b>\n"
                 f"🕒 Обработано: <b>{status_time_text()}</b>\n"
                 f"{notify_line}\n"
+                f"{channel_line}\n"
                 f"📊 Статистика выплат обновлена."
             )
             return
@@ -3492,6 +3521,7 @@ def admin_reply_withdraw_action(message, wid, action):
         w["status"] = "processing"
         user_id = str(w.get("user_id"))
         amount = float(w.get("amount", 0) or 0)
+        withdraw_to = str(w.get("to") or "не указано")
         user = get_user(data, user_id)
 
         if action == "approve":
@@ -3527,9 +3557,19 @@ def admin_reply_withdraw_action(message, wid, action):
     remove_replied_buttons(message)
 
     if action == "approve":
-        sent_ok = safe_send(user_id, f"✅ <b>Заказ #{real_wid} выполнен!</b>\n\n💎 GMP успешно выданы 💜")
+        sent_ok = safe_send(
+            user_id,
+            f"🎉 <b>Выплата успешно выполнена!</b>\n\n"
+            f"🧾 Заявка: <b>#{real_wid}</b>\n"
+            f"💰 Сумма: <b>{format_gmp(amount)} GMP</b>\n"
+            f"👤 Получатель: <b>{h(withdraw_to)}</b>\n\n"
+            f"✅ GMP успешно отправлены.\n\n"
+            f"Спасибо за использование «Заработок GMP»! 💎"
+        )
+        channel_ok = publish_payment_to_channel(real_wid, amount)
         notify_line = "Сообщение пользователю отправлено." if sent_ok else "Сообщение пользователю не отправилось, но вывод закрыт."
-        return bot.reply_to(message, f"✅ Вывод #{real_wid} отмечен как выплаченный. {notify_line}")
+        channel_line = "В канал выплат отправлено." if channel_ok else "В канал выплат не отправилось, проверь права бота в канале."
+        return bot.reply_to(message, f"✅ Вывод #{real_wid} отмечен как выплаченный. {notify_line} {channel_line}")
 
     if action == "reject":
         sent_ok = safe_send(user_id, f"❌ <b>Заявка на вывод #{real_wid} отклонена.</b>\n\n💰 <b>{format_gmp(amount)} GMP</b> возвращены на баланс.")
@@ -5300,11 +5340,12 @@ def text_router(message):
 
         bot.send_message(
             message.chat.id,
-            f"✅ <b>Заявка на вывод #{wid} создана</b>\n\n"
+            f"✅ <b>Заявка на вывод создана!</b>\n\n"
+            f"🧾 Номер заявки: <b>#{wid}</b>\n"
             f"👤 Куда: <b>{h(withdraw_to)}</b>\n"
             f"💰 Сумма: <b>{format_gmp(amount)} GMP</b>\n\n"
-            "⏳ Заявка отправлена на проверку.\n"
-            "Ожидайте выплату до 24 часов."
+            f"⏳ Статус: <b>Ожидает проверки</b>\n"
+            f"🕐 Выплата обычно до 24 часов."
         )
 
         try:
