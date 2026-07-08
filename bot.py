@@ -237,15 +237,17 @@ def chat_button(message):
     kb.add(
         types.InlineKeyboardButton(
             "💬 💸 Канал выплат",
-            url="https://t.me/+4aLpL-ixZnZiYjMy"
+            url="https://t.me/GmpEarnPayments"
         )
     )
 
     bot.send_message(
         message.chat.id,
-        "💬 <b>Это наш чат для общения ✨</b>\n\n"
-        "Общайся, знакомься и задавай вопросы 💖\n\n"
-        "Заходи, не стесняйся! 😌",
+        "💬 <b>💸 Канал выплат «Заработок GMP».
+
+Здесь публикуются все успешные выплаты пользователей.
+
+👇 Переходи и следи за новыми выплатами!",
         reply_markup=kb
     )
 
