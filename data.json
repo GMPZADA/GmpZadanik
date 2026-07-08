@@ -2134,7 +2134,7 @@
       "withdraw_to": "@safonche"
     },
     "8617915052": {
-      "balance": 3.0,
+      "balance": 0.0,
       "done_tasks": [
         "38",
         "42"
@@ -2146,14 +2146,14 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1783527153,
-      "updated_at": 1783527877,
+      "updated_at": 1783527894,
       "user_id": 8617915052,
       "username": "IVAH_ZOLO67",
       "first_name": "иван фейм#|2",
       "last_name": "",
       "language_code": "ru",
-      "withdraw_step": "amount",
-      "withdraw_to": "@IVAH_ZOLO67"
+      "last_open_task": "42",
+      "withdraw_pending": true
     },
     "1670075001": {
       "balance": 0,
@@ -4532,15 +4532,6 @@
   },
   "balance_logs": [
     {
-      "time": 1781898228,
-      "user_id": "6276600731",
-      "old": 4.0,
-      "amount": 1.0,
-      "new": 5.0,
-      "reason": "task_approved",
-      "request_id": "249"
-    },
-    {
       "time": 1781898274,
       "user_id": "8258106768",
       "old": 2.4,
@@ -5430,13 +5421,22 @@
       "new": 3.0,
       "reason": "task_approved",
       "request_id": "440"
+    },
+    {
+      "time": 1783527896,
+      "user_id": "8617915052",
+      "old": 3.0,
+      "amount": -3.0,
+      "new": 0.0,
+      "reason": "withdraw_created",
+      "request_id": "168"
     }
   ],
   "total_paid": 382.9,
   "total_withdrawals": 107,
   "last_task_id": 73,
   "last_submit_id": 440,
-  "last_withdraw_id": 167,
+  "last_withdraw_id": 168,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "withdraw_disabled_by_admin": false,
   "withdraw_enabled": true
