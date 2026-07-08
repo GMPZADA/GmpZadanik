@@ -1,8 +1,27 @@
 {
-  "submits": {},
+  "submits": {
+    "449": {
+      "user_id": 8699529726,
+      "username": "Bab_zina1",
+      "task_id": "41",
+      "reward": 2.0,
+      "status": "wait",
+      "photo_file_id": "AgACAgIAAxkBAAJCWmpOiIglQ8fL8QyHWC4-z-hB_nMaAAI4H2sbj4x5Ss3tQYQJcpoYAQADAgADeQADPAQ",
+      "file_type": "photo",
+      "time": 1783531657,
+      "admin_sent": true,
+      "admin_sent_time": 1783531657,
+      "admin_message_id": "sending"
+    }
+  },
   "withdraws": {},
   "admin_sent": {
-    "submits": {},
+    "submits": {
+      "449": {
+        "message_id": "sending",
+        "time": 1783531657
+      }
+    },
     "withdraws": {}
   },
   "user_states": {},
