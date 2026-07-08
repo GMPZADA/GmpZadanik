@@ -1,27 +1,9 @@
 {
   "submits": {},
-  "withdraws": {
-    "167": {
-      "user_id": 8617915052,
-      "username": "IVAH_ZOLO67",
-      "to": "@IVAH_ZOLO67",
-      "amount": 2.0,
-      "status": "wait",
-      "time": 1783527667,
-      "source_message_id": 16738,
-      "admin_sent": true,
-      "admin_sent_time": 1783527669,
-      "admin_message_id": 16740
-    }
-  },
+  "withdraws": {},
   "admin_sent": {
     "submits": {},
-    "withdraws": {
-      "167": {
-        "message_id": 16740,
-        "time": 1783527669
-      }
-    }
+    "withdraws": {}
   },
   "user_states": {},
   "withdraw_requests": {},
