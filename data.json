@@ -2211,7 +2211,8 @@
       "last_name": "",
       "language_code": "ru",
       "last_open_task": "38",
-      "withdraw_step": "username"
+      "withdraw_step": "amount",
+      "withdraw_to": "@Mamedov511"
     }
   },
   "tasks": {
