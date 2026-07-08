@@ -10,16 +10,16 @@
       "time": 1783540217,
       "source_message_id": 17068,
       "admin_sent": true,
-      "admin_sent_time": 1783540217,
-      "admin_message_id": "sending"
+      "admin_sent_time": 1783540219,
+      "admin_message_id": 17070
     }
   },
   "admin_sent": {
     "submits": {},
     "withdraws": {
       "170": {
-        "message_id": "sending",
-        "time": 1783540217
+        "message_id": 17070,
+        "time": 1783540219
       }
     }
   },
