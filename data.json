@@ -2146,8 +2146,7 @@
       "first_name": "иван фейм#|2",
       "last_name": "",
       "language_code": "ru",
-      "last_open_task": "41",
-      "waiting_task": "41"
+      "last_open_task": "38"
     },
     "1670075001": {
       "balance": 0,
@@ -2159,7 +2158,7 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1783527497,
-      "updated_at": 1783527502,
+      "updated_at": 1783527510,
       "user_id": 1670075001,
       "username": "glov7",
       "first_name": "глов",
