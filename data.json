@@ -2222,14 +2222,14 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1783531345,
-      "updated_at": 1783531547,
+      "updated_at": 1783531503,
       "user_id": 8775336251,
       "username": "Nollik22",
       "first_name": "Aрхangells",
       "last_name": "၃ိိိ၀ိ၃ #kray၃ိိိ၀ိ၃ #grade #kayaz #gtars",
       "language_code": "ru",
       "withdraw_step": "username",
-      "last_open_task": "44"
+      "last_open_task": "41"
     },
     "2070920165": {
       "balance": 0,
@@ -2248,6 +2248,23 @@
       "last_name": "",
       "language_code": "ru",
       "last_open_task": "41"
+    },
+    "8699529726": {
+      "balance": 0,
+      "done_tasks": [],
+      "last_bonus": 0,
+      "completed_tasks": 0,
+      "total_earned": 0,
+      "withdraw_count": 0,
+      "withdrawn_total": 0,
+      "fines_total": 0,
+      "created_at": 1783531569,
+      "updated_at": 1783531569,
+      "user_id": 8699529726,
+      "username": "Bab_zina1",
+      "first_name": "Баба",
+      "last_name": "Зина",
+      "language_code": "ru"
     }
   },
   "tasks": {
