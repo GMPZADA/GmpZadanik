@@ -2246,14 +2246,17 @@
       "username": "w1nter_tm",
       "first_name": "w1nter",
       "last_name": "",
-      "language_code": "ru"
+      "language_code": "ru",
+      "last_open_task": "41"
     },
     "8699529726": {
-      "balance": 0,
-      "done_tasks": [],
+      "balance": 2.0,
+      "done_tasks": [
+        "41"
+      ],
       "last_bonus": 0,
-      "completed_tasks": 0,
-      "total_earned": 0,
+      "completed_tasks": 1,
+      "total_earned": 2.0,
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
@@ -2263,7 +2266,8 @@
       "username": "Bab_zina1",
       "first_name": "Баба",
       "last_name": "Зина",
-      "language_code": "ru"
+      "language_code": "ru",
+      "last_open_task": "41"
     }
   },
   "tasks": {
@@ -4059,6 +4063,13 @@
         "user_id": "2070920165",
         "note": "task #41",
         "time": 1783531650
+      },
+      "449": {
+        "status": "approved",
+        "admin_id": 7837011810,
+        "user_id": "8699529726",
+        "note": "task #41",
+        "time": 1783531684
       }
     },
     "withdraws": {
@@ -4685,15 +4696,6 @@
     "withdraws": {}
   },
   "balance_logs": [
-    {
-      "time": 1782935703,
-      "user_id": "6276600731",
-      "old": 1.8,
-      "amount": -1.0,
-      "new": 0.8,
-      "reason": "withdraw_created",
-      "request_id": "143"
-    },
     {
       "time": 1782942329,
       "user_id": "8138693744",
@@ -5584,6 +5586,15 @@
       "new": 0.0,
       "reason": "withdraw_created",
       "request_id": "169"
+    },
+    {
+      "time": 1783531684,
+      "user_id": "8699529726",
+      "old": 0.0,
+      "amount": 2.0,
+      "new": 2.0,
+      "reason": "task_approved",
+      "request_id": "449"
     }
   ],
   "total_paid": 387.9,
