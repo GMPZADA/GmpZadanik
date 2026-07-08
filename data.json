@@ -2209,7 +2209,8 @@
       "username": "Mamedov511",
       "first_name": "♧Šmøķê♧",
       "last_name": "",
-      "language_code": "ru"
+      "language_code": "ru",
+      "withdraw_step": "username"
     }
   },
   "tasks": {
