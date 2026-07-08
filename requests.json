@@ -1,27 +1,9 @@
 {
   "submits": {},
-  "withdraws": {
-    "168": {
-      "user_id": 7390313202,
-      "username": "safonche",
-      "to": "@safonche",
-      "amount": 3.0,
-      "status": "wait",
-      "time": 1783527773,
-      "source_message_id": 16771,
-      "admin_sent": true,
-      "admin_sent_time": 1783527773,
-      "admin_message_id": "sending"
-    }
-  },
+  "withdraws": {},
   "admin_sent": {
     "submits": {},
-    "withdraws": {
-      "168": {
-        "message_id": "sending",
-        "time": 1783527773
-      }
-    }
+    "withdraws": {}
   },
   "user_states": {},
   "withdraw_requests": {},
