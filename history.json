@@ -401,6 +401,17 @@
       "admin_id": 7837011810,
       "reason": "",
       "time": 1783527617
+    },
+    {
+      "type": "withdraw",
+      "user_id": "8617915052",
+      "withdraw_id": "167",
+      "status": "paid",
+      "amount": 2.0,
+      "balance": 0.0,
+      "admin_id": 7837011810,
+      "reason": "amount 2",
+      "time": 1783527696
     }
   ]
 }
