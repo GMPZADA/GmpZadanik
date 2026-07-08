@@ -2152,8 +2152,9 @@
       "first_name": "иван фейм#|2",
       "last_name": "",
       "language_code": "ru",
-      "last_open_task": "41",
-      "waiting_task": "41"
+      "pending_tasks": [
+        "41"
+      ]
     },
     "1670075001": {
       "balance": 0,
@@ -5442,7 +5443,7 @@
   "total_paid": 385.9,
   "total_withdrawals": 108,
   "last_task_id": 73,
-  "last_submit_id": 440,
+  "last_submit_id": 441,
   "last_withdraw_id": 168,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "withdraw_disabled_by_admin": false,
