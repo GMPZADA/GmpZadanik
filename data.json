@@ -2201,12 +2201,13 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1783530392,
-      "updated_at": 1783530395,
+      "updated_at": 1783530392,
       "user_id": 8361517624,
       "username": "Mamedov511",
       "first_name": "♧Šmøķê♧",
       "last_name": "",
-      "language_code": "ru"
+      "language_code": "ru",
+      "last_open_task": "38"
     }
   },
   "tasks": {
@@ -3967,6 +3968,20 @@
         "user_id": "8617915052",
         "note": "task #41",
         "time": 1783528237
+      },
+      "444": {
+        "status": "rejected",
+        "admin_id": 7837011810,
+        "user_id": "8961146885",
+        "note": "task #45",
+        "time": 1783530398
+      },
+      "443": {
+        "status": "rejected",
+        "admin_id": 7837011810,
+        "user_id": "8961146885",
+        "note": "task #45",
+        "time": 1783530399
       }
     },
     "withdraws": {
