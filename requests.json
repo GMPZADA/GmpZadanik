@@ -1,27 +1,8 @@
 {
-  "submits": {
-    "440": {
-      "user_id": 8617915052,
-      "username": "IVAH_ZOLO67",
-      "task_id": "42",
-      "reward": 3.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAJBhWpOeZcPxyx8TW_Hovtr6qX1gEz_AALlF2sbh0h4SpsY7Z0ItRunAQADAgADeQADPAQ",
-      "file_type": "photo",
-      "time": 1783527841,
-      "admin_sent": true,
-      "admin_sent_time": 1783527844,
-      "admin_message_id": 16775
-    }
-  },
+  "submits": {},
   "withdraws": {},
   "admin_sent": {
-    "submits": {
-      "440": {
-        "message_id": 16775,
-        "time": 1783527844
-      }
-    },
+    "submits": {},
     "withdraws": {}
   },
   "user_states": {},
