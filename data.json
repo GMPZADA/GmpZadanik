@@ -2222,12 +2222,14 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1783531345,
-      "updated_at": 1783531362,
+      "updated_at": 1783531384,
       "user_id": 8775336251,
       "username": "Nollik22",
       "first_name": "Aрхangells",
       "last_name": "၃ိိိ၀ိ၃ #kray၃ိိိ၀ိ၃ #grade #kayaz #gtars",
-      "language_code": "ru"
+      "language_code": "ru",
+      "withdraw_step": "username",
+      "last_open_task": "38"
     },
     "2070920165": {
       "balance": 0,
@@ -2239,7 +2241,7 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1783531360,
-      "updated_at": 1783531381,
+      "updated_at": 1783531375,
       "user_id": 2070920165,
       "username": "w1nter_tm",
       "first_name": "w1nter",
