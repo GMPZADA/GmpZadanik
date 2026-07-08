@@ -491,8 +491,8 @@
       "last_bonus": 1782935443,
       "completed_tasks": 17,
       "total_earned": 31.4,
-      "withdraw_count": 6,
-      "withdrawn_total": 27.6,
+      "withdraw_count": 7,
+      "withdrawn_total": 29.6,
       "fines_total": 0,
       "username": "BOG_PIGR",
       "created_at": 1782918157,
@@ -500,8 +500,7 @@
       "user_id": 6276600731,
       "first_name": "ριⳋr (ⳝ𐔖𐔏 ᥒυ𐔏ρ𐔖ⲃ)",
       "last_name": "",
-      "language_code": "ru",
-      "withdraw_step": "username"
+      "language_code": "ru"
     },
     "7581133015": {
       "balance": 0.4,
@@ -4350,6 +4349,13 @@
         "user_id": "8804288474",
         "note": "amount 2.0",
         "time": 1783336793
+      },
+      "164": {
+        "status": "paid",
+        "admin_id": 7837011810,
+        "user_id": "6276600731",
+        "note": "amount 2.0",
+        "time": 1783503351
       }
     }
   },
@@ -4358,15 +4364,6 @@
     "withdraws": {}
   },
   "balance_logs": [
-    {
-      "time": 1781896471,
-      "user_id": "6276600731",
-      "old": 0.0,
-      "amount": 2.0,
-      "new": 2.0,
-      "reason": "admin_give",
-      "request_id": "manual"
-    },
     {
       "time": 1782934781,
       "user_id": "7441149510",
@@ -5257,10 +5254,19 @@
       "new": 0.4,
       "reason": "add",
       "request_id": ""
+    },
+    {
+      "time": 1782934494,
+      "user_id": "7779046668",
+      "old": 0.0,
+      "amount": 0.2,
+      "new": 0.2,
+      "reason": "add",
+      "request_id": ""
     }
   ],
-  "total_paid": 374.9,
-  "total_withdrawals": 103,
+  "total_paid": 376.9,
+  "total_withdrawals": 104,
   "last_task_id": 73,
   "last_submit_id": 431,
   "last_withdraw_id": 164,
