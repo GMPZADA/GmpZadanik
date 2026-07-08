@@ -2146,7 +2146,6 @@
       "first_name": "иван фейм#|2",
       "last_name": "",
       "language_code": "ru",
-      "waiting_task": "38",
       "last_open_task": "38"
     }
   },
@@ -3866,6 +3865,13 @@
         "user_id": "7390313202",
         "note": "task #44",
         "time": 1783527424
+      },
+      "437": {
+        "status": "rejected",
+        "admin_id": 7837011810,
+        "user_id": "8617915052",
+        "note": "task #38",
+        "time": 1783527469
       }
     },
     "withdraws": {
