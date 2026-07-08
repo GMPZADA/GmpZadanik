@@ -2128,8 +2128,8 @@
       "first_name": "safoncheᵂʳᵃᶦᵗʰ",
       "last_name": "",
       "language_code": "ru",
-      "last_open_task": "38",
-      "withdraw_step": "username"
+      "withdraw_step": "username",
+      "last_open_task": "38"
     },
     "8617915052": {
       "balance": 0,
@@ -2141,7 +2141,7 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1783527153,
-      "updated_at": 1783527308,
+      "updated_at": 1783527320,
       "user_id": 8617915052,
       "username": "IVAH_ZOLO67",
       "first_name": "иван фейм#|2",
