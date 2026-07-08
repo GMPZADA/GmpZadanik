@@ -2122,13 +2122,13 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1783527104,
-      "updated_at": 1783527495,
+      "updated_at": 1783527511,
       "user_id": 7390313202,
       "username": "safonche",
       "first_name": "safoncheᵂʳᵃᶦᵗʰ",
       "last_name": "",
       "language_code": "ru",
-      "last_open_task": "48"
+      "last_open_task": "49"
     },
     "8617915052": {
       "balance": 0,
@@ -2158,7 +2158,7 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1783527497,
-      "updated_at": 1783527510,
+      "updated_at": 1783527502,
       "user_id": 1670075001,
       "username": "glov7",
       "first_name": "глов",
