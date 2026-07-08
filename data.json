@@ -1528,8 +1528,9 @@
       "first_name": "Анатолик мажорик",
       "last_name": "",
       "language_code": "ru",
-      "last_open_task": "43",
-      "waiting_task": "43"
+      "pending_tasks": [
+        "43"
+      ]
     },
     "8853924649": {
       "balance": 0.0,
@@ -5269,7 +5270,7 @@
   "total_paid": 376.9,
   "total_withdrawals": 104,
   "last_task_id": 73,
-  "last_submit_id": 431,
+  "last_submit_id": 432,
   "last_withdraw_id": 164,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "withdraw_disabled_by_admin": false,
