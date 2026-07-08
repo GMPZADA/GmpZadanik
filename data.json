@@ -2120,13 +2120,12 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1783527104,
-      "updated_at": 1783527145,
+      "updated_at": 1783527164,
       "user_id": 7390313202,
       "username": "safonche",
       "first_name": "safoncheᵂʳᵃᶦᵗʰ",
       "last_name": "",
       "language_code": "ru",
-      "waiting_task": "42",
       "last_open_task": "42"
     },
     "8617915052": {
@@ -5337,7 +5336,7 @@
   "total_paid": 378.9,
   "total_withdrawals": 105,
   "last_task_id": 73,
-  "last_submit_id": 433,
+  "last_submit_id": 434,
   "last_withdraw_id": 165,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "withdraw_disabled_by_admin": false,
