@@ -2122,14 +2122,13 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1783527104,
-      "updated_at": 1783527421,
+      "updated_at": 1783527416,
       "user_id": 7390313202,
       "username": "safonche",
       "first_name": "safoncheᵂʳᵃᶦᵗʰ",
       "last_name": "",
       "language_code": "ru",
-      "waiting_task": "44",
-      "last_open_task": "46"
+      "last_open_task": "44"
     },
     "8617915052": {
       "balance": 0,
@@ -3860,6 +3859,13 @@
         "user_id": "7390313202",
         "note": "task #43",
         "time": 1783527258
+      },
+      "436": {
+        "status": "rejected",
+        "admin_id": 7837011810,
+        "user_id": "7390313202",
+        "note": "task #44",
+        "time": 1783527424
       }
     },
     "withdraws": {
