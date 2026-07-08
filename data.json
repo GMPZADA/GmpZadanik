@@ -2241,7 +2241,7 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1783531360,
-      "updated_at": 1783531644,
+      "updated_at": 1783531632,
       "user_id": 2070920165,
       "username": "w1nter_tm",
       "first_name": "w1nter",
@@ -2258,13 +2258,14 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1783531569,
-      "updated_at": 1783531584,
+      "updated_at": 1783531647,
       "user_id": 8699529726,
       "username": "Bab_zina1",
       "first_name": "Баба",
       "last_name": "Зина",
       "language_code": "ru",
-      "last_open_task": "41"
+      "last_open_task": "41",
+      "waiting_task": "41"
     }
   },
   "tasks": {
