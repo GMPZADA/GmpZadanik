@@ -1,8 +1,27 @@
 {
-  "submits": {},
+  "submits": {
+    "448": {
+      "user_id": 2070920165,
+      "username": "w1nter_tm",
+      "task_id": "41",
+      "reward": 2.0,
+      "status": "wait",
+      "photo_file_id": "AgACAgIAAxkBAAJCU2pOiG3iS1QLpv32AgEvYBeZQFCMAALMHmsblTZ4SkktjU8T9eD_AQADAgADeQADPAQ",
+      "file_type": "photo",
+      "time": 1783531633,
+      "admin_sent": true,
+      "admin_sent_time": 1783531633,
+      "admin_message_id": "sending"
+    }
+  },
   "withdraws": {},
   "admin_sent": {
-    "submits": {},
+    "submits": {
+      "448": {
+        "message_id": "sending",
+        "time": 1783531633
+      }
+    },
     "withdraws": {}
   },
   "user_states": {},
