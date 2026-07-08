@@ -2140,13 +2140,13 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1783527153,
-      "updated_at": 1783527344,
+      "updated_at": 1783527352,
       "user_id": 8617915052,
       "username": "IVAH_ZOLO67",
       "first_name": "иван фейм#|2",
       "last_name": "",
       "language_code": "ru",
-      "last_open_task": "45",
+      "last_open_task": "38",
       "waiting_task": "41"
     }
   },
@@ -4449,6 +4449,13 @@
         "user_id": "8961146885",
         "note": "amount 2.0",
         "time": 1783517969
+      },
+      "166": {
+        "status": "paid",
+        "admin_id": 7837011810,
+        "user_id": "7390313202",
+        "note": "amount 2.0",
+        "time": 1783527350
       }
     }
   },
@@ -5358,8 +5365,8 @@
       "request_id": "166"
     }
   ],
-  "total_paid": 378.9,
-  "total_withdrawals": 105,
+  "total_paid": 380.9,
+  "total_withdrawals": 106,
   "last_task_id": 73,
   "last_submit_id": 435,
   "last_withdraw_id": 166,
