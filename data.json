@@ -2184,12 +2184,13 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1783529916,
-      "updated_at": 1783529941,
+      "updated_at": 1783529944,
       "user_id": 6354780039,
       "username": "zxcwins",
       "first_name": "romarr",
       "last_name": "",
-      "language_code": "ru"
+      "language_code": "ru",
+      "last_open_task": "38"
     }
   },
   "tasks": {
