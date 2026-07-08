@@ -1,27 +1,9 @@
 {
   "submits": {},
-  "withdraws": {
-    "170": {
-      "user_id": 7979994199,
-      "username": "bubuzan11",
-      "to": "@bubuzan11",
-      "amount": 2.0,
-      "status": "wait",
-      "time": 1783540217,
-      "source_message_id": 17068,
-      "admin_sent": true,
-      "admin_sent_time": 1783540219,
-      "admin_message_id": 17070
-    }
-  },
+  "withdraws": {},
   "admin_sent": {
     "submits": {},
-    "withdraws": {
-      "170": {
-        "message_id": 17070,
-        "time": 1783540219
-      }
-    }
+    "withdraws": {}
   },
   "user_states": {},
   "withdraw_requests": {},
