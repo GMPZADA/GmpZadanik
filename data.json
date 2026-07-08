@@ -231,7 +231,7 @@
       "last_open_task": "42"
     },
     "7979994199": {
-      "balance": 2.2,
+      "balance": 0.2,
       "done_tasks": [
         "43"
       ],
@@ -242,15 +242,14 @@
       "withdrawn_total": 2.0,
       "fines_total": 0,
       "created_at": 1783084694,
-      "updated_at": 1783540213,
+      "updated_at": 1783540217,
       "user_id": 7979994199,
       "username": "bubuzan11",
       "first_name": "Бибизян",
       "last_name": "",
       "language_code": "ru",
       "last_open_task": "41",
-      "withdraw_step": "amount",
-      "withdraw_to": "@bubuzan11"
+      "withdraw_pending": true
     },
     "8516313611": {
       "balance": 0.0,
@@ -4706,15 +4705,6 @@
   },
   "balance_logs": [
     {
-      "time": 1782942329,
-      "user_id": "8138693744",
-      "old": 0.2,
-      "amount": 1.0,
-      "new": 1.2,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
       "time": 1782969492,
       "user_id": "8341988288",
       "old": 0.0,
@@ -5604,13 +5594,22 @@
       "new": 2.0,
       "reason": "task_approved",
       "request_id": "449"
+    },
+    {
+      "time": 1783540217,
+      "user_id": "7979994199",
+      "old": 2.2,
+      "amount": -2.0,
+      "new": 0.2,
+      "reason": "withdraw_created",
+      "request_id": "170"
     }
   ],
   "total_paid": 387.9,
   "total_withdrawals": 109,
   "last_task_id": 73,
   "last_submit_id": 450,
-  "last_withdraw_id": 169,
+  "last_withdraw_id": 170,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "withdraw_disabled_by_admin": false,
   "withdraw_enabled": true
