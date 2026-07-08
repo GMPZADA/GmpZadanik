@@ -2131,11 +2131,13 @@
       "last_open_task": "48"
     },
     "8617915052": {
-      "balance": 0,
-      "done_tasks": [],
+      "balance": 2.0,
+      "done_tasks": [
+        "38"
+      ],
       "last_bonus": 0,
-      "completed_tasks": 0,
-      "total_earned": 0,
+      "completed_tasks": 1,
+      "total_earned": 2.0,
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
@@ -2146,8 +2148,8 @@
       "first_name": "иван фейм#|2",
       "last_name": "",
       "language_code": "ru",
-      "waiting_task": "41",
-      "last_open_task": "43"
+      "last_open_task": "43",
+      "waiting_task": "41"
     },
     "1670075001": {
       "balance": 0,
@@ -3892,6 +3894,13 @@
         "user_id": "8617915052",
         "note": "task #38",
         "time": 1783527469
+      },
+      "438": {
+        "status": "approved",
+        "admin_id": 7837011810,
+        "user_id": "8617915052",
+        "note": "task #38",
+        "time": 1783527534
       }
     },
     "withdraws": {
@@ -4497,15 +4506,6 @@
     "withdraws": {}
   },
   "balance_logs": [
-    {
-      "time": 1782935441,
-      "user_id": "6276600731",
-      "old": 1.6,
-      "amount": 1.0,
-      "new": 2.6,
-      "reason": "add",
-      "request_id": ""
-    },
     {
       "time": 1781898256,
       "user_id": "6276600731",
@@ -5396,6 +5396,15 @@
       "new": 0.0,
       "reason": "withdraw_created",
       "request_id": "166"
+    },
+    {
+      "time": 1783527534,
+      "user_id": "8617915052",
+      "old": 0.0,
+      "amount": 2.0,
+      "new": 2.0,
+      "reason": "task_approved",
+      "request_id": "438"
     }
   ],
   "total_paid": 380.9,
