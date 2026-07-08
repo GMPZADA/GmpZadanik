@@ -1528,7 +1528,8 @@
       "username": "seretper",
       "first_name": "Анатолик мажорик",
       "last_name": "",
-      "language_code": "ru"
+      "language_code": "ru",
+      "last_open_task": "45"
     },
     "8853924649": {
       "balance": 0.0,
@@ -3991,6 +3992,13 @@
         "user_id": "8361517624",
         "note": "task #38",
         "time": 1783530510
+      },
+      "447": {
+        "status": "rejected",
+        "admin_id": 7837011810,
+        "user_id": "8961146885",
+        "note": "task #48",
+        "time": 1783531141
       }
     },
     "withdraws": {
