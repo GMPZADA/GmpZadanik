@@ -10,16 +10,16 @@
       "file_type": "photo",
       "time": 1783530352,
       "admin_sent": true,
-      "admin_sent_time": 1783530352,
-      "admin_message_id": "sending"
+      "admin_sent_time": 1783530355,
+      "admin_message_id": 16854
     }
   },
   "withdraws": {},
   "admin_sent": {
     "submits": {
       "443": {
-        "message_id": "sending",
-        "time": 1783530352
+        "message_id": 16854,
+        "time": 1783530355
       }
     },
     "withdraws": {}
