@@ -2142,8 +2142,8 @@
       "last_bonus": 0,
       "completed_tasks": 2,
       "total_earned": 5.0,
-      "withdraw_count": 0,
-      "withdrawn_total": 0,
+      "withdraw_count": 1,
+      "withdrawn_total": 3.0,
       "fines_total": 0,
       "created_at": 1783527153,
       "updated_at": 1783527894,
@@ -2152,8 +2152,7 @@
       "first_name": "иван фейм#|2",
       "last_name": "",
       "language_code": "ru",
-      "last_open_task": "42",
-      "withdraw_pending": true
+      "last_open_task": "42"
     },
     "1670075001": {
       "balance": 0,
@@ -4523,6 +4522,13 @@
         "user_id": "8617915052",
         "note": "amount 2.0",
         "time": 1783527696
+      },
+      "168": {
+        "status": "paid",
+        "admin_id": 7837011810,
+        "user_id": "8617915052",
+        "note": "amount 3.0",
+        "time": 1783527942
       }
     }
   },
@@ -5432,8 +5438,8 @@
       "request_id": "168"
     }
   ],
-  "total_paid": 382.9,
-  "total_withdrawals": 107,
+  "total_paid": 385.9,
+  "total_withdrawals": 108,
   "last_task_id": 73,
   "last_submit_id": 440,
   "last_withdraw_id": 168,
