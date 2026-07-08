@@ -2200,8 +2200,8 @@
       "last_bonus": 0,
       "completed_tasks": 1,
       "total_earned": 2.0,
-      "withdraw_count": 0,
-      "withdrawn_total": 0,
+      "withdraw_count": 1,
+      "withdrawn_total": 2.0,
       "fines_total": 0,
       "created_at": 1783530392,
       "updated_at": 1783530736,
@@ -2210,8 +2210,7 @@
       "first_name": "♧Šmøķê♧",
       "last_name": "",
       "language_code": "ru",
-      "last_open_task": "38",
-      "withdraw_pending": true
+      "last_open_task": "38"
     }
   },
   "tasks": {
@@ -4604,6 +4603,13 @@
         "user_id": "8617915052",
         "note": "amount 3.0",
         "time": 1783527942
+      },
+      "169": {
+        "status": "paid",
+        "admin_id": 7837011810,
+        "user_id": "8361517624",
+        "note": "amount 2.0",
+        "time": 1783530769
       }
     }
   },
@@ -5513,8 +5519,8 @@
       "request_id": "169"
     }
   ],
-  "total_paid": 385.9,
-  "total_withdrawals": 108,
+  "total_paid": 387.9,
+  "total_withdrawals": 109,
   "last_task_id": 73,
   "last_submit_id": 445,
   "last_withdraw_id": 169,
