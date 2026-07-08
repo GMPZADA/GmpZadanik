@@ -242,15 +242,14 @@
       "withdrawn_total": 2.0,
       "fines_total": 0,
       "created_at": 1783084694,
-      "updated_at": 1783540142,
+      "updated_at": 1783540145,
       "user_id": 7979994199,
       "username": "bubuzan11",
       "first_name": "Бибизян",
       "last_name": "",
       "language_code": "ru",
       "last_open_task": "41",
-      "withdraw_step": "amount",
-      "withdraw_to": "@bubuzan11"
+      "withdraw_step": "username"
     },
     "8516313611": {
       "balance": 0.0,
