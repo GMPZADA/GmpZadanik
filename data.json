@@ -496,13 +496,12 @@
       "fines_total": 0,
       "username": "BOG_PIGR",
       "created_at": 1782918157,
-      "updated_at": 1783503263,
+      "updated_at": 1783503266,
       "user_id": 6276600731,
       "first_name": "ριⳋr (ⳝ𐔖𐔏 ᥒυ𐔏ρ𐔖ⲃ)",
       "last_name": "",
       "language_code": "ru",
-      "withdraw_step": "amount",
-      "withdraw_to": "@trqLemon4ik"
+      "withdraw_step": "username"
     },
     "7581133015": {
       "balance": 0.4,
