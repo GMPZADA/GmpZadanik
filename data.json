@@ -2123,15 +2123,14 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1783527104,
-      "updated_at": 1783527737,
+      "updated_at": 1783527743,
       "user_id": 7390313202,
       "username": "safonche",
       "first_name": "safoncheᵂʳᵃᶦᵗʰ",
       "last_name": "",
       "language_code": "ru",
       "last_open_task": "59",
-      "withdraw_step": "amount",
-      "withdraw_to": "@safonche"
+      "withdraw_step": "username"
     },
     "8617915052": {
       "balance": 0.0,
