@@ -236,7 +236,7 @@ def chat_button(message):
     kb = types.InlineKeyboardMarkup()
     kb.add(
         types.InlineKeyboardButton(
-            "💬 Перейти в чат",
+            "💬 💸 Канал выплат",
             url="https://t.me/+4aLpL-ixZnZiYjMy"
         )
     )
@@ -2149,7 +2149,7 @@ def main_menu():
     kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
     kb.row("📋 Задания", "💰 Баланс")
     kb.row("🖥 Профиль", "🎉 Бонус")
-    kb.row("💸 Вывод", "💬 Общение")
+    kb.row("💸 Вывод", "💸 Выплаты")
     kb.row("ℹ️ Помощь")
     return kb
 
@@ -2256,7 +2256,7 @@ def menu(message):
     bot.send_message(message.chat.id, "🏠 Главное меню", reply_markup=main_menu())
 
 
-@bot.message_handler(func=lambda m: m.text == "💬 Общение")
+@bot.message_handler(func=lambda m: m.text == "💸 Выплаты")
 def chat_message(message):
     if is_banned_user(message):
         return
