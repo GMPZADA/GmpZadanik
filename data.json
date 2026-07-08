@@ -2190,6 +2190,23 @@
       "last_name": "",
       "language_code": "ru",
       "last_open_task": "43"
+    },
+    "8361517624": {
+      "balance": 0,
+      "done_tasks": [],
+      "last_bonus": 0,
+      "completed_tasks": 0,
+      "total_earned": 0,
+      "withdraw_count": 0,
+      "withdrawn_total": 0,
+      "fines_total": 0,
+      "created_at": 1783530392,
+      "updated_at": 1783530392,
+      "user_id": 8361517624,
+      "username": "Mamedov511",
+      "first_name": "♧Šmøķê♧",
+      "last_name": "",
+      "language_code": "ru"
     }
   },
   "tasks": {
