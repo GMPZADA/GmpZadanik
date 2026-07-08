@@ -1,27 +1,8 @@
 {
-  "submits": {
-    "434": {
-      "user_id": 7390313202,
-      "username": "safonche",
-      "task_id": "42",
-      "reward": 3.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAJA6WpOdvpEYH0fW-L7WmzD4fB7WwcjAAIFG2sbxdJxShBfxoKGvB7wAQADAgADdwADPAQ",
-      "file_type": "photo",
-      "time": 1783527165,
-      "admin_sent": true,
-      "admin_sent_time": 1783527165,
-      "admin_message_id": "sending"
-    }
-  },
+  "submits": {},
   "withdraws": {},
   "admin_sent": {
-    "submits": {
-      "434": {
-        "message_id": "sending",
-        "time": 1783527165
-      }
-    },
+    "submits": {},
     "withdraws": {}
   },
   "user_states": {},
