@@ -51,7 +51,7 @@
       "fines_total": 0,
       "username": "Artemwesh",
       "created_at": 1782836891,
-      "updated_at": 1783527234,
+      "updated_at": 1783527120,
       "user_id": 7837011810,
       "first_name": "Артем",
       "last_name": "",
@@ -2120,13 +2120,14 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1783527104,
-      "updated_at": 1783527216,
+      "updated_at": 1783527235,
       "user_id": 7390313202,
       "username": "safonche",
       "first_name": "safoncheᵂʳᵃᶦᵗʰ",
       "last_name": "",
       "language_code": "ru",
-      "last_open_task": "43"
+      "last_open_task": "43",
+      "waiting_task": "43"
     },
     "8617915052": {
       "balance": 0,
