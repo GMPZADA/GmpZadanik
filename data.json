@@ -909,7 +909,7 @@
       "fines_total": 0,
       "username": "grimReapersing",
       "created_at": 1782933817,
-      "updated_at": 1783570416,
+      "updated_at": 1783570473,
       "user_id": 7811863751,
       "first_name": "16:58 passed out",
       "last_name": "",
@@ -4725,15 +4725,6 @@
   },
   "balance_logs": [
     {
-      "time": 1782973040,
-      "user_id": "8651016638",
-      "old": 4.0,
-      "amount": -4.0,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "144"
-    },
-    {
       "time": 1782979136,
       "user_id": "8500884361",
       "old": 0.0,
@@ -5623,6 +5614,15 @@
       "new": 4.4,
       "reason": "task_approved",
       "request_id": "452"
+    },
+    {
+      "time": 1782969492,
+      "user_id": "8341988288",
+      "old": 0.0,
+      "amount": 0.2,
+      "new": 0.2,
+      "reason": "add",
+      "request_id": ""
     }
   ],
   "total_paid": 389.9,
