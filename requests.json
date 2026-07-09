@@ -1,27 +1,9 @@
 {
   "submits": {},
-  "withdraws": {
-    "171": {
-      "user_id": 6468977018,
-      "username": "di6shod",
-      "to": "@di6shod",
-      "amount": 2.0,
-      "status": "wait",
-      "time": 1783575806,
-      "source_message_id": 17173,
-      "admin_sent": true,
-      "admin_sent_time": 1783575808,
-      "admin_message_id": 17175
-    }
-  },
+  "withdraws": {},
   "admin_sent": {
     "submits": {},
-    "withdraws": {
-      "171": {
-        "message_id": 17175,
-        "time": 1783575808
-      }
-    }
+    "withdraws": {}
   },
   "user_states": {},
   "withdraw_requests": {},
