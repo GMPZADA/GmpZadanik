@@ -2284,8 +2284,9 @@
       "first_name": "ㅤ",
       "last_name": "",
       "language_code": "ru",
-      "last_open_task": "38",
-      "waiting_task": "38"
+      "pending_tasks": [
+        "38"
+      ]
     },
     "8729118780": {
       "balance": 0,
@@ -5692,7 +5693,7 @@
   "total_paid": 389.9,
   "total_withdrawals": 110,
   "last_task_id": 73,
-  "last_submit_id": 457,
+  "last_submit_id": 458,
   "last_withdraw_id": 170,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "withdraw_disabled_by_admin": false,
