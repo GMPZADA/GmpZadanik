@@ -51,7 +51,7 @@
       "fines_total": 0,
       "username": "Artemwesh",
       "created_at": 1782836891,
-      "updated_at": 1783585587,
+      "updated_at": 1783596352,
       "user_id": 7837011810,
       "first_name": "Артем",
       "last_name": "",
@@ -2543,7 +2543,7 @@
     "74": {
       "text": "Зайти в бота и подписаться на спонсоров",
       "link": "https://t.me/Lovfreestars_bot?start=41994728",
-      "reward": 2.0,
+      "reward": 1.0,
       "active": true,
       "required": false
     }
