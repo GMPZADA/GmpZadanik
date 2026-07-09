@@ -2269,7 +2269,7 @@
       "withdraw_step": "username"
     },
     "6468977018": {
-      "balance": 0.0,
+      "balance": 2.0,
       "done_tasks": [
         "38"
       ],
@@ -2286,9 +2286,7 @@
       "first_name": "ㅤ",
       "last_name": "",
       "language_code": "ru",
-      "last_open_task": "41",
-      "withdraw_step": "amount",
-      "withdraw_to": "@newsextazy32"
+      "last_open_task": "41"
     },
     "8729118780": {
       "balance": 0,
@@ -4790,6 +4788,13 @@
         "user_id": "7979994199",
         "note": "amount 2.0",
         "time": 1783566786
+      },
+      "171": {
+        "status": "rejected",
+        "admin_id": 7837011810,
+        "user_id": "6468977018",
+        "note": "amount 2.0",
+        "time": 1783576061
       }
     }
   },
@@ -4798,15 +4803,6 @@
     "withdraws": {}
   },
   "balance_logs": [
-    {
-      "time": 1781932137,
-      "user_id": "5224773359",
-      "old": 0.2,
-      "amount": 4.0,
-      "new": 4.2,
-      "reason": "withdraw_rejected_return",
-      "request_id": "107"
-    },
     {
       "time": 1781931622,
       "user_id": "5224773359",
@@ -5696,6 +5692,15 @@
       "amount": -2.0,
       "new": 0.0,
       "reason": "withdraw_created",
+      "request_id": "171"
+    },
+    {
+      "time": 1783576061,
+      "user_id": "6468977018",
+      "old": 0.0,
+      "amount": 2.0,
+      "new": 2.0,
+      "reason": "withdraw_rejected_return",
       "request_id": "171"
     }
   ],
