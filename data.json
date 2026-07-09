@@ -2288,8 +2288,7 @@
       "last_name": "",
       "language_code": "ru",
       "last_open_task": "42",
-      "withdraw_step": "amount",
-      "withdraw_to": "@di6shod"
+      "withdraw_step": "username"
     },
     "8729118780": {
       "balance": 0,
