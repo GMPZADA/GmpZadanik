@@ -2411,6 +2411,23 @@
       "last_name": "",
       "language_code": "ru",
       "last_open_task": "41"
+    },
+    "8539717401": {
+      "balance": 0,
+      "done_tasks": [],
+      "last_bonus": 0,
+      "completed_tasks": 0,
+      "total_earned": 0,
+      "withdraw_count": 0,
+      "withdrawn_total": 0,
+      "fines_total": 0,
+      "created_at": 1783612390,
+      "updated_at": 1783612390,
+      "user_id": 8539717401,
+      "username": "Me_hitlerr",
+      "first_name": ".",
+      "last_name": "",
+      "language_code": "ru"
     }
   },
   "tasks": {
