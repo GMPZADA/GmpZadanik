@@ -1,8 +1,27 @@
 {
-  "submits": {},
+  "submits": {
+    "452": {
+      "user_id": 7811863751,
+      "username": "grimReapersing",
+      "task_id": "57",
+      "reward": 2.0,
+      "status": "wait",
+      "photo_file_id": "AgACAgIAAxkBAAJCv2pPH-tvN9gD28ZpTC9Unn-EnzoIAAIoFmsbf-55SsJob5FtL-vtAQADAgADeQADPAQ",
+      "file_type": "photo",
+      "time": 1783570412,
+      "admin_sent": true,
+      "admin_sent_time": 1783570412,
+      "admin_message_id": "sending"
+    }
+  },
   "withdraws": {},
   "admin_sent": {
-    "submits": {},
+    "submits": {
+      "452": {
+        "message_id": "sending",
+        "time": 1783570412
+      }
+    },
     "withdraws": {}
   },
   "user_states": {},
