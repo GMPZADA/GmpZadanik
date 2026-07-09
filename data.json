@@ -2269,7 +2269,7 @@
       "withdraw_step": "username"
     },
     "6468977018": {
-      "balance": 2.0,
+      "balance": 0.0,
       "done_tasks": [
         "38"
       ],
@@ -2287,8 +2287,7 @@
       "last_name": "",
       "language_code": "ru",
       "last_open_task": "38",
-      "withdraw_step": "amount",
-      "withdraw_to": "@di6shod"
+      "withdraw_pending": true
     },
     "8729118780": {
       "balance": 0,
@@ -4799,15 +4798,6 @@
   },
   "balance_logs": [
     {
-      "time": 1782979133,
-      "user_id": "8500884361",
-      "old": 0.0,
-      "amount": 0.2,
-      "new": 0.2,
-      "reason": "add",
-      "request_id": ""
-    },
-    {
       "time": 1781932137,
       "user_id": "5224773359",
       "old": 0.2,
@@ -5697,13 +5687,22 @@
       "new": 2.0,
       "reason": "task_approved",
       "request_id": "458"
+    },
+    {
+      "time": 1783575806,
+      "user_id": "6468977018",
+      "old": 2.0,
+      "amount": -2.0,
+      "new": 0.0,
+      "reason": "withdraw_created",
+      "request_id": "171"
     }
   ],
   "total_paid": 389.9,
   "total_withdrawals": 110,
   "last_task_id": 73,
   "last_submit_id": 458,
-  "last_withdraw_id": 170,
+  "last_withdraw_id": 171,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "withdraw_disabled_by_admin": false,
   "withdraw_enabled": true
