@@ -2278,12 +2278,14 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1783575172,
-      "updated_at": 1783575581,
+      "updated_at": 1783575586,
       "user_id": 6468977018,
       "username": "di6shod",
       "first_name": "ㅤ",
       "last_name": "",
-      "language_code": "ru"
+      "language_code": "ru",
+      "waiting_task": "38",
+      "last_open_task": "41"
     },
     "8729118780": {
       "balance": 0,
