@@ -1,27 +1,9 @@
 {
   "submits": {},
-  "withdraws": {
-    "172": {
-      "user_id": 6468977018,
-      "username": "di6shod",
-      "to": "@newsextazy32",
-      "amount": 2.0,
-      "status": "wait",
-      "time": 1783576112,
-      "source_message_id": 17195,
-      "admin_sent": true,
-      "admin_sent_time": 1783576114,
-      "admin_message_id": 17197
-    }
-  },
+  "withdraws": {},
   "admin_sent": {
     "submits": {},
-    "withdraws": {
-      "172": {
-        "message_id": 17197,
-        "time": 1783576114
-      }
-    }
+    "withdraws": {}
   },
   "user_states": {},
   "withdraw_requests": {},
