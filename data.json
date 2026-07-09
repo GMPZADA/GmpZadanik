@@ -908,13 +908,11 @@
       "fines_total": 0,
       "username": "grimReapersing",
       "created_at": 1782933817,
-      "updated_at": 1783570396,
+      "updated_at": 1783570400,
       "user_id": 7811863751,
       "first_name": "16:58 passed out",
       "last_name": "",
-      "language_code": "ru",
-      "waiting_task": "53",
-      "last_open_task": "57"
+      "language_code": "ru"
     },
     "6071965562": {
       "balance": 1.0,
@@ -5614,7 +5612,7 @@
   "total_paid": 389.9,
   "total_withdrawals": 110,
   "last_task_id": 73,
-  "last_submit_id": 450,
+  "last_submit_id": 451,
   "last_withdraw_id": 170,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "withdraw_disabled_by_admin": false,
