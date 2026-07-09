@@ -2280,15 +2280,14 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1783575172,
-      "updated_at": 1783576081,
+      "updated_at": 1783576087,
       "user_id": 6468977018,
       "username": "di6shod",
       "first_name": "ㅤ",
       "last_name": "",
       "language_code": "ru",
       "last_open_task": "41",
-      "withdraw_step": "amount",
-      "withdraw_to": "@newsextazy32"
+      "withdraw_step": "username"
     },
     "8729118780": {
       "balance": 0,
