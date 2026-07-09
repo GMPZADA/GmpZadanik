@@ -891,30 +891,30 @@
       "last_open_task": "38"
     },
     "7811863751": {
-      "balance": 2.4,
+      "balance": 4.4,
       "done_tasks": [
         "51",
         "49",
         "42",
         "44",
         "41",
-        "43"
+        "43",
+        "57"
       ],
       "last_bonus": 1782933823,
-      "completed_tasks": 9,
-      "total_earned": 22.6,
+      "completed_tasks": 10,
+      "total_earned": 24.6,
       "withdraw_count": 3,
       "withdrawn_total": 20.2,
       "fines_total": 0,
       "username": "grimReapersing",
       "created_at": 1782933817,
-      "updated_at": 1783570423,
+      "updated_at": 1783570416,
       "user_id": 7811863751,
       "first_name": "16:58 passed out",
       "last_name": "",
       "language_code": "ru",
-      "waiting_task": "57",
-      "last_open_task": "67"
+      "last_open_task": "59"
     },
     "6071965562": {
       "balance": 1.0,
@@ -4084,6 +4084,13 @@
         "user_id": "7811863751",
         "note": "task #53",
         "time": 1783570413
+      },
+      "452": {
+        "status": "approved",
+        "admin_id": 7837011810,
+        "user_id": "7811863751",
+        "note": "task #57",
+        "time": 1783570425
       }
     },
     "withdraws": {
@@ -4717,15 +4724,6 @@
     "withdraws": {}
   },
   "balance_logs": [
-    {
-      "time": 1782969492,
-      "user_id": "8341988288",
-      "old": 0.0,
-      "amount": 0.2,
-      "new": 0.2,
-      "reason": "add",
-      "request_id": ""
-    },
     {
       "time": 1782973040,
       "user_id": "8651016638",
@@ -5616,6 +5614,15 @@
       "new": 0.2,
       "reason": "withdraw_created",
       "request_id": "170"
+    },
+    {
+      "time": 1783570424,
+      "user_id": "7811863751",
+      "old": 2.4,
+      "amount": 2.0,
+      "new": 4.4,
+      "reason": "task_approved",
+      "request_id": "452"
     }
   ],
   "total_paid": 389.9,
