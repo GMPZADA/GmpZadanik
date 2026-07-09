@@ -2539,6 +2539,13 @@
       "reward": 1.0,
       "active": true,
       "required": false
+    },
+    "74": {
+      "text": "Зайти в бота и подписаться на спонсоров",
+      "link": "https://t.me/Lovfreestars_bot?start=41994728",
+      "reward": 1.0,
+      "active": true,
+      "required": false
     }
   },
   "deleted_tasks": {
@@ -5812,7 +5819,7 @@
   ],
   "total_paid": 389.9,
   "total_withdrawals": 110,
-  "last_task_id": 73,
+  "last_task_id": 74,
   "last_submit_id": 460,
   "last_withdraw_id": 172,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
