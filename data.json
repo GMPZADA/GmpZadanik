@@ -2304,6 +2304,23 @@
       "last_name": "",
       "language_code": "ru",
       "withdraw_step": "username"
+    },
+    "8706128074": {
+      "balance": 0,
+      "done_tasks": [],
+      "last_bonus": 0,
+      "completed_tasks": 0,
+      "total_earned": 0,
+      "withdraw_count": 0,
+      "withdrawn_total": 0,
+      "fines_total": 0,
+      "created_at": 1783577670,
+      "updated_at": 1783577670,
+      "user_id": 8706128074,
+      "username": "jdydusixhf",
+      "first_name": "...........💸",
+      "last_name": "Hhjjj",
+      "language_code": "ru"
     }
   },
   "tasks": {
