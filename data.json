@@ -914,8 +914,7 @@
       "first_name": "16:58 passed out",
       "last_name": "",
       "language_code": "ru",
-      "last_open_task": "71",
-      "waiting_task": "71"
+      "last_open_task": "71"
     },
     "6071965562": {
       "balance": 1.0,
@@ -4092,6 +4091,13 @@
         "user_id": "7811863751",
         "note": "task #57",
         "time": 1783570425
+      },
+      "453": {
+        "status": "rejected",
+        "admin_id": 7837011810,
+        "user_id": "7811863751",
+        "note": "task #69",
+        "time": 1783570702
       }
     },
     "withdraws": {
