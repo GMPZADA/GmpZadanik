@@ -1,27 +1,8 @@
 {
-  "submits": {
-    "456": {
-      "user_id": 6468977018,
-      "username": "di6shod",
-      "task_id": "38",
-      "reward": 2.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAJC8mpPM_v1VCZLuDdGlHJ4uIL566OHAAJEGmsbN5uBSq8_6BRXKWGJAQADAgADeQADPAQ",
-      "file_type": "photo",
-      "time": 1783575548,
-      "admin_sent": true,
-      "admin_sent_time": 1783575550,
-      "admin_message_id": 17140
-    }
-  },
+  "submits": {},
   "withdraws": {},
   "admin_sent": {
-    "submits": {
-      "456": {
-        "message_id": 17140,
-        "time": 1783575550
-      }
-    },
+    "submits": {},
     "withdraws": {}
   },
   "user_states": {},
