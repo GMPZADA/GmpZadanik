@@ -1770,8 +1770,7 @@
       "last_name": "",
       "language_code": "ru",
       "last_open_task": "49",
-      "withdraw_step": "amount",
-      "withdraw_to": "@usertelegramm_s"
+      "withdraw_step": "username"
     },
     "8373274147": {
       "balance": 0,
