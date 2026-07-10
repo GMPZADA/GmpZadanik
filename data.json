@@ -2514,12 +2514,13 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1783702820,
-      "updated_at": 1783702832,
+      "updated_at": 1783702836,
       "user_id": 6111666931,
       "username": "massalitins",
       "first_name": "Людмила Массалітіна",
       "last_name": "",
-      "language_code": "ru"
+      "language_code": "ru",
+      "last_open_task": "38"
     }
   },
   "tasks": {
