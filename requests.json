@@ -1,8 +1,27 @@
 {
-  "submits": {},
+  "submits": {
+    "461": {
+      "user_id": 6177765473,
+      "username": "tigpica",
+      "task_id": "41",
+      "reward": 2.0,
+      "status": "wait",
+      "photo_file_id": "AgACAgIAAxkBAAJEEmpQ0hysKaJkX2Tg0anl5M91UwABSgACXRhrG-1BiEqaRCUsTqkO-wEAAwIAA3cAAzwE",
+      "file_type": "photo",
+      "time": 1783681565,
+      "admin_sent": true,
+      "admin_sent_time": 1783681565,
+      "admin_message_id": "sending"
+    }
+  },
   "withdraws": {},
   "admin_sent": {
-    "submits": {},
+    "submits": {
+      "461": {
+        "message_id": "sending",
+        "time": 1783681565
+      }
+    },
     "withdraws": {}
   },
   "user_states": {},
