@@ -2464,7 +2464,8 @@
       "first_name": "Nennya69",
       "last_name": "",
       "language_code": "ru",
-      "last_open_task": "41"
+      "last_open_task": "41",
+      "withdraw_step": "username"
     }
   },
   "tasks": {
