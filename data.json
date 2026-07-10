@@ -2464,7 +2464,8 @@
       "first_name": "Nennya69",
       "last_name": "",
       "language_code": "ru",
-      "withdraw_step": "username"
+      "withdraw_step": "amount",
+      "withdraw_to": "@tigpica"
     }
   },
   "tasks": {
