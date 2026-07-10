@@ -1,8 +1,27 @@
 {
-  "submits": {},
+  "submits": {
+    "464": {
+      "user_id": 8770850838,
+      "username": "lihezov",
+      "task_id": "38",
+      "reward": 2.0,
+      "status": "wait",
+      "photo_file_id": "AgACAgIAAxkBAAJEnWpREgJBF3p4kSN4ksaa2D_5f_EKAAIfGGsbG9aISkChpJA3GTx_AQADAgADeQADPAQ",
+      "file_type": "photo",
+      "time": 1783697923,
+      "admin_sent": true,
+      "admin_sent_time": 1783697923,
+      "admin_message_id": "sending"
+    }
+  },
   "withdraws": {},
   "admin_sent": {
-    "submits": {},
+    "submits": {
+      "464": {
+        "message_id": "sending",
+        "time": 1783697923
+      }
+    },
     "withdraws": {}
   },
   "user_states": {},
