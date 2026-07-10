@@ -2467,6 +2467,23 @@
       "last_open_task": "38",
       "withdraw_step": "amount",
       "withdraw_to": "@tigpica"
+    },
+    "6656774408": {
+      "balance": 0,
+      "done_tasks": [],
+      "last_bonus": 0,
+      "completed_tasks": 0,
+      "total_earned": 0,
+      "withdraw_count": 0,
+      "withdrawn_total": 0,
+      "fines_total": 0,
+      "created_at": 1783691912,
+      "updated_at": 1783691912,
+      "user_id": 6656774408,
+      "username": "Ifykyai",
+      "first_name": "@ifykykai",
+      "last_name": "",
+      "language_code": "ru"
     }
   },
   "tasks": {
