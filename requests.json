@@ -1,27 +1,8 @@
 {
-  "submits": {
-    "465": {
-      "user_id": 6111666931,
-      "username": "massalitins",
-      "task_id": "38",
-      "reward": 2.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAJEuWpRJVOgRTU7BOf_1lLsmDOzOxGnAALeGWsbGYKISpc2LdVKB5YTAQADAgADeQADPAQ",
-      "file_type": "photo",
-      "time": 1783702868,
-      "admin_sent": true,
-      "admin_sent_time": 1783702870,
-      "admin_message_id": 17595
-    }
-  },
+  "submits": {},
   "withdraws": {},
   "admin_sent": {
-    "submits": {
-      "465": {
-        "message_id": 17595,
-        "time": 1783702870
-      }
-    },
+    "submits": {},
     "withdraws": {}
   },
   "user_states": {},
