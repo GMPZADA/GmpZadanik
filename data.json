@@ -51,7 +51,7 @@
       "fines_total": 0,
       "username": "Artemwesh",
       "created_at": 1782836891,
-      "updated_at": 1783682022,
+      "updated_at": 1783680039,
       "user_id": 7837011810,
       "first_name": "Артем",
       "last_name": "",
@@ -2458,15 +2458,13 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1783681436,
-      "updated_at": 1783682047,
+      "updated_at": 1783682064,
       "user_id": 6177765473,
       "username": "tigpica",
       "first_name": "Nennya69",
       "last_name": "",
       "language_code": "ru",
-      "last_open_task": "41",
-      "withdraw_step": "amount",
-      "withdraw_to": "@tigpica"
+      "last_open_task": "41"
     }
   },
   "tasks": {
