@@ -2458,14 +2458,13 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1783681436,
-      "updated_at": 1783682135,
+      "updated_at": 1783682138,
       "user_id": 6177765473,
       "username": "tigpica",
       "first_name": "Nennya69",
       "last_name": "",
       "language_code": "ru",
-      "last_open_task": "38",
-      "withdraw_step": "username"
+      "last_open_task": "38"
     }
   },
   "tasks": {
