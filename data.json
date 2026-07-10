@@ -2449,16 +2449,18 @@
       "last_open_task": "38"
     },
     "6177765473": {
-      "balance": 0.5,
-      "done_tasks": [],
+      "balance": 2.5,
+      "done_tasks": [
+        "41"
+      ],
       "last_bonus": 1783681861,
-      "completed_tasks": 0,
-      "total_earned": 0.5,
+      "completed_tasks": 1,
+      "total_earned": 2.5,
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1783681436,
-      "updated_at": 1783682077,
+      "updated_at": 1783682070,
       "user_id": 6177765473,
       "username": "tigpica",
       "first_name": "Nennya69",
@@ -4358,6 +4360,13 @@
         "user_id": "6177765473",
         "note": "task #41",
         "time": 1783681586
+      },
+      "463": {
+        "status": "approved",
+        "admin_id": 7837011810,
+        "user_id": "6177765473",
+        "note": "task #41",
+        "time": 1783682078
       }
     },
     "withdraws": {
@@ -5012,15 +5021,6 @@
     "withdraws": {}
   },
   "balance_logs": [
-    {
-      "time": 1782980678,
-      "user_id": "5241714648",
-      "old": 0.0,
-      "amount": 0.2,
-      "new": 0.2,
-      "reason": "add",
-      "request_id": ""
-    },
     {
       "time": 1782980912,
       "user_id": "5241714648",
@@ -5911,6 +5911,15 @@
       "new": 8.0,
       "reason": "withdraw_rejected_return",
       "request_id": "173"
+    },
+    {
+      "time": 1783682078,
+      "user_id": "6177765473",
+      "old": 0.5,
+      "amount": 2.0,
+      "new": 2.5,
+      "reason": "task_approved",
+      "request_id": "463"
     }
   ],
   "total_paid": 389.9,
