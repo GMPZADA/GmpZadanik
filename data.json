@@ -2514,14 +2514,12 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1783702820,
-      "updated_at": 1783702863,
+      "updated_at": 1783702868,
       "user_id": 6111666931,
       "username": "massalitins",
       "first_name": "Людмила Массалітіна",
       "last_name": "",
-      "language_code": "ru",
-      "last_open_task": "38",
-      "waiting_task": "38"
+      "language_code": "ru"
     }
   },
   "tasks": {
@@ -5987,7 +5985,7 @@
   "total_paid": 389.9,
   "total_withdrawals": 110,
   "last_task_id": 75,
-  "last_submit_id": 464,
+  "last_submit_id": 465,
   "last_withdraw_id": 172,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "withdraw_disabled_by_admin": false,
