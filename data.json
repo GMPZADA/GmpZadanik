@@ -1455,7 +1455,8 @@
       "first_name": "the federal",
       "last_name": "",
       "language_code": "ru",
-      "withdraw_step": "username"
+      "withdraw_step": "amount",
+      "withdraw_to": "@usaswaters"
     },
     "8138693744": {
       "balance": 1.2,
