@@ -51,7 +51,7 @@
       "fines_total": 0,
       "username": "Artemwesh",
       "created_at": 1782836891,
-      "updated_at": 1783758736,
+      "updated_at": 1783760227,
       "user_id": 7837011810,
       "first_name": "Артем",
       "last_name": "",
@@ -5290,15 +5290,6 @@
   },
   "balance_logs": [
     {
-      "time": 1783082942,
-      "user_id": "8258106768",
-      "old": 6.2,
-      "amount": -6.0,
-      "new": 0.2,
-      "reason": "withdraw_created",
-      "request_id": "150"
-    },
-    {
       "time": 1783082945,
       "user_id": "8258106768",
       "old": 6.2,
@@ -6188,6 +6179,15 @@
       "new": 2.2,
       "reason": "task_approved",
       "request_id": "381"
+    },
+    {
+      "time": 1783054913,
+      "user_id": "8804288474",
+      "old": 2.2,
+      "amount": -2.0,
+      "new": 0.2,
+      "reason": "withdraw_created",
+      "request_id": "149"
     }
   ],
   "total_paid": 397.9,
