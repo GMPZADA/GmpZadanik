@@ -2195,14 +2195,15 @@
       "last_open_task": "43"
     },
     "8361517624": {
-      "balance": 0.0,
+      "balance": 3.0,
       "done_tasks": [
         "38",
-        "41"
+        "41",
+        "42"
       ],
       "last_bonus": 0,
-      "completed_tasks": 2,
-      "total_earned": 4.0,
+      "completed_tasks": 3,
+      "total_earned": 7.0,
       "withdraw_count": 1,
       "withdrawn_total": 2.0,
       "fines_total": 0,
@@ -2212,7 +2213,8 @@
       "username": "Mamedov511",
       "first_name": "♧Šmøķê♧",
       "last_name": "",
-      "language_code": "ru"
+      "language_code": "ru",
+      "last_open_task": "42"
     },
     "8775336251": {
       "balance": 0,
@@ -4539,6 +4541,13 @@
         "user_id": "8361517624",
         "note": "task #41",
         "time": 1783758017
+      },
+      "475": {
+        "status": "approved",
+        "admin_id": 7837011810,
+        "user_id": "8361517624",
+        "note": "task #42",
+        "time": 1783758311
       }
     },
     "withdraws": {
@@ -5221,15 +5230,6 @@
     "withdraws": {}
   },
   "balance_logs": [
-    {
-      "time": 1782024473,
-      "user_id": "5609899938",
-      "old": 8.0,
-      "amount": -8.0,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "110"
-    },
     {
       "time": 1783054618,
       "user_id": "7378277039",
@@ -6120,6 +6120,15 @@
       "new": 0.0,
       "reason": "withdraw_created",
       "request_id": "178"
+    },
+    {
+      "time": 1783758311,
+      "user_id": "8361517624",
+      "old": 0.0,
+      "amount": 3.0,
+      "new": 3.0,
+      "reason": "task_approved",
+      "request_id": "475"
     }
   ],
   "total_paid": 397.9,
