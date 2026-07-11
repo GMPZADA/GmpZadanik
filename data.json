@@ -2602,8 +2602,7 @@
       "last_name": "",
       "language_code": "ru",
       "last_open_task": "41",
-      "withdraw_step": "amount",
-      "withdraw_to": "@Dubrovnikup"
+      "waiting_task": "41"
     }
   },
   "tasks": {
