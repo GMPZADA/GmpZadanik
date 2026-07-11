@@ -2212,8 +2212,8 @@
       "last_bonus": 0,
       "completed_tasks": 11,
       "total_earned": 28.0,
-      "withdraw_count": 2,
-      "withdrawn_total": 9.0,
+      "withdraw_count": 3,
+      "withdrawn_total": 19.0,
       "fines_total": 1.0,
       "created_at": 1783530392,
       "updated_at": 1783767150,
@@ -2221,8 +2221,7 @@
       "username": "Mamedov511",
       "first_name": "♧Šmøķê♧",
       "last_name": "",
-      "language_code": "ru",
-      "withdraw_pending": true
+      "language_code": "ru"
     },
     "8775336251": {
       "balance": 0,
@@ -5522,6 +5521,13 @@
         "user_id": "7657871768",
         "note": "amount 7.0",
         "time": 1783765321
+      },
+      "184": {
+        "status": "paid",
+        "admin_id": 7837011810,
+        "user_id": "8361517624",
+        "note": "amount 10.0",
+        "time": 1783767206
       }
     }
   },
@@ -6431,8 +6437,8 @@
       "request_id": "184"
     }
   ],
-  "total_paid": 417.9,
-  "total_withdrawals": 117,
+  "total_paid": 427.9,
+  "total_withdrawals": 118,
   "last_task_id": 77,
   "last_submit_id": 504,
   "last_withdraw_id": 184,
