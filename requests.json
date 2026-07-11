@@ -1,27 +1,8 @@
 {
-  "submits": {
-    "480": {
-      "user_id": 8558598966,
-      "username": "Dubrovnikup",
-      "task_id": "41",
-      "reward": 2.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAJF3WpSBYQEONNDzvcJiF0B47qA5HDXAAI1GGsbcGGRShu2Ao2KDJygAQADAgADeQADPAQ",
-      "file_type": "photo",
-      "time": 1783760795,
-      "admin_sent": true,
-      "admin_sent_time": 1783760796,
-      "admin_message_id": 17947
-    }
-  },
+  "submits": {},
   "withdraws": {},
   "admin_sent": {
-    "submits": {
-      "480": {
-        "message_id": 17947,
-        "time": 1783760796
-      }
-    },
+    "submits": {},
     "withdraws": {}
   },
   "user_states": {},
