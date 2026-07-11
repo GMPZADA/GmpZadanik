@@ -2595,12 +2595,13 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1783760098,
-      "updated_at": 1783760795,
+      "updated_at": 1783760800,
       "user_id": 8558598966,
       "username": "Dubrovnikup",
       "first_name": "vverixme #тихийлес",
       "last_name": "",
-      "language_code": "ru"
+      "language_code": "ru",
+      "last_open_task": "42"
     }
   },
   "tasks": {
