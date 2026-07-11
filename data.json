@@ -2799,6 +2799,13 @@
       "reward": 2.0,
       "active": true,
       "required": false
+    },
+    "77": {
+      "text": "Зайти в бота, выполнить 5 заданий и отправить скриншот на проверку",
+      "link": "https://t.me/GiftDuckBot?start=ref_7837011810",
+      "reward": 2.0,
+      "active": true,
+      "required": true
     }
   },
   "deleted_tasks": {
@@ -2838,7 +2845,9 @@
       "text": "Зайти в бота, подписаться на спонсоров и отправить скриншот выполнения"
     }
   },
-  "required_tasks": [],
+  "required_tasks": [
+    "77"
+  ],
   "submits": {},
   "withdraws": {},
   "withdraw_blocks": {},
@@ -6408,7 +6417,7 @@
   ],
   "total_paid": 417.9,
   "total_withdrawals": 117,
-  "last_task_id": 76,
+  "last_task_id": 77,
   "last_submit_id": 502,
   "last_withdraw_id": 183,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
