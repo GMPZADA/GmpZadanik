@@ -2216,9 +2216,7 @@
       "username": "Mamedov511",
       "first_name": "♧Šmøķê♧",
       "last_name": "",
-      "language_code": "ru",
-      "last_open_task": "49",
-      "waiting_task": "49"
+      "language_code": "ru"
     },
     "8775336251": {
       "balance": 0,
@@ -6252,7 +6250,7 @@
   "total_paid": 401.9,
   "total_withdrawals": 114,
   "last_task_id": 76,
-  "last_submit_id": 485,
+  "last_submit_id": 486,
   "last_withdraw_id": 180,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "withdraw_disabled_by_admin": false,
