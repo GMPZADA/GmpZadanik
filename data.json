@@ -2561,7 +2561,8 @@
       "first_name": "𝙸𝚖𝚘𝚗𝚒𝚗𝚢𝚊𝚞",
       "last_name": "",
       "language_code": "en",
-      "withdraw_step": "username"
+      "withdraw_step": "amount",
+      "withdraw_to": "@Imoninyau"
     }
   },
   "tasks": {
