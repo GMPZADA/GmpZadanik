@@ -2626,8 +2626,9 @@
       "first_name": "лера коньяк228",
       "last_name": "",
       "language_code": "ru",
-      "waiting_task": "46",
-      "last_open_task": "46"
+      "pending_tasks": [
+        "46"
+      ]
     }
   },
   "tasks": {
@@ -6380,7 +6381,7 @@
   "total_paid": 410.9,
   "total_withdrawals": 116,
   "last_task_id": 76,
-  "last_submit_id": 499,
+  "last_submit_id": 500,
   "last_withdraw_id": 182,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "withdraw_disabled_by_admin": false,
