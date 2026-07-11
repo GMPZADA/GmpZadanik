@@ -2218,9 +2218,8 @@
       "first_name": "♧Šmøķê♧",
       "last_name": "",
       "language_code": "ru",
-      "pending_tasks": [
-        "50"
-      ]
+      "waiting_task": "50",
+      "last_open_task": "50"
     },
     "8775336251": {
       "balance": 0,
@@ -2618,13 +2617,14 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1783763079,
-      "updated_at": 1783763144,
+      "updated_at": 1783763212,
       "user_id": 7657871768,
       "username": "ilsweetie",
       "first_name": "лера коньяк228",
       "last_name": "",
       "language_code": "ru",
-      "last_open_task": "38"
+      "last_open_task": "38",
+      "waiting_task": "38"
     }
   },
   "tasks": {
