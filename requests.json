@@ -1,27 +1,9 @@
 {
   "submits": {},
-  "withdraws": {
-    "180": {
-      "user_id": 8558598966,
-      "username": "Dubrovnikup",
-      "to": "@Dubrovnikup",
-      "amount": 2.0,
-      "status": "wait",
-      "time": 1783760946,
-      "source_message_id": 17973,
-      "admin_sent": true,
-      "admin_sent_time": 1783760948,
-      "admin_message_id": 17975
-    }
-  },
+  "withdraws": {},
   "admin_sent": {
     "submits": {},
-    "withdraws": {
-      "180": {
-        "message_id": 17975,
-        "time": 1783760948
-      }
-    }
+    "withdraws": {}
   },
   "user_states": {},
   "withdraw_requests": {},
