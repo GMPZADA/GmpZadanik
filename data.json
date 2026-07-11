@@ -2235,7 +2235,8 @@
       "first_name": "♧Šmøķê♧",
       "last_name": "",
       "language_code": "ru",
-      "withdraw_step": "username"
+      "withdraw_step": "amount",
+      "withdraw_to": "@Mamedov511"
     },
     "8775336251": {
       "balance": 0,
