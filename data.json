@@ -2223,7 +2223,7 @@
       "withdrawn_total": 30.0,
       "fines_total": 1.0,
       "created_at": 1783530392,
-      "updated_at": 1783771239,
+      "updated_at": 1783771473,
       "user_id": 8361517624,
       "username": "Mamedov511",
       "first_name": "♧Šmøķê♧",
@@ -5614,15 +5614,6 @@
   },
   "balance_logs": [
     {
-      "time": 1781861990,
-      "user_id": "7811863751",
-      "old": 2.0,
-      "amount": -2.0,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "94"
-    },
-    {
       "time": 1783164341,
       "user_id": "8418394814",
       "old": 0.0,
@@ -6512,6 +6503,15 @@
       "new": 2.0,
       "reason": "task_approved",
       "request_id": "513"
+    },
+    {
+      "time": 1781861955,
+      "user_id": "7811863751",
+      "old": 0.0,
+      "amount": 2.0,
+      "new": 2.0,
+      "reason": "task_approved",
+      "request_id": "223"
     }
   ],
   "total_paid": 438.9,
