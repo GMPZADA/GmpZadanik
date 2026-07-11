@@ -2214,8 +2214,8 @@
       "first_name": "♧Šmøķê♧",
       "last_name": "",
       "language_code": "ru",
-      "last_open_task": "44",
-      "waiting_task": "43"
+      "waiting_task": "43",
+      "last_open_task": "44"
     },
     "8775336251": {
       "balance": 0,
@@ -2595,7 +2595,7 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1783760098,
-      "updated_at": 1783760229,
+      "updated_at": 1783760257,
       "user_id": 8558598966,
       "username": "Dubrovnikup",
       "first_name": "vverixme #тихийлес",
@@ -5290,6 +5290,42 @@
   },
   "balance_logs": [
     {
+      "time": 1783054883,
+      "user_id": "8804288474",
+      "old": 0.2,
+      "amount": 2.0,
+      "new": 2.2,
+      "reason": "task_approved",
+      "request_id": "381"
+    },
+    {
+      "time": 1783054913,
+      "user_id": "8804288474",
+      "old": 2.2,
+      "amount": -2.0,
+      "new": 0.2,
+      "reason": "withdraw_created",
+      "request_id": "149"
+    },
+    {
+      "time": 1783082942,
+      "user_id": "8258106768",
+      "old": 6.2,
+      "amount": -6.0,
+      "new": 0.2,
+      "reason": "withdraw_created",
+      "request_id": "150"
+    },
+    {
+      "time": 1783082945,
+      "user_id": "8258106768",
+      "old": 6.2,
+      "amount": -6.0,
+      "new": 0.2,
+      "reason": "withdraw_created",
+      "request_id": "151"
+    },
+    {
       "time": 1783088284,
       "user_id": "7581133015",
       "old": 0.4,
@@ -6145,15 +6181,6 @@
       "request_id": "477"
     },
     {
-      "time": 1783054618,
-      "user_id": "7378277039",
-      "old": 3.0,
-      "amount": -3.0,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "148"
-    },
-    {
       "time": 1783760220,
       "user_id": "8361517624",
       "old": 3.0,
@@ -6161,33 +6188,6 @@
       "new": 5.0,
       "reason": "task_approved",
       "request_id": "476"
-    },
-    {
-      "time": 1783054883,
-      "user_id": "8804288474",
-      "old": 0.2,
-      "amount": 2.0,
-      "new": 2.2,
-      "reason": "task_approved",
-      "request_id": "381"
-    },
-    {
-      "time": 1783054913,
-      "user_id": "8804288474",
-      "old": 2.2,
-      "amount": -2.0,
-      "new": 0.2,
-      "reason": "withdraw_created",
-      "request_id": "149"
-    },
-    {
-      "time": 1783082942,
-      "user_id": "8258106768",
-      "old": 6.2,
-      "amount": -6.0,
-      "new": 0.2,
-      "reason": "withdraw_created",
-      "request_id": "150"
     }
   ],
   "total_paid": 397.9,
