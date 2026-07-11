@@ -2215,8 +2215,7 @@
       "first_name": "♧Šmøķê♧",
       "last_name": "",
       "language_code": "ru",
-      "last_open_task": "44",
-      "withdraw_pending": true
+      "last_open_task": "44"
     },
     "8775336251": {
       "balance": 0,
@@ -2596,7 +2595,7 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1783760098,
-      "updated_at": 1783760717,
+      "updated_at": 1783760772,
       "user_id": 8558598966,
       "username": "Dubrovnikup",
       "first_name": "vverixme #тихийлес",
