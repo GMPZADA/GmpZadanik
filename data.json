@@ -2218,7 +2218,6 @@
       "first_name": "♧Šmøķê♧",
       "last_name": "",
       "language_code": "ru",
-      "waiting_task": "50",
       "last_open_task": "50"
     },
     "8775336251": {
@@ -4700,6 +4699,13 @@
         "user_id": "7657871768",
         "note": "task #38",
         "time": 1783763236
+      },
+      "489": {
+        "status": "rejected",
+        "admin_id": 7837011810,
+        "user_id": "8361517624",
+        "note": "task #50",
+        "time": 1783763250
       }
     },
     "withdraws": {
@@ -5396,15 +5402,6 @@
     "withdraws": {}
   },
   "balance_logs": [
-    {
-      "time": 1782025998,
-      "user_id": "8317326202",
-      "old": 2.0,
-      "amount": 2.0,
-      "new": 4.0,
-      "reason": "task_approved",
-      "request_id": "268"
-    },
     {
       "time": 1783138490,
       "user_id": "7811863751",
@@ -6295,6 +6292,15 @@
       "new": 2.0,
       "reason": "task_approved",
       "request_id": "490"
+    },
+    {
+      "time": 1783096676,
+      "user_id": "7979994199",
+      "old": 2.2,
+      "amount": -2.0,
+      "new": 0.2,
+      "reason": "withdraw_created",
+      "request_id": "152"
     }
   ],
   "total_paid": 401.9,
