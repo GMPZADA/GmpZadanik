@@ -2541,6 +2541,23 @@
       "last_open_task": "44",
       "withdraw_step": "amount",
       "withdraw_to": "@Glicov_w"
+    },
+    "8390610754": {
+      "balance": 0,
+      "done_tasks": [],
+      "last_bonus": 0,
+      "completed_tasks": 0,
+      "total_earned": 0,
+      "withdraw_count": 0,
+      "withdrawn_total": 0,
+      "fines_total": 0,
+      "created_at": 1783738477,
+      "updated_at": 1783738477,
+      "user_id": 8390610754,
+      "username": "Imoninyau",
+      "first_name": "𝙸𝚖𝚘𝚗𝚒𝚗𝚢𝚊𝚞",
+      "last_name": "",
+      "language_code": "en"
     }
   },
   "tasks": {
