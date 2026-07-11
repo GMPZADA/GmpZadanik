@@ -51,7 +51,7 @@
       "fines_total": 0,
       "username": "Artemwesh",
       "created_at": 1782836891,
-      "updated_at": 1783760227,
+      "updated_at": 1783758736,
       "user_id": 7837011810,
       "first_name": "Артем",
       "last_name": "",
@@ -2595,7 +2595,7 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1783760098,
-      "updated_at": 1783760220,
+      "updated_at": 1783760229,
       "user_id": 8558598966,
       "username": "Dubrovnikup",
       "first_name": "vverixme #тихийлес",
@@ -5290,15 +5290,6 @@
   },
   "balance_logs": [
     {
-      "time": 1783082945,
-      "user_id": "8258106768",
-      "old": 6.2,
-      "amount": -6.0,
-      "new": 0.2,
-      "reason": "withdraw_created",
-      "request_id": "151"
-    },
-    {
       "time": 1783088284,
       "user_id": "7581133015",
       "old": 0.4,
@@ -6188,6 +6179,15 @@
       "new": 0.2,
       "reason": "withdraw_created",
       "request_id": "149"
+    },
+    {
+      "time": 1783082942,
+      "user_id": "8258106768",
+      "old": 6.2,
+      "amount": -6.0,
+      "new": 0.2,
+      "reason": "withdraw_created",
+      "request_id": "150"
     }
   ],
   "total_paid": 397.9,
