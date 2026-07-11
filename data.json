@@ -2617,13 +2617,14 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1783763079,
-      "updated_at": 1783763212,
+      "updated_at": 1783763220,
       "user_id": 7657871768,
       "username": "ilsweetie",
       "first_name": "лера коньяк228",
       "last_name": "",
       "language_code": "ru",
-      "last_open_task": "38"
+      "last_open_task": "38",
+      "waiting_task": "38"
     }
   },
   "tasks": {
