@@ -1,27 +1,9 @@
 {
   "submits": {},
-  "withdraws": {
-    "189": {
-      "user_id": 8361517624,
-      "username": "Mamedov511",
-      "to": "@Mamedov511",
-      "amount": 9.0,
-      "status": "wait",
-      "time": 1783786337,
-      "source_message_id": 18592,
-      "admin_sent": true,
-      "admin_sent_time": 1783786339,
-      "admin_message_id": 18594
-    }
-  },
+  "withdraws": {},
   "admin_sent": {
     "submits": {},
-    "withdraws": {
-      "189": {
-        "message_id": 18594,
-        "time": 1783786339
-      }
-    }
+    "withdraws": {}
   },
   "user_states": {},
   "withdraw_requests": {},
