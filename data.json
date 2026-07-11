@@ -2213,8 +2213,7 @@
       "last_name": "",
       "language_code": "ru",
       "last_open_task": "41",
-      "withdraw_step": "amount",
-      "withdraw_to": "@Mamedov511"
+      "waiting_task": "41"
     },
     "8775336251": {
       "balance": 0,
