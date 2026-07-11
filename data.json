@@ -2543,7 +2543,7 @@
       "withdraw_to": "@Glicov_w"
     },
     "8390610754": {
-      "balance": 4.0,
+      "balance": 0.0,
       "done_tasks": [
         "38",
         "43"
@@ -2560,9 +2560,7 @@
       "username": "Imoninyau",
       "first_name": "𝙸𝚖𝚘𝚗𝚒𝚗𝚢𝚊𝚞",
       "last_name": "",
-      "language_code": "en",
-      "withdraw_step": "amount",
-      "withdraw_to": "@imoninyau"
+      "language_code": "en"
     }
   },
   "tasks": {
@@ -5153,15 +5151,6 @@
   },
   "balance_logs": [
     {
-      "time": 1782982070,
-      "user_id": "5241714648",
-      "old": 3.2,
-      "amount": 3.0,
-      "new": 6.2,
-      "reason": "task_approved",
-      "request_id": "361"
-    },
-    {
       "time": 1782982339,
       "user_id": "5241714648",
       "old": 6.2,
@@ -6051,13 +6040,22 @@
       "new": 4.0,
       "reason": "task_approved",
       "request_id": "467"
+    },
+    {
+      "time": 1783747613,
+      "user_id": "8390610754",
+      "old": 4.0,
+      "amount": -4.0,
+      "new": 0.0,
+      "reason": "withdraw_created",
+      "request_id": "173"
     }
   ],
   "total_paid": 389.9,
   "total_withdrawals": 110,
   "last_task_id": 76,
   "last_submit_id": 467,
-  "last_withdraw_id": 172,
+  "last_withdraw_id": 173,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "withdraw_disabled_by_admin": false,
   "withdraw_enabled": true
