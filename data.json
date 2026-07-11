@@ -1438,7 +1438,7 @@
       "last_open_task": "42"
     },
     "8654965986": {
-      "balance": 4.7,
+      "balance": 0.7,
       "done_tasks": [
         "42"
       ],
@@ -1455,8 +1455,7 @@
       "first_name": "the federal",
       "last_name": "",
       "language_code": "ru",
-      "withdraw_step": "amount",
-      "withdraw_to": "@usaswaters"
+      "withdraw_pending": true
     },
     "8138693744": {
       "balance": 1.2,
@@ -5168,15 +5167,6 @@
   },
   "balance_logs": [
     {
-      "time": 1783003668,
-      "user_id": "7441149510",
-      "old": 5.2,
-      "amount": -5.2,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "147"
-    },
-    {
       "time": 1783053684,
       "user_id": "7378277039",
       "old": 0.0,
@@ -6066,13 +6056,22 @@
       "new": 0.4,
       "reason": "withdraw_created",
       "request_id": "108"
+    },
+    {
+      "time": 1783751778,
+      "user_id": "8654965986",
+      "old": 4.7,
+      "amount": -4.0,
+      "new": 0.7,
+      "reason": "withdraw_created",
+      "request_id": "176"
     }
   ],
   "total_paid": 393.9,
   "total_withdrawals": 111,
   "last_task_id": 76,
   "last_submit_id": 468,
-  "last_withdraw_id": 175,
+  "last_withdraw_id": 176,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "withdraw_disabled_by_admin": false,
   "withdraw_enabled": true
