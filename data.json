@@ -2220,8 +2220,8 @@
       "last_bonus": 0,
       "completed_tasks": 19,
       "total_earned": 43.0,
-      "withdraw_count": 6,
-      "withdrawn_total": 30.0,
+      "withdraw_count": 7,
+      "withdrawn_total": 34.0,
       "fines_total": 1.0,
       "created_at": 1783530392,
       "updated_at": 1783773035,
@@ -5614,6 +5614,13 @@
         "user_id": "8361517624",
         "note": "amount 4.0",
         "time": 1783770987
+      },
+      "188": {
+        "status": "paid",
+        "admin_id": 7837011810,
+        "user_id": "8361517624",
+        "note": "amount 4.0",
+        "time": 1783773143
       }
     }
   },
@@ -6523,8 +6530,8 @@
       "request_id": "188"
     }
   ],
-  "total_paid": 438.9,
-  "total_withdrawals": 121,
+  "total_paid": 442.9,
+  "total_withdrawals": 122,
   "last_task_id": 77,
   "last_submit_id": 514,
   "last_withdraw_id": 188,
