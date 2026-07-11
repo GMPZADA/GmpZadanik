@@ -1438,7 +1438,7 @@
       "last_open_task": "42"
     },
     "8654965986": {
-      "balance": 4.7,
+      "balance": 8.7,
       "done_tasks": [
         "42"
       ],
@@ -1454,8 +1454,7 @@
       "username": "",
       "first_name": "the federal",
       "last_name": "",
-      "language_code": "ru",
-      "withdraw_pending": true
+      "language_code": "ru"
     },
     "8138693744": {
       "balance": 1.2,
@@ -5165,6 +5164,13 @@
         "user_id": "8654965986",
         "note": "amount 4.0",
         "time": 1783752043
+      },
+      "176": {
+        "status": "rejected",
+        "admin_id": 7837011810,
+        "user_id": "8654965986",
+        "note": "amount 4.0",
+        "time": 1783752071
       }
     }
   },
@@ -5173,15 +5179,6 @@
     "withdraws": {}
   },
   "balance_logs": [
-    {
-      "time": 1783054157,
-      "user_id": "7378277039",
-      "old": 1.0,
-      "amount": 2.0,
-      "new": 3.0,
-      "reason": "task_approved",
-      "request_id": "380"
-    },
     {
       "time": 1782021707,
       "user_id": "8258106768",
@@ -6072,6 +6069,15 @@
       "new": 4.7,
       "reason": "withdraw_rejected_return",
       "request_id": "175"
+    },
+    {
+      "time": 1783752071,
+      "user_id": "8654965986",
+      "old": 4.7,
+      "amount": 4.0,
+      "new": 8.7,
+      "reason": "withdraw_rejected_return",
+      "request_id": "176"
     }
   ],
   "total_paid": 393.9,
