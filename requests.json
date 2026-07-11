@@ -1,27 +1,9 @@
 {
   "submits": {},
-  "withdraws": {
-    "177": {
-      "user_id": 8654965986,
-      "username": "",
-      "to": "@usaswaters",
-      "amount": 4.0,
-      "status": "wait",
-      "time": 1783756343,
-      "source_message_id": 17758,
-      "admin_sent": true,
-      "admin_sent_time": 1783756344,
-      "admin_message_id": 17760
-    }
-  },
+  "withdraws": {},
   "admin_sent": {
     "submits": {},
-    "withdraws": {
-      "177": {
-        "message_id": 17760,
-        "time": 1783756344
-      }
-    }
+    "withdraws": {}
   },
   "user_states": {},
   "withdraw_requests": {},
