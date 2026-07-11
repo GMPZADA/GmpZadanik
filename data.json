@@ -2639,7 +2639,9 @@
       "first_name": "моя говорящая лера",
       "last_name": "",
       "language_code": "ru",
-      "last_open_task": "49"
+      "pending_tasks": [
+        "49"
+      ]
     }
   },
   "tasks": {
@@ -6534,7 +6536,7 @@
   "total_paid": 442.9,
   "total_withdrawals": 122,
   "last_task_id": 77,
-  "last_submit_id": 517,
+  "last_submit_id": 518,
   "last_withdraw_id": 188,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "withdraw_disabled_by_admin": false,
