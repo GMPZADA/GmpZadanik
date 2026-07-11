@@ -2212,7 +2212,7 @@
       "withdrawn_total": 2.0,
       "fines_total": 0,
       "created_at": 1783530392,
-      "updated_at": 1783763290,
+      "updated_at": 1783763286,
       "user_id": 8361517624,
       "username": "Mamedov511",
       "first_name": "♧Šmøķê♧",
@@ -2619,12 +2619,13 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1783763079,
-      "updated_at": 1783763220,
+      "updated_at": 1783763299,
       "user_id": 7657871768,
       "username": "ilsweetie",
       "first_name": "лера коньяк228",
       "last_name": "",
-      "language_code": "ru"
+      "language_code": "ru",
+      "last_open_task": "41"
     }
   },
   "tasks": {
