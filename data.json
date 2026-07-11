@@ -2607,14 +2607,15 @@
       "last_open_task": "43"
     },
     "7657871768": {
-      "balance": 3.0,
+      "balance": 5.0,
       "done_tasks": [
         "38",
-        "50"
+        "50",
+        "45"
       ],
       "last_bonus": 0,
-      "completed_tasks": 2,
-      "total_earned": 5.0,
+      "completed_tasks": 3,
+      "total_earned": 7.0,
       "withdraw_count": 1,
       "withdrawn_total": 2.0,
       "fines_total": 0,
@@ -2625,7 +2626,6 @@
       "first_name": "лера коньяк228",
       "last_name": "",
       "language_code": "ru",
-      "waiting_task": "45",
       "last_open_task": "45"
     }
   },
@@ -4758,6 +4758,13 @@
         "user_id": "7657871768",
         "note": "task #50",
         "time": 1783764728
+      },
+      "499": {
+        "status": "approved",
+        "admin_id": 7837011810,
+        "user_id": "7657871768",
+        "note": "task #45",
+        "time": 1783764953
       }
     },
     "withdraws": {
@@ -5468,15 +5475,6 @@
     "withdraws": {}
   },
   "balance_logs": [
-    {
-      "time": 1783157180,
-      "user_id": "8961146885",
-      "old": 0.0,
-      "amount": 1.0,
-      "new": 1.0,
-      "reason": "task_approved",
-      "request_id": "397"
-    },
     {
       "time": 1783157198,
       "user_id": "8961146885",
@@ -6367,6 +6365,15 @@
       "new": 3.0,
       "reason": "task_approved",
       "request_id": "497"
+    },
+    {
+      "time": 1783764953,
+      "user_id": "7657871768",
+      "old": 3.0,
+      "amount": 2.0,
+      "new": 5.0,
+      "reason": "task_approved",
+      "request_id": "499"
     }
   ],
   "total_paid": 410.9,
