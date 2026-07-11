@@ -2195,7 +2195,7 @@
       "last_open_task": "43"
     },
     "8361517624": {
-      "balance": 7.0,
+      "balance": 0.0,
       "done_tasks": [
         "38",
         "41",
@@ -2219,8 +2219,7 @@
       "last_name": "",
       "language_code": "ru",
       "last_open_task": "67",
-      "withdraw_step": "amount",
-      "withdraw_to": "@Mamedov511"
+      "withdraw_pending": true
     },
     "8775336251": {
       "balance": 0,
@@ -5426,15 +5425,6 @@
   },
   "balance_logs": [
     {
-      "time": 1783152077,
-      "user_id": "8961146885",
-      "old": 0.0,
-      "amount": 1.0,
-      "new": 1.0,
-      "reason": "task_approved",
-      "request_id": "394"
-    },
-    {
       "time": 1783152089,
       "user_id": "8961146885",
       "old": 1.0,
@@ -6324,13 +6314,22 @@
       "new": 7.0,
       "reason": "admin_fine: Отписка от 50% каналов",
       "request_id": "manual"
+    },
+    {
+      "time": 1783763827,
+      "user_id": "8361517624",
+      "old": 7.0,
+      "amount": -7.0,
+      "new": 0.0,
+      "reason": "withdraw_created",
+      "request_id": "181"
     }
   ],
   "total_paid": 401.9,
   "total_withdrawals": 114,
   "last_task_id": 76,
   "last_submit_id": 494,
-  "last_withdraw_id": 180,
+  "last_withdraw_id": 181,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "withdraw_disabled_by_admin": false,
   "withdraw_enabled": true
