@@ -2543,11 +2543,13 @@
       "withdraw_to": "@Glicov_w"
     },
     "8390610754": {
-      "balance": 0,
-      "done_tasks": [],
+      "balance": 2.0,
+      "done_tasks": [
+        "38"
+      ],
       "last_bonus": 0,
-      "completed_tasks": 0,
-      "total_earned": 0,
+      "completed_tasks": 1,
+      "total_earned": 2.0,
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
@@ -4479,6 +4481,13 @@
         "user_id": "6111666931",
         "note": "task #38",
         "time": 1783702898
+      },
+      "466": {
+        "status": "approved",
+        "admin_id": 7837011810,
+        "user_id": "8390610754",
+        "note": "task #38",
+        "time": 1783746445
       }
     },
     "withdraws": {
@@ -5133,15 +5142,6 @@
     "withdraws": {}
   },
   "balance_logs": [
-    {
-      "time": 1782980912,
-      "user_id": "5241714648",
-      "old": 0.2,
-      "amount": 1.0,
-      "new": 1.2,
-      "reason": "task_approved",
-      "request_id": "355"
-    },
     {
       "time": 1782981798,
       "user_id": "5241714648",
@@ -6032,6 +6032,15 @@
       "new": 2.5,
       "reason": "task_approved",
       "request_id": "463"
+    },
+    {
+      "time": 1783746438,
+      "user_id": "8390610754",
+      "old": 0.0,
+      "amount": 2.0,
+      "new": 2.0,
+      "reason": "task_approved",
+      "request_id": "466"
     }
   ],
   "total_paid": 389.9,
