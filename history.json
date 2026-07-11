@@ -1047,6 +1047,18 @@
       "admin_id": 7837011810,
       "reason": "",
       "time": 1783761734
+    },
+    {
+      "type": "task",
+      "user_id": "8361517624",
+      "task_id": "43",
+      "status": "approved",
+      "reward": 2.0,
+      "balance": 2.0,
+      "request_id": "483",
+      "admin_id": 7837011810,
+      "reason": "",
+      "time": 1783761851
     }
   ]
 }
