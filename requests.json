@@ -1,27 +1,8 @@
 {
-  "submits": {
-    "509": {
-      "user_id": 8361517624,
-      "username": "Mamedov511",
-      "task_id": "73",
-      "reward": 1.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAJHhWpSK5YYxOItdECzBf_9zqiZw9ReAAJfIGsbnIyQShyi_k5Sx7BUAQADAgADeQADPAQ",
-      "file_type": "photo",
-      "time": 1783770146,
-      "admin_sent": true,
-      "admin_sent_time": 1783770151,
-      "admin_message_id": 18315
-    }
-  },
+  "submits": {},
   "withdraws": {},
   "admin_sent": {
-    "submits": {
-      "509": {
-        "message_id": 18315,
-        "time": 1783770151
-      }
-    },
+    "submits": {},
     "withdraws": {}
   },
   "user_states": {},
