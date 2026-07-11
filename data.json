@@ -2226,7 +2226,8 @@
       "first_name": "♧Šmøķê♧",
       "last_name": "",
       "language_code": "ru",
-      "last_open_task": "75"
+      "last_open_task": "75",
+      "withdraw_step": "username"
     },
     "8775336251": {
       "balance": 0,
