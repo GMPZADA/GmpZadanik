@@ -2560,7 +2560,8 @@
       "username": "Imoninyau",
       "first_name": "𝙸𝚖𝚘𝚗𝚒𝚗𝚢𝚊𝚞",
       "last_name": "",
-      "language_code": "en"
+      "language_code": "en",
+      "withdraw_step": "username"
     }
   },
   "tasks": {
