@@ -2195,18 +2195,19 @@
       "last_open_task": "43"
     },
     "8361517624": {
-      "balance": 5.0,
+      "balance": 8.0,
       "done_tasks": [
         "38",
         "41",
         "42",
         "44",
         "43",
-        "48"
+        "48",
+        "49"
       ],
       "last_bonus": 0,
-      "completed_tasks": 6,
-      "total_earned": 15.0,
+      "completed_tasks": 7,
+      "total_earned": 18.0,
       "withdraw_count": 1,
       "withdrawn_total": 2.0,
       "fines_total": 0,
@@ -4650,6 +4651,13 @@
         "user_id": "8361517624",
         "note": "task #48",
         "time": 1783762270
+      },
+      "486": {
+        "status": "approved",
+        "admin_id": 7837011810,
+        "user_id": "8361517624",
+        "note": "task #49",
+        "time": 1783762533
       }
     },
     "withdraws": {
@@ -5346,15 +5354,6 @@
     "withdraws": {}
   },
   "balance_logs": [
-    {
-      "time": 1782025592,
-      "user_id": "5609899938",
-      "old": 5.0,
-      "amount": -5.0,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "113"
-    },
     {
       "time": 1783096676,
       "user_id": "7979994199",
@@ -6245,6 +6244,15 @@
       "new": 5.0,
       "reason": "task_approved",
       "request_id": "485"
+    },
+    {
+      "time": 1783762533,
+      "user_id": "8361517624",
+      "old": 5.0,
+      "amount": 3.0,
+      "new": 8.0,
+      "reason": "task_approved",
+      "request_id": "486"
     }
   ],
   "total_paid": 401.9,
