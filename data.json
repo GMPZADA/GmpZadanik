@@ -2551,8 +2551,8 @@
       "last_bonus": 0,
       "completed_tasks": 2,
       "total_earned": 8.0,
-      "withdraw_count": 0,
-      "withdrawn_total": 0,
+      "withdraw_count": 1,
+      "withdrawn_total": 4.0,
       "fines_total": 0,
       "created_at": 1783738477,
       "updated_at": 1783747933,
@@ -2560,8 +2560,7 @@
       "username": "Imoninyau",
       "first_name": "𝙸𝚖𝚘𝚗𝚒𝚗𝚢𝚊𝚞",
       "last_name": "",
-      "language_code": "en",
-      "withdraw_pending": true
+      "language_code": "en"
     }
   },
   "tasks": {
@@ -5143,6 +5142,13 @@
         "user_id": "6468977018",
         "note": "amount 4.0",
         "time": 1783598261
+      },
+      "174": {
+        "status": "paid",
+        "admin_id": 7837011810,
+        "user_id": "8390610754",
+        "note": "amount 4.0",
+        "time": 1783747959
       }
     }
   },
@@ -6052,8 +6058,8 @@
       "request_id": "174"
     }
   ],
-  "total_paid": 389.9,
-  "total_withdrawals": 110,
+  "total_paid": 393.9,
+  "total_withdrawals": 111,
   "last_task_id": 76,
   "last_submit_id": 467,
   "last_withdraw_id": 174,
