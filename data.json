@@ -2195,7 +2195,7 @@
       "last_open_task": "43"
     },
     "8361517624": {
-      "balance": 5.0,
+      "balance": 8.0,
       "done_tasks": [
         "38",
         "41",
@@ -2205,11 +2205,12 @@
         "48",
         "49",
         "46",
-        "51"
+        "51",
+        "50"
       ],
       "last_bonus": 0,
-      "completed_tasks": 9,
-      "total_earned": 23.0,
+      "completed_tasks": 10,
+      "total_earned": 26.0,
       "withdraw_count": 2,
       "withdrawn_total": 9.0,
       "fines_total": 1.0,
@@ -2220,7 +2221,7 @@
       "first_name": "♧Šmøķê♧",
       "last_name": "",
       "language_code": "ru",
-      "last_open_task": "50"
+      "last_open_task": "53"
     },
     "8775336251": {
       "balance": 0,
@@ -4797,6 +4798,13 @@
         "user_id": "8361517624",
         "note": "task #51",
         "time": 1783765997
+      },
+      "503": {
+        "status": "approved",
+        "admin_id": 7837011810,
+        "user_id": "8361517624",
+        "note": "task #50",
+        "time": 1783766275
       }
     },
     "withdraws": {
@@ -5514,15 +5522,6 @@
     "withdraws": {}
   },
   "balance_logs": [
-    {
-      "time": 1782040403,
-      "user_id": "8258106768",
-      "old": 4.6,
-      "amount": -4.0,
-      "new": 0.6,
-      "reason": "withdraw_created",
-      "request_id": "117"
-    },
     {
       "time": 1783160770,
       "user_id": "8418394814",
@@ -6413,6 +6412,15 @@
       "new": 5.0,
       "reason": "task_approved",
       "request_id": "502"
+    },
+    {
+      "time": 1783766275,
+      "user_id": "8361517624",
+      "old": 5.0,
+      "amount": 3.0,
+      "new": 8.0,
+      "reason": "task_approved",
+      "request_id": "503"
     }
   ],
   "total_paid": 417.9,
