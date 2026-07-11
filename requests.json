@@ -1,27 +1,9 @@
 {
   "submits": {},
-  "withdraws": {
-    "174": {
-      "user_id": 8390610754,
-      "username": "Imoninyau",
-      "to": "@Imoninyau",
-      "amount": 4.0,
-      "status": "wait",
-      "time": 1783747934,
-      "source_message_id": 17674,
-      "admin_sent": true,
-      "admin_sent_time": 1783747936,
-      "admin_message_id": 17676
-    }
-  },
+  "withdraws": {},
   "admin_sent": {
     "submits": {},
-    "withdraws": {
-      "174": {
-        "message_id": 17676,
-        "time": 1783747936
-      }
-    }
+    "withdraws": {}
   },
   "user_states": {},
   "withdraw_requests": {},
