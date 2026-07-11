@@ -10,16 +10,16 @@
       "time": 1783760946,
       "source_message_id": 17973,
       "admin_sent": true,
-      "admin_sent_time": 1783760946,
-      "admin_message_id": "sending"
+      "admin_sent_time": 1783760948,
+      "admin_message_id": 17975
     }
   },
   "admin_sent": {
     "submits": {},
     "withdraws": {
       "180": {
-        "message_id": "sending",
-        "time": 1783760946
+        "message_id": 17975,
+        "time": 1783760948
       }
     }
   },
