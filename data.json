@@ -2212,8 +2212,7 @@
       "first_name": "♧Šmøķê♧",
       "last_name": "",
       "language_code": "ru",
-      "last_open_task": "41",
-      "waiting_task": "41"
+      "last_open_task": "41"
     },
     "8775336251": {
       "balance": 0,
@@ -4519,6 +4518,13 @@
         "user_id": "8361517624",
         "note": "task #42",
         "time": 1783757648
+      },
+      "471": {
+        "status": "rejected",
+        "admin_id": 7837011810,
+        "user_id": "8361517624",
+        "note": "task #41",
+        "time": 1783757923
       }
     },
     "withdraws": {
