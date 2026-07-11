@@ -2805,7 +2805,7 @@
       "link": "https://t.me/GiftDuckBot?start=ref_7837011810",
       "reward": 2.0,
       "active": true,
-      "required": true
+      "required": false
     }
   },
   "deleted_tasks": {
