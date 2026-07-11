@@ -2209,13 +2209,14 @@
       "withdrawn_total": 2.0,
       "fines_total": 0,
       "created_at": 1783530392,
-      "updated_at": 1783760684,
+      "updated_at": 1783760703,
       "user_id": 8361517624,
       "username": "Mamedov511",
       "first_name": "♧Šmøķê♧",
       "last_name": "",
       "language_code": "ru",
-      "last_open_task": "44"
+      "last_open_task": "44",
+      "withdraw_step": "username"
     },
     "8775336251": {
       "balance": 0,
@@ -2595,7 +2596,7 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1783760098,
-      "updated_at": 1783760702,
+      "updated_at": 1783760651,
       "user_id": 8558598966,
       "username": "Dubrovnikup",
       "first_name": "vverixme #тихийлес",
