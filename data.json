@@ -2651,12 +2651,13 @@
       "withdrawn_total": 25.0,
       "fines_total": 0,
       "created_at": 1783763079,
-      "updated_at": 1783887533,
+      "updated_at": 1783887539,
       "user_id": 7657871768,
       "username": "ilsweetie",
       "first_name": "моя говорящая лера",
       "last_name": "",
-      "language_code": "ru"
+      "language_code": "ru",
+      "last_open_task": "43"
     },
     "8462438374": {
       "balance": 0,
@@ -6021,15 +6022,6 @@
   },
   "balance_logs": [
     {
-      "time": 1783527896,
-      "user_id": "8617915052",
-      "old": 3.0,
-      "amount": -3.0,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "168"
-    },
-    {
       "time": 1783530510,
       "user_id": "8361517624",
       "old": 0.0,
@@ -6919,6 +6911,15 @@
       "new": 0.0,
       "reason": "withdraw_created",
       "request_id": "167"
+    },
+    {
+      "time": 1783527857,
+      "user_id": "8617915052",
+      "old": 0.0,
+      "amount": 3.0,
+      "new": 3.0,
+      "reason": "task_approved",
+      "request_id": "440"
     }
   ],
   "total_paid": 473.9,
