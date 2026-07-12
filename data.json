@@ -5204,6 +5204,13 @@
         "user_id": "7657871768",
         "note": "task #44",
         "time": 1783870714
+      },
+      "550": {
+        "status": "rejected",
+        "admin_id": 7837011810,
+        "user_id": "7657871768",
+        "note": "task #59",
+        "time": 1783877263
       }
     },
     "withdraws": {
