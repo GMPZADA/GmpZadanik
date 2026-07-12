@@ -1,27 +1,8 @@
 {
-  "submits": {
-    "545": {
-      "user_id": 8212195790,
-      "username": "SaulConfession",
-      "task_id": "43",
-      "reward": 2.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgEAAxkBAAJJr2pTf7Ytat6YJJ4IsIBdHJykUgUbAAJNDGsbmcugRkhiYQk_SPx5AQADAgADeQADPAQ",
-      "file_type": "photo",
-      "time": 1783857079,
-      "admin_sent": true,
-      "admin_sent_time": 1783857081,
-      "admin_message_id": 18865
-    }
-  },
+  "submits": {},
   "withdraws": {},
   "admin_sent": {
-    "submits": {
-      "545": {
-        "message_id": 18865,
-        "time": 1783857081
-      }
-    },
+    "submits": {},
     "withdraws": {}
   },
   "user_states": {},
