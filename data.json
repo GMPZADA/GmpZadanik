@@ -2737,12 +2737,13 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1783856651,
-      "updated_at": 1783856675,
+      "updated_at": 1783856678,
       "user_id": 8212195790,
       "username": "SaulConfession",
       "first_name": "генис",
       "last_name": "",
-      "language_code": "ru"
+      "language_code": "ru",
+      "last_open_task": "38"
     }
   },
   "tasks": {
