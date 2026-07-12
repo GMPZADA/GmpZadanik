@@ -1,25 +1,11 @@
 {
-  "submits": {
-    "546": {
-      "user_id": 7657871768,
-      "username": "ilsweetie",
-      "task_id": "59",
-      "reward": 2.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAJJs2pTf912klOAQlmo4Qk7v6SFbno_AALqHmsbl9KhSrKLWGxnGD0dAQADAgADeQADPAQ",
-      "file_type": "photo",
-      "time": 1783857119,
-      "admin_sent": true,
-      "admin_sent_time": 1783857119,
-      "admin_message_id": "sending"
-    }
-  },
+  "submits": {},
   "withdraws": {},
   "admin_sent": {
     "submits": {
       "546": {
-        "message_id": "sending",
-        "time": 1783857119
+        "message_id": 18871,
+        "time": 1783857121
       }
     },
     "withdraws": {}
