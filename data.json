@@ -2626,8 +2626,9 @@
       "first_name": "vverixme #тихийлес",
       "last_name": "",
       "language_code": "ru",
-      "last_open_task": "43",
-      "waiting_task": "43"
+      "pending_tasks": [
+        "43"
+      ]
     },
     "7657871768": {
       "balance": 10.0,
@@ -6761,7 +6762,7 @@
   "total_paid": 457.9,
   "total_withdrawals": 125,
   "last_task_id": 77,
-  "last_submit_id": 538,
+  "last_submit_id": 539,
   "last_withdraw_id": 192,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "withdraw_disabled_by_admin": false,
