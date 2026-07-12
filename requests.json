@@ -1,9 +1,27 @@
 {
   "submits": {},
-  "withdraws": {},
+  "withdraws": {
+    "194": {
+      "user_id": 7657871768,
+      "username": "ilsweetie",
+      "to": "@ilsweetie",
+      "amount": 2.0,
+      "status": "wait",
+      "time": 1783856394,
+      "source_message_id": 18834,
+      "admin_sent": true,
+      "admin_sent_time": 1783856394,
+      "admin_message_id": "sending"
+    }
+  },
   "admin_sent": {
     "submits": {},
-    "withdraws": {}
+    "withdraws": {
+      "194": {
+        "message_id": "sending",
+        "time": 1783856394
+      }
+    }
   },
   "user_states": {},
   "withdraw_requests": {},
