@@ -1,27 +1,8 @@
 {
-  "submits": {
-    "535": {
-      "user_id": 8390610754,
-      "username": "Imoninyau",
-      "task_id": "44",
-      "reward": 3.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAJJE2pTKDhjuoUKcc_enm_QEJmC3MirAAIEHGsbh7-ZSiTATAEieE3WAQADAgADeQADPAQ",
-      "file_type": "photo",
-      "time": 1783834681,
-      "admin_sent": true,
-      "admin_sent_time": 1783834683,
-      "admin_message_id": 18709
-    }
-  },
+  "submits": {},
   "withdraws": {},
   "admin_sent": {
-    "submits": {
-      "535": {
-        "message_id": 18709,
-        "time": 1783834683
-      }
-    },
+    "submits": {},
     "withdraws": {}
   },
   "user_states": {},
