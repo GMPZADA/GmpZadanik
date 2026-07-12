@@ -2655,9 +2655,7 @@
       "username": "ilsweetie",
       "first_name": "моя говорящая лера",
       "last_name": "",
-      "language_code": "ru",
-      "waiting_task": "59",
-      "last_open_task": "59"
+      "language_code": "ru"
     },
     "8462438374": {
       "balance": 0,
@@ -6918,7 +6916,7 @@
   "total_paid": 473.9,
   "total_withdrawals": 128,
   "last_task_id": 77,
-  "last_submit_id": 550,
+  "last_submit_id": 551,
   "last_withdraw_id": 195,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "withdraw_disabled_by_admin": false,
