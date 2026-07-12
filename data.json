@@ -2648,12 +2648,13 @@
       "withdrawn_total": 21.0,
       "fines_total": 0,
       "created_at": 1783763079,
-      "updated_at": 1783856620,
+      "updated_at": 1783856680,
       "user_id": 7657871768,
       "username": "ilsweetie",
       "first_name": "моя говорящая лера",
       "last_name": "",
-      "language_code": "ru"
+      "language_code": "ru",
+      "last_open_task": "42"
     },
     "8462438374": {
       "balance": 0,
@@ -2737,7 +2738,7 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1783856651,
-      "updated_at": 1783856678,
+      "updated_at": 1783856675,
       "user_id": 8212195790,
       "username": "SaulConfession",
       "first_name": "генис",
