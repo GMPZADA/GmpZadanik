@@ -2655,7 +2655,9 @@
       "username": "ilsweetie",
       "first_name": "моя говорящая лера",
       "last_name": "",
-      "language_code": "ru"
+      "language_code": "ru",
+      "waiting_task": "59",
+      "last_open_task": "59"
     },
     "8462438374": {
       "balance": 0,
