@@ -2741,14 +2741,12 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1783856651,
-      "updated_at": 1783859878,
+      "updated_at": 1783859893,
       "user_id": 8212195790,
       "username": "SaulConfession",
       "first_name": "генис",
       "last_name": "",
-      "language_code": "ru",
-      "last_open_task": "41",
-      "waiting_task": "41"
+      "language_code": "ru"
     }
   },
   "tasks": {
@@ -6879,7 +6877,7 @@
   "total_paid": 473.9,
   "total_withdrawals": 128,
   "last_task_id": 77,
-  "last_submit_id": 547,
+  "last_submit_id": 548,
   "last_withdraw_id": 195,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "withdraw_disabled_by_admin": false,
