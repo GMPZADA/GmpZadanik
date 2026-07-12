@@ -2645,8 +2645,8 @@
       "last_bonus": 0,
       "completed_tasks": 11,
       "total_earned": 25.0,
-      "withdraw_count": 4,
-      "withdrawn_total": 21.0,
+      "withdraw_count": 5,
+      "withdrawn_total": 25.0,
       "fines_total": 0,
       "created_at": 1783763079,
       "updated_at": 1783859439,
@@ -2655,8 +2655,7 @@
       "first_name": "моя говорящая лера",
       "last_name": "",
       "language_code": "ru",
-      "last_open_task": "57",
-      "withdraw_pending": true
+      "last_open_task": "57"
     },
     "8462438374": {
       "balance": 0,
@@ -5959,6 +5958,13 @@
         "user_id": "7657871768",
         "note": "amount 2.0",
         "time": 1783856423
+      },
+      "195": {
+        "status": "paid",
+        "admin_id": 7837011810,
+        "user_id": "7657871768",
+        "note": "amount 4.0",
+        "time": 1783859470
       }
     }
   },
@@ -6868,8 +6874,8 @@
       "request_id": "195"
     }
   ],
-  "total_paid": 469.9,
-  "total_withdrawals": 127,
+  "total_paid": 473.9,
+  "total_withdrawals": 128,
   "last_task_id": 77,
   "last_submit_id": 547,
   "last_withdraw_id": 195,
