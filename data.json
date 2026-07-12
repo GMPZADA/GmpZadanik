@@ -2628,7 +2628,7 @@
       "language_code": "ru"
     },
     "7657871768": {
-      "balance": 7.0,
+      "balance": 0.0,
       "done_tasks": [
         "38",
         "50",
@@ -2652,14 +2652,13 @@
       "withdrawn_total": 25.0,
       "fines_total": 0,
       "created_at": 1783763079,
-      "updated_at": 1783888771,
+      "updated_at": 1783888777,
       "user_id": 7657871768,
       "username": "ilsweetie",
       "first_name": "моя говорящая лера",
       "last_name": "",
       "language_code": "ru",
-      "withdraw_step": "amount",
-      "withdraw_to": "@ilsweetie"
+      "withdraw_pending": true
     },
     "8462438374": {
       "balance": 0,
@@ -6031,15 +6030,6 @@
   },
   "balance_logs": [
     {
-      "time": 1783530737,
-      "user_id": "8361517624",
-      "old": 2.0,
-      "amount": -2.0,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "169"
-    },
-    {
       "time": 1783531684,
       "user_id": "8699529726",
       "old": 0.0,
@@ -6929,13 +6919,22 @@
       "new": 7.0,
       "reason": "task_approved",
       "request_id": "552"
+    },
+    {
+      "time": 1783888777,
+      "user_id": "7657871768",
+      "old": 7.0,
+      "amount": -7.0,
+      "new": 0.0,
+      "reason": "withdraw_created",
+      "request_id": "196"
     }
   ],
   "total_paid": 473.9,
   "total_withdrawals": 128,
   "last_task_id": 77,
   "last_submit_id": 552,
-  "last_withdraw_id": 195,
+  "last_withdraw_id": 196,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "withdraw_disabled_by_admin": false,
   "withdraw_enabled": true
