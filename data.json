@@ -2648,8 +2648,8 @@
       "last_bonus": 0,
       "completed_tasks": 14,
       "total_earned": 32.0,
-      "withdraw_count": 5,
-      "withdrawn_total": 25.0,
+      "withdraw_count": 6,
+      "withdrawn_total": 32.0,
       "fines_total": 0,
       "created_at": 1783763079,
       "updated_at": 1783888777,
@@ -2657,8 +2657,7 @@
       "username": "ilsweetie",
       "first_name": "моя говорящая лера",
       "last_name": "",
-      "language_code": "ru",
-      "withdraw_pending": true
+      "language_code": "ru"
     },
     "8462438374": {
       "balance": 0,
@@ -6021,6 +6020,13 @@
         "user_id": "7657871768",
         "note": "amount 4.0",
         "time": 1783859470
+      },
+      "196": {
+        "status": "paid",
+        "admin_id": 7837011810,
+        "user_id": "7657871768",
+        "note": "amount 7.0",
+        "time": 1783915371
       }
     }
   },
@@ -6930,8 +6936,8 @@
       "request_id": "196"
     }
   ],
-  "total_paid": 473.9,
-  "total_withdrawals": 128,
+  "total_paid": 480.9,
+  "total_withdrawals": 129,
   "last_task_id": 77,
   "last_submit_id": 552,
   "last_withdraw_id": 196,
