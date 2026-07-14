@@ -2973,6 +2973,13 @@
       "reward": 2.0,
       "active": true,
       "required": false
+    },
+    "78": {
+      "text": "Зайти в бота и подписаться на спонсоров и отправить скриншот на проверку",
+      "link": "https://t.me/CatStarsxbot?start=7837011810",
+      "reward": 4.0,
+      "active": true,
+      "required": false
     }
   },
   "deleted_tasks": {
@@ -6974,7 +6981,7 @@
   ],
   "total_paid": 480.9,
   "total_withdrawals": 129,
-  "last_task_id": 77,
+  "last_task_id": 78,
   "last_submit_id": 552,
   "last_withdraw_id": 196,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
