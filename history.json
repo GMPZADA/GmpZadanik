@@ -1955,6 +1955,18 @@
       "admin_id": 7837011810,
       "reason": "",
       "time": 1784202160
+    },
+    {
+      "type": "task",
+      "user_id": "8361517624",
+      "task_id": "78",
+      "status": "approved",
+      "reward": 4.0,
+      "balance": 4.0,
+      "request_id": "556",
+      "admin_id": 7837011810,
+      "reason": "",
+      "time": 1784202451
     }
   ]
 }
