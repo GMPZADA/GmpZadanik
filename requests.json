@@ -1,27 +1,9 @@
 {
   "submits": {},
-  "withdraws": {
-    "198": {
-      "user_id": 6276600731,
-      "username": "BOG_PIGR",
-      "to": "@trqLemon4ik",
-      "amount": 10.0,
-      "status": "wait",
-      "time": 1784227696,
-      "source_message_id": 19160,
-      "admin_sent": true,
-      "admin_sent_time": 1784227696,
-      "admin_message_id": "sending"
-    }
-  },
+  "withdraws": {},
   "admin_sent": {
     "submits": {},
-    "withdraws": {
-      "198": {
-        "message_id": "sending",
-        "time": 1784227696
-      }
-    }
+    "withdraws": {}
   },
   "user_states": {},
   "withdraw_requests": {},
