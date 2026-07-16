@@ -1,27 +1,8 @@
 {
-  "submits": {
-    "559": {
-      "user_id": 6276600731,
-      "username": "BOG_PIGR",
-      "task_id": "76",
-      "reward": 2.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgUAAxkBAAJKsWpZJIRDPU6hk4WMVoChwYSLXEuoAAJZEGsbMVPJVjkngRzTtl1EAQADAgADeQADPQQ",
-      "file_type": "photo",
-      "time": 1784226949,
-      "admin_sent": true,
-      "admin_sent_time": 1784226951,
-      "admin_message_id": 19123
-    }
-  },
+  "submits": {},
   "withdraws": {},
   "admin_sent": {
-    "submits": {
-      "559": {
-        "message_id": 19123,
-        "time": 1784226951
-      }
-    },
+    "submits": {},
     "withdraws": {}
   },
   "user_states": {},
