@@ -2014,6 +2014,18 @@
       "admin_id": 7837011810,
       "reason": "",
       "time": 1784226980
+    },
+    {
+      "type": "task",
+      "user_id": "6276600731",
+      "task_id": "77",
+      "status": "rejected",
+      "reward": 0.0,
+      "balance": null,
+      "request_id": "560",
+      "admin_id": 7837011810,
+      "reason": "",
+      "time": 1784227308
     }
   ]
 }
