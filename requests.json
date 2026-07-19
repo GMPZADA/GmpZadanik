@@ -1,8 +1,27 @@
 {
-  "submits": {},
+  "submits": {
+    "562": {
+      "user_id": 8521333358,
+      "username": "Trzan4ik",
+      "task_id": "38",
+      "reward": 2.0,
+      "status": "wait",
+      "photo_file_id": "AgACAgIAAxkBAAJLFWpdCQ7mY4vKQkHvkvawzBj1rUBtAAIgG2sbfrvoSj2Fc0MPbl-PAQADAgADeQADPQQ",
+      "file_type": "photo",
+      "time": 1784482063,
+      "admin_sent": true,
+      "admin_sent_time": 1784482063,
+      "admin_message_id": "sending"
+    }
+  },
   "withdraws": {},
   "admin_sent": {
-    "submits": {},
+    "submits": {
+      "562": {
+        "message_id": "sending",
+        "time": 1784482063
+      }
+    },
     "withdraws": {}
   },
   "user_states": {},
