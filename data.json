@@ -2858,14 +2858,12 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1784481987,
-      "updated_at": 1784482039,
+      "updated_at": 1784482063,
       "user_id": 8521333358,
       "username": "Trzan4ik",
       "first_name": "𝓰𝓸𝓸𝓭 𝓫𝓸𝔂",
       "last_name": "",
-      "language_code": "ru",
-      "last_open_task": "38",
-      "waiting_task": "38"
+      "language_code": "ru"
     }
   },
   "tasks": {
@@ -7115,7 +7113,7 @@
   "total_paid": 484.9,
   "total_withdrawals": 130,
   "last_task_id": 78,
-  "last_submit_id": 561,
+  "last_submit_id": 562,
   "last_withdraw_id": 198,
   "start_text": "💎 <b>Добро пожаловать в Заработок GMP!</b>\n\n📋 Выполняй задания\n📸 Проходи проверку\n💰 Зарабатывай GMP\n\n🔥 Выплачено более 500 000+ GMP\n⚡ Быстрые проверки\n🛡 Безопасные выплаты\n\n👇 Выбери действие:",
   "withdraw_disabled_by_admin": false,
