@@ -2902,11 +2902,13 @@
       "last_open_task": "38"
     },
     "8500536204": {
-      "balance": 0,
-      "done_tasks": [],
+      "balance": 2.0,
+      "done_tasks": [
+        "41"
+      ],
       "last_bonus": 0,
-      "completed_tasks": 0,
-      "total_earned": 0,
+      "completed_tasks": 1,
+      "total_earned": 2.0,
       "withdraw_count": 0,
       "withdrawn_total": 0,
       "fines_total": 0,
@@ -2917,7 +2919,6 @@
       "first_name": "Arman",
       "last_name": "",
       "language_code": "ru",
-      "waiting_task": "41",
       "last_open_task": "41"
     }
   },
@@ -5456,6 +5457,13 @@
         "user_id": "8521333358",
         "note": "task #38",
         "time": 1784482078
+      },
+      "563": {
+        "status": "approved",
+        "admin_id": 7837011810,
+        "user_id": "8500536204",
+        "note": "task #41",
+        "time": 1784703814
       }
     },
     "withdraws": {
@@ -6271,15 +6279,6 @@
     "withdraws": {}
   },
   "balance_logs": [
-    {
-      "time": 1783576112,
-      "user_id": "6468977018",
-      "old": 2.0,
-      "amount": -2.0,
-      "new": 0.0,
-      "reason": "withdraw_created",
-      "request_id": "172"
-    },
     {
       "time": 1783576170,
       "user_id": "6468977018",
@@ -7170,6 +7169,15 @@
       "new": 0.8,
       "reason": "withdraw_created",
       "request_id": "198"
+    },
+    {
+      "time": 1784703814,
+      "user_id": "8500536204",
+      "old": 0.0,
+      "amount": 2.0,
+      "new": 2.0,
+      "reason": "task_approved",
+      "request_id": "563"
     }
   ],
   "total_paid": 484.9,
