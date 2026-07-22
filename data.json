@@ -2911,12 +2911,14 @@
       "withdrawn_total": 0,
       "fines_total": 0,
       "created_at": 1784703713,
-      "updated_at": 1784703788,
+      "updated_at": 1784703792,
       "user_id": 8500536204,
       "username": "gminesbot1",
       "first_name": "Arman",
       "last_name": "",
-      "language_code": "ru"
+      "language_code": "ru",
+      "waiting_task": "41",
+      "last_open_task": "41"
     }
   },
   "tasks": {
