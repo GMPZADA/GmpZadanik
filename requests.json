@@ -1,27 +1,8 @@
 {
-  "submits": {
-    "564": {
-      "user_id": 8500536204,
-      "username": "gminesbot1",
-      "task_id": "43",
-      "reward": 2.0,
-      "status": "wait",
-      "photo_file_id": "AgACAgIAAxkBAAJLU2pga4Gz3rKV7RbxrYn56FijFpPkAAIPHGsbLQwBS71Ue5eRjzHFAQADAgADeQADPQQ",
-      "file_type": "photo",
-      "time": 1784703874,
-      "admin_sent": true,
-      "admin_sent_time": 1784703876,
-      "admin_message_id": 19285
-    }
-  },
+  "submits": {},
   "withdraws": {},
   "admin_sent": {
-    "submits": {
-      "564": {
-        "message_id": 19285,
-        "time": 1784703876
-      }
-    },
+    "submits": {},
     "withdraws": {}
   },
   "user_states": {},
