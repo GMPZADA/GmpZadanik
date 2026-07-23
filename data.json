@@ -2625,13 +2625,13 @@
       "withdrawn_total": 2.0,
       "fines_total": 0,
       "created_at": 1783760098,
-      "updated_at": 1784832776,
+      "updated_at": 1784832780,
       "user_id": 8558598966,
       "username": "Dubrovnikup",
       "first_name": "vverixme #тихийлес",
       "last_name": "",
       "language_code": "ru",
-      "last_open_task": "45"
+      "last_open_task": "46"
     },
     "7657871768": {
       "balance": 0.0,
@@ -5488,6 +5488,13 @@
         "user_id": "8500536204",
         "note": "task #43",
         "time": 1784703886
+      },
+      "565": {
+        "status": "rejected",
+        "admin_id": 7837011810,
+        "user_id": "8558598966",
+        "note": "task #42",
+        "time": 1784832778
       }
     },
     "withdraws": {
