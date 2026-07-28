@@ -3007,6 +3007,23 @@
       "first_name": "sumit",
       "last_name": "kumar",
       "language_code": "en"
+    },
+    "8334209291": {
+      "balance": 0,
+      "done_tasks": [],
+      "last_bonus": 0,
+      "completed_tasks": 0,
+      "total_earned": 0,
+      "withdraw_count": 0,
+      "withdrawn_total": 0,
+      "fines_total": 0,
+      "created_at": 1785212306,
+      "updated_at": 1785212306,
+      "user_id": 8334209291,
+      "username": "yyrfxikn",
+      "first_name": "Sajid Khan",
+      "last_name": "",
+      "language_code": "en"
     }
   },
   "tasks": {
