@@ -3041,6 +3041,23 @@
       "first_name": "Vetri",
       "last_name": "Vk",
       "language_code": "en"
+    },
+    "8520195437": {
+      "balance": 0,
+      "done_tasks": [],
+      "last_bonus": 0,
+      "completed_tasks": 0,
+      "total_earned": 0,
+      "withdraw_count": 0,
+      "withdrawn_total": 0,
+      "fines_total": 0,
+      "created_at": 1785296823,
+      "updated_at": 1785296823,
+      "user_id": 8520195437,
+      "username": "g370hxlu",
+      "first_name": "Niharika",
+      "last_name": ".M",
+      "language_code": "en"
     }
   },
   "tasks": {
