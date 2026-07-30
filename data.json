@@ -3058,6 +3058,23 @@
       "first_name": "Niharika",
       "last_name": ".M",
       "language_code": "en"
+    },
+    "6948844405": {
+      "balance": 0,
+      "done_tasks": [],
+      "last_bonus": 0,
+      "completed_tasks": 0,
+      "total_earned": 0,
+      "withdraw_count": 0,
+      "withdrawn_total": 0,
+      "fines_total": 0,
+      "created_at": 1785378074,
+      "updated_at": 1785378074,
+      "user_id": 6948844405,
+      "username": "x5ebFq",
+      "first_name": "壹号戴；蕟七百三十八",
+      "last_name": "",
+      "language_code": "en"
     }
   },
   "tasks": {
