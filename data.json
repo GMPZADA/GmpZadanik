@@ -1954,7 +1954,8 @@
       "first_name": "ponchik",
       "last_name": "",
       "language_code": "ru",
-      "last_open_task": "44"
+      "last_open_task": "44",
+      "waiting_task": "44"
     },
     "8201177106": {
       "balance": 0,
